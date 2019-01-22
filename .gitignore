@@ -1,0 +1,7 @@
+Temp/
+.env
+**/.env
+**/env.py
+**/.tar.gz
+**/sharedassets*
+**/*.resS

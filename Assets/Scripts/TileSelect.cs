@@ -25,6 +25,11 @@ public class TileSelect : MonoBehaviour
     restingPos = transform.position;
   }
 
+  public Vector3 GetResting()
+  {
+    return restingPos;
+  }
+
   public void SetPos(Vector2 pos)
   {
     this.pos = pos;
@@ -52,36 +57,103 @@ public class TileSelect : MonoBehaviour
     //Debug.Log("Deactivating: " + transform.gameObject.name);
     foreach (Transform t in transform)
     {
-      t.gameObject.SetActive(false);
+      if (t.gameObject.name.Equals("Highlight"))
+      {
+        t.gameObject.SetActive(true);
+      }
+      else
+      {
+        t.gameObject.SetActive(false);
+      }
     }
+  }
+
+  static GameObject FindNameInTransform(Transform transform, string tName)
+  {
+    foreach (Transform t in transform)
+    {
+      if (t.gameObject.name.Equals(tName))
+      {
+        //t.gameObject.SetActive(true);
+        return t.gameObject;
+      }
+    }
+    return null;
+  }
+
+  IEnumerator MoveCharacter(Transform from, Transform to, Character.dirs position)
+  {
+    GameObject unitFrom = FindNameInTransform(from, "Unit");
+    GameObject unitTo = FindNameInTransform(to, "Unit");
+
+    GameObject character = Instantiate(unitFrom, unitFrom.transform.position, Quaternion.identity, BoardCoordinator.instance.transform);
+    Debug.Log("Position: " + position);
+    character.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
+    //unit.SetActive(false);
+    //iTween.MoveTo(character, unitTo.transform.position,.2f);
+    iTween.MoveTo(character, iTween.Hash("x", unitTo.transform.position.x, "y", unitTo.transform.position.y, 
+      "islocal", false, "time", .2f, "looptype", "none", "easetype", "linear"));
+    yield return new WaitForSeconds(.2f);
+    ActivateTile();
+    Destroy(character);
   }
 
   public void Activate()
   {
     active = true;
-    transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-    Character.dirs position = Character.dirs.None;
-    foreach (Transform t in transform)
+    if (BoardCoordinator.instance.GetCurrentTile() != null && BoardCoordinator.instance.GetLastTile() != null)
     {
-      t.gameObject.SetActive(true);
-      if (t.gameObject.name.Equals("Unit"))
-      {
-        position = BoardCoordinator.instance.SetCurrPos(restingPos);
-      }
-    }
+      TileSelect from = BoardCoordinator.instance.GetCurrentTile();
 
-    //Character.dirs position = BoardCoordinator.instance.SetCurrPos(pos);
+      //Character.dirs position = BoardCoordinator.instance.SetCurrPos(transform);
+
+      //if (position != Character.dirs.None)
+      //{
+      //  Debug.Log("Received char direction: " + position.ToString());
+      //  foreach (Transform t in transform)
+      //  {
+      //    if (t.gameObject.name.Equals("Unit"))
+      //    {
+      //      t.gameObject.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
+      //    }
+      //  }
+      //}
+
+      Character.dirs position = BoardCoordinator.instance.SetCurrPos(transform, false);
+
+      StartCoroutine(MoveCharacter(from.transform, transform, position));
+    }
+    else
+    {
+      ActivateTile();
+    }
+  }
+
+  void ActivateTile()
+  {
+    Character.dirs position = BoardCoordinator.instance.SetCurrPos(transform, true);
+
     if (position != Character.dirs.None)
     {
       Debug.Log("Received char direction: " + position.ToString());
-      //transform.position = new Vector3(restingPos.x, restingPos.y + .05f, restingPos.z);
-
       foreach (Transform t in transform)
       {
         if (t.gameObject.name.Equals("Unit"))
         {
           t.gameObject.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
         }
+      }
+    }
+
+    transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+    //Character.dirs position = Character.dirs.None;
+    //position = BoardCoordinator.instance.SetCurrPos(transform);
+
+    foreach (Transform t in transform)
+    {
+      if (t.gameObject.name.Equals("Unit"))
+      {
+        t.gameObject.SetActive(true);
       }
     }
 

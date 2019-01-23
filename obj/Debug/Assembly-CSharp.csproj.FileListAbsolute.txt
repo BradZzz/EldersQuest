@@ -252,3 +252,4 @@
 /Users/brad/Documents/new_git/IsometricTester/obj/Debug/Assembly-CSharp.csproj.CopyComplete
 /Users/brad/Documents/new_git/IsometricTester/obj/Debug/Assembly-CSharp.dll
 /Users/brad/Documents/new_git/IsometricTester/obj/Debug/Assembly-CSharp.pdb
+/Users/brad/Documents/new_git/IsometricTester/Temp/bin/Debug/Assembly-CSharp-firstpass.pdb

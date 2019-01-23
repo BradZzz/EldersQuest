@@ -15,7 +15,7 @@ public class BoardCoordinator : MonoBehaviour
   public int width;
   public int height;
   public GameObject tile;
-  public Vector2[] currentPos;
+  public Transform[] currentPos;
   public static BoardCoordinator instance;
   public GameObject glossary;
 
@@ -24,7 +24,7 @@ public class BoardCoordinator : MonoBehaviour
   private void Awake()
   {
     instance = this;
-    currentPos = new Vector2[] { Vector2.zero, Vector2.zero };
+    currentPos = new Transform[] { null, null };
     board = new TileSelect[width,height];
     width /= 2;
   }
@@ -44,7 +44,30 @@ public class BoardCoordinator : MonoBehaviour
         tl.GetComponent<TileSelect>().Deactivate();
       }
     }
+    currentPos[0] = board[0, 0].transform;
     board[0, 0].GetComponent<TileSelect>().Activate();
+  }
+
+  public TileSelect GetCurrentTile()
+  {
+    if (currentPos[0] == null)
+    {
+      return null;
+    }
+    Vector2 currentTile = currentPos[0].GetComponent<TileSelect>().pos;
+    Debug.Log("currentTile: " + currentTile.ToString());
+    return board[(int)currentTile.x, (int)currentTile.y];
+  }
+
+  public TileSelect GetLastTile()
+  {
+    if (currentPos[1] == null)
+    {
+      return null;
+    }
+    Vector2 lastTile = currentPos[1].GetComponent<TileSelect>().pos;
+    Debug.Log("lastTile: " + lastTile.ToString());
+    return board[(int)lastTile.x, (int)lastTile.y];
   }
 
   GameObject CreateTile(Transform parent, Vector3 pos, int col, int row)
@@ -66,15 +89,25 @@ public class BoardCoordinator : MonoBehaviour
     return nTile;
   }
 
-   public Character.dirs SetCurrPos(Vector3 pos)
+   public Character.dirs SetCurrPos(Transform pos, bool save)
    {
-    Debug.Log("Clicks: " + currentPos[0].ToString() + " : " + currentPos[1].ToString() + " : " + pos.ToString());
+      Debug.Log("SetCurrPos");
+      Debug.Log(pos.GetComponent<TileSelect>().GetResting());
+      Debug.Log(currentPos[0].GetComponent<TileSelect>().GetResting());
+      Transform prev, curr;
 
-    if (!Mathf.Approximately(pos.x, currentPos[0].x) || !Mathf.Approximately(pos.y, currentPos[0].y))
+      if (!Mathf.Approximately(pos.GetComponent<TileSelect>().GetResting().x, currentPos[0].GetComponent<TileSelect>().GetResting().x) 
+      || !Mathf.Approximately(pos.GetComponent<TileSelect>().GetResting().y, currentPos[0].GetComponent<TileSelect>().GetResting().y))
       {
-        currentPos[1] = currentPos[0];
-        currentPos[0] = pos;
-        Debug.Log("Changed");
+          prev = currentPos[0];
+          curr = pos;
+
+          if (save)
+          {
+            currentPos[1] = prev;
+            currentPos[0] = curr;
+            Debug.Log("Changed");
+          }
       }
       else
       {
@@ -87,10 +120,11 @@ public class BoardCoordinator : MonoBehaviour
       //Vector2 lastPos = new Vector2(currentPos.x, currentPos.y);
       //currentPos = pos;
 
-      Vector2 diff = new Vector2(currentPos[0].x - currentPos[1].x, currentPos[0].y - currentPos[1].y);
+      Vector2 diff = new Vector2(curr.gameObject.GetComponent<TileSelect>().GetResting().x - prev.gameObject.GetComponent<TileSelect>().GetResting().x,
+        curr.gameObject.GetComponent<TileSelect>().GetResting().y - prev.gameObject.GetComponent<TileSelect>().GetResting().y);
       Character.dirs charDirection = Character.dirs.None;
 
-      Debug.Log("Clicks After: " + currentPos[0].ToString() + " : " + currentPos[1].ToString() + " : " + pos.ToString());
+      //Debug.Log("Clicks After: " + currentPos[0].ToString() + " : " + currentPos[1].ToString() + " : " + pos.ToString());
 
       Debug.Log("Click Diff: " + diff.ToString());
 

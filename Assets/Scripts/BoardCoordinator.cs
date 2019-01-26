@@ -225,9 +225,6 @@ public class BoardCoordinator : MonoBehaviour
       }
     }
 
-    Debug.Log("Selected pos: " + pos.ToString());
-    Debug.Log("Selected dirs: " + retTiles.ToArray());
-
     return retTiles.ToArray();
   }
 

@@ -5,29 +5,48 @@ using UnityEngine;
 public class TileSelect : MonoBehaviour
 {
   public GameObject glossary;
+  public Vector2 pos;
 
 
   private bool waiting = false;
   private IEnumerator waitIE = null;
   private bool active = false;
-  public Vector2 pos;
   private Vector3 restingPos;
+
+  private GameObject unit;
+  private GameObject highlight;
 
   private IEnumerator WaitForClick()
   {
     waiting = true;
-    yield return new WaitForSeconds(.5f);
+    yield return new WaitForSeconds(.1f);
     waiting = false;
   }
 
   private void Awake()
   {
     restingPos = transform.position;
+    foreach (Transform t in transform)
+    {
+      if (t.gameObject.name.Equals("Unit"))
+      {
+        unit = t.gameObject;
+      }
+      if (t.gameObject.name.Equals("Highlight"))
+      {
+        highlight = t.gameObject;
+      }
+    }
   }
 
   public Vector3 GetResting()
   {
     return restingPos;
+  }
+
+  public GameObject GetUnit()
+  {
+    return unit;
   }
 
   public void SetPos(Vector2 pos)
@@ -42,10 +61,9 @@ public class TileSelect : MonoBehaviour
     transform.position = restingPos;
     //transform.Find("Unit")
     //Debug.Log("Deactivating: " + transform.gameObject.name);
-    foreach (Transform t in transform)
-    {
-      t.gameObject.SetActive(false);
-    }
+
+    highlight.SetActive(false);
+    unit.SetActive(false);
   }
 
   public void Select()
@@ -55,17 +73,9 @@ public class TileSelect : MonoBehaviour
     transform.position = restingPos;
     //transform.Find("Unit")
     //Debug.Log("Deactivating: " + transform.gameObject.name);
-    foreach (Transform t in transform)
-    {
-      if (t.gameObject.name.Equals("Highlight"))
-      {
-        t.gameObject.SetActive(true);
-      }
-      else
-      {
-        t.gameObject.SetActive(false);
-      }
-    }
+
+    highlight.SetActive(true);
+    unit.SetActive(false);
   }
 
   static GameObject FindNameInTransform(Transform transform, string tName)
@@ -83,17 +93,17 @@ public class TileSelect : MonoBehaviour
 
   IEnumerator MoveCharacter(Transform from, Transform to, Character.dirs position)
   {
-    GameObject unitFrom = FindNameInTransform(from, "Unit");
-    GameObject unitTo = FindNameInTransform(to, "Unit");
+    GameObject unitFrom = from.gameObject.GetComponent<TileSelect>().GetUnit();
+    GameObject unitTo = to.gameObject.GetComponent<TileSelect>().GetUnit();
 
     GameObject character = Instantiate(unitFrom, unitFrom.transform.position, Quaternion.identity, BoardCoordinator.instance.transform);
-    Debug.Log("Position: " + position);
     character.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
-    //unit.SetActive(false);
-    //iTween.MoveTo(character, unitTo.transform.position,.2f);
-    iTween.MoveTo(character, iTween.Hash("x", unitTo.transform.position.x, "y", unitTo.transform.position.y, 
-      "islocal", false, "time", .2f, "looptype", "none", "easetype", "linear"));
-    yield return new WaitForSeconds(.2f);
+
+    iTween.MoveTo(character, iTween.Hash("x", unitTo.transform.position.x, "y", unitTo.transform.position.y - .1f, "z", unitTo.transform.position.z,
+      "islocal", false, "time", .3f, "looptype", "none", "easetype", "linear"));
+    iTween.ShakeRotation(character, iTween.Hash("z", 30f, "islocal", true, "delay", 0, "time", .25f));
+
+    yield return new WaitForSeconds(.3f);
     ActivateTile();
     Destroy(character);
   }
@@ -104,20 +114,6 @@ public class TileSelect : MonoBehaviour
     if (BoardCoordinator.instance.GetCurrentTile() != null && BoardCoordinator.instance.GetLastTile() != null)
     {
       TileSelect from = BoardCoordinator.instance.GetCurrentTile();
-
-      //Character.dirs position = BoardCoordinator.instance.SetCurrPos(transform);
-
-      //if (position != Character.dirs.None)
-      //{
-      //  Debug.Log("Received char direction: " + position.ToString());
-      //  foreach (Transform t in transform)
-      //  {
-      //    if (t.gameObject.name.Equals("Unit"))
-      //    {
-      //      t.gameObject.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
-      //    }
-      //  }
-      //}
 
       Character.dirs position = BoardCoordinator.instance.SetCurrPos(transform, false);
 
@@ -131,31 +127,16 @@ public class TileSelect : MonoBehaviour
 
   void ActivateTile()
   {
+    unit.SetActive(true);
+
     Character.dirs position = BoardCoordinator.instance.SetCurrPos(transform, true);
 
     if (position != Character.dirs.None)
     {
-      Debug.Log("Received char direction: " + position.ToString());
-      foreach (Transform t in transform)
-      {
-        if (t.gameObject.name.Equals("Unit"))
-        {
-          t.gameObject.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
-        }
-      }
+      unit.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
     }
 
     transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-    //Character.dirs position = Character.dirs.None;
-    //position = BoardCoordinator.instance.SetCurrPos(transform);
-
-    foreach (Transform t in transform)
-    {
-      if (t.gameObject.name.Equals("Unit"))
-      {
-        t.gameObject.SetActive(true);
-      }
-    }
 
     TileSelect[] surrTiles = BoardCoordinator.instance.GetSurroundingTiles(this);
     foreach (TileSelect surrT in surrTiles)
@@ -191,15 +172,13 @@ public class TileSelect : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, Vector2.down);
         if (hits.Length > 0)
         {
-          //Debug.Log("Hits: " + hits.Length.ToString());
-          foreach (Transform child in GameObject.Find("Tilemap").transform)
-          {
-            //child.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            Deactivate();
-          }
           if (hits[0])
           {
             hits[0].transform.gameObject.GetComponent<TileSelect>().Activate();
+          }
+          foreach (Transform child in GameObject.Find("Tilemap").transform)
+          {
+            Deactivate();
           }
         }
       }

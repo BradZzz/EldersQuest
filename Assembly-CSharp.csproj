@@ -135,6 +135,7 @@
     <Compile Include="Assets\Libraries\OutlineEffect\OutlineEffect.cs" />
     <Compile Include="Assets\Scripts\BoardCoordinator.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\FadeMaterials.cs" />
     <Compile Include="Assets\Scripts\Glossary.cs" />
     <Compile Include="Assets\Scripts\HighlightShift.cs" />
     <Compile Include="Assets\Scripts\TileSelect.cs" />

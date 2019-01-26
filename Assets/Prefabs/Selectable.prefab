@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6766738069686211522}
   - component: {fileID: 5648989190410002462}
   - component: {fileID: 5673555381736841563}
+  - component: {fileID: 6035176156980699690}
   m_Layer: 0
   m_Name: Highlight
   m_TagString: Untagged
@@ -90,6 +91,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5124646b9e0d424b9219e778efb5657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6035176156980699690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414063854318990891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9f73a45d6904a73aac06faa75c456f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1191183809451266533
@@ -296,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glossary: {fileID: 6915397388733608802, guid: 88952b53949d643149b65acf24555dc4, type: 3}
+  pos: {x: 0, y: 0}
 --- !u!61 &5972977209912225103
 BoxCollider2D:
   m_ObjectHideFlags: 0

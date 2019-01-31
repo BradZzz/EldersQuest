@@ -138,6 +138,7 @@
     <Compile Include="Assets\Scripts\FadeMaterials.cs" />
     <Compile Include="Assets\Scripts\Glossary.cs" />
     <Compile Include="Assets\Scripts\HighlightShift.cs" />
+    <Compile Include="Assets\Scripts\SteadyComp.cs" />
     <Compile Include="Assets\Scripts\TileSelect.cs" />
     <None Include="Assets\Sprites\isometric-blocks (1)\Spritesheet\voxelTiles_sheet.xml" />
     <None Include="Assets\Sprites\kenney_naturepackextended_updated (1)\Tools\Three.js (Blender)\readme.txt" />

@@ -45,6 +45,7 @@ public class BoardCoordinator : MonoBehaviour
       }
     }
     currentPos[0] = board[0, 0].transform;
+    currentPos[1] = board[0, 1].transform;
     board[0, 0].GetComponent<TileSelect>().Activate();
   }
 
@@ -196,18 +197,18 @@ public class BoardCoordinator : MonoBehaviour
       {
         retTiles.Add(board[(int)pos.x, (int)pos.y - 1]);
       }
-      if (pos.x > 0 && pos.y < height)
+      if (pos.x > 0 && pos.y < height - 1)
       {
         retTiles.Add(board[(int)pos.x - 1, (int)pos.y + 1]);
       }
-      if (pos.y < height)
+      if (pos.y < height - 1)
       {
         retTiles.Add(board[(int)pos.x, (int)pos.y + 1]);
       }
     }
     else
     {
-      if (pos.x < width && pos.y > 0)
+      if (pos.x < width - 1 && pos.y > 0)
       {
         retTiles.Add(board[(int)pos.x + 1, (int)pos.y - 1]);
       }
@@ -215,11 +216,11 @@ public class BoardCoordinator : MonoBehaviour
       {
         retTiles.Add(board[(int)pos.x, (int)pos.y - 1]);
       }
-      if (pos.x < width && pos.y < height)
+      if (pos.x < width - 1 && pos.y < height - 1)
       {
         retTiles.Add(board[(int)pos.x + 1, (int)pos.y + 1]);
       }
-      if (pos.y < height)
+      if (pos.y < height - 1)
       {
         retTiles.Add(board[(int)pos.x, (int)pos.y + 1]);
       }

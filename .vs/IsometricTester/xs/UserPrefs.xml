@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FadeMaterials.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SteadyComp.cs">
     <Files>
       <File FileName="Assets/Libraries/Add Ons/2D Extras/Brushes/Prefab Brush/Scripts/Editor/PrefabBrush.cs" Line="1" Column="1" />
       <File FileName="Assets/Libraries/Add Ons/2D Extras/Brushes/Random Brush/Scripts/Editor/RandomBrush.cs" Line="1" Column="1" />
       <File FileName="Assets/Libraries/Add Ons/2D Extras/Brushes/Line Brush/Scripts/Editor/LineBrush.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/TileSelect.cs" Line="91" Column="17" />
-      <File FileName="Assets/Scripts/BoardCoordinator.cs" Line="96" Column="1" />
+      <File FileName="Assets/Scripts/TileSelect.cs" Line="104" Column="36" />
+      <File FileName="Assets/Scripts/BoardCoordinator.cs" Line="46" Column="6" />
       <File FileName="Assets/Scripts/Glossary.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Character.cs" Line="32" Column="22" />
-      <File FileName="Assets/Scripts/HighlightShift.cs" Line="17" Column="39" />
-      <File FileName="Assets/Scripts/FadeMaterials.cs" Line="21" Column="39" />
+      <File FileName="Assets/Scripts/HighlightShift.cs" Line="9" Column="31" />
+      <File FileName="Assets/Scripts/FadeMaterials.cs" Line="18" Column="43" />
+      <File FileName="Assets/Scripts/SteadyComp.cs" Line="11" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

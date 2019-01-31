@@ -54,6 +54,11 @@ public class TileSelect : MonoBehaviour
     this.pos = pos;
   }
 
+  public bool GetActive()
+  {
+    return active;
+  }
+
   public void Deactivate()
   {
     active = false;
@@ -97,9 +102,19 @@ public class TileSelect : MonoBehaviour
     GameObject unitTo = to.gameObject.GetComponent<TileSelect>().GetUnit();
 
     GameObject character = Instantiate(unitFrom, unitFrom.transform.position, Quaternion.identity, BoardCoordinator.instance.transform);
+    foreach (Transform child in character.transform)
+    {
+      child.gameObject.SetActive(false);
+    }
     character.GetComponent<SpriteRenderer>().sprite = BoardCoordinator.instance.glossary.GetComponent<Glossary>().characters[0].GetDirectionalSprite(position);
+    //foreach (Transform child in character.transform)
+    //{
+    //  if (child.name.Equals("Health")) {
+    //    child.gameObject.SetActive(true);
+    //  }
+    //}
 
-    iTween.MoveTo(character, iTween.Hash("x", unitTo.transform.position.x, "y", unitTo.transform.position.y - .1f, "z", unitTo.transform.position.z,
+    iTween.MoveTo(character, iTween.Hash("x", unitTo.transform.position.x, "y", unitTo.transform.position.y - .05f, "z", unitTo.transform.position.z,
       "islocal", false, "time", .3f, "looptype", "none", "easetype", "linear"));
     iTween.ShakeRotation(character, iTween.Hash("z", 30f, "islocal", true, "delay", 0, "time", .25f));
 
@@ -166,20 +181,36 @@ public class TileSelect : MonoBehaviour
         StartCoroutine(waitIE);
 
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(Camera.main.transform.position.z)));
+        StartCoroutine(EvaluateHit(ray));
 
-        //Debug.Log("GetMouseButtonDown Hit");
+        //RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, Vector2.down);
+        //if (hits.Length > 0)
+        //{
+        //  if (hits[0])
+        //  {
+        //    hits[0].transform.gameObject.GetComponent<TileSelect>().Activate();
+        //  }
+        //  foreach (Transform child in GameObject.Find("Tilemap").transform)
+        //  {
+        //    Deactivate();
+        //  }
+        //}
+      }
+    }
+  }
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, Vector2.down);
-        if (hits.Length > 0)
+  IEnumerator EvaluateHit(Ray ray)
+  {
+    yield return null;
+    RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, Vector2.down);
+    if (hits.Length > 0)
+    {
+      hits[0].transform.gameObject.GetComponent<TileSelect>().Activate();
+      foreach (Transform child in GameObject.Find("Tilemap").transform)
+      {
+        if (child != hits[0].transform)
         {
-          if (hits[0])
-          {
-            hits[0].transform.gameObject.GetComponent<TileSelect>().Activate();
-          }
-          foreach (Transform child in GameObject.Find("Tilemap").transform)
-          {
-            Deactivate();
-          }
+          Deactivate();
         }
       }
     }

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6305019916035455536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2932117310089432390}
+  - component: {fileID: 1727194698243455406}
+  m_Layer: 0
+  m_Name: Astronaut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2932117310089432390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305019916035455536}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000000008278423, y: 0, z: 0}
+  m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1727194698243455406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305019916035455536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ece4d54aab847bb9450aedb0a8e686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Astronaut
+  north: {fileID: 21300000, guid: d7c405832ca71490ead5c5d01db07953, type: 3}
+  south: {fileID: 21300000, guid: 399cef6fb6e60479899bbf56b91f9f4f, type: 3}
+  east: {fileID: 21300000, guid: 122093b90b0a94effa599e9ba7b485c8, type: 3}
+  west: {fileID: 21300000, guid: fce9a60ef5ff34677a2590fb7b3ea59c, type: 3}
+  northEast: {fileID: 21300000, guid: 7d858540ffae949228648af9c13cb391, type: 3}
+  northWest: {fileID: 21300000, guid: 25749edf5ba784c95af4ff89e972763d, type: 3}
+  southEast: {fileID: 21300000, guid: 5e26ad3a32a904a379241009fe8ad5cb, type: 3}
+  southWest: {fileID: 21300000, guid: 97ff5ac221b1d4a7482b89bc1c69c645, type: 3}
+  scale: 1

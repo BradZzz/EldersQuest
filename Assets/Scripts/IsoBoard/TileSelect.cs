@@ -125,12 +125,15 @@ public class TileSelect : MonoBehaviour
         surrT.Deactivate();
       }
     }
+    //from.gameObject.GetComponent<TileSelect>().Deactivate();
 
     GameObject character = Instantiate(unitFrom, unitFrom.transform.position, Quaternion.identity, BoardCoordinator.instance.transform);
     foreach (Transform child in character.transform)
     {
       child.gameObject.SetActive(false);
     }
+
+    from.gameObject.GetComponent<TileSelect>().Deactivate();
 
     Debug.Log("TlSelect");
     Debug.Log(character);

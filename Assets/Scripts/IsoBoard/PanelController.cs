@@ -10,6 +10,7 @@ public class PanelController : MonoBehaviour
 
   public GameObject ImagePanel;
   public GameObject NamePanel;
+  public GameObject HealthPanel;
 
   private void Awake()
   {
@@ -20,23 +21,47 @@ public class PanelController : MonoBehaviour
   {
     NamePanel.GetComponent<TextMeshProUGUI>().text = "";
     ImagePanel.GetComponent<Image>().enabled = false;
+    HealthPanel.SetActive(false);
   }
 
-  public void SwitchCharImages(Sprite sprite)
+  public void SwitchCharImages(Character panelChar)
   {
-    if (sprite == null)
+    Sprite img = panelChar == null ? null : panelChar.south;
+    if (img == null)
     {
       ImagePanel.GetComponent<Image>().enabled = false;
     }
     else
     {
       ImagePanel.GetComponent<Image>().enabled = true;
-      ImagePanel.GetComponent<Image>().sprite = sprite;
+      ImagePanel.GetComponent<Image>().sprite = img;
     }
   }
 
-  public void SwitchCharName(string name)
+  public void SwitchCharName(Character panelChar)
   {
-    NamePanel.GetComponent<TextMeshProUGUI>().text = name;
+    string chrName = panelChar == null ? "" : panelChar.characterMoniker;
+    NamePanel.GetComponent<TextMeshProUGUI>().text = chrName;
+  }
+
+  public void SetCharHealth(Character panelChar)
+  {
+    if (panelChar == null)
+    {
+      HealthPanel.SetActive(false);
+      return;
+    }
+    HealthPanel.SetActive(true);
+    HealthPanel.GetComponent<Image>().enabled = true;
+    foreach (Transform t in HealthPanel.transform)
+    {
+      if (t.name.Equals("HealthFillBar"))
+      {
+        t.GetComponent<Image>().fillAmount = (float)panelChar.GetCurrHealth() / (float)panelChar.mxHlth;
+      } else if (t.name.Equals("HealthText"))
+      {
+        t.GetComponent<TextMeshProUGUI>().text = panelChar.GetCurrHealth().ToString() + " / " + panelChar.mxHlth.ToString();
+      }
+    }
   }
 }

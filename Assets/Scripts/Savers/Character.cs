@@ -5,8 +5,16 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
   public string characterName;
-
   public string characterMoniker;
+
+  public int mxHlth;
+
+  private int cHlth;
+
+  public void Init()
+  {
+    cHlth = mxHlth;
+  }
 
   /* Sprites */
   public Sprite north;
@@ -17,6 +25,11 @@ public class Character : MonoBehaviour
   public Sprite northWest;
   public Sprite southEast;
   public Sprite southWest;
+
+  public int GetCurrHealth()
+  {
+    return cHlth;
+  }
 
   public Sprite GetDirectionalSprite(dirs dir)
   {

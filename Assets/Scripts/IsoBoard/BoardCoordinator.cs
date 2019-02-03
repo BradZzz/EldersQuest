@@ -50,10 +50,15 @@ public class BoardCoordinator : MonoBehaviour
     currentPos[0] = board[0, 0].transform;
     currentPos[1] = board[0, 1].transform;
 
-    PutChar(board[0, 1].GetComponent<TileSelect>(), board[0, 0].GetComponent<TileSelect>(), glossary.GetComponent<Glossary>().characters[0]);
+    Character player1 = glossary.GetComponent<Glossary>().characters[0];
+    Character player2 = glossary.GetComponent<Glossary>().characters[1];
+    player1.Init();
+    player2.Init();
+
+    PutChar(board[0, 1].GetComponent<TileSelect>(), board[0, 0].GetComponent<TileSelect>(), player1);
     board[0, 0].GetComponent<TileSelect>().Activate();
 
-    PutChar(board[3, 4].GetComponent<TileSelect>(), board[4, 4].GetComponent<TileSelect>(), glossary.GetComponent<Glossary>().characters[1]);
+    PutChar(board[3, 4].GetComponent<TileSelect>(), board[4, 4].GetComponent<TileSelect>(), player2);
     board[4, 4].GetComponent<TileSelect>().Activate();
   }
 
@@ -100,10 +105,11 @@ public class BoardCoordinator : MonoBehaviour
 
   IEnumerator SetPanel(Character panelChar)
   {
-    string chrName = panelChar == null ? "" : panelChar.characterMoniker;
-    Sprite img = panelChar == null ? null : panelChar.south;
-    PanelController.instance.SwitchCharImages(img);
-    PanelController.instance.SwitchCharName(chrName);
+    //string chrName = panelChar == null ? "" : panelChar.characterMoniker;
+    //Sprite img = panelChar == null ? null : panelChar.south;
+    PanelController.instance.SwitchCharImages(panelChar);
+    PanelController.instance.SwitchCharName(panelChar);
+    PanelController.instance.SetCharHealth(panelChar);
     yield return null;
   }
 

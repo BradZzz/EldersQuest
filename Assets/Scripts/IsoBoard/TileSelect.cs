@@ -39,6 +39,11 @@ public class TileSelect : MonoBehaviour
     }
   }
 
+  public GameObject GetHiglight()
+  {
+    return highlight;
+  }
+
   public Vector3 GetResting()
   {
     return restingPos;
@@ -62,7 +67,7 @@ public class TileSelect : MonoBehaviour
   public void Deactivate()
   {
     active = false;
-    transform.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    //transform.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     transform.position = restingPos;
     //transform.Find("Unit")
     //Debug.Log("Deactivating: " + transform.gameObject.name);
@@ -83,7 +88,7 @@ public class TileSelect : MonoBehaviour
   public void Select()
   {
     active = false;
-    transform.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+    //transform.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
     transform.position = restingPos;
     //transform.Find("Unit")
     //Debug.Log("Deactivating: " + transform.gameObject.name);
@@ -193,7 +198,7 @@ public class TileSelect : MonoBehaviour
       unit.GetComponent<SpriteRenderer>().sprite = character.GetDirectionalSprite(position);
     }
 
-    transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+    //transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
     TileSelect[] surrTiles = BoardCoordinator.instance.GetSurroundingTiles(this);
     foreach (TileSelect surrT in surrTiles)
@@ -225,6 +230,21 @@ public class TileSelect : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(Camera.main.transform.position.z)));
         StartCoroutine(EvaluateHit(ray));
       }
+    }
+    /*
+     * Changes the tiles based on what's selected
+     */
+    if (this == BoardCoordinator.instance.GetSelected())
+    {
+      transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+    }
+    else if (GetHiglight().activeInHierarchy)
+    {
+      transform.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+    }
+    else
+    {
+      transform.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
   }
 

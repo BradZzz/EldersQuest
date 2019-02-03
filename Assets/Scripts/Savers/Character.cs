@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
 {
   public string characterName;
 
+  public string characterMoniker;
+
   /* Sprites */
   public Sprite north;
   public Sprite south;

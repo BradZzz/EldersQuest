@@ -84,14 +84,27 @@ public class BoardCoordinator : MonoBehaviour
         selected = val;
       }
       Character panelChar = GetChar(selected);
-      Sprite img = panelChar == null ? null : panelChar.south;
-      PanelController.instance.SwitchCharImages(img);
+      //string chrName = panelChar == null ? "" : panelChar.characterMoniker;
+      //Sprite img = panelChar == null ? null : panelChar.south;
+      //PanelController.instance.SwitchCharImages(img);
+      //PanelController.instance.SwitchCharName(chrName);
+      StartCoroutine(SetPanel(panelChar));
     }
     else
     {
       selected = null;
-      PanelController.instance.SwitchCharImages(null);
+      //PanelController.instance.SwitchCharImages(null);
+      StartCoroutine(SetPanel(null));
     }
+  }
+
+  IEnumerator SetPanel(Character panelChar)
+  {
+    string chrName = panelChar == null ? "" : panelChar.characterMoniker;
+    Sprite img = panelChar == null ? null : panelChar.south;
+    PanelController.instance.SwitchCharImages(img);
+    PanelController.instance.SwitchCharName(chrName);
+    yield return null;
   }
 
   public void PutChar(TileSelect fromTile, TileSelect toTile, Character character)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2932117310089432390}
   - component: {fileID: 1727194698243455406}
   m_Layer: 0
-  m_Name: Unit
+  m_Name: Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Alien
+  characterMoniker: Bob Spaceberg
   north: {fileID: 21300000, guid: be5408b29588d48ebaa2302045c6eff8, type: 3}
   south: {fileID: 21300000, guid: a102be3a4167243fb9a7c6e85c623a05, type: 3}
   east: {fileID: 21300000, guid: c28397b9062244837a7869ef4d6fa39a, type: 3}

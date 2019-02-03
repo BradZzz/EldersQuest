@@ -24,49 +24,6 @@ public class BoardCoordinator : MonoBehaviour
 
   private TileSelect selected;
 
-  //public TileSelect selected
-  //{
-  //  get { return selected; }
-  //  set {
-  //    Debug.Log("Selected!");
-  //    selected = value; 
-  //    }
-  //}
-
-  public TileSelect GetSelected()
-  {
-    return selected;
-  }
-
-  public void PutSelected(TileSelect val)
-  {
-    if (selected != val)
-    {
-      /*
-       * Move from selected to val.
-       * Make selected null.     
-       */
-      Debug.Log("Selected");
-      if (selected == null)
-      {
-        selected = val;
-      }
-      else
-      {
-        if (!val.ContainsCharacter())
-        {
-          val.Activate(selected.transform);
-          selected = null;
-        }
-        else
-        {
-          selected = val;
-        }
-      }
-      PanelController.instance.SwitchCharImages(GetChar(selected).south);
-    }
-  }
-
   private void Awake()
   {
     instance = this;
@@ -100,6 +57,43 @@ public class BoardCoordinator : MonoBehaviour
     board[4, 4].GetComponent<TileSelect>().Activate();
   }
 
+  public TileSelect GetSelected()
+  {
+    return selected;
+  }
+
+  public void PutSelected(TileSelect val)
+  {
+    if (selected != val)
+    {
+      /*
+       * Move from selected to val.
+       * Make selected null.     
+       */
+      Debug.Log("Selected");
+      if (selected == null)
+      {
+        selected = val;
+      }
+      else
+      {
+        if (!val.ContainsCharacter() && val.GetHiglight().activeInHierarchy)
+        {
+          val.Activate(selected.transform);
+        }
+        selected = val;
+      }
+      Character panelChar = GetChar(selected);
+      Sprite img = panelChar == null ? null : panelChar.south;
+      PanelController.instance.SwitchCharImages(img);
+    }
+    else
+    {
+      selected = null;
+      PanelController.instance.SwitchCharImages(null);
+    }
+  }
+
   public void PutChar(TileSelect fromTile, TileSelect toTile, Character character)
   {
     //Debug.Log("PutChar: " + fromTile.pos.ToString() + ":" + toTile.pos.ToString() + "=>" + character.name);
@@ -112,21 +106,21 @@ public class BoardCoordinator : MonoBehaviour
 
   public Character GetChar(TileSelect tile)
   {
-    Debug.Log("GetChar: " + tile.pos.ToString());
-    Debug.Log("Keys: ");
+    //Debug.Log("GetChar: " + tile.pos.ToString());
+    //Debug.Log("Keys: ");
     foreach (string ky in charPositions.Keys)
     {
       Debug.Log(ky);
     }
-    if (charPositions.ContainsKey(tile.pos.ToString()))
+    if (tile != null && charPositions.ContainsKey(tile.pos.ToString()))
     {
       Debug.Log("Returning Assigned Character");
       return charPositions[tile.pos.ToString()];
     }
     else
     {
-      Debug.Log("Returning Default Character");
-      return glossary.GetComponent<Glossary>().characters[0];
+      Debug.Log("Returning null");
+      return null;
     }
   }
 

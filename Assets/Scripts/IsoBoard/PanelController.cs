@@ -15,6 +15,14 @@ public class PanelController : MonoBehaviour
 
   public void SwitchCharImages(Sprite sprite)
   {
-    ImagePanel.GetComponent<Image>().sprite = sprite;
+    if (sprite == null)
+    {
+      ImagePanel.GetComponent<Image>().enabled = false;
+    }
+    else
+    {
+      ImagePanel.GetComponent<Image>().enabled = true;
+      ImagePanel.GetComponent<Image>().sprite = sprite;
+    }
   }
 }

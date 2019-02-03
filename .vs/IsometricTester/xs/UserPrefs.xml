@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/IsoBoard/BoardCoordinator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/IsoBoard/PanelController.cs">
     <Files>
       <File FileName="Assets/Scripts/IsoBoard/TileChar.cs" Line="14" Column="6" />
-      <File FileName="Assets/Scripts/IsoBoard/BoardCoordinator.cs" Line="81" Column="1" />
-      <File FileName="Assets/Scripts/IsoBoard/TileSelect.cs" Line="136" Column="61" />
+      <File FileName="Assets/Scripts/IsoBoard/BoardCoordinator.cs" Line="109" Column="54" />
+      <File FileName="Assets/Scripts/IsoBoard/TileSelect.cs" Line="235" Column="50" />
       <File FileName="Assets/Scripts/Savers/Character.cs" Line="5" Column="14" />
+      <File FileName="Assets/Scripts/IsoBoard/PanelController.cs" Line="7" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

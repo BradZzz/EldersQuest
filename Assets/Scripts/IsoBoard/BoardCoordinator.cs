@@ -63,6 +63,7 @@ public class BoardCoordinator : MonoBehaviour
           selected = val;
         }
       }
+      PanelController.instance.SwitchCharImages(GetChar(selected).south);
     }
   }
 

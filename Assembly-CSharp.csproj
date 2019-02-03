@@ -134,6 +134,7 @@
     <Compile Include="Assets\Libraries\OutlineEffect\Outline.cs" />
     <Compile Include="Assets\Libraries\OutlineEffect\OutlineEffect.cs" />
     <Compile Include="Assets\Scripts\IsoBoard\BoardCoordinator.cs" />
+    <Compile Include="Assets\Scripts\IsoBoard\PanelController.cs" />
     <Compile Include="Assets\Scripts\IsoBoard\TileChar.cs" />
     <Compile Include="Assets\Scripts\IsoBoard\TileSelect.cs" />
     <Compile Include="Assets\Scripts\Savers\Character.cs" />

@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class BoardCoordinator : MonoBehaviour
 {
-    /*
-     * Turn character based on click
-     * 
-     * 1) Hold positions in boardcoordinator. When a space is clicked, update the board coordinator and send back the relative position to the last pos
-     * 2) Add a* algorithm to game
-     * 3) Move character from one place to the other when a space is clicked
-     */
-
   public int width;
   public int height;
   public GameObject tile;
@@ -71,10 +63,6 @@ public class BoardCoordinator : MonoBehaviour
   {
     if (selected != val)
     {
-      /*
-       * Move from selected to val.
-       * Make selected null.     
-       */
       Debug.Log("Selected");
       if (selected == null)
       {
@@ -89,24 +77,17 @@ public class BoardCoordinator : MonoBehaviour
         selected = val;
       }
       Character panelChar = GetChar(selected);
-      //string chrName = panelChar == null ? "" : panelChar.characterMoniker;
-      //Sprite img = panelChar == null ? null : panelChar.south;
-      //PanelController.instance.SwitchCharImages(img);
-      //PanelController.instance.SwitchCharName(chrName);
       StartCoroutine(SetPanel(panelChar));
     }
     else
     {
       selected = null;
-      //PanelController.instance.SwitchCharImages(null);
       StartCoroutine(SetPanel(null));
     }
   }
 
   IEnumerator SetPanel(Character panelChar)
   {
-    //string chrName = panelChar == null ? "" : panelChar.characterMoniker;
-    //Sprite img = panelChar == null ? null : panelChar.south;
     PanelController.instance.SwitchCharImages(panelChar);
     PanelController.instance.SwitchCharName(panelChar);
     PanelController.instance.SetCharHealth(panelChar);
@@ -115,7 +96,6 @@ public class BoardCoordinator : MonoBehaviour
 
   public void PutChar(TileSelect fromTile, TileSelect toTile, Character character)
   {
-    //Debug.Log("PutChar: " + fromTile.pos.ToString() + ":" + toTile.pos.ToString() + "=>" + character.name);
     if (fromTile != null)
     {
       charPositions.Remove(fromTile.pos.ToString());
@@ -125,8 +105,6 @@ public class BoardCoordinator : MonoBehaviour
 
   public Character GetChar(TileSelect tile)
   {
-    //Debug.Log("GetChar: " + tile.pos.ToString());
-    //Debug.Log("Keys: ");
     foreach (string ky in charPositions.Keys)
     {
       Debug.Log(ky);

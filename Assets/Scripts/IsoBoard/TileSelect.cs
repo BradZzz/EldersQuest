@@ -10,11 +10,12 @@ public class TileSelect : MonoBehaviour
 
   private bool waiting = false;
   private IEnumerator waitIE = null;
-  private bool active = false;
+  //private bool active = false;
   private Vector3 restingPos;
 
   private GameObject unit;
   private GameObject highlight;
+  private GameObject attack;
   private List<TileSelect> cursors;
 
   private IEnumerator WaitForClick()
@@ -37,6 +38,10 @@ public class TileSelect : MonoBehaviour
       if (t.gameObject.name.Equals("Highlight"))
       {
         highlight = t.gameObject;
+      }
+      if (t.gameObject.name.Equals("Attack"))
+      {
+        attack = t.gameObject;
       }
     }
   }
@@ -71,29 +76,55 @@ public class TileSelect : MonoBehaviour
     this.pos = pos;
   }
 
-  public bool GetActive()
-  {
-    return active;
-  }
+  //public bool GetActive()
+  //{
+  //  return active;
+  //}
 
   public void Deactivate()
   {
-    active = false;
+    //active = false;
     transform.position = restingPos;
     highlight.SetActive(false);
     unit.SetActive(false);
+    attack.SetActive(false);
     //foreach (TileSelect surrT in cursors)
     //{
     //  surrT.Deactivate();
     //}
   }
 
+  public void Attack()
+  {
+    //active = false;
+    //transform.position = restingPos;
+    attack.SetActive(true);
+    //unit.SetActive(false);
+  }
+
+  public void NotAttack()
+  {
+    //active = false;
+    //transform.position = restingPos;
+    attack.SetActive(false);
+    //unit.SetActive(false);
+  }
+
   public void Select()
   {
-    active = false;
+    //active = false;
     transform.position = restingPos;
     highlight.SetActive(true);
-    unit.SetActive(false);
+    //unit.SetActive(false);
+  }
+
+  public void Deselect()
+  {
+    //active = false;
+    //transform.position = restingPos;
+    highlight.SetActive(false);
+    //attack.SetActive(false);
+    //unit.SetActive(false);
   }
 
   public bool ContainsCharacter()
@@ -176,13 +207,13 @@ public class TileSelect : MonoBehaviour
    */
   public void Activate()
   {
-    active = true;
+    //active = true;
     ActivateTile(BoardCoordinator.instance.GetChar(this), Character.dirs.S);
   }
 
   public void Activate(Transform from)
   {
-    active = true;
+    //active = true;
     Character.dirs position = BoardCoordinator.instance.SetCurrPos(from, transform);
     BoardCoordinator.instance.PutChar(from.GetComponent<TileSelect>(), transform.GetComponent<TileSelect>(), 
       BoardCoordinator.instance.GetChar(from.GetComponent<TileSelect>()));
@@ -199,7 +230,6 @@ public class TileSelect : MonoBehaviour
     TileSelect[] surrTiles = BoardCoordinator.instance.GetSurroundingTiles(this);
     foreach (TileSelect surrT in surrTiles)
     {
-      //surrT.Select();
       cursors.Add(surrT);
       surrT.Select();
     }
@@ -230,31 +260,58 @@ public class TileSelect : MonoBehaviour
   {
     if (this == BoardCoordinator.instance.GetSelected())
     {
-      transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-      foreach (TileSelect tl in cursors)
-      {
-        tl.Select();
-        tl.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
-      }
+      GetComponent<SpriteRenderer>().color = Color.red;
+      SelectTiles(cursors.ToArray());
+      //if (!SelectTiles(cursors.ToArray()))
+      //{
+      //  NotAttack();
+      //}
     } 
-    else if (transform.gameObject.GetComponent<TileSelect>().ContainsCharacter())
+    else if (GetComponent<TileSelect>().ContainsCharacter())
     {
-      transform.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-      foreach (TileSelect tl in transform.gameObject.GetComponent<TileSelect>().GetCursors())
+      GetComponent<SpriteRenderer>().color = Color.white;
+      //SelectTiles(GetComponent<TileSelect>().GetCursors());
+      if (!SelectTiles(GetComponent<TileSelect>().GetCursors()))
       {
-        tl.Select();
-        tl.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        NotAttack();
       }
     }
-    else if (transform.gameObject.GetComponent<TileSelect>().GetHiglight().activeInHierarchy)
+    else if (GetComponent<TileSelect>().GetHiglight().activeInHierarchy)
     {
-      transform.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+      GetComponent<SpriteRenderer>().color = Color.yellow;
     }
     else
     {
-      transform.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+      GetComponent<SpriteRenderer>().color = Color.white;
     }
     yield return null;
+  }
+
+  bool SelectTiles(TileSelect[] tls)
+  {
+    bool charsAround = false;
+    foreach (TileSelect tl in tls)
+    {
+      if (!tl.ContainsCharacter())
+      {
+        tl.Select();
+        tl.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+      }
+      else
+      {
+        charsAround = true;
+        tl.Deselect();
+        if (this == BoardCoordinator.instance.GetSelected())
+        {
+          tl.Attack();
+        }
+        else
+        {
+          tl.NotAttack();
+        }
+      }
+    }
+    return charsAround;
   }
 
   IEnumerator EvaluateHit(Ray ray)

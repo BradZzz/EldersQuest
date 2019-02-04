@@ -4,21 +4,7 @@ using UnityEngine;
 
 public class HighlightShift : MonoBehaviour
 {
-  private void Start()
-  {
-    //Color clr = Color.white;
-    //clr.a = 0;
-    //GetComponent<SpriteRenderer>().color = clr;
-    //foreach (Material mObj in GetComponent<Renderer>().materials)
-    //{
-    //  mObj.color = new Color(
-    //      mObj.color.r, mObj.color.g,
-    //      mObj.color.b, 0);
-    //}
-    //iTween.MoveTo(gameObject, iTween.Hash("y", .29f, "islocal", true, "time", 1.2f, "looptype", "pingPong", "easetype", "spring"));
-    //GetComponent<FadeMaterials>().FadeIn();
-    //StartCoroutine(FadeIn());
-  }
+  public float y;
 
   void OnEnable()
   {
@@ -28,7 +14,7 @@ public class HighlightShift : MonoBehaviour
           mObj.color.r, mObj.color.g,
           mObj.color.b, 0);
     }
-    iTween.MoveTo(gameObject, iTween.Hash("y", .29f, "islocal", true, "time", 1.2f, "looptype", "pingPong", "easetype", "spring"));
+    iTween.MoveTo(gameObject, iTween.Hash("y", y, "islocal", true, "time", 1.2f, "looptype", "pingPong", "easetype", "spring"));
     GetComponent<FadeMaterials>().FadeIn();
   }
 

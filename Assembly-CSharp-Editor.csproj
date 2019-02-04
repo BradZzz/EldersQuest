@@ -112,6 +112,7 @@
     <Compile Include="Assets\Libraries\Add Ons\Cinemachine\PostFX\Editor\CinemachinePostProcessingEditor.cs" />
     <Compile Include="Assets\Libraries\Add Ons\Cinemachine\PostFX\Editor\PostFXAutoImport.cs" />
     <Compile Include="Assets\Libraries\Add Ons\Cinemachine\Timeline\Editor\CinemachineShotEditor.cs" />
+    <Compile Include="Assets\TextureAtlasSlicer\Editor\TextureAtlasSlicer.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/brad/Documents/new_git/IsometricTester/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

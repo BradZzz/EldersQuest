@@ -50,8 +50,8 @@ public class BoardCoordinator : MonoBehaviour
     PutChar(board[0, 1].GetComponent<TileSelect>(), board[0, 0].GetComponent<TileSelect>(), player1);
     board[0, 0].GetComponent<TileSelect>().Activate();
 
-    PutChar(board[3, 4].GetComponent<TileSelect>(), board[4, 4].GetComponent<TileSelect>(), player2);
-    board[4, 4].GetComponent<TileSelect>().Activate();
+    PutChar(board[1, 2].GetComponent<TileSelect>(), board[2, 2].GetComponent<TileSelect>(), player2);
+    board[2, 2].GetComponent<TileSelect>().Activate();
   }
 
   public TileSelect GetSelected()

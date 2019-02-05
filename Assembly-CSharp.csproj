@@ -138,9 +138,13 @@
     <Compile Include="Assets\Scripts\IsoBoard\TileChar.cs" />
     <Compile Include="Assets\Scripts\IsoBoard\TileSelect.cs" />
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />
-    <Compile Include="Assets\Scripts\Savers\Character.cs" />
-    <Compile Include="Assets\Scripts\Savers\Glossary.cs" />
+    <Compile Include="Assets\Scripts\Savers\BaseSaver.cs" />
+    <Compile Include="Assets\Scripts\Savers\CharMeta.cs" />
+    <Compile Include="Assets\Scripts\Savers\PlayerMeta.cs" />
+    <Compile Include="Assets\Scripts\Savers\StatMeta.cs" />
+    <Compile Include="Assets\Scripts\Utils\Character.cs" />
     <Compile Include="Assets\Scripts\Utils\FadeMaterials.cs" />
+    <Compile Include="Assets\Scripts\Utils\Glossary.cs" />
     <Compile Include="Assets\Scripts\Utils\HighlightShift.cs" />
     <Compile Include="Assets\Scripts\Utils\PlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\Utils\Pnt.cs" />

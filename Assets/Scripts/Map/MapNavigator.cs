@@ -6,35 +6,32 @@ using UnityEngine.UI;
 
 public class MapNavigator : MonoBehaviour
 {
+  public GameObject[] dests;
+
   private List<string> destSave;
   private string selected;
 
   void Awake()
   {
     selected = "";
-    destSave = new List<string>(new string[] { "Dest1", "Dest2", "Dest3" });
+    PlayerMeta meta = BaseSaver.getPlayer();
+    destSave = new List<string>(meta.stats.dests);
   }
 
   void Start()
   {
     Color c = Color.white;
-    int cnt = 1;
-    string nme = "Dest" + cnt.ToString();
-    GameObject pnt = GameObject.Find(nme);
-    while (pnt)
+    foreach (GameObject dest in dests)
     {
-      if (destSave.Contains(nme))
+      if (destSave.Contains(dest.name))
       {
-        pnt.SetActive(true);
-        pnt.transform.GetChild(0).gameObject.SetActive(false);
+        dest.SetActive(true);
+        dest.transform.GetChild(0).gameObject.SetActive(false);
       }
       else
       {
-        pnt.SetActive(false);
+        dest.SetActive(false);
       }
-      cnt++;
-      nme = "Dest" + cnt.ToString();
-      pnt = GameObject.Find(nme);
     }
   }
 

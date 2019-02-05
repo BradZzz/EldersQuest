@@ -12,7 +12,7 @@ public class MapNavigator : MonoBehaviour
   void Awake()
   {
     selected = "";
-    destSave = new List<string>(new string[] { "Dest1", "Dest2" });
+    destSave = new List<string>(new string[] { "Dest1", "Dest2", "Dest3" });
   }
 
   void Start()

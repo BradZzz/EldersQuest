@@ -142,6 +142,7 @@
     <Compile Include="Assets\Scripts\Savers\Glossary.cs" />
     <Compile Include="Assets\Scripts\Utils\FadeMaterials.cs" />
     <Compile Include="Assets\Scripts\Utils\HighlightShift.cs" />
+    <Compile Include="Assets\Scripts\Utils\PlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\Utils\Pnt.cs" />
     <Compile Include="Assets\Scripts\Utils\SceneNav.cs" />
     <Compile Include="Assets\Scripts\Utils\SteadyComp.cs" />

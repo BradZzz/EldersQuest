@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MapNavigator : MonoBehaviour
@@ -25,6 +26,7 @@ public class MapNavigator : MonoBehaviour
       if (destSave.Contains(nme))
       {
         pnt.SetActive(true);
+        pnt.transform.GetChild(0).gameObject.SetActive(false);
       }
       else
       {
@@ -38,7 +40,22 @@ public class MapNavigator : MonoBehaviour
 
   public void PutSelect(string selected)
   {
-    this.selected = selected;
+    if (this.selected == selected)
+    {
+      SceneManager.LoadScene("BattleScene");
+    }
+    else
+    {
+      GameObject dest;
+      if (this.selected.Length > 0)
+      {
+        dest = GameObject.Find(this.selected);
+        dest.transform.GetChild(0).gameObject.SetActive(false);
+      }
+      this.selected = selected;
+      dest = GameObject.Find(this.selected);
+      dest.transform.GetChild(0).gameObject.SetActive(true);
+    }
   }
 
   public string GetSelect()

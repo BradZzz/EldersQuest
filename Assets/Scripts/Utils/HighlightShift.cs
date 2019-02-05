@@ -28,18 +28,12 @@ public class HighlightShift : MonoBehaviour
             mat.color.b, 0);
       }
     }
-    //float y = transform.position.y;
-
     iTween.MoveTo(gameObject, iTween.Hash("y", y, "islocal", true, "time", 1.2f, "looptype", "pingPong", "easetype", "spring"));
-    GetComponent<FadeMaterials>().FadeIn();
-  }
 
-  //IEnumerator FadeIn()
-  //{
-  //  //iTween.FadeTo(gameObject, 1, .5f);
-  //  //yield return new WaitForSeconds(.5f);
-  //  GetComponent<FadeMaterials>().FadeIn();
-  //  yield return new WaitForSeconds(.5f);
-  //  iTween.MoveTo(gameObject, iTween.Hash("y", .29f, "islocal", true, "time", 1.2f, "looptype", "pingPong", "easetype", "spring"));
-  //}
+    //The UI is weird with the FadeIn. Restrict only to sprites
+    if (GetComponent<Renderer>() != null)
+    {
+      GetComponent<FadeMaterials>().FadeIn();
+    }
+  }
 }

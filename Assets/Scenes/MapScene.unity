@@ -502,6 +502,14 @@ PrefabInstance:
       propertyPath: y
       value: 48
       objectReference: {fileID: 0}
+    - target: {fileID: 5426418160482285392, guid: b8220f084c9244e319715ce21b0c6a79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PutSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426418160482285392, guid: b8220f084c9244e319715ce21b0c6a79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Dest2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5702037952177419762, guid: b8220f084c9244e319715ce21b0c6a79, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8220f084c9244e319715ce21b0c6a79, type: 3}
@@ -654,15 +662,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6487763273944749694, guid: 4c916f9ca097343c7a6e3ee23e15187d, type: 3}
-        m_MethodName: MoveToScene
+      - m_Target: {fileID: 1292037562}
+        m_MethodName: PutSelect
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: BattleScene
+          m_StringArgument: Dest2
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -901,7 +909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614909790c69443f7a2a790d50212efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glossary: {fileID: 6915397388733608802, guid: 88952b53949d643149b65acf24555dc4, type: 3}
 --- !u!1 &1771079346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,6 +1614,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 269532983696033426, guid: 600411b13211e4fc78debf70c49544be, type: 3}
       propertyPath: m_Name
+      value: Dest1
+      objectReference: {fileID: 0}
+    - target: {fileID: 269532983696033438, guid: 600411b13211e4fc78debf70c49544be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1292037562}
+    - target: {fileID: 269532983696033438, guid: 600411b13211e4fc78debf70c49544be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PutSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 269532983696033438, guid: 600411b13211e4fc78debf70c49544be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Dest1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

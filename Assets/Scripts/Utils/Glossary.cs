@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Glossary : MonoBehaviour
 {
-  public Character[] characters;
+    public Character[] characters;
+    public UnitProxy[] units;
+
 }

@@ -49,3 +49,6 @@ MonoBehaviour:
   characters:
   - {fileID: 1727194698243455406, guid: 8dfa689d2adae46cc969bbecb595b783, type: 3}
   - {fileID: 1727194698243455406, guid: 3ae9aa483ce8b4ff6be31ea28f8616b8, type: 3}
+  units:
+  - {fileID: 4488396556959502835, guid: 7f8b19a44696b9a468cea8cbf8655447, type: 3}
+  - {fileID: 4488396556959502835, guid: 7f8b19a44696b9a468cea8cbf8655447, type: 3}

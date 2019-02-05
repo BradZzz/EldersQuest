@@ -183,11 +183,11 @@ public class TileSelect : MonoBehaviour
     Debug.Log(character);
     Debug.Log(tileChar);
 
-    if (position != Character.dirs.None)
+    if (position != Character.dirs.None && tileChar)
     {
       character.GetComponent<SpriteRenderer>().sprite = tileChar.GetDirectionalSprite(position);
     }
-    else
+    else if (tileChar)
     {
       character.GetComponent<SpriteRenderer>().sprite = tileChar.GetDirectionalSprite(Character.dirs.S);
     }
@@ -217,7 +217,11 @@ public class TileSelect : MonoBehaviour
     Character.dirs position = BoardCoordinator.instance.SetCurrPos(from, transform);
     BoardCoordinator.instance.PutChar(from.GetComponent<TileSelect>(), transform.GetComponent<TileSelect>(), 
       BoardCoordinator.instance.GetChar(from.GetComponent<TileSelect>()));
-    StartCoroutine(MoveCharacter(from, transform, position, BoardCoordinator.instance.GetChar(this)));
+    Character thisChar = BoardCoordinator.instance.GetChar(this);
+    if (thisChar)
+    {
+      StartCoroutine(MoveCharacter(from, transform, position, thisChar));
+    }
   }
 
   void ActivateTile(Character character, Character.dirs position)

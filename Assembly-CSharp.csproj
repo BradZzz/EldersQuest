@@ -141,6 +141,7 @@
     <Compile Include="Assets\Scripts\Savers\Glossary.cs" />
     <Compile Include="Assets\Scripts\Utils\FadeMaterials.cs" />
     <Compile Include="Assets\Scripts\Utils\HighlightShift.cs" />
+    <Compile Include="Assets\Scripts\Utils\SceneNav.cs" />
     <Compile Include="Assets\Scripts\Utils\SteadyComp.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

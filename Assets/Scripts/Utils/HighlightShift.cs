@@ -28,6 +28,7 @@ public class HighlightShift : MonoBehaviour
             mat.color.b, 0);
       }
     }
+    //float y = transform.position.y;
 
     iTween.MoveTo(gameObject, iTween.Hash("y", y, "islocal", true, "time", 1.2f, "looptype", "pingPong", "easetype", "spring"));
     GetComponent<FadeMaterials>().FadeIn();

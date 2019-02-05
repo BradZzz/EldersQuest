@@ -43,6 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b92b45bf5f141da8c4d88fa0870eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points:
+  - {fileID: 4768745208840873588, guid: 86791045c630348d1821de8950f31444, type: 3}
+  - {fileID: 4768745208840873588, guid: 1d07580046c284e00a00882daab3e6fe, type: 3}
   characters:
   - {fileID: 1727194698243455406, guid: 8dfa689d2adae46cc969bbecb595b783, type: 3}
   - {fileID: 1727194698243455406, guid: 3ae9aa483ce8b4ff6be31ea28f8616b8, type: 3}

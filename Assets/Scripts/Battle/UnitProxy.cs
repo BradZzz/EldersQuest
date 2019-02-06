@@ -14,6 +14,7 @@ public class UnitProxy : GridObjectProxy
 
     public override void OnSelected()
     {
+        PanelController.SwitchChar(this);
         InteractivityManager.instance.OnUnitSelected(this);
     }
 
@@ -30,6 +31,15 @@ public class UnitProxy : GridObjectProxy
         return _data.GetMoveSpeed();
     }
 
+    public void PutData(Unit _data)
+    {
+      this._data = _data;
+    }
+
+    public Unit GetData()
+    {
+      return _data;
+    }
 
     public virtual IEnumerator CreatePathToTileAndLerpToPosition(TileProxy destination, Action callback)
     {

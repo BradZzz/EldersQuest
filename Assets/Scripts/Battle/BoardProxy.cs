@@ -33,6 +33,10 @@ public class BoardProxy : MonoBehaviour
         UnitProxy player2 = GameObject.Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
         UnitProxy player3 = GameObject.Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
 
+        player1.PutData(new Unit("1", "Bob Everyman", 2, 3));
+        player2.PutData(new Unit("2", "Robot Steve", 1, 4));
+        player3.PutData(new Unit("3", "Slow Carl", 3, 2));
+
         BuildTestBoard();//test code
 
 
@@ -56,7 +60,6 @@ public class BoardProxy : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                // TileProxy tl = CreateTile(transform, x, y);
                 Tile tile = new Tile(x, y);
                 test.tiles[x, y] = tile;
             }
@@ -118,20 +121,6 @@ public class BoardProxy : MonoBehaviour
             ret.Add(tiles[x + 1, y]);
         if (y + 1 < countY)
             ret.Add(tiles[x, y + 1]);
-        // for (int x = boardCoords.x - 1; x <= boardCoords.x + 1; x++)
-        // {
-        //     for (int y = boardCoords.y - 1; y <= boardCoords.y + 1; y++)
-        //     {
-        //         //do we include the current tile?
-        //         if (x == 0 && y == 0)
-        //             continue;
-
-        //         if (x < countX && y < countY && x >= 0 && y >= 0)
-        //         {
-        //             ret.Add(tiles[x, y]);
-        //         }
-        //     }
-        // }
         return ret;
     }
 

@@ -142,6 +142,7 @@
     <Compile Include="Assets\Scripts\Battle\InteractivityManager.cs" />
     <Compile Include="Assets\Scripts\Battle\InteractMode.cs" />
     <Compile Include="Assets\Scripts\Battle\InteractUnitSelected.cs" />
+    <Compile Include="Assets\Scripts\Battle\PanelController.cs" />
     <Compile Include="Assets\Scripts\Battle\Path.cs" />
     <Compile Include="Assets\Scripts\Battle\PathGenerator.cs" />
     <Compile Include="Assets\Scripts\Battle\PriorityQueue.cs" />

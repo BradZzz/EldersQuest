@@ -15,6 +15,22 @@ public class Unit : GridObject
 
     private int moveSpeed = 3;
 
+    public Unit()
+    {
+        this.characterName = "0";
+        this.characterMoniker = "Null";
+        this.mxHlth = 1;
+        this.moveSpeed = 1;
+    }
+
+    public Unit(string characterName, string characterMoniker, int mxHlth, int moveSpeed)
+    {
+        this.characterName = characterName;
+        this.characterMoniker = characterMoniker;
+        this.mxHlth = cHlth = mxHlth;
+        this.moveSpeed = moveSpeed;
+    }
+
     public void Init()
     {
         cHlth = mxHlth;

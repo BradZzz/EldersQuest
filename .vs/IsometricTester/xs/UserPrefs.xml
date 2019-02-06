@@ -1,18 +1,16 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/BoardProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Unit.cs">
     <Files>
-      <File FileName="Assets/Scripts/Map/MapNavigator.cs" Line="14" Column="15" />
-      <File FileName="Assets/Scripts/Utils/HighlightShift.cs" Line="30" Column="6" />
-      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="8" Column="21" />
-      <File FileName="Assets/Scripts/Utils/FadeMaterials.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utils/SceneNav.cs" Line="4" Column="35" />
-      <File FileName="Assets/Scripts/Utils/Pnt.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utils/Character.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="32" Column="1" />
-      <File FileName="Assets/Scripts/Savers/StatMeta.cs" Line="9" Column="20" />
-      <File FileName="Assets/Scripts/Savers/CharMeta.cs" Line="14" Column="22" />
-      <File FileName="Assets/Scripts/Savers/PlayerMeta.cs" Line="13" Column="26" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/PanelController.cs" Line="39" Column="6" />
+      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="36" Column="33" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="41" Column="20" />
+      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="20" Column="5" />
+      <File FileName="Assets/Scripts/Battle/GridObjectProxy.cs" Line="13" Column="6" />
+      <File FileName="Assets/Scripts/Battle/InteractivityManager.cs" Line="20" Column="43" />
+      <File FileName="Assets/Scripts/Battle/InteractMode.cs" Line="7" Column="34" />
+      <File FileName="Assets/Scripts/Battle/InteractDefault.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="91" Column="17" />
+      <File FileName="Assets/Scripts/Battle/GridObject.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -8,19 +8,28 @@ public class InteractUnitSelected : InteractMode
     private UnitProxy currentUnit;
     public override void OnTileSelected(TileProxy tile)
     {
-        //try to move to tile?
-        //        Debug.Log(tile.name);
         if (currentUnit != null && visitableTiles.Contains(tile))
         {
             TileProxy startTile = BoardProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
-            StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
-            () =>
+            if (startTile != tile) {
+                StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
+                () =>
+                {
+                    tile.ReceiveGridObjectProxy(currentUnit);
+                    startTile.RemoveGridObjectProxy(currentUnit);
+                    UnHighlightTiles();
+                    InteractivityManager.instance.EnterDefaultMode();
+                }));
+            }
+            else
             {
-                tile.ReceiveGridObjectProxy(currentUnit);
-                startTile.RemoveGridObjectProxy(currentUnit);
-                UnHighlightTiles();
-                InteractivityManager.instance.EnterDefaultMode();
-            }));
+                StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
+                () =>
+                {
+                    UnHighlightTiles();
+                    InteractivityManager.instance.EnterDefaultMode();
+                }));
+            }
         }
     }
 
@@ -28,12 +37,11 @@ public class InteractUnitSelected : InteractMode
     {
         if (currentUnit == null)
         {
-            //          Debug.Log("selected " + obj.name);
             UnHighlightTiles();
             currentUnit = obj;
             visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj);
-            //            Debug.Log(visitableTiles.Count);
             HighlightTiles();
+            PanelController.SwitchChar(obj);
         }
         else
         {

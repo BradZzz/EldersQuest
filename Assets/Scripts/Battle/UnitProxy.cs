@@ -14,7 +14,6 @@ public class UnitProxy : GridObjectProxy
 
     public override void OnSelected()
     {
-        PanelController.SwitchChar(this);
         InteractivityManager.instance.OnUnitSelected(this);
     }
 

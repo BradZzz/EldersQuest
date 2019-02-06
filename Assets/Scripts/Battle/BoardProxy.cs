@@ -39,7 +39,6 @@ public class BoardProxy : MonoBehaviour
 
         BuildTestBoard();//test code
 
-
         player1.Init();
         player2.Init();
         player3.Init();

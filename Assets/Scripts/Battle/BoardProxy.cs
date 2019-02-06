@@ -110,9 +110,9 @@ public class BoardProxy : MonoBehaviour
         int countY = tiles.GetLength(1);
         int x = boardCoords.x;
         int y = boardCoords.y;
-        if (x - 1 > 0)
+        if (x - 1 >= 0)
             ret.Add(tiles[x - 1, y]);
-        if (y - 1 > 0)
+        if (y - 1 >= 0)
             ret.Add(tiles[x, y - 1]);
         if (x + 1 < countX)
             ret.Add(tiles[x + 1, y]);

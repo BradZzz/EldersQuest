@@ -10,23 +10,21 @@ public class Unit : GridObject
     public string characterMoniker;
 
     public int mxHlth = 1;
-
-    private int cHlth = 1;//default values
-
+    private int cHlth = 1;
     private int moveSpeed = 3;
+    private int team = 0;
 
     public Unit()
     {
         this.characterName = "0";
         this.characterMoniker = "Null";
-        this.mxHlth = 1;
-        this.moveSpeed = 1;
     }
 
-    public Unit(string characterName, string characterMoniker, int mxHlth, int moveSpeed)
+    public Unit(string characterName, string characterMoniker, int team, int mxHlth, int moveSpeed)
     {
         this.characterName = characterName;
         this.characterMoniker = characterMoniker;
+        this.team = team;
         this.mxHlth = cHlth = mxHlth;
         this.moveSpeed = moveSpeed;
     }
@@ -46,5 +44,8 @@ public class Unit : GridObject
         return cHlth;
     }
 
-
+    public int GetTeam()
+    {
+      return team;
+    }
 }

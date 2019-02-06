@@ -10,6 +10,7 @@ public class PanelController : MonoBehaviour
 
   public GameObject ImagePanel;
   public GameObject NamePanel;
+  public GameObject TeamPanel;
   public GameObject HealthPanel;
 
   private void Awake()
@@ -21,6 +22,7 @@ public class PanelController : MonoBehaviour
   {
     NamePanel.GetComponent<TextMeshProUGUI>().text = "";
     ImagePanel.GetComponent<Image>().enabled = false;
+    TeamPanel.SetActive(false);
     HealthPanel.SetActive(false);
   }
 
@@ -28,6 +30,7 @@ public class PanelController : MonoBehaviour
   {
     instance.SwitchCharImages(unit);
     instance.SwitchCharName(unit);
+    instance.SetTeam(unit);
     instance.SetCharHealth(unit);
   }
 
@@ -48,6 +51,13 @@ public class PanelController : MonoBehaviour
   void SwitchCharName(UnitProxy unit)
   {
     NamePanel.GetComponent<TextMeshProUGUI>().text = unit.GetData().characterMoniker;
+  }
+
+  void SetTeam(UnitProxy unit)
+  {
+    TeamPanel.SetActive(true);
+    // TODO: Change the outline banner here based on the faction
+    TeamPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTeam().ToString();
   }
 
   void SetCharHealth(UnitProxy unit)

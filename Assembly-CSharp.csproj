@@ -135,6 +135,7 @@
     <Compile Include="Assets\Libraries\OutlineEffect\OutlineEffect.cs" />
     <Compile Include="Assets\Scripts\Battle\Board.cs" />
     <Compile Include="Assets\Scripts\Battle\BoardProxy.cs" />
+    <Compile Include="Assets\Scripts\Battle\ConditionTracker.cs" />
     <Compile Include="Assets\Scripts\Battle\GridObject.cs" />
     <Compile Include="Assets\Scripts\Battle\GridObjectProxy.cs" />
     <Compile Include="Assets\Scripts\Battle\IHasNeighbours.cs" />

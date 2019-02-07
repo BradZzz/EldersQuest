@@ -61,6 +61,10 @@ public class InteractUnitSelected : InteractMode
                 //If the unit has died, remove it from the board and destroy the gameobject
                 BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
                 Destroy(obj.gameObject);
+                /*
+                 *  TODO: Check Win Condition Enemy Here
+                 */
+                ConditionTracker.instance.EvaluateGame();
                 //Turn off the tiles
                 StartCoroutine(ResetTiles());
             }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class BoardProxy : MonoBehaviour
@@ -22,7 +23,7 @@ public class BoardProxy : MonoBehaviour
     private void Awake()
     {
         //Test board object
-        BaseSaver.PutBoard(new BoardMeta());
+        //BaseSaver.PutBoard(new BoardMeta());
         boardMeta = BaseSaver.GetBoard();
         width = boardMeta.width;
         height = boardMeta.height;
@@ -39,36 +40,48 @@ public class BoardProxy : MonoBehaviour
         BuildTestBoard();
         PopulateEnemies();
 
+        //Create Player
         UnitProxy player1 = Instantiate(glossary.GetComponent<Glossary>().units[0], transform);
-        //UnitProxy player2 = Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
-        //UnitProxy player3 = Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
-
-        player1.PutData(new Unit("1", "Bob Everyman", 0, 3, 1, 4));
-        //player2.PutData(new Unit("2", "Robot Steve", 1, 2, 1, 5));
-        //player3.PutData(new Unit("3", "Slow Carl", 1, 4, 1, 3));
+        player1.PutData(new Unit("p1", "Bob Everyman", 0, 3, 1, 4));
         player1.Init();
-        //player2.Init();
-        //player3.Init();
-
         tiles[0, 0].ReceiveGridObjectProxy(player1);
         player1.SnapToCurrentPosition();
-        //tiles[3, 3].ReceiveGridObjectProxy(player2);
-        //player2.SnapToCurrentPosition();
-        //tiles[9, 9].ReceiveGridObjectProxy(player3);
-        //player3.SnapToCurrentPosition();
-
     }
 
     void PopulateEnemies()
     {
-      for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
-      {
-         UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
-         badGuy.PutData(new Unit("e" + i.ToString(), boardMeta.enemies[i].name, 1, 3, 1, 3));
-         badGuy.Init();
-         tiles[width - 1, height - 1 - i].ReceiveGridObjectProxy(badGuy);
-         badGuy.SnapToCurrentPosition();
-      }
+        for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
+        {
+            UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
+            badGuy.PutData(new Unit("e" + i.ToString(), boardMeta.enemies[i].name, 1, 3, 1, 3));
+            badGuy.Init();
+            tiles[width - 1, height - 1 - i].ReceiveGridObjectProxy(badGuy);
+            badGuy.SnapToCurrentPosition();
+        }
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("MapScene");
+    }
+
+    public Dictionary<int,int> CountTeams()
+    {
+        Dictionary<int,int> countDict = new Dictionary<int, int>();
+        countDict[0] = 0;
+        countDict[1] = 0;
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (tiles[x, y].HasUnit())
+                {
+                    countDict[tiles[x, y].UnitOnTeam(0) ? 0 : 1] += 1;
+                }
+            }
+        }
+        return countDict;
     }
 
     private void BuildTestBoard()

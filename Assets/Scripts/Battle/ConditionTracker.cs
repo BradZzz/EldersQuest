@@ -38,7 +38,7 @@ public class ConditionTracker : MonoBehaviour
                         {
                             if (teams[key] == 0)
                             {
-                                BoardProxy.instance.EndGame();
+                                BoardProxy.instance.EndGame(key == BoardProxy.ENEMY_TEAM);
                             }
                         }
                     }

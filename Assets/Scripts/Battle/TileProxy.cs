@@ -109,7 +109,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     public void OnPointerDown(PointerEventData eventData)
     {
         InteractivityManager.instance.OnTileSelected(this);
-        foreach (var obj in objectProxies)
+        foreach (var obj in objectProxies.ToList())
         {
             obj.OnSelected();
         }

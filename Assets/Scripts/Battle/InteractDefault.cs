@@ -32,7 +32,7 @@ public class InteractDefault : InteractMode
 
     public override void OnTileHovered(TileProxy tile)
     {
-        tile.HighlightSelected(null);
+        tile.HighlightSelected(null, true);
     }
 
     public override void OnTileUnHovered(TileProxy tile)

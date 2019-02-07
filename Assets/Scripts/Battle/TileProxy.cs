@@ -39,7 +39,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         SnapToPosition();
     }
 
-    public void HighlightSelected(UnitProxy inRangeUnit)
+    public void HighlightSelected(UnitProxy inRangeUnit, bool hovering = false)
     {
         if (inRangeUnit != null) {
             bool unitOnTeam = UnitOnTeam(inRangeUnit.GetData().GetTeam());
@@ -52,7 +52,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
                 this.GetComponent<Renderer>().material.color = Color.red;
             }
         }
-        else
+        else if (hovering || !HasUnit())
         {
             this.GetComponent<Renderer>().material.color = Color.red;
         }

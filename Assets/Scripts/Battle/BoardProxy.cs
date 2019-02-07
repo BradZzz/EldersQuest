@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -66,7 +67,11 @@ public class BoardProxy : MonoBehaviour
     public void EndGame(bool won)
     {
         gameOverPanel.SetActive(true);
-        //SceneManager.LoadScene("MapScene");
+        string txt = "Defeat";
+        if (won){
+            txt = "Victory";
+        }
+        gameOverPanel.transform.Find("GameOverHeader").GetComponent<TextMeshProUGUI>().text = txt;
     }
 
     public Dictionary<int,int> CountTeams()

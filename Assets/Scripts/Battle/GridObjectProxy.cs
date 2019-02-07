@@ -26,7 +26,6 @@ public abstract class GridObjectProxy : MonoBehaviour
         transform.position = BoardProxy.GetLocalPosition(data.GetPosition());
     }
 
-
     public abstract void OnSelected();
 
 }

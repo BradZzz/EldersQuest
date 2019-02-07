@@ -50,14 +50,22 @@ public class PanelController : MonoBehaviour
 
   void SwitchCharName(UnitProxy unit)
   {
-    NamePanel.GetComponent<TextMeshProUGUI>().text = unit.GetData().characterMoniker;
+    string txt = unit == null ? "" : unit.GetData().characterMoniker;
+    NamePanel.GetComponent<TextMeshProUGUI>().text = txt;
   }
 
   void SetTeam(UnitProxy unit)
   {
-    TeamPanel.SetActive(true);
-    // TODO: Change the outline banner here based on the faction
-    TeamPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTeam().ToString();
+    if (unit == null)
+    {
+      TeamPanel.SetActive(false);
+    }
+    else
+    {
+      TeamPanel.SetActive(true);
+      // TODO: Change the outline banner here based on the faction
+      TeamPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTeam().ToString();
+    }
   }
 
   void SetCharHealth(UnitProxy unit)

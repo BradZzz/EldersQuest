@@ -10,7 +10,9 @@ public class Unit : GridObject
     public string characterMoniker;
 
     public int mxHlth = 1;
+
     private int cHlth = 1;
+    private int atk = 1;
     private int moveSpeed = 3;
     private int team = 0;
 
@@ -20,18 +22,29 @@ public class Unit : GridObject
         this.characterMoniker = "Null";
     }
 
-    public Unit(string characterName, string characterMoniker, int team, int mxHlth, int moveSpeed)
+    public Unit(string characterName, string characterMoniker, int team, int mxHlth, int atk,  int moveSpeed)
     {
         this.characterName = characterName;
         this.characterMoniker = characterMoniker;
         this.team = team;
         this.mxHlth = cHlth = mxHlth;
+        this.atk = atk;
         this.moveSpeed = moveSpeed;
     }
 
     public void Init()
     {
         cHlth = mxHlth;
+    }
+
+    public void IsAttacked(int atk)
+    {
+        cHlth -= atk;
+    }
+
+    public bool IsDead()
+    {
+        return cHlth <= 0;
     }
 
     public int GetMoveSpeed()
@@ -44,8 +57,13 @@ public class Unit : GridObject
         return cHlth;
     }
 
+    public int GetAttack()
+    {
+        return atk;
+    }
+
     public int GetTeam()
     {
-      return team;
+        return team;
     }
 }

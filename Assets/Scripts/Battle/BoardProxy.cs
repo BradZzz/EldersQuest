@@ -33,9 +33,9 @@ public class BoardProxy : MonoBehaviour
         UnitProxy player2 = GameObject.Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
         UnitProxy player3 = GameObject.Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
 
-        player1.PutData(new Unit("1", "Bob Everyman", 0, 2, 4));
-        player2.PutData(new Unit("2", "Robot Steve", 1, 1, 5));
-        player3.PutData(new Unit("3", "Slow Carl", 1, 3, 3));
+        player1.PutData(new Unit("1", "Bob Everyman", 0, 3, 1, 4));
+        player2.PutData(new Unit("2", "Robot Steve", 1, 2, 1, 5));
+        player3.PutData(new Unit("3", "Slow Carl", 1, 4, 1, 3));
 
         BuildTestBoard();//test code
 
@@ -169,5 +169,4 @@ public class BoardProxy : MonoBehaviour
     {
         return tiles[pos.x, pos.y];
     }
-
 }

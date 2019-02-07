@@ -25,6 +25,23 @@ public class UnitProxy : GridObjectProxy
         SnapToCurrentPosition();
     }
 
+    public bool IsAttacked(int atk)
+    {
+      GetData().IsAttacked(atk);
+      StartCoroutine(Shake());
+      if (GetData().IsDead())
+      {
+        return true;
+      }
+      return false;
+    }
+
+    IEnumerator Shake()
+    {
+        iTween.ShakePosition(gameObject,new Vector3(.25f,0,0), .2f);
+        yield return null;
+    }
+
     public int GetMoveSpeed()
     {
         return _data.GetMoveSpeed();

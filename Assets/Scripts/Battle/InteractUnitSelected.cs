@@ -26,14 +26,20 @@ public class InteractUnitSelected : InteractMode
                 StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
                 () =>
                 {
-                    UnHighlightTiles();
-                    InteractivityManager.instance.EnterDefaultMode();
+                    StartCoroutine(ResetTiles());
                 }));
             }
         }
     }
 
-    public override void OnUnitSelected(UnitProxy obj)
+  IEnumerator ResetTiles()
+  {
+      UnHighlightTiles();
+      InteractivityManager.instance.EnterDefaultMode();
+      yield return null;
+  }
+
+  public override void OnUnitSelected(UnitProxy obj)
     {
         if (currentUnit == null)
         {
@@ -45,10 +51,19 @@ public class InteractUnitSelected : InteractMode
         }
         else
         {
-            //try to attack unit?
-
+            if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam())
+            {
+                //RemoveGridObjectProxy
+                bool dead = obj.IsAttacked(currentUnit.GetData().GetAttack());
+                if (dead)
+                {
+                    TileProxy startTile = BoardProxy.instance.GetTileAtPosition(obj.GetPosition());
+                    startTile.RemoveGridObjectProxy(obj);
+                    Destroy(obj.gameObject);
+                    StartCoroutine(ResetTiles());
+                }
+            }
         }
-
     }
 
     private void HighlightTiles()

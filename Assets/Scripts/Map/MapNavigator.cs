@@ -14,7 +14,7 @@ public class MapNavigator : MonoBehaviour
   void Awake()
   {
     selected = "";
-    PlayerMeta meta = BaseSaver.getPlayer();
+    PlayerMeta meta = BaseSaver.GetPlayer();
     destSave = new List<string>(meta.stats.dests);
   }
 
@@ -39,20 +39,32 @@ public class MapNavigator : MonoBehaviour
   {
     if (this.selected == selected)
     {
+      PlayerMeta player = BaseSaver.GetPlayer();
+      player.lastDest = selected;
+      BaseSaver.PutPlayer(player);
       SceneManager.LoadScene("BattleScene");
     }
     else
     {
-      GameObject dest;
       if (this.selected.Length > 0)
       {
-        dest = GameObject.Find(this.selected);
-        dest.transform.GetChild(0).gameObject.SetActive(false);
+        ByName(this.selected).transform.GetChild(0).gameObject.SetActive(false);
       }
       this.selected = selected;
-      dest = GameObject.Find(this.selected);
-      dest.transform.GetChild(0).gameObject.SetActive(true);
+      ByName(this.selected).transform.GetChild(0).gameObject.SetActive(true);
     }
+  }
+
+  public GameObject ByName(string objName)
+  {
+      foreach (GameObject dest in dests)
+      {
+          if (dest.name.Equals(objName))
+          {
+             return dest;
+          }
+      }
+      return null;
   }
 
   public string GetSelect()

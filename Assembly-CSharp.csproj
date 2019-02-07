@@ -152,7 +152,9 @@
     <Compile Include="Assets\Scripts\Battle\UnitProxy.cs" />
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />
     <Compile Include="Assets\Scripts\Savers\BaseSaver.cs" />
+    <Compile Include="Assets\Scripts\Savers\BoardMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CharMeta.cs" />
+    <Compile Include="Assets\Scripts\Savers\CondMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\PlayerMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\StatMeta.cs" />
     <Compile Include="Assets\Scripts\Utils\Character.cs" />

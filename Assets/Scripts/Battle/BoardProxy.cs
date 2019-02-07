@@ -15,11 +15,18 @@ public class BoardProxy : MonoBehaviour
     public TileProxy prefab;
 
     private TileProxy[,] tiles;
+    private BoardMeta boardMeta;
 
     public Grid grid;
 
     private void Awake()
     {
+        //Test board object
+        BaseSaver.PutBoard(new BoardMeta());
+        boardMeta = BaseSaver.GetBoard();
+        width = boardMeta.width;
+        height = boardMeta.height;
+
         tileMap = GetComponentInChildren<Tilemap>();
         instance = this;
         tiles = new TileProxy[width, height];
@@ -29,27 +36,39 @@ public class BoardProxy : MonoBehaviour
     // Build the board here
     void Start()
     {
-        UnitProxy player1 = GameObject.Instantiate(glossary.GetComponent<Glossary>().units[0], transform);
-        UnitProxy player2 = GameObject.Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
-        UnitProxy player3 = GameObject.Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
+        BuildTestBoard();
+        PopulateEnemies();
+
+        UnitProxy player1 = Instantiate(glossary.GetComponent<Glossary>().units[0], transform);
+        //UnitProxy player2 = Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
+        //UnitProxy player3 = Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
 
         player1.PutData(new Unit("1", "Bob Everyman", 0, 3, 1, 4));
-        player2.PutData(new Unit("2", "Robot Steve", 1, 2, 1, 5));
-        player3.PutData(new Unit("3", "Slow Carl", 1, 4, 1, 3));
-
-        BuildTestBoard();//test code
-
+        //player2.PutData(new Unit("2", "Robot Steve", 1, 2, 1, 5));
+        //player3.PutData(new Unit("3", "Slow Carl", 1, 4, 1, 3));
         player1.Init();
-        player2.Init();
-        player3.Init();
+        //player2.Init();
+        //player3.Init();
 
         tiles[0, 0].ReceiveGridObjectProxy(player1);
         player1.SnapToCurrentPosition();
-        tiles[3, 3].ReceiveGridObjectProxy(player2);
-        player2.SnapToCurrentPosition();
-        tiles[9, 9].ReceiveGridObjectProxy(player3);
-        player3.SnapToCurrentPosition();
+        //tiles[3, 3].ReceiveGridObjectProxy(player2);
+        //player2.SnapToCurrentPosition();
+        //tiles[9, 9].ReceiveGridObjectProxy(player3);
+        //player3.SnapToCurrentPosition();
 
+    }
+
+    void PopulateEnemies()
+    {
+      for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
+      {
+         UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[1], transform);
+         badGuy.PutData(new Unit("e" + i.ToString(), boardMeta.enemies[i].name, 1, 3, 1, 3));
+         badGuy.Init();
+         tiles[width - 1, height - 1 - i].ReceiveGridObjectProxy(badGuy);
+         badGuy.SnapToCurrentPosition();
+      }
     }
 
     private void BuildTestBoard()

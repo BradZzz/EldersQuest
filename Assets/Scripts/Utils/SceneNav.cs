@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneNav : MonoBehaviour
 {
+  public void ResetAll()
+  {
+    BaseSaver.ResetAll();
+  }
+
   public void MoveToScene(string scene)
   {
     SceneManager.LoadScene(scene);
@@ -12,11 +17,11 @@ public class SceneNav : MonoBehaviour
 
   public void SaveMoveToScene(string save)
   {
-    BaseSaver.putSave(save);
+    BaseSaver.PutSave(save);
     /*
      * Save the player demo objects
      */
-    PlayerMeta player = BaseSaver.getPlayer();
+    PlayerMeta player = BaseSaver.GetPlayer();
     if (player == null)
     {
       player = new PlayerMeta();
@@ -24,7 +29,7 @@ public class SceneNav : MonoBehaviour
         (save == "sv2" ? new string[] { "Dest1", "Dest2" } : 
         new string[] { "Dest1", "Dest2", "Dest3" } );
       player.stats.dests = dests;
-      BaseSaver.putPlayer(player);
+      BaseSaver.PutPlayer(player);
     }
     //Load the scene
     SceneManager.LoadScene("MapScene");

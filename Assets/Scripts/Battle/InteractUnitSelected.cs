@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class InteractUnitSelected : InteractMode
 {
+    private List<TileProxy> allTiles = new List<TileProxy>();
     private List<TileProxy> visitableTiles = new List<TileProxy>();
+
     private UnitProxy currentUnit;
     public override void OnTileSelected(TileProxy tile)
     {
@@ -45,38 +47,37 @@ public class InteractUnitSelected : InteractMode
         {
             UnHighlightTiles();
             currentUnit = obj;
+            allTiles = BoardProxy.instance.GetAllVisitableNodes(obj, true);
             visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj);
-            HighlightTiles();
+            HighlightTiles(obj);
             PanelController.SwitchChar(obj);
         }
         else
         {
-            if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam())
+            if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
+              && allTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
+              && obj.IsAttacked(currentUnit.GetData().GetAttack()))
             {
-                //RemoveGridObjectProxy
-                bool dead = obj.IsAttacked(currentUnit.GetData().GetAttack());
-                if (dead)
-                {
-                    TileProxy startTile = BoardProxy.instance.GetTileAtPosition(obj.GetPosition());
-                    startTile.RemoveGridObjectProxy(obj);
-                    Destroy(obj.gameObject);
-                    StartCoroutine(ResetTiles());
-                }
+                //If the unit has died, remove it from the board and destroy the gameobject
+                BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
+                Destroy(obj.gameObject);
+                //Turn off the tiles
+                StartCoroutine(ResetTiles());
             }
         }
     }
 
-    private void HighlightTiles()
+    private void HighlightTiles(UnitProxy obj)
     {
-        foreach (var tile in visitableTiles)
+        foreach (var tile in allTiles)
         {
-            tile.HighlightSelected();
+            tile.HighlightSelected(obj);
         }
     }
 
     private void UnHighlightTiles()
     {
-        foreach (var tile in visitableTiles)
+        foreach (var tile in allTiles)
         {
             tile.UnHighlight();
         }

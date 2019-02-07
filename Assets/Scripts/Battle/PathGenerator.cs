@@ -36,8 +36,7 @@ public class PathGenerator
     static public IEnumerable<Node> FindAllVisitableNodes<Node>(
        Node start,
        double maxDistance,
-       Func<Node, Node, double> distance)
-       where Node : IHasNeighbours<Node>
+       Func<Node, Node, double> distance) where Node : IHasNeighbours<Node>
     {
         var closed = new HashSet<Node>();
         var queue = new PriorityQueue<double, Path<Node>>();

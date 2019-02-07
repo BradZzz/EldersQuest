@@ -123,7 +123,7 @@ public class BoardProxy : MonoBehaviour
         return ret;
     }
 
-    Func<TileProxy, TileProxy, double> GetDistanceFunction(UnitProxy thingToMove)
+    Func<TileProxy, TileProxy, double> GetDistanceFunction(UnitProxy thingToMove, bool allTiles = false)
     {
         return (t1, t2) =>
           {
@@ -131,7 +131,7 @@ public class BoardProxy : MonoBehaviour
                   return 1;
               else
               {
-                  return int.MaxValue;
+                  return allTiles ? 1 : int.MaxValue;
               }
 
           };
@@ -155,13 +155,13 @@ public class BoardProxy : MonoBehaviour
             GetEstimationFunction(to, thingToMove));//might not want to use a list
     }
 
-    public List<TileProxy> GetAllVisitableNodes(UnitProxy thingToMove)
+    public List<TileProxy> GetAllVisitableNodes(UnitProxy thingToMove, bool allTiles = false)
     {
         var startNode = GetTileAtPosition(thingToMove.GetPosition());
 
         return PathGenerator.FindAllVisitableNodes(startNode,
             thingToMove.GetMoveSpeed(),
-            GetDistanceFunction(thingToMove))
+            GetDistanceFunction(thingToMove, allTiles))
             .ToList();
     }
 

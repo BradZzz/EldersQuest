@@ -39,12 +39,25 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         SnapToPosition();
     }
 
-
-
-    public void HighlightSelected()
+    public void HighlightSelected(UnitProxy inRangeUnit)
     {
-        this.GetComponent<Renderer>().material.color = Color.red;
-    }
+        if (inRangeUnit != null) {
+            bool unitOnTeam = UnitOnTeam(inRangeUnit.GetData().GetTeam());
+            if (HasUnit() && !unitOnTeam)
+            {
+                this.GetComponent<Renderer>().material.color = Color.blue;
+            }
+            else if (!unitOnTeam)
+            {
+                this.GetComponent<Renderer>().material.color = Color.red;
+            }
+        }
+        else
+        {
+            this.GetComponent<Renderer>().material.color = Color.red;
+        }
+  }
+
     public void UnHighlight()
     {
         this.GetComponent<Renderer>().material.color = Color.white;
@@ -76,10 +89,20 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     {
         if (obj is UnitProxy)
         {
-            if (objectProxies.Where(op => op is UnitProxy).Count() > 0)//TODO: rework to a better system with layers
+            if (HasUnit())//TODO: rework to a better system with layers
                 return false;
         }
         return true;//for now
+    }
+
+    public bool HasUnit()
+    {
+        return objectProxies.Where(op => op is UnitProxy).Any();
+    }
+
+    public bool UnitOnTeam(int team)
+    {
+        return objectProxies.Where(op => op is UnitProxy && ((UnitProxy)op).GetData().GetTeam() == team).Any();
     }
 
     #region events

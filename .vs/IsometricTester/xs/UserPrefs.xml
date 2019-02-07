@@ -1,14 +1,11 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/TileProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/InteractDefault.cs">
     <Files>
-      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="10" Column="6" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="55" Column="32" />
-      <File FileName="Assets/Scripts/Battle/PanelController.cs" Line="53" Column="70" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="42" Column="22" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="147" Column="38" />
-      <File FileName="Assets/Scripts/Battle/GridObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="44" Column="22" />
+      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="131" Column="28" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="49" Column="18" />
       <File FileName="Assets/Scripts/Battle/GridObjectProxy.cs" Line="27" Column="6" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="62" Column="38" />
+      <File FileName="Assets/Scripts/Battle/InteractDefault.cs" Line="35" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

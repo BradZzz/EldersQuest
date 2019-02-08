@@ -18,6 +18,8 @@ public class BoardProxy : MonoBehaviour
     public static int PLAYER_TEAM = 0;
     public static int ENEMY_TEAM = 1;
 
+    public static bool HUMAN_PLAYER = false;
+
     private TileProxy[,] tiles;
     private BoardMeta boardMeta;
     private int width;

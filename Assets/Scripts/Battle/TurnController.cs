@@ -21,7 +21,7 @@ public class TurnController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        currentTeam = 0;
+        currentTeam = BoardProxy.PLAYER_TEAM;
     }
 
     int GetTeam()
@@ -31,7 +31,7 @@ public class TurnController : MonoBehaviour
 
     void SwitchTeams()
     {
-        currentTeam = GetTeam() == 1 ? 0 : 1;
+        currentTeam = GetTeam() == BoardProxy.ENEMY_TEAM ? BoardProxy.PLAYER_TEAM : BoardProxy.ENEMY_TEAM;
     }
 
     public void StartTurn()
@@ -64,5 +64,9 @@ public class TurnController : MonoBehaviour
         StartTurn();
 
         //Run AI (if applicable)
+        if (currentTeam == BoardProxy.ENEMY_TEAM && !BoardProxy.HUMAN_PLAYER)
+        {
+            BasicBrain.StartThinking();
+        }
     }
 }

@@ -69,7 +69,6 @@ public class InteractUnitSelected : InteractMode
               && currentUnit.GetData().GetTurnActions().CanAttack()
               && obj.IsAttacked(currentUnit))
             {
-                //currentUnit.GetData().GetTurnActions().Attack();
                 //If the unit has died, remove it from the board and destroy the gameobject
                 BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
                 Destroy(obj.gameObject);

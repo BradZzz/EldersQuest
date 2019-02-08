@@ -47,15 +47,21 @@ public class BoardProxy : MonoBehaviour
         PopulateEnemies();
 
         //Create Player
-        UnitProxy player1 = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
-        player1.PutData(new Unit("p1", "Bob Everyman", PLAYER_TEAM, 3, 1, 4));
-        player1.Init();
-        tiles[0, 0].ReceiveGridObjectProxy(player1);
-        player1.SnapToCurrentPosition();
+        CreatePlayer("Bob Everyman", 3, 1, 4, new Vector2(0,0));
+        CreatePlayer("Spacesuit Cindy", 4, 1, 3, new Vector2(0,1));
 
         TurnController.instance.StartTurn();
     }
 
+    void CreatePlayer(string charName, int hth, int atk, int spd, Vector2 pos)
+    {
+        UnitProxy player1 = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
+        player1.PutData(new Unit("p1", charName, PLAYER_TEAM, hth, atk, spd));
+        player1.Init();
+        tiles[(int)pos.x, (int)pos.y].ReceiveGridObjectProxy(player1);
+        player1.SnapToCurrentPosition();
+    }
+  
     void PopulateEnemies()
     {
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
@@ -63,7 +69,7 @@ public class BoardProxy : MonoBehaviour
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
             badGuy.PutData(new Unit("e" + i.ToString(), boardMeta.enemies[i].name, ENEMY_TEAM, 3, 1, 3));
             badGuy.Init();
-            tiles[3, 0 + i].ReceiveGridObjectProxy(badGuy);
+            tiles[5, 0 + i].ReceiveGridObjectProxy(badGuy);
             badGuy.SnapToCurrentPosition();
         }
     }

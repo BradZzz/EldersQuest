@@ -51,6 +51,11 @@ public class InteractUnitSelected : InteractMode
       yield return null;
   }
 
+  //public void ResetAtThis()
+  //{
+  //    StartCoroutine(ResetTiles());
+  //}
+
   public override void OnUnitSelected(UnitProxy obj)
     {
         if (currentUnit == null)

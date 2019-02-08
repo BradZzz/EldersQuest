@@ -56,11 +56,12 @@ public class TurnController : MonoBehaviour
     public void EndTurn()
     {
         Debug.Log("EndTurn");
+        //Deselect selected tiles
+
         //Play the turn cutscene
 
         //Switch controller teams
         SwitchTeams();
-
         StartTurn();
 
         //Run AI (if applicable)

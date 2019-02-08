@@ -52,31 +52,28 @@ public class BasicBrain : MonoBehaviour
                     //Get the pathfinding to first unit in list (to be optimized to return the closest)
                     Path<TileProxy> path = BoardProxy.instance.GetPath(BoardProxy.instance.GetTileAtPosition(unit.GetPosition()), 
                       BoardProxy.instance.GetTileAtPosition(opposingUnits[0].GetPosition()), unit);
-                    //foreach (TileProxy step in path)
-                    //{
-                    //    Debug.Log("path Step: " + step.name);
-                    //}
                     //From that list find the furthest tile that is also in the visitable tile list
                     TileProxy dest = path.Where(tile => visitableTiles.Contains(tile) && !tile.HasUnit()).First();
-                    Debug.Log("start/end");
-                    Debug.Log(BoardProxy.instance.GetTileAtPosition(unit.GetPosition()));
-                    Debug.Log(dest.name);
-                    //Move ai from current tile to tile mentioned above
-                    unit.OnSelected();
-                    yield return new WaitForSeconds(.25f);
-                    InteractivityManager.instance.OnTileSelected(dest);
-                    //StartCoroutine(unit.CreatePathToTileAndLerpToPosition(dest,
-                    //  () =>
-                    //  {
-                    //      dest.ReceiveGridObjectProxy(unit);
-                    //      BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).RemoveGridObjectProxy(unit);
-                    //  }));
-                    //unit.GetData().GetTurnActions().Move();
+                    //Check the path
+                    bool badPath = BoardProxy.instance.GetPath(BoardProxy.instance.GetTileAtPosition(unit.GetPosition()), dest, unit).Where(step=>!visitableTiles.Contains(step)).Any();
+                    if (!badPath)
+                    {
+                        unit.OnSelected();
+                        yield return new WaitForSeconds(.25f);
+                        InteractivityManager.instance.OnTileSelected(dest);
+                    }
+                    else
+                    {
+                        //There's something blocking our character. Instead of moving, we are going to wait until the next turn
+                        Debug.Log("Bad Path");
+                        unit.GetData().GetTurnActions().Move();
+                        yield return new WaitForSeconds(.25f);
+                    }
                     didSomething = true;
                 }
                 else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
                 {
-                  Debug.Log("Trying to Attack");
+                  unit.OnSelected();
                   opposingTeamTiles[0].GetUnit().OnSelected();
                   didSomething = true;
                 }

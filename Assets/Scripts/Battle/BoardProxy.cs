@@ -214,11 +214,11 @@ public class BoardProxy : MonoBehaviour
                 return xdiff + ydiff;
             };
     }
-    public Path<TileProxy> GetPath(TileProxy from, TileProxy to, UnitProxy thingToMove)
+    public Path<TileProxy> GetPath(TileProxy from, TileProxy to, UnitProxy thingToMove, bool allTiles = false)
     {
         return PathGenerator.FindPath(from,
             to,
-            GetDistanceFunction(thingToMove),
+            GetDistanceFunction(thingToMove, allTiles),
             GetEstimationFunction(to, thingToMove));//might not want to use a list
     }
 
@@ -232,6 +232,17 @@ public class BoardProxy : MonoBehaviour
             .ToList();
     }
 
+    public void FlushTiles()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                tiles[x, y].UnHighlight();
+            }
+        }
+    }
+  
     public TileProxy GetTileAtPosition(Vector3Int pos)
     {
         return tiles[pos.x, pos.y];

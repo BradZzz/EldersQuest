@@ -57,7 +57,7 @@ public class TurnController : MonoBehaviour
     {
         Debug.Log("EndTurn");
         //Deselect selected tiles
-
+        BoardProxy.instance.FlushTiles();
         //Play the turn cutscene
 
         //Switch controller teams

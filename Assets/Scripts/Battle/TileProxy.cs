@@ -56,7 +56,12 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         {
             this.GetComponent<Renderer>().material.color = Color.red;
         }
-  }
+    }
+
+    public void ForceHighlight()
+    {
+        this.GetComponent<Renderer>().material.color = Color.green;
+    }
 
     public void UnHighlight()
     {

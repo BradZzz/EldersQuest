@@ -43,15 +43,20 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     {
         if (inRangeUnit != null) {
             bool unitOnTeam = UnitOnTeam(inRangeUnit.GetData().GetTeam());
-            if (HasUnit() && !unitOnTeam && inRangeUnit.GetData().GetTurnActions().CanAttack())
+
+            bool oppUnitInRange = HasUnit() && !unitOnTeam && inRangeUnit.GetData().GetTurnActions().CanAttack();
+            bool ableToMove = !HasUnit() && inRangeUnit.GetData().GetTurnActions().CanMove();
+            bool charSelectWOMoves = HasUnit() && !inRangeUnit.GetData().GetTurnActions().CanMove() && inRangeUnit == GetUnit();
+
+            if (oppUnitInRange)
             {
                 this.GetComponent<Renderer>().material.color = Color.blue;
             }
-            else if (!HasUnit() && inRangeUnit.GetData().GetTurnActions().CanMove())
+            else if (ableToMove)
             {
                 this.GetComponent<Renderer>().material.color = Color.red;
             }
-            else if (HasUnit() && !inRangeUnit.GetData().GetTurnActions().CanMove() && inRangeUnit == GetUnit())
+            else if (charSelectWOMoves)
             {
                 this.GetComponent<Renderer>().material.color = Color.red;
             }

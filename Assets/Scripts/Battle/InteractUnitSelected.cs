@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class InteractUnitSelected : InteractMode
 {
@@ -42,7 +43,20 @@ public class InteractUnitSelected : InteractMode
                 }));
             }
         }
-    }
+        else if (currentUnit != null)
+        {
+            //Select all the tiles with opp team in all tiles
+            //List<TileProxy> visitableTiles = allTiles.Where(tl => tl.GetUnit().GetData().GetTeam() != currentUnit.GetData().GetTeam()).ToList<TileProxy>();
+            if (!allTiles.Where(tl => tl.HasUnit() && (tl.GetUnit().GetData().GetTeam() != currentUnit.GetData().GetTeam())).ToList<TileProxy>().Contains(tile))
+            {
+                BoardProxy.instance.FlushTiles();
+                PanelController.SwitchChar(null);
+            }
+            ////Player clicked out of unit range, reset tiles/UI so player can click somewhere else instead
+            //BoardProxy.instance.FlushTiles();
+            //PanelController.SwitchChar(null);
+        }
+  }
 
   IEnumerator ResetTiles()
   {
@@ -132,5 +146,11 @@ public class InteractUnitSelected : InteractMode
         {
             InteractivityManager.instance.EnterDefaultMode();
         }
+    }
+
+    public override void OnClear(TileProxy tile)
+    {
+        tile.UnHighlight();
+        currentUnit = null;
     }
 }

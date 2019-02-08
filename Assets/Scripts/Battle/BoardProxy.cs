@@ -244,7 +244,7 @@ public class BoardProxy : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                tiles[x, y].UnHighlight();
+                InteractivityManager.instance.OnClear(tiles[x, y]);
             }
         }
     }

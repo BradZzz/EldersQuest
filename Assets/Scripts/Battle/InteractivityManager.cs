@@ -15,6 +15,11 @@ public class InteractivityManager : MonoBehaviour
         _currentMode = defaultMode;
     }
 
+    public void OnClear(TileProxy tile)
+    {
+        _currentMode.OnClear(tile);
+    }
+  
     public void OnUnitSelected(UnitProxy unit)
     {
         _currentMode.OnUnitSelected(unit);

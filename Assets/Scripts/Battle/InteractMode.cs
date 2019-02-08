@@ -10,7 +10,7 @@ public abstract class InteractMode : MonoBehaviour
     public abstract void OnTileHovered(TileProxy tile);
     public abstract void OnTileUnHovered(TileProxy tile);
 
-
+    public abstract void OnClear(TileProxy tile);
 
 }
 

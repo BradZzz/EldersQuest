@@ -39,4 +39,9 @@ public class InteractDefault : InteractMode
     {
         tile.UnHighlight();
     }
+
+    public override void OnClear(TileProxy tile)
+    {
+        tile.UnHighlight();
+    }
 }

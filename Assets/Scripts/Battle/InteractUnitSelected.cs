@@ -14,14 +14,24 @@ public class InteractUnitSelected : InteractMode
         {
             TileProxy startTile = BoardProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
             if (startTile != tile) {
-                StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
-                () =>
+                UnitProxy unit = startTile.GetUnit();
+                if (unit.GetData().GetTurnActions().CanMove())
                 {
-                    tile.ReceiveGridObjectProxy(currentUnit);
-                    startTile.RemoveGridObjectProxy(currentUnit);
-                    UnHighlightTiles();
-                    InteractivityManager.instance.EnterDefaultMode();
-                }));
+                    unit.GetData().GetTurnActions().Move();
+                    PanelController.SwitchChar(unit);
+                    StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
+                    () =>
+                    {
+                        tile.ReceiveGridObjectProxy(currentUnit);
+                        startTile.RemoveGridObjectProxy(currentUnit);
+                        UnHighlightTiles();
+                        InteractivityManager.instance.EnterDefaultMode();
+                    }));
+                }
+                else
+                {
+                    Debug.Log("Out of actions. Send signal to player they can't move unit.");
+                }
             }
             else
             {
@@ -56,14 +66,13 @@ public class InteractUnitSelected : InteractMode
         {
             if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
               && allTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
-              && obj.IsAttacked(currentUnit.GetData().GetAttack()))
+              && currentUnit.GetData().GetTurnActions().CanAttack()
+              && obj.IsAttacked(currentUnit))
             {
+                //currentUnit.GetData().GetTurnActions().Attack();
                 //If the unit has died, remove it from the board and destroy the gameobject
                 BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
                 Destroy(obj.gameObject);
-                /*
-                 *  TODO: Check Win Condition Enemy Here
-                 */
                 ConditionTracker.instance.EvaluateGame();
                 //Turn off the tiles
                 StartCoroutine(ResetTiles());

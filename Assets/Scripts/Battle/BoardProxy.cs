@@ -50,6 +50,8 @@ public class BoardProxy : MonoBehaviour
         player1.Init();
         tiles[0, 0].ReceiveGridObjectProxy(player1);
         player1.SnapToCurrentPosition();
+
+        TurnController.instance.StartTurn();
     }
 
     void PopulateEnemies()
@@ -64,6 +66,16 @@ public class BoardProxy : MonoBehaviour
         }
     }
 
+    public void EndTurn()
+    {
+        TurnController.instance.EndTurn();
+    }
+
+    //public void SetTurnPanel(string msg)
+    //{ 
+    //    TurnTeamPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+    //}
+  
     public void EndGame(bool won)
     {
         gameOverPanel.SetActive(true);
@@ -74,11 +86,9 @@ public class BoardProxy : MonoBehaviour
         gameOverPanel.transform.Find("GameOverHeader").GetComponent<TextMeshProUGUI>().text = txt;
     }
 
-    public Dictionary<int,int> CountTeams()
+    public List<UnitProxy> GetUnits()
     {
-        Dictionary<int,int> countDict = new Dictionary<int, int>();
-        countDict[0] = 0;
-        countDict[1] = 0;
+        List<UnitProxy> units = new List<UnitProxy>();
 
         for (int y = 0; y < height; y++)
         {
@@ -86,10 +96,24 @@ public class BoardProxy : MonoBehaviour
             {
                 if (tiles[x, y].HasUnit())
                 {
-                    countDict[tiles[x, y].UnitOnTeam(0) ? 0 : 1] += 1;
+                    units.Add(tiles[x, y].GetUnit());
                 }
             }
         }
+        return units;
+    }
+  
+    public Dictionary<int,int> CountTeams()
+    {
+        Dictionary<int,int> countDict = new Dictionary<int, int>();
+        countDict[0] = 0;
+        countDict[1] = 0;
+
+        foreach (UnitProxy unit in GetUnits().ToList())
+        {
+            countDict[unit.GetData().GetTeam()] += 1;
+        }
+
         return countDict;
     }
 

@@ -12,6 +12,8 @@ public class PanelController : MonoBehaviour
   public GameObject NamePanel;
   public GameObject TeamPanel;
   public GameObject HealthPanel;
+  public GameObject TurnTxt;
+  public GameObject TurnTeamPnl;
 
   private void Awake()
   {
@@ -24,6 +26,7 @@ public class PanelController : MonoBehaviour
     ImagePanel.GetComponent<Image>().enabled = false;
     TeamPanel.SetActive(false);
     HealthPanel.SetActive(false);
+    TurnTxt.GetComponent<TextMeshProUGUI>().text = "";
   }
 
   public static void SwitchChar(UnitProxy unit)
@@ -32,6 +35,12 @@ public class PanelController : MonoBehaviour
     instance.SwitchCharName(unit);
     instance.SetTeam(unit);
     instance.SetCharHealth(unit);
+    instance.SetTurnText(unit);
+  }
+
+  public void SetTurnPanel(string msg)
+  { 
+      TurnTeamPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
   }
 
   void SwitchCharImages(UnitProxy unit)
@@ -87,5 +96,11 @@ public class PanelController : MonoBehaviour
         t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrHealth().ToString() + " / " + unit.GetData().mxHlth.ToString();
       }
     }
+  }
+
+  void SetTurnText(UnitProxy unit)
+  {
+    string txt = unit == null ? "" : unit.GetData().GetTurnActions().ToString();
+    TurnTxt.GetComponent<TextMeshProUGUI>().text = txt;
   }
 }

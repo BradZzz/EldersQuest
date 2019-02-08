@@ -149,6 +149,9 @@
     <Compile Include="Assets\Scripts\Battle\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\Battle\Tile.cs" />
     <Compile Include="Assets\Scripts\Battle\TileProxy.cs" />
+    <Compile Include="Assets\Scripts\Battle\TurnActions.cs" />
+    <Compile Include="Assets\Scripts\Battle\TurnActionsBasicUnit.cs" />
+    <Compile Include="Assets\Scripts\Battle\TurnController.cs" />
     <Compile Include="Assets\Scripts\Battle\Unit.cs" />
     <Compile Include="Assets\Scripts\Battle\UnitProxy.cs" />
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />

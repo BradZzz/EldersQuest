@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+  Static to keep track of win conditions
+*/
 public class ConditionTracker : MonoBehaviour
 {
     /*

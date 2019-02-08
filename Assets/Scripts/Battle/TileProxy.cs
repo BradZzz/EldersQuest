@@ -95,6 +95,11 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         return true;//for now
     }
 
+    public UnitProxy GetUnit()
+    {
+        return (UnitProxy) objectProxies.Where(op => op is UnitProxy).First();
+    }
+
     public bool HasUnit()
     {
         return objectProxies.Where(op => op is UnitProxy).Any();

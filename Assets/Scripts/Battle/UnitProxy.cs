@@ -25,9 +25,14 @@ public class UnitProxy : GridObjectProxy
         SnapToCurrentPosition();
     }
 
-    public bool IsAttacked(int atk)
+    public bool IsAttacked(UnitProxy oppUnit)
     {
-      GetData().IsAttacked(atk);
+      //Decrement the attacking units attack actions and update the ui
+      oppUnit.GetData().GetTurnActions().Attack();
+      PanelController.SwitchChar(oppUnit);
+
+      //Damage the unit
+      GetData().IsAttacked(oppUnit.GetData().GetAttack());
       StartCoroutine(Shake());
       if (GetData().IsDead())
       {

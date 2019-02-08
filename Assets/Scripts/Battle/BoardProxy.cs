@@ -67,7 +67,7 @@ public class BoardProxy : MonoBehaviour
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
-            badGuy.PutData(new Unit("e" + i.ToString(), boardMeta.enemies[i].name, ENEMY_TEAM, 3, 1, 3));
+            badGuy.PutData(new Unit("e" + i.ToString(), boardMeta.enemies[i].name + i.ToString(), ENEMY_TEAM, 3, 1, 3));
             badGuy.Init();
             tiles[5, 0 + i].ReceiveGridObjectProxy(badGuy);
             badGuy.SnapToCurrentPosition();

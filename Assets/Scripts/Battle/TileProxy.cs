@@ -51,6 +51,10 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
             {
                 this.GetComponent<Renderer>().material.color = Color.red;
             }
+            else if (HasUnit() && !inRangeUnit.GetData().GetTurnActions().CanMove() && inRangeUnit == GetUnit())
+            {
+                this.GetComponent<Renderer>().material.color = Color.red;
+            }
         }
         else if (hovering || !HasUnit())
         {

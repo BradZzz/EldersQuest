@@ -71,15 +71,18 @@ public class InteractUnitSelected : InteractMode
         {
             if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
               && allTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
-              && currentUnit.GetData().GetTurnActions().CanAttack()
-              && obj.IsAttacked(currentUnit))
+              && currentUnit.GetData().GetTurnActions().CanAttack())
             {
-                //If the unit has died, remove it from the board and destroy the gameobject
-                BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
-                Destroy(obj.gameObject);
-                ConditionTracker.instance.EvaluateGame();
-                //Turn off the tiles
-                StartCoroutine(ResetTiles());
+                if (obj.IsAttacked(currentUnit))
+                {
+                    //If the unit has died, remove it from the board and destroy the gameobject
+                    BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
+                    Destroy(obj.gameObject);
+                    ConditionTracker.instance.EvaluateGame();
+                    //Turn off the tiles
+                    StartCoroutine(ResetTiles());
+                }
+                OnDisable();
             }
         }
     }

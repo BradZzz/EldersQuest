@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/BoardProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/InteractUnitSelected.cs">
     <Files>
       <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="21" Column="44" />
       <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="77" Column="42" />
-      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="70" Column="22" />
-      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="22" Column="56" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="106" Column="6" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="54" Column="94" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="94" Column="18" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="42" Column="17" />
       <File FileName="Assets/Scripts/Battle/PanelController.cs" Line="31" Column="1" />
       <File FileName="Assets/Scripts/Battle/Brains/AIBrain.cs" Line="10" Column="6" />
-      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="58" Column="1" />
+      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="64" Column="23" />
       <File FileName="Assets/Scripts/Battle/Unit.cs" Line="23" Column="34" />
       <File FileName="Assets/Scripts/Battle/TurnActionsBasicUnit.cs" Line="10" Column="81" />
       <File FileName="Assets/Scripts/Battle/TurnActions.cs" Line="6" Column="1" />
@@ -18,6 +18,7 @@
       <File FileName="Assets/Scripts/Battle/GridObject.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Battle/PathGenerator.cs" Line="8" Column="31" />
       <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="75" Column="1" />
+      <File FileName="Assets/Scripts/Battle/InteractDefault.cs" Line="35" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

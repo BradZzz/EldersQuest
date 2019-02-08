@@ -11,6 +11,8 @@ public abstract class TurnActions
     //The amount of times this unit an move
     public int mv;
 
+    public bool idle;
+
     private int cAtk;
     private int cMv;
 
@@ -23,11 +25,13 @@ public abstract class TurnActions
     public void BeginTurn(){
         cAtk = atk;
         cMv = mv;
+        idle = false;
     }
 
     public void EndTurn(){
         cAtk = 0;
         cMv = 0;
+        idle = false;
     }
 
     public bool CanAttack()

@@ -15,10 +15,10 @@ public class InteractUnitSelected : InteractMode
             TileProxy startTile = BoardProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
             if (startTile != tile) {
                 UnitProxy unit = startTile.GetUnit();
+                PanelController.SwitchChar(unit);
                 if (unit.GetData().GetTurnActions().CanMove())
                 {
                     unit.GetData().GetTurnActions().Move();
-                    PanelController.SwitchChar(unit);
                     StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
                     () =>
                     {

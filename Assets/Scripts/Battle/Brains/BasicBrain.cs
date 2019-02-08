@@ -51,19 +51,9 @@ public class BasicBrain : MonoBehaviour
                 {
                     Debug.Log("Trying to Move");
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
-                    //No opp units within range
-                    //Get the pathfinding to first unit in list (to be optimized to return the closest)
                     Path<TileProxy> path = BoardProxy.instance.GetPath(start, BoardProxy.instance.GetTileAtPosition(opposingUnits[0].GetPosition()), unit);
-                    //path.Reverse();
-
-                    //From that list find the furthest tile that is also in the visitable tile list
                     TileProxy dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).First();
-
-                    //Check the path
                     path = BoardProxy.instance.GetPath(start, dest, unit);
-                    
-                    //bool badPath = path.Where(step=>!validTiles.Contains(step)).Any();
-
                     if (dest != start)
                     {
                         foreach (TileProxy tl in path)
@@ -82,16 +72,17 @@ public class BasicBrain : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Bad Path");
-                        if (unitQueue.Count() > 0)
+                        if (unitQueue.Count() > 0 && !unit.GetData().GetTurnActions().idle)
                         {
-                            //Unit tangled, wait for other units to move
+                            //If there are more ai units left to move and this ai hasn't been put in the back of the queue yet
+                            //Put unit at the end of the queue, wait for other units to move
+                            unit.GetData().GetTurnActions().idle = true;
                             unitQueue.Enqueue(unit);
                             break;
                         }
                         else
                         {
-                            //There's something blocking our character. Instead of moving, we are going to wait until the next turn
+                            //The unit has already failed to move twice. Stop trying. Move On.
                             unit.GetData().GetTurnActions().Move();
                             didSomething = true;
                             yield return new WaitForSeconds(.25f);

@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: db2e986b619164422962d98fac30f55c
+  - enabled: 1
+    path: Assets/Scenes/MapScene.unity
+    guid: 50ec399dceb3a449695181452217d028
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: ae973413140318846933f19b89dcd626
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: ff2be2fe8a2ad4670a03d41b141a3a39
   m_configObjects: {}

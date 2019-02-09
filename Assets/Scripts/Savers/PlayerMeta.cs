@@ -18,4 +18,11 @@ public class PlayerMeta
     items = new string[0];
     stats = new StatMeta();
   }
+
+  public override string ToString()
+  {
+      string buff = "Army: " + characters.Length + "\n";
+      buff += "Battles: " + stats.dests.Length + "\n";
+      return buff;
+  }
 }

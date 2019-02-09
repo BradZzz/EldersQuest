@@ -14,6 +14,12 @@ public class BaseSaver
     PlayerPrefs.DeleteAll();
   }
 
+  public static void ResetAtSave()
+  {
+    PlayerPrefs.DeleteKey(AdjKy(PLAYER));
+    PlayerPrefs.DeleteKey(AdjKy(BOARD));
+  }
+
   public static string AdjKy(string key)
   {
     return key + GetSN();

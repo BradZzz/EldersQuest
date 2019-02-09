@@ -17,6 +17,7 @@ public class Unit : GridObject
     private int atk = 1;
     private int moveSpeed = 3;
     private int team = 0;
+    private int lvl = 1;
 
     public Unit()
     {
@@ -25,14 +26,15 @@ public class Unit : GridObject
         turnActions = new TurnActionsBasicUnit();
     }
 
-    public Unit(string characterName, string characterMoniker, int team, int mxHlth, int atk,  int moveSpeed)
+    public Unit(CharMeta meta, int team, int mxHlth, int atk,  int moveSpeed)
     {
-        this.characterName = characterName;
-        this.characterMoniker = characterMoniker;
+        this.characterName = meta.name + UnityEngine.Random.Range(0,1).ToString();
+        this.characterMoniker = meta.name;
         this.team = team;
         this.mxHlth = cHlth = mxHlth;
         this.atk = atk;
         this.moveSpeed = moveSpeed;
+        this.lvl = meta.lvl;
         turnActions = new TurnActionsBasicUnit();
     }
 
@@ -41,6 +43,11 @@ public class Unit : GridObject
         cHlth = mxHlth;
     }
 
+    public int GetLvl()
+    {
+        return lvl;
+    }
+  
     public TurnActions GetTurnActions()
     {
         return turnActions;

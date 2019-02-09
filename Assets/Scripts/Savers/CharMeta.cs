@@ -12,4 +12,28 @@ public class CharMeta
   public int lvl = 1;
   //Any additional meta we might want to add we can store here
   public string meta;
+
+  public CharMeta()
+  {
+    name = "Snoopy Bot";
+    lvl = 1;
+  }
+
+  public CharMeta(string name, int lvl)
+  {
+    this.name = name;
+    this.lvl = lvl;
+  }
+
+  public CharMeta(UnitProxy unit)
+  {
+    name = unit.GetData().characterMoniker;
+    lvl = unit.GetData().GetLvl();
+  }
+
+  public CharMeta(CharMeta unit)
+  {
+    name = unit.name;
+    lvl = unit.lvl;
+  }
 }

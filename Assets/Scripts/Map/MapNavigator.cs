@@ -46,7 +46,7 @@ public class MapNavigator : MonoBehaviour
         TODO: This is where the board eventually needs to be laoded.
         For now we have a blank board with a few chars
       */
-      BaseSaver.PutBoard(new BoardMeta());
+      BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests()[selected]);
       SceneManager.LoadScene("BattleScene");
     }
     else

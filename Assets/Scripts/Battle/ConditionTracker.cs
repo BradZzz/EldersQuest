@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
   Static to keep track of win conditions
@@ -16,6 +19,7 @@ public class ConditionTracker : MonoBehaviour
     public static ConditionTracker instance;    
 
     BoardMeta board;
+    bool won;
 
     void Awake()
     {
@@ -24,6 +28,7 @@ public class ConditionTracker : MonoBehaviour
        if (board == null) {
           board = new BoardMeta();
        }
+       won = false;
     }
 
     // Start is called before the first frame update
@@ -41,13 +46,52 @@ public class ConditionTracker : MonoBehaviour
                         {
                             if (teams[key] == 0)
                             {
-                                BoardProxy.instance.EndGame(key == BoardProxy.ENEMY_TEAM);
+                                EndGame(key == BoardProxy.ENEMY_TEAM);
                             }
                         }
                     }
                     break;
                 default: break;
             }
+        }
+    }
+
+    void EndGame(bool won)
+    {
+        BoardProxy.instance.gameOverPanel.SetActive(true);
+        this.won = won;
+        string txt = "Defeat";
+        if (won){
+            List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM).ToList();
+            PlayerMeta player = BaseSaver.GetPlayer();
+            List<CharMeta> pChars = units.Select(unit => new CharMeta(unit)).ToList();
+            List<string> dests = new List<string>(player.stats.dests);
+            foreach (string unlock in BaseSaver.GetBoard().unlocks)
+            {
+                if (!dests.Contains(unlock))
+                {
+                    dests.Add(unlock);
+                    pChars.Add(new CharMeta("Awesome Sidekick", player.stats.dests.Length));
+                }
+            }
+            player.stats.dests = dests.ToArray();
+            player.characters = pChars.ToArray();
+            player.stats.dests = dests.ToArray();
+            BaseSaver.PutPlayer(player);
+            txt = "Victory";
+        }
+        BoardProxy.instance.gameOverPanel.transform.Find("GameOverHeader").GetComponent<TextMeshProUGUI>().text = txt;
+    }
+
+    public void GameOverNavController()
+    {
+        if (won)
+        {
+            SceneManager.LoadScene("MapScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("DeathScene");
         }
     }
 }

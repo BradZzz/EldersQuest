@@ -12,24 +12,28 @@ public class BoardMeta
     public CharMeta[] enemies;
     public CondMeta[] conditions;
 
+    public string[] unlocks;
+
     public BoardMeta() { 
-        this.height = 10;
-        this.width = 10;
-        this.enemies = new CharMeta[]{ 
+        height = 10;
+        width = 10;
+        enemies = new CharMeta[]{ 
             new CharMeta(),
             new CharMeta(),
             new CharMeta()
         };
-        this.conditions = new CondMeta[]{ 
+        conditions = new CondMeta[]{ 
             new CondMeta()
         };
+        unlocks = new string[0];
     }
 
-    public BoardMeta(int height, int width, CharMeta[] enemies, CondMeta[] conditions)
+    public BoardMeta(int height, int width, CharMeta[] enemies, CondMeta[] conditions, string[] unlocks)
     {
         this.height = height;
         this.width = width;
         this.enemies = enemies;
         this.conditions = conditions;
+        this.unlocks = unlocks;
     }
 }

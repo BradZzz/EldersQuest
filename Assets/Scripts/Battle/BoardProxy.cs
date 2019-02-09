@@ -24,6 +24,7 @@ public class BoardProxy : MonoBehaviour
     private BoardMeta boardMeta;
     private int width;
     private int height;
+    private bool won;
 
     public Grid grid;
 
@@ -44,32 +45,34 @@ public class BoardProxy : MonoBehaviour
     void Start()
     {
         BuildTestBoard();
+        PopulatePlayer();
         PopulateEnemies();
-
-        //Create Player
-        CreatePlayer("Bob Everyman", 3, 1, 4, new Vector2(0,0));
-        CreatePlayer("Spacesuit Cindy", 4, 1, 3, new Vector2(0,1));
-
         TurnController.instance.StartTurn();
     }
 
-    void CreatePlayer(string charName, int hth, int atk, int spd, Vector2 pos)
+    void PopulatePlayer()
     {
-        UnitProxy player1 = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
-        player1.PutData(new Unit("p1", charName, PLAYER_TEAM, hth, atk, spd));
-        player1.Init();
-        tiles[(int)pos.x, (int)pos.y].ReceiveGridObjectProxy(player1);
-        player1.SnapToCurrentPosition();
+        PlayerMeta player = BaseSaver.GetPlayer();
+        for (int i = 0; i < player.characters.Length && i < height; i++)
+        {
+            CharMeta cMeta = new CharMeta(player.characters[i]);
+            UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
+            goodGuy.PutData(new Unit(cMeta, PLAYER_TEAM, 4, 1, 4));
+            goodGuy.Init();
+            tiles[0, 0 + i].ReceiveGridObjectProxy(goodGuy);
+            goodGuy.SnapToCurrentPosition();
+        }
     }
   
     void PopulateEnemies()
     {
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
+            CharMeta cMeta = new CharMeta(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
-            badGuy.PutData(new Unit("e" + i.ToString(), boardMeta.enemies[i].name + i.ToString(), ENEMY_TEAM, 3, 1, 3));
+            badGuy.PutData(new Unit(cMeta, ENEMY_TEAM, 3, 1, 3));
             badGuy.Init();
-            tiles[5, 0 + i].ReceiveGridObjectProxy(badGuy);
+            tiles[4, 0 + i].ReceiveGridObjectProxy(badGuy);
             badGuy.SnapToCurrentPosition();
         }
     }
@@ -78,22 +81,7 @@ public class BoardProxy : MonoBehaviour
     {
         TurnController.instance.EndTurn();
     }
-
-    //public void SetTurnPanel(string msg)
-    //{ 
-    //    TurnTeamPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
-    //}
   
-    public void EndGame(bool won)
-    {
-        gameOverPanel.SetActive(true);
-        string txt = "Defeat";
-        if (won){
-            txt = "Victory";
-        }
-        gameOverPanel.transform.Find("GameOverHeader").GetComponent<TextMeshProUGUI>().text = txt;
-    }
-
     public List<UnitProxy> GetUnits()
     {
         List<UnitProxy> units = new List<UnitProxy>();

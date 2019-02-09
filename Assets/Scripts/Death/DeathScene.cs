@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeathScene : MonoBehaviour
 {
     // Start is called before the first frame update
-    void ResetSave()
+    public void ResetSave()
     {
         BaseSaver.ResetAtSave();
         SceneManager.LoadScene("MainScene");

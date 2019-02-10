@@ -1,17 +1,17 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/ConditionTracker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Unit.cs">
     <Files>
       <File FileName="Assets/Scripts/Utils/CharStatCalculator.cs" Line="14" Column="37" />
-      <File FileName="Assets/Scripts/Battle/TurnActionsBasicUnit.cs" Line="16" Column="8" />
-      <File FileName="Assets/Scripts/Battle/TurnActions.cs" Line="15" Column="1" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="119" Column="32" />
-      <File FileName="Assets/Scripts/Menu/MenuController.cs" Line="33" Column="6" />
+      <File FileName="Assets/Scripts/Battle/TurnActionsBasicUnit.cs" Line="16" Column="10" />
+      <File FileName="Assets/Scripts/Battle/TurnActions.cs" Line="56" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="124" Column="32" />
+      <File FileName="Assets/Scripts/Menu/MenuController.cs" Line="52" Column="39" />
+      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="69" Column="59" />
       <File FileName="Assets/Scripts/Battle/PanelController.cs" Line="134" Column="36" />
       <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="35" Column="48" />
       <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="58" Column="1" />
       <File FileName="Assets/Scripts/Savers/PlayerMeta.cs" Line="9" Column="25" />
       <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="69" Column="73" />
-      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="75" Column="125" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -53,30 +53,65 @@ public class BoardProxy : MonoBehaviour
     void PopulatePlayer()
     {
         PlayerMeta player = BaseSaver.GetPlayer();
+        Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.PLAYER_TEAM));
+        Debug.Log("PopulatePlayer: " + validTls.Count.ToString());
         for (int i = 0; i < player.characters.Length && i < height; i++)
         {
             Unit cMeta = new Unit(player.characters[i]);
             UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
             goodGuy.PutData(cMeta);
             goodGuy.Init();
-            tiles[0, 0 + i].ReceiveGridObjectProxy(goodGuy);
+            TileProxy popTile = validTls.Dequeue();
+            popTile.ReceiveGridObjectProxy(goodGuy);
             goodGuy.SnapToCurrentPosition();
         }
     }
   
     void PopulateEnemies()
     {
+        Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.ENEMY_TEAM));
+        Debug.Log("PopulateEnemies: " + validTls.Count.ToString());
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
             badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 1, 1));
             badGuy.Init();
-            tiles[4, 0 + i].ReceiveGridObjectProxy(badGuy);
+            TileProxy popTile = validTls.Dequeue();
+            popTile.ReceiveGridObjectProxy(badGuy);
             badGuy.SnapToCurrentPosition();
         }
     }
 
+    TileProxy[] GetSideTiles(int team)
+    {
+        List<TileProxy> tls = new List<TileProxy>();
+        if (team == BoardProxy.PLAYER_TEAM)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < (width / 2) - 1; x++)
+                {
+                    tls.Add(tiles[x, y]);
+                }
+            }
+        }
+        else if (team == BoardProxy.ENEMY_TEAM)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = (width/2) + 1; x < width; x++)
+                {
+                    tls.Add(tiles[x, y]);
+                }
+            }
+        }
+        TileProxy[] retTls = tls.ToArray();
+        HelperScripts.Shuffle(retTls);
+        Debug.Log("GetSideTiles: " + retTls.Length.ToString());
+        return retTls;
+    }
+  
     public void EndTurn()
     {
         TurnController.instance.EndTurn();

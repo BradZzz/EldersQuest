@@ -36,23 +36,22 @@ public class BasicBrain : MonoBehaviour
             while (didSomething)
             {
                 didSomething = false;
-                /*
-                If an enemy is within range, attack
-                If an enemy is not within range, go towards nearest one
-                */
+                //Look at all the visitable tiles
                 List<TileProxy> visitableTiles = BoardProxy.instance.GetAllVisitableNodes(unit,true);
+                //Look at all the tiles the opposing team is on from the visitable tiles
                 List<TileProxy> opposingTeamTiles = new List<TileProxy>(visitableTiles.Where(tile => tile.HasUnit() 
                     && tile.GetUnit().GetData().GetTeam() != BoardProxy.ENEMY_TEAM));
+                //Look at all the tiles in range
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit);
-
-                Debug.Log("TurnActions: " + unit.GetData().GetTurnActions().mv + ":"+ unit.GetData().GetTurnActions().atk);
-
                 if (opposingTeamTiles.Count == 0 && unit.GetData().GetTurnActions().CanMove())
                 {
                     Debug.Log("Trying to Move");
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
+                    //Calculate a path from the unit to the first opposing unit (should be optimized)
                     Path<TileProxy> path = BoardProxy.instance.GetPath(start, BoardProxy.instance.GetTileAtPosition(opposingUnits[0].GetPosition()), unit);
+                    //See how many of those tiles are in the tiles we are allowed to move
                     TileProxy dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).First();
+                    //Get the path for highlighting
                     path = BoardProxy.instance.GetPath(start, dest, unit);
                     if (dest != start)
                     {
@@ -91,6 +90,7 @@ public class BasicBrain : MonoBehaviour
                     }
                 } else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
                 {
+                    //Unit in range. Attack!
                     Debug.Log("Trying to Attack");
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
                     unit.OnSelected();

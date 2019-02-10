@@ -56,6 +56,7 @@ public class BasicBrain : MonoBehaviour
                     path = BoardProxy.instance.GetPath(start, dest, unit);
                     if (dest != start)
                     {
+                        didSomething = true;
                         foreach (TileProxy tl in path)
                         {
                             tl.ForceHighlight();
@@ -88,8 +89,7 @@ public class BasicBrain : MonoBehaviour
                             yield return new WaitForSeconds(.25f);
                         }
                     }
-                }
-                else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
+                } else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
                 {
                     Debug.Log("Trying to Attack");
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());

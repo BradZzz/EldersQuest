@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -116,7 +117,11 @@ public class Unit : GridObject
 
     public static Unit BuildInitial(UnitType type, int team)
     {
-        string uName = GetRandomName();
+        List<string> avoidNames = team == BoardProxy.PLAYER_TEAM ? 
+          new List<string>(BaseSaver.GetPlayer().characters.Select(chr => chr.characterMoniker)) : 
+          new List<string>();
+
+        string uName = GenerateRandomName(avoidNames);
         switch (type)
         {
           case UnitType.Mage: 
@@ -145,10 +150,22 @@ public class Unit : GridObject
         }
     }
   
-    public static string GetRandomName()
+    public static string GenerateRandomName(List<string> dontPick)
     {
-        string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse" };
-        string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "RoboDictator", "ChipCheeks", "Nitro", "FlavorTown", "KillDoom", "Everyman" };
+        string gotName = GetRandomName();
+        while (dontPick.Contains(gotName))
+        {
+            gotName = GetRandomName();
+        }
+        return gotName;
+    }
+  
+    static string GetRandomName()
+    {
+        string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse", "Gloria", "Bertram", "Silvia", 
+          "Natashia", "Bruce", "Silvio" };
+        string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Killdoom", "Everyman", "Rocketshark", 
+          "Looselips", "Karatease", "Danceswiftly", "Smoulderlust" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
 }

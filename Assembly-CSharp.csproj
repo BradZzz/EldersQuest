@@ -156,6 +156,7 @@
     <Compile Include="Assets\Scripts\Battle\TurnController.cs" />
     <Compile Include="Assets\Scripts\Battle\Unit.cs" />
     <Compile Include="Assets\Scripts\Battle\UnitProxy.cs" />
+    <Compile Include="Assets\Scripts\CharSelect\CharSelectController.cs" />
     <Compile Include="Assets\Scripts\Death\DeathScene.cs" />
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />
     <Compile Include="Assets\Scripts\Map\MapStatic.cs" />

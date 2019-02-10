@@ -120,11 +120,11 @@ public class Unit : GridObject
         switch (type)
         {
           case UnitType.Mage: 
-            return new Unit(uName, uName, 1, team, 3, 2, 3, 1, 1);
+            return new Unit(uName, uName, 1, team, 3, 2, 3, 1, 1, UnitType.Mage);
           case UnitType.Scout: 
-            return new Unit(uName, uName, 1, team, 3, 1, 3, 2, 1);
+            return new Unit(uName, uName, 1, team, 3, 1, 3, 2, 1, UnitType.Scout);
           case UnitType.Soldier: 
-            return new Unit(uName, uName, 1, team, 3, 1, 3, 1, 2);
+            return new Unit(uName, uName, 1, team, 3, 1, 3, 1, 2, UnitType.Soldier);
           default:
             return new Unit();
         }

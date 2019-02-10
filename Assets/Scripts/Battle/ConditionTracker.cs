@@ -20,6 +20,7 @@ public class ConditionTracker : MonoBehaviour
 
     BoardMeta board;
     bool won;
+    bool unlkChar;
 
     void Awake()
     {
@@ -29,6 +30,7 @@ public class ConditionTracker : MonoBehaviour
           board = new BoardMeta();
        }
        won = false;
+       unlkChar = false;
     }
 
     // Start is called before the first frame update
@@ -71,7 +73,7 @@ public class ConditionTracker : MonoBehaviour
                 if (!dests.Contains(unlock))
                 {
                     dests.Add(unlock);
-                    pChars.Add(Unit.BuildInitial(Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM));
+                    unlkChar = true;
                 }
             }
             player.stats.dests = dests.ToArray();
@@ -87,7 +89,12 @@ public class ConditionTracker : MonoBehaviour
     {
         if (won)
         {
-            SceneManager.LoadScene("MapScene");
+            string nxtScene = "MapScene";
+            if (unlkChar)
+            {
+                nxtScene = "CharSelectScreen";
+            }
+            SceneManager.LoadScene(nxtScene);
         }
         else
         {

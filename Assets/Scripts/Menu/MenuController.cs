@@ -42,19 +42,16 @@ public class MenuController : MonoBehaviour
      * Save the player demo objects
      */
     PlayerMeta player = BaseSaver.GetPlayer();
+    string nxtScene = "MapScene";
     if (player == null)
     {
       player = new PlayerMeta();
-      //string[] dests = save == "sv1" ? new string[] { "Dest1" } : 
-      //  (save == "sv2" ? new string[] { "Dest1", "Dest2" } : 
-      //  new string[] { "Dest1", "Dest2", "Dest3" } );
-      //player.stats.dests = dests;
-      player.characters = new Unit[]{ Unit.BuildInitial(Unit.UnitType.Mage, BoardProxy.PLAYER_TEAM) };
       player.stats.dests = new string[] { "Dest1" };
       BaseSaver.PutPlayer(player);
+      nxtScene = "CharSelectScreen";
     }
     //Load the scene
-    SceneManager.LoadScene("MapScene");
+    SceneManager.LoadScene(nxtScene);
   }
 
   public void ResetAll()

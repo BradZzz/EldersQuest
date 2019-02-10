@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-/Users/brad/Desktop/MysticQ_Demo_V01.apk
+/Users/brad/Desktop/MysticQ_Demo_V03.apk
 SceneListBegin?
 Assets/Scenes/MainScene.unity
 Assets/Scenes/MapScene.unity

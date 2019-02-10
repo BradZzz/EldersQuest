@@ -55,9 +55,9 @@ public class BoardProxy : MonoBehaviour
         PlayerMeta player = BaseSaver.GetPlayer();
         for (int i = 0; i < player.characters.Length && i < height; i++)
         {
-            CharMeta cMeta = new CharMeta(player.characters[i]);
+            Unit cMeta = new Unit(player.characters[i]);
             UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
-            goodGuy.PutData(new Unit(cMeta, PLAYER_TEAM, 4, 1, 4));
+            goodGuy.PutData(cMeta);
             goodGuy.Init();
             tiles[0, 0 + i].ReceiveGridObjectProxy(goodGuy);
             goodGuy.SnapToCurrentPosition();
@@ -68,9 +68,9 @@ public class BoardProxy : MonoBehaviour
     {
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
-            CharMeta cMeta = new CharMeta(boardMeta.enemies[i].name + i.ToString(),1);
+            //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
-            badGuy.PutData(new Unit(cMeta, ENEMY_TEAM, 3, 1, 3));
+            badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 1, 1));
             badGuy.Init();
             tiles[4, 0 + i].ReceiveGridObjectProxy(badGuy);
             badGuy.SnapToCurrentPosition();

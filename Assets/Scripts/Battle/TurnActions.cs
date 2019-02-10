@@ -16,11 +16,11 @@ public abstract class TurnActions
     private int cAtk;
     private int cMv;
 
-    public TurnActions()
-    {
-        atk = 1;
-        mv = 1;
-    }
+    //public TurnActions()
+    //{
+    //    atk = 1;
+    //    mv = 1;
+    //}
 
     public void BeginTurn(){
         cAtk = atk;

@@ -9,7 +9,7 @@ public class BoardMeta
     public int height;
     public int width;
 
-    public CharMeta[] enemies;
+    public Unit[] enemies;
     public CondMeta[] conditions;
 
     public string[] unlocks;
@@ -17,10 +17,10 @@ public class BoardMeta
     public BoardMeta() { 
         height = 10;
         width = 10;
-        enemies = new CharMeta[]{ 
-            new CharMeta(),
-            new CharMeta(),
-            new CharMeta()
+        enemies = new Unit[]{ 
+            new Unit(),
+            new Unit(),
+            new Unit()
         };
         conditions = new CondMeta[]{ 
             new CondMeta()
@@ -28,7 +28,7 @@ public class BoardMeta
         unlocks = new string[0];
     }
 
-    public BoardMeta(int height, int width, CharMeta[] enemies, CondMeta[] conditions, string[] unlocks)
+    public BoardMeta(int height, int width, Unit[] enemies, CondMeta[] conditions, string[] unlocks)
     {
         this.height = height;
         this.width = width;

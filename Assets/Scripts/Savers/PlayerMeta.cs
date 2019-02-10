@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerMeta
 {
-  public CharMeta[] characters;
+  public Unit[] characters;
   public string[] items;
   public StatMeta stats;
   //The current or last destination
@@ -14,7 +14,7 @@ public class PlayerMeta
 
   public PlayerMeta()
   {
-    characters = new CharMeta[0];
+    characters = new Unit[0];
     items = new string[0];
     stats = new StatMeta();
   }

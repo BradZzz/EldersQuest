@@ -64,14 +64,14 @@ public class ConditionTracker : MonoBehaviour
         if (won){
             List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM).ToList();
             PlayerMeta player = BaseSaver.GetPlayer();
-            List<CharMeta> pChars = units.Select(unit => new CharMeta(unit)).ToList();
+            List<Unit> pChars = units.Select(unit => new Unit(unit.GetData())).ToList();
             List<string> dests = new List<string>(player.stats.dests);
             foreach (string unlock in BaseSaver.GetBoard().unlocks)
             {
                 if (!dests.Contains(unlock))
                 {
                     dests.Add(unlock);
-                    pChars.Add(new CharMeta("Awesome Sidekick", player.stats.dests.Length));
+                    pChars.Add(Unit.BuildInitial(Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM));
                 }
             }
             player.stats.dests = dests.ToArray();

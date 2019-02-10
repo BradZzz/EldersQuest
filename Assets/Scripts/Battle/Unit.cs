@@ -13,31 +13,58 @@ public class Unit : GridObject
 
     public TurnActions turnActions;
 
-    private int cHlth = 1;
-    private int atk = 1;
-    private int moveSpeed = 3;
-    private int team = 0;
-    private int lvl = 1;
+    public UnitType uType;
+    public int cHlth = 1;
+    public int atk = 1;
+    public int moveSpeed = 3;
+    public int lvl = 1;
+    public int team = 0;
+
+    public int trnMvs = 1;
+    public int trnAtks = 1;
+
+    public enum UnitType
+    {
+        Mage, Scout, Soldier, None
+    };
 
     public Unit()
     {
         this.characterName = "0";
-        this.characterMoniker = "Null";
+        this.characterMoniker = "Null"; 
+        this.uType = UnitType.Soldier;
         turnActions = new TurnActionsBasicUnit();
     }
 
-    public Unit(CharMeta meta, int team, int mxHlth, int atk,  int moveSpeed)
+    public Unit(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, 
+      int trnMvs, int trnAtks, UnitType uType = UnitType.Soldier)
     {
-        this.characterName = meta.name + UnityEngine.Random.Range(0,1).ToString();
-        this.characterMoniker = meta.name;
+        Setup(cName + UnityEngine.Random.Range(0,1).ToString(),cMonik, cLvl, team, 
+          mxHlth, atk, moveSpeed, trnAtks, trnMvs,uType);
+    }
+
+    public Unit(Unit unit)
+    {
+        Setup(unit.characterName, unit.characterMoniker, unit.GetLvl(), unit.team, 
+          unit.mxHlth, unit.GetAttack(), unit.GetMoveSpeed(), unit.trnAtks, unit.trnMvs, unit.uType);
+    }
+
+    void Setup(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, 
+      int trnMvs, int trnAtks, UnitType uType = UnitType.Soldier)
+    {
+        this.characterName = cName + UnityEngine.Random.Range(0,1).ToString();
+        this.characterMoniker = cMonik;
         this.team = team;
         this.mxHlth = cHlth = mxHlth;
         this.atk = atk;
         this.moveSpeed = moveSpeed;
-        this.lvl = meta.lvl;
-        turnActions = new TurnActionsBasicUnit();
+        this.lvl = cLvl;
+        this.uType = uType;
+        this.trnAtks = trnAtks;
+        this.trnMvs = trnMvs;
+        this.turnActions = new TurnActionsBasicUnit(trnMvs, trnAtks);
     }
-
+  
     public void Init()
     {
         cHlth = mxHlth;
@@ -81,5 +108,47 @@ public class Unit : GridObject
     public int GetTeam()
     {
         return team;
+    }
+
+    /*
+      Utility Functions
+    */
+
+    public static Unit BuildInitial(UnitType type, int team)
+    {
+        string uName = GetRandomName();
+        switch (type)
+        {
+          case UnitType.Mage: 
+            return new Unit(uName, uName, 1, team, 3, 2, 3, 1, 1);
+          case UnitType.Scout: 
+            return new Unit(uName, uName, 1, team, 3, 1, 3, 2, 1);
+          case UnitType.Soldier: 
+            return new Unit(uName, uName, 1, team, 3, 1, 3, 1, 2);
+          default:
+            return new Unit();
+        }
+    }
+
+    public static string GetCharacterDesc(UnitType type)
+    {
+        switch (type)
+        {
+          case UnitType.Mage: 
+            return "The Mage has +1 atk pwr.";
+          case UnitType.Scout: 
+            return "The Scout has +1 move per turn.";
+          case UnitType.Soldier: 
+            return "The Soldier has +1 atk per turn";
+          default:
+            return "";
+        }
+    }
+  
+    public static string GetRandomName()
+    {
+        string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse" };
+        string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "RoboDictator", "ChipCheeks", "Nitro", "FlavorTown", "KillDoom", "Everyman" };
+        return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
 }

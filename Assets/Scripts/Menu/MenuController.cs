@@ -49,7 +49,7 @@ public class MenuController : MonoBehaviour
       //  (save == "sv2" ? new string[] { "Dest1", "Dest2" } : 
       //  new string[] { "Dest1", "Dest2", "Dest3" } );
       //player.stats.dests = dests;
-      player.characters = new CharMeta[]{ new CharMeta("Phil Hero-san",1) };
+      player.characters = new Unit[]{ Unit.BuildInitial(Unit.UnitType.Mage, BoardProxy.PLAYER_TEAM) };
       player.stats.dests = new string[] { "Dest1" };
       BaseSaver.PutPlayer(player);
     }

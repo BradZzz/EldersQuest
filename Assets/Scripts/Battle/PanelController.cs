@@ -14,6 +14,8 @@ public class PanelController : MonoBehaviour
   public GameObject HealthPanel;
   public GameObject TurnTxt;
   public GameObject TurnTeamPnl;
+  public GameObject AtkPnl;
+  public GameObject MvPnl;
 
   private void Awake()
   {
@@ -26,6 +28,8 @@ public class PanelController : MonoBehaviour
     ImagePanel.GetComponent<Image>().enabled = false;
     TeamPanel.SetActive(false);
     HealthPanel.SetActive(false);
+    AtkPnl.SetActive(false);
+    MvPnl.SetActive(false);
     TurnTxt.GetComponent<TextMeshProUGUI>().text = "";
   }
 
@@ -35,6 +39,8 @@ public class PanelController : MonoBehaviour
     instance.SwitchCharName(unit);
     instance.SetTeam(unit);
     instance.SetCharHealth(unit);
+    instance.SetCharAttack(unit);
+    instance.SetCharMv(unit);
     instance.SetTurnText(unit);
   }
 
@@ -94,6 +100,40 @@ public class PanelController : MonoBehaviour
       } else if (t.name.Equals("HealthText"))
       {
         t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrHealth().ToString() + " / " + unit.GetData().mxHlth.ToString();
+      }
+    }
+  }
+
+  void SetCharAttack(UnitProxy unit)
+  {
+    if (unit == null)
+    {
+      AtkPnl.SetActive(false);
+      return;
+    }
+    AtkPnl.SetActive(true);
+    foreach (Transform t in AtkPnl.transform)
+    {
+      if (t.name.Equals("AtkText"))
+      {
+        t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetAttack().ToString();
+      }
+    }
+  }
+
+  void SetCharMv(UnitProxy unit)
+  {
+    if (unit == null)
+    {
+      MvPnl.SetActive(false);
+      return;
+    }
+    MvPnl.SetActive(true);
+    foreach (Transform t in MvPnl.transform)
+    {
+      if (t.name.Equals("AtkText"))
+      {
+        t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetMoveSpeed().ToString();
       }
     }
   }

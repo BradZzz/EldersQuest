@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private Tile tile;
@@ -143,5 +143,54 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         InteractivityManager.instance.OnTileHovered(this);
     }
 
+    //This needs to move the board when the player holds down the click
+    //public void OnDrag(PointerEventData eventData)
+    //{
+    //    iTween.MoveTo(GameObject.Find("Grid"), eventData.pointerPressRaycast.worldPosition, .1f);
+        //foreach (UnitProxy unt in BoardProxy.instance.GetUnits())
+        //{
+        //    unt.SnapToCurrentPosition();
+        //}
+    //}
+
+    //public static GameObject DraggedInstance = GameObject.Find("Grid");
+    
+    Vector3 _startPosition;
+    Vector3 _offsetToMouse;
+    float _zDistanceToCamera;
+
+    public void OnBeginDrag (PointerEventData eventData)
+    {
+       Debug.Log("OnBeginDrag");
+       _startPosition = BoardProxy.instance.grid.transform.position;
+       _zDistanceToCamera = Mathf.Abs (_startPosition.z - Camera.main.transform.position.z);
+    
+       _offsetToMouse = _startPosition - Camera.main.ScreenToWorldPoint (
+           new Vector3 (Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
+       );
+    }
+    
+    public void OnDrag (PointerEventData eventData)
+    {
+       Debug.Log("OnDrag");
+       if(Input.touchCount > 1)
+           return;
+    
+       //BoardProxy.instance.grid.
+       BoardProxy.instance.grid.transform.position = Camera.main.ScreenToWorldPoint (
+           new Vector3 (Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
+           ) + _offsetToMouse;
+    }
+    
+    public void OnEndDrag (PointerEventData eventData)
+    {
+       Debug.Log("OnEndDrag");
+       _offsetToMouse = Vector3.zero;
+       //foreach (UnitProxy unt in BoardProxy.instance.GetUnits())
+       //{
+       //   unt.SnapToCurrentPosition();
+       //}
+    }
+  
     #endregion
 }

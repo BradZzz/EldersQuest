@@ -86,7 +86,7 @@ public class UnitProxy : GridObjectProxy
     public virtual IEnumerator LerpToTile(TileProxy tile, float time)
     {
         Vector3 start = transform.position;
-        Vector3 end = BoardProxy.GetLocalPosition(tile.GetPosition());
+        Vector3 end = BoardProxy.GetWorldPosition(tile.GetPosition());
         float timer = 0f;
         while (timer < time)
         {

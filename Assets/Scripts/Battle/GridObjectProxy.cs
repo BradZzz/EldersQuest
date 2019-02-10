@@ -23,7 +23,7 @@ public abstract class GridObjectProxy : MonoBehaviour
 
     public virtual void SnapToCurrentPosition()
     {
-        transform.position = BoardProxy.GetLocalPosition(data.GetPosition());
+        transform.position = BoardProxy.GetWorldPosition(data.GetPosition());
     }
 
     public abstract void OnSelected();

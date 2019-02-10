@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: ff2be2fe8a2ad4670a03d41b141a3a39
+  - enabled: 1
+    path: Assets/Scenes/CharSelectScreen.unity
+    guid: a920ca02a00ed4092a25943077e801bd
   m_configObjects: {}

@@ -47,6 +47,7 @@ public class MapNavigator : MonoBehaviour
         For now we have a blank board with a few chars
       */
       BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests()[selected]);
+      SelectWorldSound();
       SceneManager.LoadScene("BattleScene");
     }
     else
@@ -76,4 +77,14 @@ public class MapNavigator : MonoBehaviour
   {
     return selected;
   }
+
+    #region SFX
+
+    private void SelectWorldSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.SelectWorldSound);
+    }
+
+    #endregion
 }
+

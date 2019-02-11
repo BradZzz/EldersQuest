@@ -62,6 +62,7 @@ public class CharSelectController : MonoBehaviour
             selected = null;
         }
         UpdateSelectedUI();
+        SelectCharSound(picked);       
     }
 
     void UpdateSelectedUI()
@@ -97,6 +98,32 @@ public class CharSelectController : MonoBehaviour
         units.Add(selected);
         player.characters = units.ToArray();
         BaseSaver.PutPlayer(player);
+        CharAcceptSound();
         SceneManager.LoadScene("MapScene");
     }
+
+    #region SFX
+
+   private void SelectCharSound(int picked)
+    {
+        switch (picked)
+        {
+            case 0:
+                FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.SelectCharMageSound);
+                break;
+            case 1:
+                FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.SelectCharMonsterSound);
+                break;
+            case 2:
+                FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.SelectCharCreatureSound);
+                break;
+        }
+    }
+
+    private void CharAcceptSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.SelectCharAcceptSound);
+    }
+
+    #endregion
 }

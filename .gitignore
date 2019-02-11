@@ -1,5 +1,6 @@
 Temp/
 .env
+Library/
 **/.env
 **/env.py
 **/.tar.gz

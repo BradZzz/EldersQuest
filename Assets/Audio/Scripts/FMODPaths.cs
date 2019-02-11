@@ -10,6 +10,10 @@
     public static readonly string SelectCharMageSound = "event:/UI/char_select/select_mage";
     public static readonly string SelectCharAcceptSound = "event:/UI/char_select/select_accept";
 
+    //attacks
+    public static readonly string CreatureAttackSound = "event:/char/attacks/creature";
+    public static readonly string IceAttackSound = "event:/char/attacks/ice";
+    public static readonly string FireAttackSound = "event:/char/attacks/fire";
 
     #endregion
 

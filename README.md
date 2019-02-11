@@ -13,4 +13,4 @@ Work in progress
 
 #### license
 
-MIT. Copyright (c) Brad Zimmerman
+MIT. Copyright (c) Brad Z

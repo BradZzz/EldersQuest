@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-/Users/brad/Desktop/MysticQ_Demo_V05.apk
+/Users/brad/Desktop/MysticQ_Demo_V06.apk
 SceneListBegin?
 Assets/Scenes/MainScene.unity
 Assets/Scenes/MapScene.unity
@@ -190,7 +190,7 @@ e0ee4b3d4e27318934cc940a969d3d96 UnityEngine.Networking.dll:UnityEngine.Networki
 ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-b47707c0d98bad593084a1b64b3794da Assembly-CSharp.dll:.PanelController
+67a681ff7eb492fe60ac16cd28260795 Assembly-CSharp.dll:.PanelController
 ff88ee9a3f9291bdaaf1cebc9d2c430b Assembly-CSharp.dll:Cinemachine.CinemachineGroupComposer
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:Cinemachine.CinemachineSameAsFollowObject
 e3ca9c4491580eb6551b0ae794d34210 Assembly-CSharp.dll:Cinemachine.CinemachineBlendListCamera

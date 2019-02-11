@@ -50,8 +50,9 @@ public class MenuController : MonoBehaviour
       BaseSaver.PutPlayer(player);
       nxtScene = "CharSelectScreen";
     }
-    //Load the scene
-    SceneManager.LoadScene(nxtScene);
+        PlaySelectSaveSound();
+        //Load the scene
+        SceneManager.LoadScene(nxtScene);
   }
 
   public void ResetAll()
@@ -59,4 +60,14 @@ public class MenuController : MonoBehaviour
     BaseSaver.ResetAll();
     Refresh();
   }
+
+    #region SFX
+
+    private void PlaySelectSaveSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.SelectSaveSound);
+    }
+
+    #endregion
+
 }

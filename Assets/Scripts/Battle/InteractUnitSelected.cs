@@ -7,6 +7,7 @@ public class InteractUnitSelected : InteractMode
 {
     private List<TileProxy> allTiles = new List<TileProxy>();
     private List<TileProxy> visitableTiles = new List<TileProxy>();
+    private List<TileProxy> attackableTiles = new List<TileProxy>();
 
     private UnitProxy currentUnit;
     public override void OnTileSelected(TileProxy tile)
@@ -16,10 +17,10 @@ public class InteractUnitSelected : InteractMode
             TileProxy startTile = BoardProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
             if (startTile != tile) {
                 UnitProxy unit = startTile.GetUnit();
-                PanelController.SwitchChar(unit);
                 if (unit.GetData().GetTurnActions().CanMove())
                 {
                     unit.GetData().GetTurnActions().Move();
+                    PanelController.SwitchChar(unit);
                     StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
                     () =>
                     {
@@ -76,8 +77,12 @@ public class InteractUnitSelected : InteractMode
         {
             UnHighlightTiles();
             currentUnit = obj;
-            allTiles = BoardProxy.instance.GetAllVisitableNodes(obj, true);
-            visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj);
+            //The maximum range in which a player has actions
+            allTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed() > obj.GetAttackRange() ? obj.GetMoveSpeed() : obj.GetAttackRange(), true);
+            //The attackable tiles
+            attackableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetAttackRange(), true);
+            //The visitable tiles
+            visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed());
             HighlightTiles(obj);
             PanelController.SwitchChar(obj);
         }
@@ -97,6 +102,7 @@ public class InteractUnitSelected : InteractMode
                     StartCoroutine(ResetTiles());
                 }
                 OnDisable();
+                PanelController.SwitchChar(currentUnit);
             }
         }
     }
@@ -105,7 +111,7 @@ public class InteractUnitSelected : InteractMode
     {
         foreach (var tile in allTiles)
         {
-            tile.HighlightSelected(obj);
+            tile.HighlightSelectedAdv(obj, visitableTiles, attackableTiles);
         }
     }
 

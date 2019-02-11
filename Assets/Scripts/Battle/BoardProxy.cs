@@ -75,7 +75,7 @@ public class BoardProxy : MonoBehaviour
         {
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
-            badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 1, 1));
+            badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 3, 1, 1));
             badGuy.Init();
             TileProxy popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(badGuy);
@@ -251,12 +251,12 @@ public class BoardProxy : MonoBehaviour
             GetEstimationFunction(to, thingToMove));//might not want to use a list
     }
 
-    public List<TileProxy> GetAllVisitableNodes(UnitProxy thingToMove, bool allTiles = false)
+    public List<TileProxy> GetAllVisitableNodes(UnitProxy thingToMove, int rng, bool allTiles = false)
     {
         var startNode = GetTileAtPosition(thingToMove.GetPosition());
 
         return PathGenerator.FindAllVisitableNodes(startNode,
-            thingToMove.GetMoveSpeed(),
+            rng,
             GetDistanceFunction(thingToMove, allTiles))
             .ToList();
     }

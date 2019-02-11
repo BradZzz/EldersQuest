@@ -52,6 +52,11 @@ public class UnitProxy : GridObjectProxy
         return _data.GetMoveSpeed();
     }
 
+    public int GetAttackRange()
+    {
+        return _data.GetAtkRange();
+    }
+
     public void PutData(Unit _data)
     {
       this._data = _data;

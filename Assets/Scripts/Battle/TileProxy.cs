@@ -39,31 +39,72 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         SnapToPosition();
     }
 
-    public void HighlightSelected(UnitProxy inRangeUnit, bool hovering = false)
+    public void HighlightSelected()
     {
-        if (inRangeUnit != null) {
-            bool unitOnTeam = UnitOnTeam(inRangeUnit.GetData().GetTeam());
+        //if (inRangeUnit != null) {
+        //    bool unitOnTeam = UnitOnTeam(inRangeUnit.GetData().GetTeam());
 
-            bool oppUnitInRange = HasUnit() && !unitOnTeam && inRangeUnit.GetData().GetTurnActions().CanAttack();
-            bool ableToMove = !HasUnit() && inRangeUnit.GetData().GetTurnActions().CanMove();
-            bool charSelectWOMoves = HasUnit() && !inRangeUnit.GetData().GetTurnActions().CanMove() && inRangeUnit == GetUnit();
+        //    bool oppUnitInRange = HasUnit() && !unitOnTeam && inRangeUnit.GetData().GetTurnActions().CanAttack();
+        //    bool ableToMove = !HasUnit() && inRangeUnit.GetData().GetTurnActions().CanMove();
+        //    bool charSelectWOMoves = HasUnit() && !inRangeUnit.GetData().GetTurnActions().CanMove() && inRangeUnit == GetUnit();
 
-            if (oppUnitInRange)
+        //    if (oppUnitInRange)
+        //    {
+        //        GetComponent<Renderer>().material.color = Color.blue;
+        //    }
+        //    else if (ableToMove)
+        //    {
+        //        GetComponent<Renderer>().material.color = Color.red;
+        //    }
+        //    else if (charSelectWOMoves)
+        //    {
+        //        GetComponent<Renderer>().material.color = Color.red;
+        //    }
+        //}
+        //else if (hovering || !HasUnit())
+        //{
+        //    GetComponent<Renderer>().material.color = Color.red;
+        //}
+        GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    public void HighlightSelectedAdv(UnitProxy inRangeUnit, List<TileProxy> visitable, List<TileProxy> attackable)
+    {
+        bool canAtk = inRangeUnit.GetData().GetTurnActions().CanAttack();
+        bool canMv = inRangeUnit.GetData().GetTurnActions().CanMove();
+
+        if (BoardProxy.instance.GetTileAtPosition(inRangeUnit.GetPosition()) == this)
+        {
+            if (!canAtk && !canMv)
             {
-                this.GetComponent<Renderer>().material.color = Color.blue;
+                GetComponent<Renderer>().material.color = Color.red;
             }
-            else if (ableToMove)
+            return;
+        }
+    
+        if (canAtk)
+        {
+            if (attackable.Contains(this))
             {
-                this.GetComponent<Renderer>().material.color = Color.red;
-            }
-            else if (charSelectWOMoves)
-            {
-                this.GetComponent<Renderer>().material.color = Color.red;
+                if (HasUnit() && inRangeUnit.GetData().GetTeam() != GetUnit().GetData().GetTeam())
+                {
+                    GetComponent<Renderer>().material.color = Color.blue;
+                }
+                else
+                {
+                    GetComponent<Renderer>().material.color = Color.cyan;
+                }
             }
         }
-        else if (hovering || !HasUnit())
+        if (canMv)
         {
-            this.GetComponent<Renderer>().material.color = Color.red;
+            if (visitable.Contains(this))
+            {
+                if (!(HasUnit() && canAtk))
+                {
+                    GetComponent<Renderer>().material.color = Color.red;
+                }
+            }  
         }
     }
 

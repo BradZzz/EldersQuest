@@ -37,12 +37,12 @@ public class BasicBrain : MonoBehaviour
             {
                 didSomething = false;
                 //Look at all the visitable tiles
-                List<TileProxy> visitableTiles = BoardProxy.instance.GetAllVisitableNodes(unit,true);
+                List<TileProxy> visitableTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed(), true);
                 //Look at all the tiles the opposing team is on from the visitable tiles
                 List<TileProxy> opposingTeamTiles = new List<TileProxy>(visitableTiles.Where(tile => tile.HasUnit() 
                     && tile.GetUnit().GetData().GetTeam() != BoardProxy.ENEMY_TEAM));
                 //Look at all the tiles in range
-                List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit);
+                List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());
                 if (opposingTeamTiles.Count == 0 && unit.GetData().GetTurnActions().CanMove())
                 {
                     Debug.Log("Trying to Move");

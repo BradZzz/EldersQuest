@@ -12,10 +12,12 @@ public class PanelController : MonoBehaviour
   public GameObject NamePanel;
   public GameObject TeamPanel;
   public GameObject HealthPanel;
-  public GameObject TurnTxt;
+  public TextMeshProUGUI TypeTxt;
+  public TextMeshProUGUI TurnTxt;
   public GameObject TurnTeamPnl;
   public GameObject AtkPnl;
   public GameObject MvPnl;
+  public GameObject AtkRngPnl;
 
   private void Awake()
   {
@@ -30,7 +32,9 @@ public class PanelController : MonoBehaviour
     HealthPanel.SetActive(false);
     AtkPnl.SetActive(false);
     MvPnl.SetActive(false);
-    TurnTxt.GetComponent<TextMeshProUGUI>().text = "";
+    AtkRngPnl.SetActive(false);
+    TurnTxt.text = "";
+    TypeTxt.text = "";
   }
 
   public static void SwitchChar(UnitProxy unit)
@@ -42,6 +46,8 @@ public class PanelController : MonoBehaviour
     instance.SetCharAttack(unit);
     instance.SetCharMv(unit);
     instance.SetTurnText(unit);
+    instance.SetTypeText(unit);
+    instance.SetCharAtkRng(unit);
   }
 
   public void SetTurnPanel(string msg)
@@ -112,13 +118,7 @@ public class PanelController : MonoBehaviour
       return;
     }
     AtkPnl.SetActive(true);
-    foreach (Transform t in AtkPnl.transform)
-    {
-      if (t.name.Equals("AtkText"))
-      {
-        t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetAttack().ToString();
-      }
-    }
+    AtkPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetAttack().ToString();
   }
 
   void SetCharMv(UnitProxy unit)
@@ -129,18 +129,29 @@ public class PanelController : MonoBehaviour
       return;
     }
     MvPnl.SetActive(true);
-    foreach (Transform t in MvPnl.transform)
+    MvPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetMoveSpeed().ToString();
+  }
+
+  void SetCharAtkRng(UnitProxy unit)
+  {
+    if (unit == null)
     {
-      if (t.name.Equals("AtkText"))
-      {
-        t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetMoveSpeed().ToString();
-      }
+      AtkRngPnl.SetActive(false);
+      return;
     }
+    AtkRngPnl.SetActive(true);
+    AtkRngPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetAtkRange().ToString();
   }
 
   void SetTurnText(UnitProxy unit)
   {
     string txt = unit == null ? "" : unit.GetData().GetTurnActions().ToString();
-    TurnTxt.GetComponent<TextMeshProUGUI>().text = txt;
+    TurnTxt.text = txt;
+  }
+
+  void SetTypeText(UnitProxy unit)
+  {
+    string txt = unit == null ? "" : unit.GetData().uType.ToString();
+    TypeTxt.text = txt;
   }
 }

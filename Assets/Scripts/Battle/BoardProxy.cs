@@ -48,6 +48,7 @@ public class BoardProxy : MonoBehaviour
         PopulatePlayer();
         PopulateEnemies();
         PlaceObstacles();
+        PanelControllerNew.instance.LoadInitUnits(GetUnits());
         TurnController.instance.StartTurn();
     }
 
@@ -55,11 +56,13 @@ public class BoardProxy : MonoBehaviour
     {
         PlayerMeta player = BaseSaver.GetPlayer();
         Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.PLAYER_TEAM));
+        List<UnitProxy> units = new List<UnitProxy>();
         Debug.Log("PopulatePlayer: " + validTls.Count.ToString());
         for (int i = 0; i < player.characters.Length && i < height; i++)
         {
             Unit cMeta = new Unit(player.characters[i]);
             UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
+            units.Add(goodGuy);
             goodGuy.PutData(cMeta);
             goodGuy.Init();
             TileProxy popTile = validTls.Dequeue();
@@ -72,12 +75,14 @@ public class BoardProxy : MonoBehaviour
     void PopulateEnemies()
     {
         Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.ENEMY_TEAM));
+        List<UnitProxy> units = new List<UnitProxy>();
         Debug.Log("PopulateEnemies: " + validTls.Count.ToString());
         TileProxy popTile;
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
+            units.Add(badGuy);
             badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 3, 1, 1));
             badGuy.Init();
             popTile = validTls.Dequeue();
@@ -108,9 +113,9 @@ public class BoardProxy : MonoBehaviour
         List<TileProxy> tls = new List<TileProxy>();
         if (team == BoardProxy.PLAYER_TEAM || team == -1)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = team == -1 ? 1 : 0; y < height - (team == -1 ? 1 : 0); y++)
             {
-                for (int x = 0; x < (width / 2) - 1; x++)
+                for (int x = team == -1 ? 1 : 0; x < (width / 2) - 1; x++)
                 {
                     if (!tiles[x, y].HasObstruction())
                     {
@@ -121,9 +126,9 @@ public class BoardProxy : MonoBehaviour
         }
         else if (team == BoardProxy.ENEMY_TEAM || team == -1)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = team == -1 ? 1 : 0; y < height - (team == -1 ? 1 : 0); y++)
             {
-                for (int x = (width/2) + 1; x < width; x++)
+                for (int x = (width/2) + 1; x < width - (team == -1 ? 1 : 0); x++)
                 {
                     if (!tiles[x, y].HasObstruction())
                     {

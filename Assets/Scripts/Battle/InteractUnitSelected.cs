@@ -20,7 +20,7 @@ public class InteractUnitSelected : InteractMode
                 if (unit.GetData().GetTurnActions().CanMove())
                 {
                     unit.GetData().GetTurnActions().Move();
-                    PanelController.SwitchChar(unit);
+                    PanelControllerNew.SwitchChar(unit);
                     StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
                     () =>
                     {
@@ -51,7 +51,7 @@ public class InteractUnitSelected : InteractMode
             if (!allTiles.Where(tl => tl.HasUnit() && (tl.GetUnit().GetData().GetTeam() != currentUnit.GetData().GetTeam())).ToList<TileProxy>().Contains(tile))
             {
                 BoardProxy.instance.FlushTiles();
-                PanelController.SwitchChar(null);
+                PanelControllerNew.SwitchChar(null);
             }
             ////Player clicked out of unit range, reset tiles/UI so player can click somewhere else instead
             //BoardProxy.instance.FlushTiles();
@@ -84,7 +84,7 @@ public class InteractUnitSelected : InteractMode
             //The visitable tiles
             visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed());
             HighlightTiles(obj);
-            PanelController.SwitchChar(obj);
+            PanelControllerNew.SwitchChar(obj);
         }
         else
         {
@@ -102,7 +102,7 @@ public class InteractUnitSelected : InteractMode
                     StartCoroutine(ResetTiles());
                 }
                 OnDisable();
-                PanelController.SwitchChar(currentUnit);
+                PanelControllerNew.SwitchChar(currentUnit);
             }
         }
     }

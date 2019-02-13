@@ -50,7 +50,7 @@ public class TurnController : MonoBehaviour
             }
         }
         //Set the turn panel to the current turn
-        PanelController.instance.SetTurnPanel(currentTeam.ToString());
+        //PanelController.instance.SetTurnPanel(currentTeam.ToString());
     }
   
     public void EndTurn()

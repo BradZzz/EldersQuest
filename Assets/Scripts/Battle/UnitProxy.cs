@@ -29,7 +29,7 @@ public class UnitProxy : GridObjectProxy
     {
       //Decrement the attacking units attack actions and update the ui
       oppUnit.GetData().GetTurnActions().Attack();
-      PanelController.SwitchChar(oppUnit);
+      PanelControllerNew.SwitchChar(oppUnit);
 
       //Damage the unit
       GetData().IsAttacked(oppUnit.GetData().GetAttack());

@@ -149,6 +149,7 @@
     <Compile Include="Assets\Scripts\Battle\Obstacle.cs" />
     <Compile Include="Assets\Scripts\Battle\ObstacleProxy.cs" />
     <Compile Include="Assets\Scripts\Battle\PanelController.cs" />
+    <Compile Include="Assets\Scripts\Battle\PanelControllerNew.cs" />
     <Compile Include="Assets\Scripts\Battle\Path.cs" />
     <Compile Include="Assets\Scripts\Battle\PathGenerator.cs" />
     <Compile Include="Assets\Scripts\Battle\PriorityQueue.cs" />

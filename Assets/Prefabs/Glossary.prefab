@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units:
+  - {fileID: 5219725556591600594, guid: 0afaa5922814e4fd29dbf067a133c9ef, type: 3}
   - {fileID: 4488396556959502835, guid: 7f8b19a44696b9a468cea8cbf8655447, type: 3}
-  - {fileID: 4488396556959502835, guid: 2a524645c86b747628c8716bcd5e3e3f, type: 3}
   obstacles:
   - {fileID: 4566907892727034715, guid: bdd97f605b31a4d5ea9a910caaf8c044, type: 3}

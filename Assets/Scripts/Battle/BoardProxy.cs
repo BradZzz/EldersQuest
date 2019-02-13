@@ -260,11 +260,12 @@ public class BoardProxy : MonoBehaviour
               {
                   return 1;
               }
-              else if (!t2.HasObstacle())
-              {
-                  return allTiles ? 1 : int.MaxValue;
-              }
-              return int.MaxValue;
+              //else if (!t2sHasObstacle())
+              //{
+              //    return allTiles ? 1 : int.MaxValue;
+              //}
+              //return int.MaxValue;
+              return allTiles ? 1 : int.MaxValue;
 
           };
     }

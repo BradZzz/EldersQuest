@@ -90,7 +90,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
                 {
                     GetComponent<Renderer>().material.color = Color.blue;
                 }
-                else
+                else if (!HasObstacle())
                 {
                     GetComponent<Renderer>().material.color = Color.cyan;
                 }

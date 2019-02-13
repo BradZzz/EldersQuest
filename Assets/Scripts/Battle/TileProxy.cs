@@ -146,6 +146,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         {
             if (HasUnit())//TODO: rework to a better system with layers
                 return false;
+            if (HasObstacle())
+                return false;
         }
         return true;//for now
     }
@@ -155,9 +157,19 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         return (UnitProxy) objectProxies.Where(op => op is UnitProxy).First();
     }
 
+    public bool HasObstacle()
+    {
+        return objectProxies.Where(op => op is ObstacleProxy).Any();
+    }
+
     public bool HasUnit()
     {
         return objectProxies.Where(op => op is UnitProxy).Any();
+    }
+
+    public bool HasObstruction()
+    {
+        return HasUnit() || HasObstacle();
     }
 
     public bool UnitOnTeam(int team)

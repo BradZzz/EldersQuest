@@ -25,14 +25,6 @@ public class PanelControllerNew : MonoBehaviour
         ClearPanels();
     }
 
-    //public void LoadInitPlayer(List<UnitProxy> ps){
-    //    players = new List<UnitProxy>(ps);
-    //}
-
-    //public void LoadInitEnemy(List<UnitProxy> es){
-    //    enemies = new List<UnitProxy>(es);
-    //}
-
     public void LoadInitUnits(List<UnitProxy> units){
         players = new List<UnitProxy>();
         enemies = new List<UnitProxy>();
@@ -47,6 +39,8 @@ public class PanelControllerNew : MonoBehaviour
     }
 
     static void ClearPanels(){
+        Debug.Log("Clear Panels");        
+
         instance.playerMain.SetActive(false);
         instance.playerSub1.SetActive(false);
         instance.playerSub2.SetActive(false);
@@ -60,10 +54,12 @@ public class PanelControllerNew : MonoBehaviour
     {
         ClearPanels();
         if (unit != null) {
-            bool isPlayer = unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM;
-            if (isPlayer) {
+            Debug.Log("SwitchChar: " + unit.GetData().characterMoniker);
+            if (unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM) {
+                Debug.Log("Player Panel");
                 LoadPlayerPanel(unit);
             } else {
+                Debug.Log("Enemy Panel");
                 LoadEnemyPanel(unit);
             }
         }
@@ -83,18 +79,18 @@ public class PanelControllerNew : MonoBehaviour
 
     static void LoadPanelSuite(GameObject main, GameObject sub1, GameObject sub2, UnitProxy unit, List<UnitProxy> remainingUnits){
         remainingUnits.Remove(unit);
-        RefreshMainPanel(instance.playerMain, unit);
+        RefreshMainPanel(main, unit);
         if (remainingUnits.Count > 0) {
-            RefreshSubPanel(instance.playerSub1, remainingUnits[0]);
+            RefreshSubPanel(sub1, remainingUnits[0]);
         }
         if (remainingUnits.Count > 1) {
-            RefreshSubPanel(instance.playerSub2, remainingUnits[1]);
+            RefreshSubPanel(sub2, remainingUnits[1]);
         }
     }
 
     static void RefreshMainPanel(GameObject panel, UnitProxy unit){
         panel.SetActive(true);
-        foreach(Transform child in panel.transform){
+        foreach(Transform child in panel.transform.GetChild(0)){
             if (child.name.Equals("CharImg")) {
                 child.GetComponent<Image>().sprite = unit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             }

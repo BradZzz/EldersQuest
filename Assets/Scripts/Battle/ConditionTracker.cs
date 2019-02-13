@@ -82,7 +82,7 @@ public class ConditionTracker : MonoBehaviour
             BaseSaver.PutPlayer(player);
             txt = "Victory";
         }
-        BoardProxy.instance.gameOverPanel.transform.Find("GameOverHeader").GetComponent<TextMeshProUGUI>().text = txt;
+        BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = txt;
     }
 
     public void GameOverNavController()

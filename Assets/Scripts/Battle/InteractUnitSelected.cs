@@ -50,8 +50,10 @@ public class InteractUnitSelected : InteractMode
             //List<TileProxy> visitableTiles = allTiles.Where(tl => tl.GetUnit().GetData().GetTeam() != currentUnit.GetData().GetTeam()).ToList<TileProxy>();
             if (!allTiles.Where(tl => tl.HasUnit() && (tl.GetUnit().GetData().GetTeam() != currentUnit.GetData().GetTeam())).ToList<TileProxy>().Contains(tile))
             {
-                BoardProxy.instance.FlushTiles();
-                PanelControllerNew.SwitchChar(null);
+                //BoardProxy.instance.FlushTiles();
+                //PanelControllerNew.SwitchChar(null);
+
+                StartCoroutine(ResetTiles());
             }
             ////Player clicked out of unit range, reset tiles/UI so player can click somewhere else instead
             //BoardProxy.instance.FlushTiles();
@@ -62,6 +64,7 @@ public class InteractUnitSelected : InteractMode
   IEnumerator ResetTiles()
   {
       UnHighlightTiles();
+      PanelControllerNew.SwitchChar(null);
       InteractivityManager.instance.EnterDefaultMode();
       yield return null;
   }

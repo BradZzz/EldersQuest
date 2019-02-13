@@ -60,6 +60,8 @@ public class TurnController : MonoBehaviour
         BoardProxy.instance.FlushTiles();
         //Play the turn cutscene
 
+        PanelControllerNew.ClearPanels();
+
         //Switch controller teams
         SwitchTeams();
         StartTurn();

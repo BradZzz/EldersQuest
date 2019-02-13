@@ -47,6 +47,7 @@ public class BoardProxy : MonoBehaviour
         BuildTestBoard();
         PopulatePlayer();
         PopulateEnemies();
+        PlaceObstacles();
         TurnController.instance.StartTurn();
     }
 
@@ -64,6 +65,7 @@ public class BoardProxy : MonoBehaviour
             TileProxy popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(goodGuy);
             goodGuy.SnapToCurrentPosition();
+            Debug.Log("goodGuy placed at: " + popTile.GetPosition().ToString());
         }
     }
   
@@ -71,38 +73,62 @@ public class BoardProxy : MonoBehaviour
     {
         Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.ENEMY_TEAM));
         Debug.Log("PopulateEnemies: " + validTls.Count.ToString());
+        TileProxy popTile;
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
             badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 3, 1, 1));
             badGuy.Init();
-            TileProxy popTile = validTls.Dequeue();
+            popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(badGuy);
             badGuy.SnapToCurrentPosition();
+            Debug.Log("badGuy placed at: " + popTile.GetPosition().ToString());
         }
     }
 
+    void PlaceObstacles()
+    {
+        Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(-1));
+        Debug.Log("PopulateObs: " + validTls.Count.ToString());
+        for (int i = 0; i < boardMeta.enemies.Length * 2; i++)
+        {
+            //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
+            ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[0], transform);
+            obs.Init();
+            TileProxy popTile = validTls.Dequeue();
+            popTile.ReceiveGridObjectProxy(obs);
+            obs.SnapToCurrentPosition();
+            Debug.Log("Obstacle placed at: " + popTile.GetPosition().ToString());
+        }
+    }
+  
     TileProxy[] GetSideTiles(int team)
     {
         List<TileProxy> tls = new List<TileProxy>();
-        if (team == BoardProxy.PLAYER_TEAM)
+        if (team == BoardProxy.PLAYER_TEAM || team == -1)
         {
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < (width / 2) - 1; x++)
                 {
-                    tls.Add(tiles[x, y]);
+                    if (!tiles[x, y].HasObstruction())
+                    {
+                        tls.Add(tiles[x, y]);
+                    }
                 }
             }
         }
-        else if (team == BoardProxy.ENEMY_TEAM)
+        else if (team == BoardProxy.ENEMY_TEAM || team == -1)
         {
             for (int y = 0; y < height; y++)
             {
                 for (int x = (width/2) + 1; x < width; x++)
                 {
-                    tls.Add(tiles[x, y]);
+                    if (!tiles[x, y].HasObstruction())
+                    {
+                        tls.Add(tiles[x, y]);
+                    }
                 }
             }
         }
@@ -224,11 +250,14 @@ public class BoardProxy : MonoBehaviour
         return (t1, t2) =>
           {
               if (t2.CanReceive(thingToMove))
+              {
                   return 1;
-              else
+              }
+              else if (!t2.HasObstacle())
               {
                   return allTiles ? 1 : int.MaxValue;
               }
+              return int.MaxValue;
 
           };
     }

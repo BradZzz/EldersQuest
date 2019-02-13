@@ -173,6 +173,8 @@
     <Compile Include="Assets\Scripts\Savers\StatMeta.cs" />
     <Compile Include="Assets\Scripts\Utils\Character.cs" />
     <Compile Include="Assets\Scripts\Utils\CharStatCalculator.cs" />
+    <Compile Include="Assets\Scripts\Utils\Draggable.cs" />
+    <Compile Include="Assets\Scripts\Utils\DropZone.cs" />
     <Compile Include="Assets\Scripts\Utils\FadeMaterials.cs" />
     <Compile Include="Assets\Scripts\Utils\Glossary.cs" />
     <Compile Include="Assets\Scripts\Utils\HelperScripts.cs" />

@@ -67,6 +67,11 @@ public class UnitProxy : GridObjectProxy
       return _data;
     }
 
+    public void AcceptAction(Skill.Actions action, UnitProxy u1)
+    {
+      _data.AcceptAction(action, this, u1);
+    }
+
     public virtual IEnumerator CreatePathToTileAndLerpToPosition(TileProxy destination, Action callback)
     {
         var currentTile = BoardProxy.instance.GetTileAtPosition(GetPosition());

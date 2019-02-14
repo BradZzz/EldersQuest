@@ -12,7 +12,10 @@ public class BoardProxy : MonoBehaviour
     public static BoardProxy instance;
     public GameObject glossary;
     public Tilemap tileMap;
+
     public TileProxy prefab;
+    public Sprite fireTile;
+
     public GameObject gameOverPanel;
 
     public static int PLAYER_TEAM = 0;
@@ -83,7 +86,7 @@ public class BoardProxy : MonoBehaviour
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
             units.Add(badGuy);
-            badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 3, 1, 1));
+            badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 3, 1, 1, new string[0]{ }));
             badGuy.Init();
             popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(badGuy);
@@ -215,7 +218,7 @@ public class BoardProxy : MonoBehaviour
     {
         Vector3 position = grid.CellToLocal(new Vector3Int(tile.position.x, tile.position.y, 0));
         TileProxy nTile = Instantiate(prefab, position, Quaternion.identity, tileMap.transform);
-        nTile.Init(tile);
+        nTile.Init(tile, fireTile);
         return nTile;
     }
 
@@ -269,6 +272,7 @@ public class BoardProxy : MonoBehaviour
 
           };
     }
+
     Func<TileProxy, double> GetEstimationFunction(TileProxy destination, UnitProxy thingToMove)
     {
         return (t) =>
@@ -305,6 +309,7 @@ public class BoardProxy : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 InteractivityManager.instance.OnClear(tiles[x, y]);
+                tiles[x, y].DecrementTileEffects();
             }
         }
     }

@@ -165,12 +165,17 @@
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />
     <Compile Include="Assets\Scripts\Map\MapStatic.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuController.cs" />
+    <Compile Include="Assets\Scripts\Roster\RosterNav.cs" />
     <Compile Include="Assets\Scripts\Savers\BaseSaver.cs" />
     <Compile Include="Assets\Scripts\Savers\BoardMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CharMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CondMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\PlayerMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\StatMeta.cs" />
+    <Compile Include="Assets\Scripts\Skills\Skill.cs" />
+    <Compile Include="Assets\Scripts\Skills\SkillReference.cs" />
+    <Compile Include="Assets\Scripts\Skills\SkillWrap.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\HealWait.cs" />
     <Compile Include="Assets\Scripts\Utils\Character.cs" />
     <Compile Include="Assets\Scripts\Utils\CharStatCalculator.cs" />
     <Compile Include="Assets\Scripts\Utils\Draggable.cs" />
@@ -217,6 +222,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\Sprites\isometric-blocks (1)\Spritesheet\voxelTiles_sheet.xml" />
+    <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_black2x.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Libraries\Add Ons\2D Extras\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
@@ -234,6 +240,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Assets\Sprites\gameicons (1)\license.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Audio\FMOD Banks\GUIDs.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
@@ -241,9 +248,12 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Sprites\isometric-blocks (1)\Spritesheet\allTiles_sheet.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_black1x.xml" />
+    <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_white2x.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_white1x.xml" />
     <None Include="Assets\Sprites\space-kit-1.0\License.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />

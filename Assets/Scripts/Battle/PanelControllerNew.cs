@@ -117,15 +117,15 @@ public class PanelControllerNew : MonoBehaviour
                 {
                     if (t.name.Equals("Move"))
                     {
-                        RefreshSkillPnl(t, unit.GetData().moveSpeed.ToString());
+                        RefreshSkillPnl(t, unit.GetData().GetMoveSpeed().ToString());
                     } 
                     if (t.name.Equals("AtkPwr"))
                     {
-                        RefreshSkillPnl(t, unit.GetData().atk.ToString());
+                        RefreshSkillPnl(t, unit.GetData().GetAttack().ToString());
                     }
                     if (t.name.Equals("AtkRng"))
                     {
-                        RefreshSkillPnl(t, unit.GetData().atkRange.ToString());
+                        RefreshSkillPnl(t, unit.GetData().GetAtkRange().ToString());
                     }
                 }
             }

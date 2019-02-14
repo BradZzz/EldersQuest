@@ -43,6 +43,7 @@ public class TurnController : MonoBehaviour
             if (unit.GetData().GetTeam() == currentTeam)
             {
                 unit.GetData().GetTurnActions().BeginTurn();
+                unit.AcceptAction(Skill.Actions.BeginGame,null);
             }
             else
             {
@@ -52,10 +53,28 @@ public class TurnController : MonoBehaviour
         //Set the turn panel to the current turn
         //PanelController.instance.SetTurnPanel(currentTeam.ToString());
     }
+
+    public void EndTurnActions()
+    {
+        //Turn off all the units not on the team.
+        //Turn on all the units with the current team.
+        foreach(UnitProxy unit in BoardProxy.instance.GetUnits())
+        {
+            if (unit.GetData().GetTeam() == currentTeam && unit.GetData().GetTurnActions().atk > 0)
+            {
+                Debug.Log("DidWait Turn End Actions");
+                unit.AcceptAction(Skill.Actions.DidWait,null);
+            }
+        }
+        //Set the turn panel to the current turn
+        //PanelController.instance.SetTurnPanel(currentTeam.ToString());
+    }
   
     public void EndTurn()
     {
         Debug.Log("EndTurn");
+        //Perform end turn actions
+        EndTurnActions();
         //Deselect selected tiles
         BoardProxy.instance.FlushTiles();
         //Play the turn cutscene
@@ -64,6 +83,7 @@ public class TurnController : MonoBehaviour
 
         //Switch controller teams
         SwitchTeams();
+        //Perform start turn actions
         StartTurn();
 
         //Run AI (if applicable)

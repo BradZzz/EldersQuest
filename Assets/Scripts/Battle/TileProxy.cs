@@ -12,6 +12,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     [SerializeField]
     private Transform anchor;
 
+    private int fireTrns;
+    private Sprite def, fireAlt;
+
     private List<GridObjectProxy> objectProxies = new List<GridObjectProxy>();
 
     public Vector3Int GetPosition()
@@ -32,8 +35,10 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         transform.position = BoardProxy.instance.grid.CellToLocal(tile.position);
     }
 
-    public void Init(Tile t)
+    public void Init(Tile t, Sprite fireAlt)
     {
+        def = GetComponent<SpriteRenderer>().sprite;
+        this.fireAlt = fireAlt;
         tile = t;
         name = t.position.ToString();//for convenience in the heirarchy
         SnapToPosition();
@@ -41,30 +46,6 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void HighlightSelected()
     {
-        //if (inRangeUnit != null) {
-        //    bool unitOnTeam = UnitOnTeam(inRangeUnit.GetData().GetTeam());
-
-        //    bool oppUnitInRange = HasUnit() && !unitOnTeam && inRangeUnit.GetData().GetTurnActions().CanAttack();
-        //    bool ableToMove = !HasUnit() && inRangeUnit.GetData().GetTurnActions().CanMove();
-        //    bool charSelectWOMoves = HasUnit() && !inRangeUnit.GetData().GetTurnActions().CanMove() && inRangeUnit == GetUnit();
-
-        //    if (oppUnitInRange)
-        //    {
-        //        GetComponent<Renderer>().material.color = Color.blue;
-        //    }
-        //    else if (ableToMove)
-        //    {
-        //        GetComponent<Renderer>().material.color = Color.red;
-        //    }
-        //    else if (charSelectWOMoves)
-        //    {
-        //        GetComponent<Renderer>().material.color = Color.red;
-        //    }
-        //}
-        //else if (hovering || !HasUnit())
-        //{
-        //    GetComponent<Renderer>().material.color = Color.red;
-        //}
         GetComponent<Renderer>().material.color = Color.red;
     }
 
@@ -177,6 +158,24 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         return objectProxies.Where(op => op is UnitProxy && ((UnitProxy)op).GetData().GetTeam() == team).Any();
     }
 
+    public void SetTurnsOnFire(int trns){
+        fireTrns += trns;
+        if (fireTrns > 0) {
+            GetComponent<SpriteRenderer>().sprite = fireAlt;
+        }
+    }
+
+    public bool OnFire(){
+        return fireTrns > 0;
+    }
+
+    public void DecrementTileEffects(){
+        fireTrns = fireTrns - 1 > 0 ? fireTrns - 1 : 0;
+        if (fireTrns == 0) {
+            GetComponent<SpriteRenderer>().sprite = def;
+        }
+    }
+
     #region events
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -196,18 +195,6 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         InteractivityManager.instance.OnTileHovered(this);
     }
 
-    //This needs to move the board when the player holds down the click
-    //public void OnDrag(PointerEventData eventData)
-    //{
-    //    iTween.MoveTo(GameObject.Find("Grid"), eventData.pointerPressRaycast.worldPosition, .1f);
-        //foreach (UnitProxy unt in BoardProxy.instance.GetUnits())
-        //{
-        //    unt.SnapToCurrentPosition();
-        //}
-    //}
-
-    //public static GameObject DraggedInstance = GameObject.Find("Grid");
-    
     Vector3 _startPosition;
     Vector3 _offsetToMouse;
     float _zDistanceToCamera;
@@ -239,10 +226,6 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     {
        Debug.Log("OnEndDrag");
        _offsetToMouse = Vector3.zero;
-       //foreach (UnitProxy unt in BoardProxy.instance.GetUnits())
-       //{
-       //   unt.SnapToCurrentPosition();
-       //}
     }
   
     #endregion

@@ -15,15 +15,26 @@ public class Unit : GridObject
     public TurnActions turnActions;
 
     public UnitType uType;
-    public int cHlth = 1;
-    public int atk = 1;
-    public int moveSpeed = 3;
-    public int atkRange = 3;
-    public int lvl = 1;
-    public int team = 0;
 
-    public int trnMvs = 1;
-    public int trnAtks = 1;
+    [SerializeField]
+    private int cHlth = 1;
+    [SerializeField]
+    private int atk = 1;
+    [SerializeField]
+    private int moveSpeed = 3;
+    [SerializeField]
+    private int atkRange = 3;
+    [SerializeField]
+    private int lvl = 1;
+    [SerializeField]
+    private int team = 0;
+
+    [SerializeField]
+    private int trnMvs = 1;
+    [SerializeField]
+    private int trnAtks = 1;
+    [SerializeField]
+    private string[] skills;
 
     public enum UnitType
     {
@@ -35,24 +46,26 @@ public class Unit : GridObject
         this.characterName = "0";
         this.characterMoniker = "Null"; 
         this.uType = UnitType.Soldier;
+        this.skills = new string[0];
         turnActions = new TurnActionsBasicUnit();
     }
 
     public Unit(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, int atkRange,
-      int trnMvs, int trnAtks, UnitType uType = UnitType.Soldier)
+      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier)
     {
         Setup(cName + UnityEngine.Random.Range(0,1).ToString(),cMonik, cLvl, team, 
-          mxHlth, atk, moveSpeed, atkRange, trnAtks, trnMvs, uType);
+          mxHlth, atk, moveSpeed, atkRange, trnAtks, trnMvs, skills, uType);
     }
 
     public Unit(Unit unit)
     {
         Setup(unit.characterName, unit.characterMoniker, unit.GetLvl(), unit.team, 
-          unit.mxHlth, unit.GetAttack(), unit.GetMoveSpeed(), unit.GetAtkRange(), unit.trnAtks, unit.trnMvs, unit.uType);
+          unit.mxHlth, unit.GetAttack(), unit.GetMoveSpeed(), unit.GetAtkRange(), 
+        unit.trnAtks, unit.trnMvs, unit.GetSkills(),unit.uType);
     }
 
     void Setup(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, int atkRange,
-      int trnMvs, int trnAtks, UnitType uType = UnitType.Soldier)
+      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier)
     {
         this.characterName = cName + UnityEngine.Random.Range(0,1).ToString();
         this.characterMoniker = cMonik;
@@ -65,6 +78,7 @@ public class Unit : GridObject
         this.uType = uType;
         this.trnAtks = trnAtks;
         this.trnMvs = trnMvs;
+        this.skills = skills;
         this.turnActions = new TurnActionsBasicUnit(trnMvs, trnAtks);
     }
   
@@ -78,6 +92,10 @@ public class Unit : GridObject
         return lvl;
     }
   
+    public string[] GetSkills(){
+        return skills;
+    }
+
     public TurnActions GetTurnActions()
     {
         return turnActions;
@@ -103,6 +121,11 @@ public class Unit : GridObject
         return cHlth;
     }
 
+    public void SetCurrHealth(int cHlth)
+    {
+        this.cHlth = cHlth;
+    }
+
     public int GetAttack()
     {
         return atk;
@@ -116,6 +139,18 @@ public class Unit : GridObject
     public int GetTeam()
     {
         return team;
+    }
+
+    public void AcceptAction(Skill.Actions action, UnitProxy u1, UnitProxy u2)
+    {
+        Debug.Log("Cycling through skills: " + skills.Length.ToString());
+        foreach(string skill in skills){
+            Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skill));
+            tSkill.value = 1;
+            if (tSkill != null){
+                tSkill.RouteBehavior(action, u1, u2);
+            }
+        }
     }
 
     /*
@@ -132,11 +167,11 @@ public class Unit : GridObject
         switch (type)
         {
           case UnitType.Mage: 
-            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, UnitType.Mage);
+            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "HealWait" }, UnitType.Mage);
           case UnitType.Scout: 
-            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, UnitType.Scout);
+            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "HealWait" }, UnitType.Scout);
           case UnitType.Soldier: 
-            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, UnitType.Soldier);
+            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "HealWait" }, UnitType.Soldier);
           default:
             return new Unit();
         }

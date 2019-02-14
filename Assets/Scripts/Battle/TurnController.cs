@@ -60,7 +60,9 @@ public class TurnController : MonoBehaviour
         //Turn on all the units with the current team.
         foreach(UnitProxy unit in BoardProxy.instance.GetUnits())
         {
-            if (unit.GetData().GetTeam() == currentTeam && unit.GetData().GetTurnActions().atk > 0)
+            if (unit.GetData().GetTeam() == currentTeam 
+              && unit.GetData().GetTurnActions().atk > 0 
+              && unit.GetData().GetTurnActions().mv > 0)
             {
                 Debug.Log("DidWait Turn End Actions");
                 unit.AcceptAction(Skill.Actions.DidWait,null);

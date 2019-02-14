@@ -53,6 +53,30 @@ public class UnitProxy : GridObjectProxy
       return false;
     }
 
+    public void ReceiveHPBuff(int buff){
+        int newHp = GetData().mxHlth + buff;
+        if (buff != 0 && newHp > 0) {
+          GetData().SetMaxHP(newHp);
+          if (buff > 0){
+              FloatNumber(buff, Color.blue);
+          } else {
+              FloatNumber(buff, Color.cyan);
+          }
+        }
+    }
+
+    public void ReceiveAtkBuff(int buff){
+        int newAtk = GetData().GetAttack() + buff;
+        if (buff != 0) {
+          GetData().SetAttack(buff);
+          if (buff > 0){
+              FloatNumber(buff, Color.blue);
+          } else {
+              FloatNumber(buff, Color.cyan);
+          }
+        }
+    }
+
     public void Shake(){
         StartCoroutine(ShakeChar());
     }

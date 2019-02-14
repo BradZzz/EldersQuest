@@ -24,11 +24,6 @@ public class HealWait : Skill
 
   }
 
-  public override void DidDefend(UnitProxy attacker, UnitProxy defender)
-  {
-
-  }
-
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {
 
@@ -49,11 +44,6 @@ public class HealWait : Skill
   }
 
   public override void EndTurn(UnitProxy unit)
-  {
-
-  }
-
-  public override void WasAttacked(UnitProxy attacker, UnitProxy defender)
   {
 
   }

@@ -24,11 +24,6 @@ public class HealTurn : Skill
 
   }
 
-  public override void DidDefend(UnitProxy attacker, UnitProxy defender)
-  {
-
-  }
-
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {
 
@@ -51,11 +46,6 @@ public class HealTurn : Skill
          unit.GetData().SetCurrHealth(nwHlth);
          unit.FloatNumber(value, Color.green);
        }
-  }
-
-  public override void WasAttacked(UnitProxy attacker, UnitProxy defender)
-  {
-
   }
 
   public override string PrintDetails(){

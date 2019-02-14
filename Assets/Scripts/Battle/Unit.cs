@@ -126,6 +126,26 @@ public class Unit : GridObject
         this.cHlth = cHlth;
     }
 
+    public void SetMaxHP(int newMX)
+    {
+        if (newMX > 0) {
+          mxHlth = newMX;
+        } else {
+          mxHlth = 1;
+        }
+        if (GetCurrHealth() > mxHlth) {
+            SetCurrHealth(mxHlth);
+        }
+    }
+
+    public void SetAttack(int atk)
+    {
+        this.atk = atk;
+        if (this.atk < 0) {
+            this.atk = 1;
+        }
+    }
+
     public int GetAttack()
     {
         return atk;
@@ -167,11 +187,11 @@ public class Unit : GridObject
         switch (type)
         {
           case UnitType.Mage: 
-            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "FireMove" }, UnitType.Mage);
+            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "FireAtk" }, UnitType.Mage);
           case UnitType.Scout: 
-            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "FireMove" }, UnitType.Scout);
+            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "FireAtk" }, UnitType.Scout);
           case UnitType.Soldier: 
-            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "FireMove" }, UnitType.Soldier);
+            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "FireAtk" }, UnitType.Soldier);
           default:
             return new Unit();
         }

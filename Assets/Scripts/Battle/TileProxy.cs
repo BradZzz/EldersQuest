@@ -170,6 +170,13 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     }
 
     public void DecrementTileEffects(){
+        //Fire tile here on unit
+        if (fireTrns > 0 && HasUnit()) {
+            if (GetUnit().IsAttackedEnvironment(1)){
+                ConditionTracker.instance.EvalDeath(GetUnit());
+            }
+        }
+
         fireTrns = fireTrns - 1 > 0 ? fireTrns - 1 : 0;
         if (fireTrns == 0) {
             GetComponent<SpriteRenderer>().sprite = def;

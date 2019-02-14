@@ -141,14 +141,14 @@ public class Unit : GridObject
         return team;
     }
 
-    public void AcceptAction(Skill.Actions action, UnitProxy u1, UnitProxy u2)
+    public void AcceptAction(Skill.Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
     {
         Debug.Log("Cycling through skills: " + skills.Length.ToString());
         foreach(string skill in skills){
             Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skill));
             tSkill.value = 1;
             if (tSkill != null){
-                tSkill.RouteBehavior(action, u1, u2);
+                tSkill.RouteBehavior(action, u1, u2, path);
             }
         }
     }
@@ -167,11 +167,11 @@ public class Unit : GridObject
         switch (type)
         {
           case UnitType.Mage: 
-            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "HealWait" }, UnitType.Mage);
+            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "FireMove" }, UnitType.Mage);
           case UnitType.Scout: 
-            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "HealWait" }, UnitType.Scout);
+            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "FireMove" }, UnitType.Scout);
           case UnitType.Soldier: 
-            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "HealWait" }, UnitType.Soldier);
+            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "FireMove" }, UnitType.Soldier);
           default:
             return new Unit();
         }

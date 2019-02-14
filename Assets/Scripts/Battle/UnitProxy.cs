@@ -33,7 +33,7 @@ public class UnitProxy : GridObjectProxy
 
       //Damage the unit
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
-      StartCoroutine(Shake());
+      Shake();
       if (GetData().IsDead())
       {
         return true;
@@ -41,10 +41,40 @@ public class UnitProxy : GridObjectProxy
       return false;
     }
 
-    IEnumerator Shake()
+    public bool IsAttackedEnvironment(int atkPwr)
+    {
+      //Damage the unit
+      GetData().IsAttacked(atkPwr);
+      FloatNumber(atkPwr, Color.red);
+      if (GetData().IsDead())
+      {
+        return true;
+      }
+      return false;
+    }
+
+    public void Shake(){
+        StartCoroutine(ShakeChar());
+    }
+
+    IEnumerator ShakeChar()
     {
         iTween.ShakePosition(gameObject,new Vector3(.25f,0,0), .2f);
         yield return null;
+    }
+
+    public void Jump(){
+        StartCoroutine(JumpChar());
+    }
+
+    IEnumerator JumpChar()
+    {
+        iTween.ShakePosition(gameObject,new Vector3(0,.25f,0), .2f);
+        yield return null;
+    }
+
+    public void FloatNumber(int num, Color color){
+        Jump();
     }
 
     public int GetMoveSpeed()
@@ -69,7 +99,12 @@ public class UnitProxy : GridObjectProxy
 
     public void AcceptAction(Skill.Actions action, UnitProxy u1)
     {
-      _data.AcceptAction(action, this, u1);
+      _data.AcceptAction(action, this, u1, null);
+    }
+
+    public void AcceptAction(Skill.Actions action, UnitProxy u1, List<TileProxy> path)
+    {
+      _data.AcceptAction(action, this, u1, path);
     }
 
     public virtual IEnumerator CreatePathToTileAndLerpToPosition(TileProxy destination, Action callback)
@@ -88,7 +123,7 @@ public class UnitProxy : GridObjectProxy
         {
             yield return StartCoroutine(LerpToTile(t, .15f));
         }
-
+        AcceptAction(Skill.Actions.DidMove, null, path.ToList());
         SnapToCurrentPosition();
 
     }

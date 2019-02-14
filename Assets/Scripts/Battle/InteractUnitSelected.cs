@@ -98,9 +98,10 @@ public class InteractUnitSelected : InteractMode
                 if (obj.IsAttacked(currentUnit))
                 {
                     //If the unit has died, remove it from the board and destroy the gameobject
-                    BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
-                    Destroy(obj.gameObject);
-                    ConditionTracker.instance.EvaluateGame();
+                    //BoardProxy.instance.GetTileAtPosition(obj.GetPosition()).RemoveGridObjectProxy(obj);
+                    //Destroy(obj.gameObject);
+                    ConditionTracker.instance.EvalDeath(obj);                     
+
                     //Turn off the tiles
                     StartCoroutine(ResetTiles());
                 }

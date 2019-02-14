@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class HealWait : Skill
 {
-  public override void RouteBehavior(Actions action, UnitProxy u1, UnitProxy u2)
+  public override void RouteBehavior(Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
   {
       switch(action){
           case Actions.DidWait: DidWait(u1); break;
@@ -34,11 +34,18 @@ public class HealWait : Skill
 
   }
 
+  public override void DidMove(UnitProxy unit, List<TileProxy> path){
+  
+  }
+
   public override void DidWait(UnitProxy unit)
   {
-       Debug.Log("DidWait");
        int nwHlth = unit.GetData().GetCurrHealth() + value;
-       unit.GetData().SetCurrHealth(nwHlth > unit.GetData().mxHlth ? unit.GetData().mxHlth : nwHlth);
+       nwHlth = nwHlth > unit.GetData().mxHlth ? unit.GetData().mxHlth : nwHlth;
+       if (nwHlth != unit.GetData().GetCurrHealth()) {
+         unit.GetData().SetCurrHealth(nwHlth);
+         unit.FloatNumber(value, Color.green);
+       }
   }
 
   public override void EndTurn(UnitProxy unit)
@@ -52,6 +59,6 @@ public class HealWait : Skill
   }
 
   public override string PrintDetails(){
-    return "HealWait";
+      return "HealWait";
   }
 }

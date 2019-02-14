@@ -14,7 +14,10 @@ public class Unit : GridObject
 
     public TurnActions turnActions;
 
-    public UnitType uType;
+    [SerializeField]
+    private UnitType uType;
+    [SerializeField]
+    private FactionType fType;
 
     [SerializeField]
     private int cHlth = 1;
@@ -25,7 +28,7 @@ public class Unit : GridObject
     [SerializeField]
     private int atkRange = 3;
     [SerializeField]
-    private int lvl = 1;
+    private int lvl = 0;
     [SerializeField]
     private int team = 0;
 
@@ -48,11 +51,18 @@ public class Unit : GridObject
     private int trnAtkBuff;
     [SerializeField]
     private int hpBuff;
+    [SerializeField]
+    private ClassNode currentClass;
 
 
     public enum UnitType
     {
         Mage, Scout, Soldier, None
+    };
+
+    public enum FactionType
+    {
+        Human, Egypt, Cthulu, None
     };
 
     public Unit()
@@ -65,21 +75,21 @@ public class Unit : GridObject
     }
 
     public Unit(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, int atkRange,
-      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier)
+      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier, FactionType fType = FactionType.Human)
     {
         Setup(cName + UnityEngine.Random.Range(0,1).ToString(),cMonik, cLvl, team, 
-          mxHlth, atk, moveSpeed, atkRange, trnAtks, trnMvs, skills, uType);
+          mxHlth, atk, moveSpeed, atkRange, trnAtks, trnMvs, skills, uType, fType);
     }
 
     public Unit(Unit unit)
     {
         Setup(unit.characterName, unit.characterMoniker, unit.GetLvl(), unit.team, 
           unit.mxHlth, unit.GetAttack(), unit.GetMoveSpeed(), unit.GetAtkRange(), 
-        unit.trnAtks, unit.trnMvs, unit.GetSkills(),unit.uType);
+        unit.trnAtks, unit.trnMvs, unit.GetSkills(), unit.uType, unit.fType);
     }
 
     void Setup(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, int atkRange,
-      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier)
+      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier, FactionType fType = FactionType.Human)
     {
         this.characterName = cName + UnityEngine.Random.Range(0,1).ToString();
         this.characterMoniker = cMonik;
@@ -90,6 +100,7 @@ public class Unit : GridObject
         this.atkRange = atkRange;
         this.lvl = cLvl;
         this.uType = uType;
+        this.fType = fType;
         this.trnAtks = trnAtks;
         this.trnMvs = trnMvs;
         this.skills = skills;
@@ -108,6 +119,22 @@ public class Unit : GridObject
     public void BeginTurn(){
         SetTurnAttackBuff(0);
         GetTurnActions().BeginTurn();
+    }
+
+    public UnitType GetUnitType(){
+        return uType;
+    }
+
+    public FactionType GetFactionType(){
+        return fType;
+    }
+
+    public void SetCurrentClass(ClassNode currentClass){
+        this.currentClass = currentClass;
+    }
+
+    public ClassNode GetCurrentClass(){
+        return currentClass;
     }
 
     public bool GetAegis(){
@@ -134,6 +161,14 @@ public class Unit : GridObject
         this.atkBuff = buff;
     }
 
+    public void SetAttack(int atk){
+        this.atk = atk;
+    }
+
+    public void SetMoveSpeed(int moveSpeed){
+        this.moveSpeed = moveSpeed;
+    }
+
     public int GetHpBuff(){
         return this.hpBuff;
     }
@@ -157,9 +192,18 @@ public class Unit : GridObject
     {
         return lvl;
     }
+
+    public void SetLvl(int lvl)
+    {
+        this.lvl = lvl;
+    }
   
     public string[] GetSkills(){
         return skills;
+    }
+
+    public void SetSkills(string[] skills){
+        this.skills = skills;
     }
 
     public TurnActions GetTurnActions()
@@ -196,6 +240,10 @@ public class Unit : GridObject
         return mxHlth + hpBuff > 0 ? mxHlth + hpBuff : 1;
     }
 
+    public void SetMaxHP(int mxHlth){
+        this.mxHlth = this.cHlth = mxHlth;
+    }
+
     public int GetAttack()
     {
         int nwAtk = atk + GetAttackBuff() + GetTurnAttackBuff();
@@ -207,6 +255,11 @@ public class Unit : GridObject
         return atkRange;
     }
 
+    public void SetAtkRange(int atkRange)
+    {
+        this.atkRange = atkRange;
+    }
+
     public int GetTeam()
     {
         return team;
@@ -214,8 +267,8 @@ public class Unit : GridObject
 
     public void AcceptAction(Skill.Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
     {
-        Debug.Log("Cycling through skills: " + skills.Length.ToString());
-        foreach(string skill in skills){
+        Debug.Log("Cycling through skills: " + GetSkills().Length.ToString());
+        foreach(string skill in GetSkills()){
             Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skill));
             tSkill.value = 1;
             if (tSkill != null){
@@ -224,44 +277,43 @@ public class Unit : GridObject
         }
     }
 
+    //public static Skill GetSkillByName(string skill){
+    //    return Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skill));
+    //}
+
     /*
       Utility Functions
     */
 
-    public static Unit BuildInitial(UnitType type, int team)
+    public static Unit BuildInitial(FactionType fType, UnitType uType, int team)
     {
         List<string> avoidNames = team == BoardProxy.PLAYER_TEAM ? 
           new List<string>(BaseSaver.GetPlayer().characters.Select(chr => chr.characterMoniker)) : 
           new List<string>();
 
         string uName = GenerateRandomName(avoidNames);
-        switch (type)
-        {
-          case UnitType.Mage: 
-            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "SkeleKill" }, UnitType.Mage);
-          case UnitType.Scout: 
-            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "SkeleKill" }, UnitType.Scout);
-          case UnitType.Soldier: 
-            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "SkeleKill" }, UnitType.Soldier);
-          default:
-            return new Unit();
-        }
+
+        Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 3, 1, 1, new string[1]{ "SkeleKill" }, uType, fType);
+        ClassNode classObj = ClassNode.ComputeClassObject(fType,uType);
+        bUnit = classObj.UpgradeCharacter(bUnit);
+        bUnit.SetCurrentClass(classObj);
+        return bUnit;
     }
 
-    public static string GetCharacterDesc(UnitType type)
-    {
-        switch (type)
-        {
-          case UnitType.Mage: 
-            return "The Mage has: \n+1 atk pwr\n+1 atk rng";
-          case UnitType.Scout: 
-            return "The Scout has: \n+1 mv per turn\n+1 mv rng";
-          case UnitType.Soldier: 
-            return "The Soldier has: \n+1 atk per turn\n+1 hp";
-          default:
-            return "";
-        }
-    }
+    //public static string GetCharacterDesc(UnitType type)
+    //{
+    //    switch (type)
+    //    {
+    //      case UnitType.Mage: 
+    //        return "The Mage has: \n+1 atk pwr\n+1 atk rng";
+    //      case UnitType.Scout: 
+    //        return "The Scout has: \n+1 mv per turn\n+1 mv rng";
+    //      case UnitType.Soldier: 
+    //        return "The Soldier has: \n+1 atk per turn\n+1 hp";
+    //      default:
+    //        return "";
+    //    }
+    //}
   
     public static string GenerateRandomName(List<string> dontPick)
     {

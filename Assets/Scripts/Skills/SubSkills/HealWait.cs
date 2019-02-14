@@ -35,12 +35,7 @@ public class HealWait : Skill
 
   public override void DidWait(UnitProxy unit)
   {
-       int nwHlth = unit.GetData().GetCurrHealth() + value;
-       nwHlth = nwHlth > unit.GetData().GetMaxHP() ? unit.GetData().GetMaxHP() : nwHlth;
-       if (nwHlth != unit.GetData().GetCurrHealth()) {
-         unit.GetData().SetCurrHealth(nwHlth);
-         unit.FloatNumber(value, Color.green);
-       }
+       unit.HealUnit(value);
   }
 
   public override void EndTurn(UnitProxy unit)

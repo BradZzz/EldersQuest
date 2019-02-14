@@ -25,6 +25,10 @@ public class UnitProxy : GridObjectProxy
         SnapToCurrentPosition();
     }
 
+    public void AddLevel(){
+      _data.SetLvl(_data.GetLvl()+1);
+    }
+
     public bool IsAttacked(UnitProxy oppUnit)
     {
       //Decrement the attacking units attack actions and update the ui
@@ -99,6 +103,15 @@ public class UnitProxy : GridObjectProxy
 
     public void FloatNumber(int num, Color color){
         Jump();
+    }
+
+    public void HealUnit(int value){
+       int nwHlth = GetData().GetCurrHealth() + value;
+       nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
+       if (nwHlth != GetData().GetCurrHealth()) {
+         GetData().SetCurrHealth(nwHlth);
+         FloatNumber(value, Color.green);
+       }
     }
 
     public int GetMoveSpeed()

@@ -161,11 +161,20 @@
     <Compile Include="Assets\Scripts\Battle\Unit.cs" />
     <Compile Include="Assets\Scripts\Battle\UnitProxy.cs" />
     <Compile Include="Assets\Scripts\CharSelect\CharSelectController.cs" />
+    <Compile Include="Assets\Scripts\Classes\ClassNode.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanBaseMage.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanIWarlockClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanTechnomancerClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanBaseScout.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanCorporalClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanFSergeantClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Soldier\HumanBaseSoldier.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Soldier\HumanBerserkerClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Soldier\HumanPaladinClass.cs" />
     <Compile Include="Assets\Scripts\Death\DeathScene.cs" />
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />
     <Compile Include="Assets\Scripts\Map\MapStatic.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuController.cs" />
-    <Compile Include="Assets\Scripts\Roster\RosterNav.cs" />
     <Compile Include="Assets\Scripts\Savers\BaseSaver.cs" />
     <Compile Include="Assets\Scripts\Savers\BoardMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CharMeta.cs" />
@@ -186,6 +195,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\FireDef.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\FireMove.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\ForceAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\HealAlliesAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealKill.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealTurn.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealWait.cs" />
@@ -199,6 +209,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\ThornDef.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\VoidAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\WarpAtk.cs" />
+    <Compile Include="Assets\Scripts\TechTree\TechTreeNav.cs" />
     <Compile Include="Assets\Scripts\Utils\Character.cs" />
     <Compile Include="Assets\Scripts\Utils\CharStatCalculator.cs" />
     <Compile Include="Assets\Scripts\Utils\Draggable.cs" />

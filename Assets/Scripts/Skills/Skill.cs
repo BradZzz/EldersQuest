@@ -34,6 +34,7 @@ public abstract class Skill
             case SkillClasses.FireDef: return new FireDef();
             case SkillClasses.FireMove: return new FireMove();
             case SkillClasses.ForceAtk: return new ForceAtk();  
+            case SkillClasses.HealAlliesAtk: return new HealAlliesAtk();  
             case SkillClasses.HealKill: return new HealKill();
             case SkillClasses.HealTurn: return new HealTurn();
             case SkillClasses.HealWait: return new HealWait();
@@ -56,7 +57,7 @@ public abstract class Skill
     }
 
     public enum SkillClasses{
-        AegisAtk, AegisBegin, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, FireAtk, FireDef, FireMove, ForceAtk, HealKill, HealTurn, HealWait,
+        AegisAtk, AegisBegin, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, FireAtk, FireDef, FireMove, ForceAtk, HealAlliesAtk, HealKill, HealTurn, HealWait,
         RageAlliesWait, RageKill, RageMove, RageWait, RootAtk, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
     }
 }

@@ -22,9 +22,9 @@ public class CharSelectController : MonoBehaviour
             panels[i] = panelGroup.transform.GetChild(i).gameObject;
         }
         selectableUnits = new Unit[]{
-            Unit.BuildInitial(Unit.UnitType.Mage, BoardProxy.PLAYER_TEAM),
-            Unit.BuildInitial(Unit.UnitType.Scout, BoardProxy.PLAYER_TEAM),
-            Unit.BuildInitial(Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM),
+            Unit.BuildInitial(Unit.FactionType.Human, Unit.UnitType.Mage, BoardProxy.PLAYER_TEAM),
+            Unit.BuildInitial(Unit.FactionType.Human, Unit.UnitType.Scout, BoardProxy.PLAYER_TEAM),
+            Unit.BuildInitial(Unit.FactionType.Human,  Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM),
         };
         for (int i = 0; i < selectableUnits.Length && i < panels.Length; i++)
         {
@@ -36,16 +36,16 @@ public class CharSelectController : MonoBehaviour
 
     void RefreshPanel(GameObject pnl, Unit unt)
     {
-        Debug.Log("Unit: " + unt.uType.ToString());
+        Debug.Log("Unit: " + unt.GetUnitType().ToString());
         foreach (Transform trns in pnl.transform)
         {
             if (trns.name.Equals("Header"))
             {
-                trns.GetComponent<TextMeshProUGUI>().text = unt.uType.ToString();
+                trns.GetComponent<TextMeshProUGUI>().text = unt.GetCurrentClass().ClassName();
             }
             if (trns.name.Equals("Desc"))
             {
-                trns.GetComponent<TextMeshProUGUI>().text = Unit.GetCharacterDesc(unt.uType);
+                trns.GetComponent<TextMeshProUGUI>().text = unt.GetCurrentClass().ClassDesc();
             }
         }
     }
@@ -78,7 +78,7 @@ public class CharSelectController : MonoBehaviour
                 contBtn.gameObject.SetActive(true);
                 foreach (Transform trns in pnl.transform)
                 {
-                    if (trns.name.Equals("Header") && trns.GetComponent<TextMeshProUGUI>().text.Equals(selected.uType.ToString()))
+                    if (trns.name.Equals("Header") && trns.GetComponent<TextMeshProUGUI>().text.Equals(selected.GetUnitType().ToString()))
                     {
                         pnl.GetComponent<Outline>().effectColor = Color.red;
                         break;

@@ -42,7 +42,7 @@ public class TurnController : MonoBehaviour
         {
             if (unit.GetData().GetTeam() == currentTeam)
             {
-                unit.GetData().GetTurnActions().BeginTurn();
+                unit.GetData().BeginTurn();
                 unit.AcceptAction(Skill.Actions.BeginGame,null);
             }
             else

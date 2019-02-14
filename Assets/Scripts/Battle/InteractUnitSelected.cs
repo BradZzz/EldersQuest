@@ -109,7 +109,9 @@ public class InteractUnitSelected : InteractMode
                 }
 
                 //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
-                currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
+                if (currentUnit != null) {
+                    currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
+                }
 
                 OnDisable();
                 PanelControllerNew.SwitchChar(currentUnit);

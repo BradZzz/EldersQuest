@@ -23,18 +23,30 @@ public abstract class Skill
 
     public static Skill ReturnSkillByString(SkillClasses sClass){
         switch(sClass){
+            case SkillClasses.AegisAtk: return new AegisAtk();
+            case SkillClasses.AegisBegin: return new AegisBegin();
+            case SkillClasses.AegisWait: return new AegisWait();
+            case SkillClasses.AoeAtk: return new AoeAtk();
             case SkillClasses.BideKill: return new BideKill();
             case SkillClasses.BideWait: return new BideWait();
+            case SkillClasses.EnfeebleAtk: return new EnfeebleAtk();
             case SkillClasses.FireAtk: return new FireAtk();
             case SkillClasses.FireDef: return new FireDef();
             case SkillClasses.FireMove: return new FireMove();
+            case SkillClasses.ForceAtk: return new ForceAtk();  
             case SkillClasses.HealKill: return new HealKill();
             case SkillClasses.HealTurn: return new HealTurn();
             case SkillClasses.HealWait: return new HealWait();
             case SkillClasses.RageAlliesWait: return new RageAlliesWait();
             case SkillClasses.RageKill: return new RageKill();
+            case SkillClasses.RageMove: return new RageMove();
             case SkillClasses.RageWait: return new RageWait();
+            case SkillClasses.RootAtk: return new RootAtk();
             case SkillClasses.SicklyAtk: return new SicklyAtk();
+            case SkillClasses.SkeleKill: return new SkeleKill();
+            case SkillClasses.ThornDef: return new ThornDef();       
+            case SkillClasses.VoidAtk: return new VoidAtk();  
+            case SkillClasses.WarpAtk: return new WarpAtk();       
             default: return null;
         }
     }
@@ -44,6 +56,7 @@ public abstract class Skill
     }
 
     public enum SkillClasses{
-        BideKill, BideWait, FireAtk, FireDef, FireMove, HealKill, HealTurn, HealWait, RageAlliesWait, RageKill, RageWait, SicklyAtk, None
+        AegisAtk, AegisBegin, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, FireAtk, FireDef, FireMove, ForceAtk, HealKill, HealTurn, HealWait,
+        RageAlliesWait, RageKill, RageMove, RageWait, RootAtk, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
     }
 }

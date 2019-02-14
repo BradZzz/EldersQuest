@@ -16,6 +16,9 @@ public abstract class TurnActions
     private int cAtk;
     private int cMv;
 
+    private int enfeebled;
+    private int rooted;
+
     //public TurnActions()
     //{
     //    atk = 1;
@@ -23,8 +26,19 @@ public abstract class TurnActions
     //}
 
     public void BeginTurn(){
-        cAtk = atk;
-        cMv = mv;
+
+        if (enfeebled > 0) {
+            cAtk = 0;
+            enfeebled--;
+        } else {
+            cAtk = atk;
+        }
+        if (rooted > 0) {
+            cMv = 0;
+            rooted--;
+        } else {
+            cMv = mv;
+        }
         idle = false;
     }
 
@@ -52,6 +66,28 @@ public abstract class TurnActions
     public void Move()
     {
         cMv -= 1;
+    }
+
+    public bool IsEnfeebled(){
+        return enfeebled > 0;
+    }
+
+    public void EnfeebledForTurns(int feeble)
+    {
+        if (feeble > enfeebled) {
+            enfeebled = feeble;
+        }
+    }
+
+    public bool IsRooted(){
+        return rooted > 0;
+    }
+
+    public void RootForTurns(int root)
+    {
+        if (root > rooted) {
+            rooted = root;
+        }
     }
 
     public string ToString()

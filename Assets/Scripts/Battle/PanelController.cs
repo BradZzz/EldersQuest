@@ -102,10 +102,10 @@ public class PanelController : MonoBehaviour
     {
       if (t.name.Equals("HealthFillBar"))
       {
-        t.GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().mxHlth;
+        t.GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().GetMaxHP();
       } else if (t.name.Equals("HealthText"))
       {
-        t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrHealth().ToString() + " / " + unit.GetData().mxHlth.ToString();
+        t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrHealth().ToString() + " / " + unit.GetData().GetMaxHP().ToString();
       }
     }
   }

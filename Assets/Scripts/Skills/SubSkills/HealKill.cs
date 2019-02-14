@@ -27,7 +27,7 @@ public class HealKill : Skill
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {
        int nwHlth = attacker.GetData().GetCurrHealth() + value;
-       nwHlth = nwHlth > attacker.GetData().mxHlth ? attacker.GetData().mxHlth : nwHlth;
+       nwHlth = nwHlth > attacker.GetData().GetMaxHP() ? attacker.GetData().GetMaxHP() : nwHlth;
        if (nwHlth != attacker.GetData().GetCurrHealth()) {
          attacker.GetData().SetCurrHealth(nwHlth);
          attacker.FloatNumber(value, Color.green);

@@ -7,4 +7,5 @@ public class Glossary : MonoBehaviour
     public UnitProxy[] units;
     public ObstacleProxy[] obstacles;
 
+    public UnitProxy summonedSkeleton;
 }

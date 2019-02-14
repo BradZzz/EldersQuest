@@ -36,6 +36,20 @@ public class Unit : GridObject
     [SerializeField]
     private string[] skills;
 
+    /* Skill Related Things */
+    [SerializeField]
+    private bool summoned;
+    [SerializeField]
+    private bool aegis;
+
+    [SerializeField]
+    private int atkBuff;
+    [SerializeField]
+    private int trnAtkBuff;
+    [SerializeField]
+    private int hpBuff;
+
+
     public enum UnitType
     {
         Mage, Scout, Soldier, None
@@ -81,10 +95,62 @@ public class Unit : GridObject
         this.skills = skills;
         this.turnActions = new TurnActionsBasicUnit(trnMvs, trnAtks);
     }
+
+    public Unit SummonedData(int team, int strength){
+        return new Unit("Skele" + UnityEngine.Random.Range(0,float.MaxValue), "Summoned Skele", strength, team, strength, strength, 3, 2, 1, 1, new string[]{ });
+    }
   
     public void Init()
     {
-        cHlth = mxHlth;
+        cHlth = GetMaxHP();
+    }
+
+    public void BeginTurn(){
+        SetTurnAttackBuff(0);
+        GetTurnActions().BeginTurn();
+    }
+
+    public bool GetAegis(){
+        return aegis;
+    }
+
+    public void SetAegis(bool aegis){
+        this.aegis = aegis;
+    }
+
+    public int GetTurnAttackBuff(){
+        return this.trnAtkBuff;
+    }
+
+    public void SetTurnAttackBuff(int buff){
+        this.trnAtkBuff = buff;
+    }
+
+    public int GetAttackBuff(){
+        return this.atkBuff;
+    }
+
+    public void SetAttackBuff(int buff){
+        this.atkBuff = buff;
+    }
+
+    public int GetHpBuff(){
+        return this.hpBuff;
+    }
+
+    public void SetHpBuff(int buff){
+        this.hpBuff = buff;
+        if (GetMaxHP() < GetCurrHealth()) {
+            SetCurrHealth(GetMaxHP());
+        }
+    }
+
+    public bool GetSummoned(){
+        return summoned;
+    }
+
+    public void SetSummoned(bool summoned){
+        this.summoned = summoned;
     }
 
     public int GetLvl()
@@ -126,29 +192,14 @@ public class Unit : GridObject
         this.cHlth = cHlth;
     }
 
-    public void SetMaxHP(int newMX)
-    {
-        if (newMX > 0) {
-          mxHlth = newMX;
-        } else {
-          mxHlth = 1;
-        }
-        if (GetCurrHealth() > mxHlth) {
-            SetCurrHealth(mxHlth);
-        }
-    }
-
-    public void SetAttack(int atk)
-    {
-        this.atk = atk;
-        if (this.atk < 0) {
-            this.atk = 1;
-        }
+    public int GetMaxHP(){
+        return mxHlth + hpBuff > 0 ? mxHlth + hpBuff : 1;
     }
 
     public int GetAttack()
     {
-        return atk;
+        int nwAtk = atk + GetAttackBuff() + GetTurnAttackBuff();
+        return nwAtk > 0 ? nwAtk : 1;
     }
 
     public int GetAtkRange()
@@ -187,11 +238,11 @@ public class Unit : GridObject
         switch (type)
         {
           case UnitType.Mage: 
-            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "FireAtk" }, UnitType.Mage);
+            return new Unit(uName, uName, 1, team, 3, 2, 3, 4, 1, 1, new string[1]{ "SkeleKill" }, UnitType.Mage);
           case UnitType.Scout: 
-            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "FireAtk" }, UnitType.Scout);
+            return new Unit(uName, uName, 1, team, 3, 1, 4, 3, 2, 1, new string[1]{ "SkeleKill" }, UnitType.Scout);
           case UnitType.Soldier: 
-            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "FireAtk" }, UnitType.Soldier);
+            return new Unit(uName, uName, 1, team, 4, 1, 3, 3, 1, 2, new string[1]{ "SkeleKill" }, UnitType.Soldier);
           default:
             return new Unit();
         }

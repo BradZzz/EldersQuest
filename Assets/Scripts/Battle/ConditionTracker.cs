@@ -70,7 +70,8 @@ public class ConditionTracker : MonoBehaviour
         this.won = won;
         string txt = "Defeat";
         if (won){
-            List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM).ToList();
+            List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
+              && !unit.GetData().GetSummoned()).ToList();
             PlayerMeta player = BaseSaver.GetPlayer();
             List<Unit> pChars = units.Select(unit => new Unit(unit.GetData())).ToList();
             List<string> dests = new List<string>(player.stats.dests);

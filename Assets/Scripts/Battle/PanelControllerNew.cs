@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,10 +12,12 @@ public class PanelControllerNew : MonoBehaviour
     public GameObject playerMain;
     public GameObject playerSub1;
     public GameObject playerSub2;
+    public GameObject playerSub3;
 
     public GameObject enemyMain;
     public GameObject enemySub1;
     public GameObject enemySub2;
+    public GameObject enemySub3;
 
     private List<UnitProxy> players;
     private List<UnitProxy> enemies;
@@ -44,10 +47,12 @@ public class PanelControllerNew : MonoBehaviour
         instance.playerMain.SetActive(false);
         instance.playerSub1.SetActive(false);
         instance.playerSub2.SetActive(false);
+        instance.playerSub3.SetActive(false);
         
         instance.enemyMain.SetActive(false);
         instance.enemySub1.SetActive(false);
         instance.enemySub2.SetActive(false);
+        instance.enemySub3.SetActive(false);
     }
 
     public static void SwitchChar(UnitProxy unit)
@@ -66,18 +71,18 @@ public class PanelControllerNew : MonoBehaviour
     }
 
     static void LoadPlayerPanel(UnitProxy unit){
-        List<UnitProxy> remainingPlayers = new List<UnitProxy>(instance.players);
+        List<UnitProxy> remainingPlayers = new List<UnitProxy>(instance.players.Where(unt => unt.GetData().GetCurrHealth() > 0));
         remainingPlayers.Remove(unit);
-        LoadPanelSuite(instance.playerMain, instance.playerSub1, instance.playerSub2, unit, remainingPlayers);
+        LoadPanelSuite(instance.playerMain, instance.playerSub1, instance.playerSub2, instance.playerSub3, unit, remainingPlayers);
     }
 
     static void LoadEnemyPanel(UnitProxy unit){
-        List<UnitProxy> remainingEnemies = new List<UnitProxy>(instance.enemies);
+        List<UnitProxy> remainingEnemies = new List<UnitProxy>(instance.enemies.Where(unt => unt.GetData().GetCurrHealth() > 0));
         remainingEnemies.Remove(unit);
-        LoadPanelSuite(instance.enemyMain, instance.enemySub1, instance.enemySub2, unit, remainingEnemies);
+        LoadPanelSuite(instance.enemyMain, instance.enemySub1, instance.enemySub2, instance.enemySub3, unit, remainingEnemies);
     }
 
-    static void LoadPanelSuite(GameObject main, GameObject sub1, GameObject sub2, UnitProxy unit, List<UnitProxy> remainingUnits){
+    static void LoadPanelSuite(GameObject main, GameObject sub1, GameObject sub2, GameObject sub3, UnitProxy unit, List<UnitProxy> remainingUnits){
         remainingUnits.Remove(unit);
         RefreshMainPanel(main, unit);
         if (remainingUnits.Count > 0) {
@@ -85,6 +90,9 @@ public class PanelControllerNew : MonoBehaviour
         }
         if (remainingUnits.Count > 1) {
             RefreshSubPanel(sub2, remainingUnits[1]);
+        }
+        if (remainingUnits.Count > 2) {
+            RefreshSubPanel(sub3, remainingUnits[2]);
         }
     }
 
@@ -105,10 +113,10 @@ public class PanelControllerNew : MonoBehaviour
                 {
                     if (t.name.Equals("HealthFillBar"))
                     {
-                      t.GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().mxHlth;
+                      t.GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().GetMaxHP();
                     } else if (t.name.Equals("HealthText"))
                     {
-                      t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrHealth().ToString() + " / " + unit.GetData().mxHlth.ToString();
+                      t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrHealth().ToString() + " / " + unit.GetData().GetMaxHP().ToString();
                     }
                 }
             }
@@ -168,7 +176,7 @@ public class PanelControllerNew : MonoBehaviour
                 child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTurnActions().atk.ToString();
             }
             if (child.name.Equals("HealthOutline")) {
-                child.GetChild(0).GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().mxHlth;
+                child.GetChild(0).GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().GetMaxHP();
             }
         }
     }

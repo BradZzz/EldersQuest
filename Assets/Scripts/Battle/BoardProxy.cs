@@ -55,6 +55,23 @@ public class BoardProxy : MonoBehaviour
         TurnController.instance.StartTurn();
     }
 
+    public void SummonAtPosition(Vector3Int pos, int team, int val){
+        UnitProxy unit = glossary.GetComponent<Glossary>().summonedSkeleton;
+        PopulateAtPos(pos, unit, team, val);
+    }
+
+    public void PopulateAtPos(Vector3Int pos, UnitProxy unit, int team, int val){
+        TileProxy tl = tiles[pos.x, pos.y];
+        //if (!tl.HasUnit()) {
+        UnitProxy newUnit = Instantiate(unit, transform);
+        newUnit.Init();
+        newUnit.PutData(newUnit.GetData().SummonedData(team, val));
+        newUnit.GetData().SetSummoned(true);
+        tl.ReceiveGridObjectProxy(newUnit);
+        newUnit.SnapToCurrentPosition();
+        //}
+    }
+
     void PopulatePlayer()
     {
         PlayerMeta player = BaseSaver.GetPlayer();

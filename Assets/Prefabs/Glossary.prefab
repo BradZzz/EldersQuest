@@ -48,3 +48,5 @@ MonoBehaviour:
   - {fileID: 4488396556959502835, guid: 7f8b19a44696b9a468cea8cbf8655447, type: 3}
   obstacles:
   - {fileID: 4566907892727034715, guid: bdd97f605b31a4d5ea9a910caaf8c044, type: 3}
+  summonedSkeleton: {fileID: 4488396556959502835, guid: 2a524645c86b747628c8716bcd5e3e3f,
+    type: 3}

@@ -54,9 +54,9 @@ public class UnitProxy : GridObjectProxy
     }
 
     public void ReceiveHPBuff(int buff){
-        int newHp = GetData().mxHlth + buff;
-        if (buff != 0 && newHp > 0) {
-          GetData().SetMaxHP(newHp);
+        GetData().SetHpBuff(GetData().GetHpBuff() + buff);
+        //int newHp = GetData().GetMaxHP() + buff;
+        if (buff != 0) {
           if (buff > 0){
               FloatNumber(buff, Color.blue);
           } else {
@@ -66,9 +66,9 @@ public class UnitProxy : GridObjectProxy
     }
 
     public void ReceiveAtkBuff(int buff){
-        int newAtk = GetData().GetAttack() + buff;
+        GetData().SetAttackBuff(GetData().GetAttackBuff() + buff);
+        //int newAtk = GetData().GetAttack() + buff;
         if (buff != 0) {
-          GetData().SetAttack(buff);
           if (buff > 0){
               FloatNumber(buff, Color.blue);
           } else {

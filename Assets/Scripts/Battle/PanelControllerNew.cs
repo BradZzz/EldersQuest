@@ -142,11 +142,11 @@ public class PanelControllerNew : MonoBehaviour
                 {
                     if (t.name.Equals("MvTrn"))
                     {
-                        RefreshSkillPnl(t, unit.GetData().GetTurnActions().mv.ToString());
+                        RefreshSkillPnl(t, unit.GetData().GetTurnActions().GetMoves().ToString());
                     } 
                     if (t.name.Equals("AtkTrn"))
                     {
-                        RefreshSkillPnl(t, unit.GetData().GetTurnActions().atk.ToString());
+                        RefreshSkillPnl(t, unit.GetData().GetTurnActions().GetAttacks().ToString());
                     }
                 }
             }
@@ -170,10 +170,10 @@ public class PanelControllerNew : MonoBehaviour
                 child.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetUnitType().ToString();
             }
             if (child.name.Equals("mv")) {
-                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTurnActions().mv.ToString();
+                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTurnActions().GetMoves().ToString();
             }
             if (child.name.Equals("atk")) {
-                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTurnActions().atk.ToString();
+                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTurnActions().GetAttacks().ToString();
             }
             if (child.name.Equals("HealthOutline")) {
                 child.GetChild(0).GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().GetMaxHP();

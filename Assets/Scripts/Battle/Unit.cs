@@ -52,7 +52,7 @@ public class Unit : GridObject
     [SerializeField]
     private int hpBuff;
     [SerializeField]
-    private ClassNode currentClass;
+    private string currentClass;
 
 
     public enum UnitType
@@ -75,21 +75,21 @@ public class Unit : GridObject
     }
 
     public Unit(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, int atkRange,
-      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier, FactionType fType = FactionType.Human)
+      int trnMvs, int trnAtks, string[] skills, string currentClass, UnitType uType = UnitType.Soldier, FactionType fType = FactionType.Human)
     {
         Setup(cName + UnityEngine.Random.Range(0,1).ToString(),cMonik, cLvl, team, 
-          mxHlth, atk, moveSpeed, atkRange, trnAtks, trnMvs, skills, uType, fType);
+          mxHlth, atk, moveSpeed, atkRange, trnAtks, trnMvs, skills, currentClass, uType, fType);
     }
 
     public Unit(Unit unit)
     {
         Setup(unit.characterName, unit.characterMoniker, unit.GetLvl(), unit.team, 
           unit.mxHlth, unit.GetAttack(), unit.GetMoveSpeed(), unit.GetAtkRange(), 
-        unit.trnAtks, unit.trnMvs, unit.GetSkills(), unit.uType, unit.fType);
+        unit.trnAtks, unit.trnMvs, unit.GetSkills(), unit.currentClass, unit.uType, unit.fType);
     }
 
     void Setup(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, int atkRange,
-      int trnMvs, int trnAtks, string[] skills, UnitType uType = UnitType.Soldier, FactionType fType = FactionType.Human)
+      int trnMvs, int trnAtks, string[] skills, string currentClass, UnitType uType = UnitType.Soldier, FactionType fType = FactionType.Human)
     {
         this.characterName = cName + UnityEngine.Random.Range(0,1).ToString();
         this.characterMoniker = cMonik;
@@ -99,6 +99,7 @@ public class Unit : GridObject
         this.moveSpeed = moveSpeed;
         this.atkRange = atkRange;
         this.lvl = cLvl;
+        this.currentClass = currentClass;
         this.uType = uType;
         this.fType = fType;
         this.trnAtks = trnAtks;
@@ -107,8 +108,25 @@ public class Unit : GridObject
         this.turnActions = new TurnActionsBasicUnit(trnMvs, trnAtks);
     }
 
+    public int GetTurnAttacks(){
+        return trnAtks;
+    }
+
+    public void SetTurnAttacks(int trnAtks){
+        this.trnAtks = trnAtks;
+    }
+
+    public int GetTurnMoves(){
+        return trnMvs;
+    }
+
+    public void SetTurnMoves(int trnMvs){
+        this.trnMvs = trnMvs;
+    }
+
     public Unit SummonedData(int team, int strength){
-        return new Unit("Skele" + UnityEngine.Random.Range(0,float.MaxValue), "Summoned Skele", strength, team, strength, strength, 3, 2, 1, 1, new string[]{ });
+        return new Unit("Skele" + UnityEngine.Random.Range(0,float.MaxValue), "Summoned Skele", 
+          strength, team, strength, strength, 3, 2, 1, 1, new string[]{ }, "");
     }
   
     public void Init()
@@ -129,12 +147,15 @@ public class Unit : GridObject
         return fType;
     }
 
-    public void SetCurrentClass(ClassNode currentClass){
+    public void SetCurrentClass(string currentClass){
         this.currentClass = currentClass;
     }
 
     public ClassNode GetCurrentClass(){
-        return currentClass;
+        if (currentClass.Length == 0) {
+            return null;
+        }
+        return StaticClassRef.GetClass((StaticClassRef.AvailableClasses)Enum.Parse(typeof(StaticClassRef.AvailableClasses), currentClass));
     }
 
     public bool GetAegis(){
@@ -293,10 +314,10 @@ public class Unit : GridObject
 
         string uName = GenerateRandomName(avoidNames);
 
-        Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 3, 1, 1, new string[1]{ "SkeleKill" }, uType, fType);
+        Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 3, 1, 1, new string[1]{ "SkeleKill" }, "", uType, fType);
         ClassNode classObj = ClassNode.ComputeClassObject(fType,uType);
         bUnit = classObj.UpgradeCharacter(bUnit);
-        bUnit.SetCurrentClass(classObj);
+        bUnit.SetCurrentClass(classObj.GetType().Name);
         return bUnit;
     }
 

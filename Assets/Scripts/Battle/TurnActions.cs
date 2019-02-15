@@ -7,9 +7,9 @@ using UnityEngine;
 public abstract class TurnActions
 {
     //The amount of times this unit can attack
-    public int atk;
+    protected int atk;
     //The amount of times this unit an move
-    public int mv;
+    protected int mv;
 
     public bool idle;
 
@@ -46,6 +46,14 @@ public abstract class TurnActions
         cAtk = 0;
         cMv = 0;
         idle = false;
+    }
+
+    public int GetMoves(){
+        return mv;
+    }
+
+    public int GetAttacks(){
+        return atk;
     }
 
     public bool CanAttack()

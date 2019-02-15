@@ -171,6 +171,7 @@
     <Compile Include="Assets\Scripts\Classes\Human\Soldier\HumanBaseSoldier.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Soldier\HumanBerserkerClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Soldier\HumanPaladinClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\StaticClassRef.cs" />
     <Compile Include="Assets\Scripts\Death\DeathScene.cs" />
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />
     <Compile Include="Assets\Scripts\Map\MapStatic.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\VoidAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\WarpAtk.cs" />
     <Compile Include="Assets\Scripts\TechTree\TechTreeNav.cs" />
+    <Compile Include="Assets\Scripts\TechTree\TechTreeUnitWrap.cs" />
     <Compile Include="Assets\Scripts\Utils\Character.cs" />
     <Compile Include="Assets\Scripts\Utils\CharStatCalculator.cs" />
     <Compile Include="Assets\Scripts\Utils\Draggable.cs" />

@@ -61,8 +61,8 @@ public class TurnController : MonoBehaviour
         foreach(UnitProxy unit in BoardProxy.instance.GetUnits())
         {
             if (unit.GetData().GetTeam() == currentTeam 
-              && unit.GetData().GetTurnActions().atk > 0 
-              && unit.GetData().GetTurnActions().mv > 0)
+              && unit.GetData().GetTurnActions().CanAttack() 
+              && unit.GetData().GetTurnActions().CanMove())
             {
                 Debug.Log("DidWait Turn End Actions");
                 unit.AcceptAction(Skill.Actions.DidWait,null);

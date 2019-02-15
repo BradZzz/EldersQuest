@@ -103,7 +103,7 @@ public class BoardProxy : MonoBehaviour
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
             UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
             units.Add(badGuy);
-            badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 3, 1, 1, new string[0]{ }));
+            badGuy.PutData(new Unit("e" + i.ToString(), "Snoopy Bot" + i.ToString(), 1, ENEMY_TEAM, 3, 1, 3, 3, 1, 1, new string[0]{ }, ""));
             badGuy.Init();
             popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(badGuy);

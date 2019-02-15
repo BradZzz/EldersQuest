@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanTechnomancerClass : ClassNode
 {
   public HumanTechnomancerClass(){
-    whenToUpgrade = 5;
+    whenToUpgrade = 7;
   }
 
   public override string ClassDesc()

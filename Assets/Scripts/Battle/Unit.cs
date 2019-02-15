@@ -314,7 +314,7 @@ public class Unit : GridObject
 
         string uName = GenerateRandomName(avoidNames);
 
-        Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 3, 1, 1, new string[1]{ "SkeleKill" }, "", uType, fType);
+        Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 3, 1, 1, new string[0]{ }, "", uType, fType);
         ClassNode classObj = ClassNode.ComputeClassObject(fType,uType);
         bUnit = classObj.UpgradeCharacter(bUnit);
         bUnit.SetCurrentClass(classObj.GetType().Name);
@@ -349,9 +349,9 @@ public class Unit : GridObject
     static string GetRandomName()
     {
         string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse", "Gloria", "Bertram", "Silvia", 
-          "Natashia", "Bruce", "Silvio" };
+          "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia" };
         string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Killdoom", "Everyman", "Rocketshark", 
-          "Looselips", "Karatease", "Danceswiftly", "Smoulderlust" };
+          "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
 }

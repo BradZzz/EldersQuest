@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanFSergeantClass : ClassNode
 {
   public HumanFSergeantClass(){
-    whenToUpgrade = 5;
+    whenToUpgrade = 6;
   }
 
   public override string ClassDesc()

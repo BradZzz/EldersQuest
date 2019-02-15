@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanBerserkerClass : ClassNode
 {
   public HumanBerserkerClass(){
-    whenToUpgrade = 5;
+    whenToUpgrade = 6;
   }
 
   public override string ClassDesc()

@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanPaladinClass : ClassNode
 {
   public HumanPaladinClass(){
-    whenToUpgrade = 5;
+    whenToUpgrade = 6;
   }
 
   public override string ClassDesc()

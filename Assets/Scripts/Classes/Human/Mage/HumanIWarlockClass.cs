@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanIWarlockClass : ClassNode
 {
   public HumanIWarlockClass(){
-    whenToUpgrade = 5;
+    whenToUpgrade = 7;
   }
 
   public override string ClassDesc()

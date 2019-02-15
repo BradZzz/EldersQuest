@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanCorporalClass : ClassNode
 {
   public HumanCorporalClass(){
-    whenToUpgrade = 5;
+    whenToUpgrade = 6;
   }
 
   public override string ClassDesc()

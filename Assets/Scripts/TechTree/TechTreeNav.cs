@@ -179,6 +179,10 @@ public class TechTreeNav : MonoBehaviour
             {
                 child.GetComponent<TextMeshProUGUI>().text = clss.ClassName();
             }   
+            if (child.name.Equals("Image"))
+            {
+                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = clss.GetWhenToUpgrade().ToString();
+            } 
             if (child.name.Equals("Desc"))
             {
                 child.GetComponent<TextMeshProUGUI>().text = clss.ClassDesc();

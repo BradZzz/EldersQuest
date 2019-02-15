@@ -1,21 +1,9 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Classes/Egypt/Mage/EgyptBaseMage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Brains/BasicBrain.cs">
     <Files>
-      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="22" Column="6" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="94" Column="6" />
-      <File FileName="Assets/Scripts/Menu/MenuController.cs" Line="50" Column="35" />
-      <File FileName="Assets/Scripts/Classes/Cthulu/Scout/CthulhuBaseScout.cs" Line="26" Column="1" />
-      <File FileName="Assets/Scripts/Classes/Cthulu/Scout/CthulhuStolisClass.cs" Line="33" Column="35" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/BideKill.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Classes/Cthulu/Scout/CthulhuTrollClass.cs" Line="24" Column="34" />
-      <File FileName="Assets/Scripts/Classes/Cthulu/Soldier/CthulhuBaseSoldier.cs" Line="31" Column="47" />
-      <File FileName="Assets/Scripts/Classes/Cthulu/Soldier/CthulhuGoliathClass.cs" Line="18" Column="37" />
-      <File FileName="Assets/Scripts/Classes/Cthulu/Soldier/CthulhuVamprossClass.cs" Line="35" Column="1" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/AoeAtk.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Skills/Skill.cs" Line="29" Column="37" />
-      <File FileName="Assets/Scripts/Classes/Egypt/Mage/EgyptConjurerClass.cs" Line="37" Column="25" />
-      <File FileName="Assets/Scripts/Classes/Egypt/Mage/EgyptDjinnClass.cs" Line="35" Column="25" />
-      <File FileName="Assets/Scripts/Classes/Egypt/Mage/EgyptBaseMage.cs" Line="30" Column="1" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="97" Column="68" />
+      <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="79" Column="35" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="83" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

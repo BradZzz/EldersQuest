@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+  Pulls attacked enemy in
+*/
+
 [Serializable]
 public class VoidAtk : Skill
 {
@@ -21,7 +25,19 @@ public class VoidAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
-      //attacker.GetData().SetAegis(true);
+      TileProxy defTile = BoardProxy.instance.GetTileAtPosition(defender.GetPosition());
+      TileProxy atkTile = BoardProxy.instance.GetTileAtPosition(attacker.GetPosition());
+
+      Path<TileProxy> path = BoardProxy.instance.GetPath(atkTile, defTile, defender, true);
+      foreach (TileProxy tl in path)
+      {
+          if (tl != defTile && tl != atkTile) {
+              tl.ReceiveGridObjectProxy(defender);
+              defTile.RemoveGridObjectProxy(defender);
+              defender.SnapToCurrentPosition();
+              break;
+          }
+      }
   }
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)

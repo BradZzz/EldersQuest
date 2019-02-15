@@ -184,6 +184,25 @@ public class BoardProxy : MonoBehaviour
         }
         return units;
     }
+
+    public List<TileProxy> GetOpenTiles()
+    {
+        List<TileProxy> open = new List<TileProxy>();
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                bool neighborFlag = tiles[x, y].Neighbours.Where(tl => tl.HasUnit()).Any();
+                //If the tile doesn't have anything on it, and it's neightbors don't have units
+                if (!tiles[x, y].HasObstruction() && !neighborFlag)
+                {
+                    open.Add(tiles[x, y]);
+                }
+            }
+        }
+        return open;
+    }
   
     public Dictionary<int,int> CountTeams()
     {
@@ -333,6 +352,9 @@ public class BoardProxy : MonoBehaviour
   
     public TileProxy GetTileAtPosition(Vector3Int pos)
     {
-        return tiles[pos.x, pos.y];
+        if (pos.x >= 0 && pos.x < width && pos.y >= 0 && pos.y < height){
+            return tiles[pos.x, pos.y];
+        }
+        return null;
     }
 }

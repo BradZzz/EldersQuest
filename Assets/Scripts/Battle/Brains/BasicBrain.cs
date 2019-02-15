@@ -94,10 +94,12 @@ public class BasicBrain : MonoBehaviour
                     Debug.Log("Trying to Attack");
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
                     unit.OnSelected();
-                    yield return new WaitForSeconds(.5f);
+                    yield return new WaitForSeconds(.1f);
                     oppTile.ForceHighlight();
-                    yield return new WaitForSeconds(.25f);
+                    yield return new WaitForSeconds(.3f);
                     oppTile.UnHighlight();
+                    opposingTeamTiles[0].GetUnit().OnSelected();
+                    yield return new WaitForSeconds(.5f);
                     opposingTeamTiles[0].GetUnit().OnSelected();
                     didSomething = true;
                 }

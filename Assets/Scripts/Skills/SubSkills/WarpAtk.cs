@@ -21,7 +21,15 @@ public class WarpAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
-      //attacker.GetData().SetAegis(true);
+      List<TileProxy> availableTiles = BoardProxy.instance.GetOpenTiles();
+      HelperScripts.Shuffle(availableTiles);
+
+      if (availableTiles.Count > 0) {
+          TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(defender.GetPosition());
+          availableTiles[0].ReceiveGridObjectProxy(defender);
+          oldTile.RemoveGridObjectProxy(defender);
+          defender.SnapToCurrentPosition(); 
+      } 
   }
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)

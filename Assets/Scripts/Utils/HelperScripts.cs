@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class HelperScripts
 {
-    private static Random rng = new Random();  
+    private static System.Random rng = new System.Random();  
 
     public static void Shuffle<T>(this IList<T> list)  
     {  

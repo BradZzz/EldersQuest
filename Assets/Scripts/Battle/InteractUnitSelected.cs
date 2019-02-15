@@ -10,10 +10,12 @@ public class InteractUnitSelected : InteractMode
     private List<TileProxy> attackableTiles = new List<TileProxy>();
 
     private UnitProxy currentUnit;
+    private UnitProxy toAttack;
     public override void OnTileSelected(TileProxy tile)
     {
         if (currentUnit != null && visitableTiles.Contains(tile))
         {
+            toAttack = null;
             TileProxy startTile = BoardProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
             if (startTile != tile) {
                 UnitProxy unit = startTile.GetUnit();
@@ -78,6 +80,7 @@ public class InteractUnitSelected : InteractMode
     {
         if (currentUnit == null)
         {
+            toAttack = null;
             UnHighlightTiles();
             currentUnit = obj;
             //The maximum range in which a player has actions
@@ -91,29 +94,35 @@ public class InteractUnitSelected : InteractMode
         }
         else
         {
-            if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
-              && allTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
-              && currentUnit.GetData().GetTurnActions().CanAttack())
-            {
-                if (obj.IsAttacked(currentUnit))
-                {
-                    //Log the kill with the unit
-                    currentUnit.AddLevel();
-                    //Perform after kill skills
-                    currentUnit.AcceptAction(Skill.Actions.DidKill,obj);
-                    //Check the conditiontracker for game end
-                    ConditionTracker.instance.EvalDeath(obj);                     
-                    //Turn off the tiles
-                    StartCoroutine(ResetTiles());
-                }
-
-                //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
-                if (currentUnit != null) {
-                    currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
-                }
-
-                OnDisable();
-                PanelControllerNew.SwitchChar(currentUnit);
+            if (toAttack != obj) {
+              toAttack = obj;
+              PanelControllerNew.SwitchChar(currentUnit, toAttack);
+            } else {
+              if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
+                && allTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
+                && currentUnit.GetData().GetTurnActions().CanAttack())
+              {
+                  toAttack = null;
+                  if (obj.IsAttacked(currentUnit))
+                  {
+                      //Log the kill with the unit
+                      currentUnit.AddLevel();
+                      //Perform after kill skills
+                      currentUnit.AcceptAction(Skill.Actions.DidKill,obj);
+                      //Check the conditiontracker for game end
+                      ConditionTracker.instance.EvalDeath(obj);                     
+                      //Turn off the tiles
+                      StartCoroutine(ResetTiles());
+                  }
+  
+                  //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
+                  if (currentUnit != null) {
+                      currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
+                  }
+  
+                  OnDisable();
+                  PanelControllerNew.SwitchChar(currentUnit);
+              }
             }
         }
     }

@@ -31,6 +31,12 @@ public class UnitProxy : GridObjectProxy
 
     public bool IsAttacked(UnitProxy oppUnit)
     {
+      if (_data.GetAegis()) {
+          _data.SetAegis(false);
+          FloatNumber(0, Color.blue);
+          return false;
+      }
+
       //Decrement the attacking units attack actions and update the ui
       oppUnit.GetData().GetTurnActions().Attack();
       PanelControllerNew.SwitchChar(oppUnit);
@@ -47,6 +53,12 @@ public class UnitProxy : GridObjectProxy
 
     public bool IsAttackedEnvironment(int atkPwr)
     {
+      if (_data.GetAegis()) {
+          _data.SetAegis(false);
+          FloatNumber(0, Color.blue);
+          return false;
+      }
+
       //Damage the unit
       GetData().IsAttacked(atkPwr);
       FloatNumber(atkPwr, Color.red);

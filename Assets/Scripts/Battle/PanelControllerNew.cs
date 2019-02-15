@@ -70,6 +70,16 @@ public class PanelControllerNew : MonoBehaviour
         }
     }
 
+    public static void SwitchChar(UnitProxy player, UnitProxy enemy)
+    {
+        ClearPanels();
+        if (player != null && enemy != null) {
+            Debug.Log("Attacking Chars: " + player.GetData().characterMoniker + "-" + enemy.GetData().characterMoniker);
+            LoadPlayerPanel(player);
+            LoadEnemyPanel(enemy);
+        }
+    }
+
     static void LoadPlayerPanel(UnitProxy unit){
         List<UnitProxy> remainingPlayers = new List<UnitProxy>(instance.players.Where(unt => unt.GetData().GetCurrHealth() > 0));
         remainingPlayers.Remove(unit);

@@ -30,8 +30,7 @@ public class EgyptManglerClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      int trnMc = unit.GetTurnMoves();
-      unit.SetTurnMoves(trnMc);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       return unit;
   }
 }

@@ -97,7 +97,8 @@ public class ConditionTracker : MonoBehaviour
         if (won)
         {
             string nxtScene = "MapScene";
-            if (unlkChar)
+            PlayerMeta player = BaseSaver.GetPlayer();
+            if (unlkChar && player.characters.Length < 6)
             {
                 nxtScene = "CharSelectScreen";
             }

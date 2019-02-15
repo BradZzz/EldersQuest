@@ -30,8 +30,8 @@ public class HumanPaladinClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      int atk = unit.GetAttack();
-      unit.SetAttack(atk + 2);
+      int atk = unit.GetMaxHP();
+      unit.SetMaxHP(atk + 2);
       return unit;
   }
 }

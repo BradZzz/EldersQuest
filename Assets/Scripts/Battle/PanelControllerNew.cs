@@ -106,7 +106,8 @@ public class PanelControllerNew : MonoBehaviour
                 child.GetComponent<TextMeshProUGUI>().text = unit.GetData().characterMoniker;
             }
             if (child.name.Equals("CharType")) {
-                child.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetUnitType().ToString();
+                child.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrentClass() != null 
+                  ? unit.GetData().GetCurrentClass().ClassName() : unit.GetData().GetUnitType().ToString();
             }
             if (child.name.Equals("HealthOutline")) {
                 foreach (Transform t in child.transform)

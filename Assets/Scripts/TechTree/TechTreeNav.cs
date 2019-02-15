@@ -51,6 +51,7 @@ public class TechTreeNav : MonoBehaviour
     void PopulateRw(Unit unt){
         GameObject nwRow = Instantiate(chrRW, chrSelect.transform);
         nwRow.GetComponent<TechTreeUnitWrap>().unit = unt;
+        nwRow.GetComponent<TechTreeUnitWrap>().Refresh();
         RefreshMainPanel(nwRow, unt);
 
         UnityEngine.Events.UnityAction action1 = () => { instance.CharClicked(unt); };
@@ -61,9 +62,6 @@ public class TechTreeNav : MonoBehaviour
         Debug.Log("RefreshMainPanel: " + unit.characterMoniker);
         panel.SetActive(true);
         foreach(Transform child in panel.transform){
-            //if (child.name.Equals("CharImg")) {
-            //    child.GetComponent<Image>().sprite = unit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
-            //}
             if (child.name.Equals("CharName")) {
                 child.GetComponent<TextMeshProUGUI>().text = unit.characterMoniker;
             }

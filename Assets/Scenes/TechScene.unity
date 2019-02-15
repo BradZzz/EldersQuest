@@ -1876,6 +1876,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6841262665145887950, guid: ca05f965226e24dae95d2537e36451ad,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6841262665861077644, guid: ca05f965226e24dae95d2537e36451ad,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -1904,6 +1909,11 @@ PrefabInstance:
     - target: {fileID: 6841262665890599145, guid: ca05f965226e24dae95d2537e36451ad,
         type: 3}
       propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841262665890599145, guid: ca05f965226e24dae95d2537e36451ad,
+        type: 3}
+      propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6841262664440130449, guid: ca05f965226e24dae95d2537e36451ad,
@@ -2155,6 +2165,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841262665890599126, guid: ca05f965226e24dae95d2537e36451ad,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -136
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841262665890599126, guid: ca05f965226e24dae95d2537e36451ad,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 245.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca05f965226e24dae95d2537e36451ad, type: 3}

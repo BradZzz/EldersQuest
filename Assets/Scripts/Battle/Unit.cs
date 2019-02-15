@@ -62,8 +62,17 @@ public class Unit : GridObject
 
     public enum FactionType
     {
-        Human, Egypt, Cthulu, None
+        Human, Egypt, Cthulhu, None
     };
+
+    public static string GetFactionDesc(FactionType faction){
+        switch(faction){
+            case FactionType.Human: return "Balanced";
+            case FactionType.Egypt: return "Tactics";
+            case FactionType.Cthulhu: return "Magic and Abilities";
+            default: return "";
+        }
+    }
 
     public Unit()
     {
@@ -84,7 +93,7 @@ public class Unit : GridObject
     public Unit(Unit unit)
     {
         Setup(unit.characterName, unit.characterMoniker, unit.GetLvl(), unit.team, 
-          unit.mxHlth, unit.GetAttack(), unit.GetMoveSpeed(), unit.GetAtkRange(), 
+          unit.mxHlth, unit.GetBaseAttack(), unit.GetMoveSpeed(), unit.GetAtkRange(), 
         unit.trnAtks, unit.trnMvs, unit.GetSkills(), unit.currentClass, unit.uType, unit.fType);
     }
 
@@ -263,6 +272,11 @@ public class Unit : GridObject
 
     public void SetMaxHP(int mxHlth){
         this.mxHlth = this.cHlth = mxHlth;
+    }
+
+    public int GetBaseAttack()
+    {
+        return atk;
     }
 
     public int GetAttack()

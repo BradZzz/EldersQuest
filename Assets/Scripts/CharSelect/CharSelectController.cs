@@ -16,15 +16,16 @@ public class CharSelectController : MonoBehaviour
 
     void Awake()
     {
+        PlayerMeta player = BaseSaver.GetPlayer();
         panels = new GameObject[panelGroup.transform.childCount];
         for (int i = 0; i < panelGroup.transform.childCount; i++)
         {
             panels[i] = panelGroup.transform.GetChild(i).gameObject;
         }
         selectableUnits = new Unit[]{
-            Unit.BuildInitial(Unit.FactionType.Human, Unit.UnitType.Mage, BoardProxy.PLAYER_TEAM),
-            Unit.BuildInitial(Unit.FactionType.Human, Unit.UnitType.Scout, BoardProxy.PLAYER_TEAM),
-            Unit.BuildInitial(Unit.FactionType.Human,  Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM),
+            Unit.BuildInitial(player.faction, Unit.UnitType.Mage, BoardProxy.PLAYER_TEAM),
+            Unit.BuildInitial(player.faction, Unit.UnitType.Scout, BoardProxy.PLAYER_TEAM),
+            Unit.BuildInitial(player.faction,  Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM),
         };
         for (int i = 0; i < selectableUnits.Length && i < panels.Length; i++)
         {

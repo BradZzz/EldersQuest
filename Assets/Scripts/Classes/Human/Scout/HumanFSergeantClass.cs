@@ -12,7 +12,7 @@ public class HumanFSergeantClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nSkill{HealAlliesAtk}";
+    return "+1 hp\nHealAlliesAtk";
   }
 
   public override string ClassName()

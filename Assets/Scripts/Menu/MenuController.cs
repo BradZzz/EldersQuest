@@ -48,7 +48,7 @@ public class MenuController : MonoBehaviour
       player = new PlayerMeta();
       player.stats.dests = new string[] { "Dest1" };
       BaseSaver.PutPlayer(player);
-      nxtScene = "CharSelectScreen";
+      nxtScene = "FactionScene";
     }
         PlaySelectSaveSound();
         //Load the scene

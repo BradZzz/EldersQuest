@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptNomadClass : ClassNode
 {
   public EgyptNomadClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL2;
   }
 
   public override string ClassDesc()

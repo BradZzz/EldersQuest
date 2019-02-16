@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuBaseScout : ClassNode
 {
   public CthulhuBaseScout(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptBaseScout : ClassNode
 {
   public EgyptBaseScout(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

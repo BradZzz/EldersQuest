@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptDjinnClass : ClassNode
 {
   public EgyptDjinnClass(){
-    whenToUpgrade = 7;
+    whenToUpgrade = StaticClassRef.LEVEL2;
   }
 
   public override string ClassDesc()

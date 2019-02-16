@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptAshClass : ClassNode
 {
   public EgyptAshClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

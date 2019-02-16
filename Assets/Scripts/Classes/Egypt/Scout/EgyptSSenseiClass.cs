@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptSSenseiClass : ClassNode
 {
   public EgyptSSenseiClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

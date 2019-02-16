@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanBaseMage : ClassNode
 {
   public HumanBaseMage(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanLieutenantClass : ClassNode
 {
   public HumanLieutenantClass(){
-    whenToUpgrade = 12;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptBaseMage : ClassNode
 {
   public EgyptBaseMage(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

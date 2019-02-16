@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptWhispererClass : ClassNode
 {
   public EgyptWhispererClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL2;
   }
 
   public override string ClassDesc()

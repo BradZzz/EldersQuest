@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuStolisClass : ClassNode
 {
   public CthulhuStolisClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL2;
   }
 
   public override string ClassDesc()

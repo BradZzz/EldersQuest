@@ -23,7 +23,9 @@ public class ThornDef : Skill
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, 2, true)){
           if (tl.HasUnit() && !tl == BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
-              tl.GetUnit().IsAttackedEnvironment(value);
+              if (tl.GetUnit().IsAttackedEnvironment(value)){
+                  defender.GetData().SetLvl(defender.GetData().GetLvl() + 1);
+              }
           }
       }
   }

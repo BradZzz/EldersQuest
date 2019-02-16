@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanIPaladinClass : ClassNode
 {
   public HumanIPaladinClass(){
-    whenToUpgrade = 12;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

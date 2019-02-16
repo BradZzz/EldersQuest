@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuApparitionClass : ClassNode
 {
   public CthulhuApparitionClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

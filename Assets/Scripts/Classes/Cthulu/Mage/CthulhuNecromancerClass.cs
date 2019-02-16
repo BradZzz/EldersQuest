@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuNecromancerClass : ClassNode
 {
   public CthulhuNecromancerClass(){
-    whenToUpgrade = 7;
+    whenToUpgrade = StaticClassRef.LEVEL2;
   }
 
   public override string ClassDesc()

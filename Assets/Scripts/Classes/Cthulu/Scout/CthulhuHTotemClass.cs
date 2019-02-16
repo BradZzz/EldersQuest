@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuHTotemClass : ClassNode
 {
   public CthulhuHTotemClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

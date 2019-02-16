@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanWizardClass : ClassNode
 {
   public HumanWizardClass(){
-    whenToUpgrade = 12;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

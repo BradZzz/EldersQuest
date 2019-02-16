@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptFBenderClass : ClassNode
 {
   public EgyptFBenderClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

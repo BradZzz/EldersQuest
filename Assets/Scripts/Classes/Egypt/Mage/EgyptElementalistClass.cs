@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptElementalistClass : ClassNode
 {
   public EgyptElementalistClass(){
-    whenToUpgrade = 10;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

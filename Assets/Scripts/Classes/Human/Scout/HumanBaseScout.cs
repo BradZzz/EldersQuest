@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanBaseScout : ClassNode
 {
   public HumanBaseScout(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

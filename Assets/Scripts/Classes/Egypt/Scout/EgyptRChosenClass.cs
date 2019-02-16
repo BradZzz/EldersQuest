@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptRChosenClass : ClassNode
 {
   public EgyptRChosenClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

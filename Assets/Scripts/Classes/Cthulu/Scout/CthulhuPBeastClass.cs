@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuPBeastClass : ClassNode
 {
   public CthulhuPBeastClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

@@ -12,6 +12,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     [SerializeField]
     private Transform anchor;
 
+    private UnitProxy unitThatSetTileOnFire;
     private int fireTrns;
     private Sprite def, fireAlt;
 
@@ -158,7 +159,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         return objectProxies.Where(op => op is UnitProxy && ((UnitProxy)op).GetData().GetTeam() == team).Any();
     }
 
-    public void SetTurnsOnFire(int trns){
+    public void SetTurnsOnFire(int trns, UnitProxy unit){
+        unitThatSetTileOnFire = unit;
         fireTrns += trns;
         if (fireTrns > 0) {
             GetComponent<SpriteRenderer>().sprite = fireAlt;
@@ -173,6 +175,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         if (fireTrns > 0 && HasUnit()) {
             //Only injure unit from fire if it's that unit's team's turn
             if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && GetUnit().IsAttackedEnvironment(1)){
+                if (unitThatSetTileOnFire != null) {
+                    unitThatSetTileOnFire.GetData().SetLvl(unitThatSetTileOnFire.GetData().GetLvl() + 1);
+                }
                 ConditionTracker.instance.EvalDeath(GetUnit());
             }
         }
@@ -180,6 +185,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         fireTrns = fireTrns - 1 > 0 ? fireTrns - 1 : 0;
         if (fireTrns == 0) {
             GetComponent<SpriteRenderer>().sprite = def;
+            unitThatSetTileOnFire = null;
         }
     }
 

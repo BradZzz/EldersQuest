@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptGeomancerClass : ClassNode
 {
   public EgyptGeomancerClass(){
-    whenToUpgrade = 7;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

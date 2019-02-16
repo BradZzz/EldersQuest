@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptBaseSoldier : ClassNode
 {
   public EgyptBaseSoldier(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

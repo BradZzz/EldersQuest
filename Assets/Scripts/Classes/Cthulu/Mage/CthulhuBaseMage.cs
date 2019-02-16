@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuBaseMage : ClassNode
 {
   public CthulhuBaseMage(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

@@ -7,7 +7,7 @@ using UnityEngine;
 public class EgyptConjurerClass : ClassNode
 {
   public EgyptConjurerClass(){
-    whenToUpgrade = 7;
+    whenToUpgrade = StaticClassRef.LEVEL2;
   }
 
   public override string ClassDesc()

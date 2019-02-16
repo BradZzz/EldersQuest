@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuBaseSoldier : ClassNode
 {
   public CthulhuBaseSoldier(){
-    whenToUpgrade = 1;
+    whenToUpgrade = StaticClassRef.LEVEL1;
   }
 
   public override string ClassDesc()

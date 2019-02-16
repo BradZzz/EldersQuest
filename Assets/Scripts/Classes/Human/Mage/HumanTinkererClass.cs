@@ -7,7 +7,7 @@ using UnityEngine;
 public class HumanTinkererClass : ClassNode
 {
   public HumanTinkererClass(){
-    whenToUpgrade = 12;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

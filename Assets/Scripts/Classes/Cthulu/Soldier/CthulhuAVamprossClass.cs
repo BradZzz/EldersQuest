@@ -7,7 +7,7 @@ using UnityEngine;
 public class CthulhuAVamprossClass : ClassNode
 {
   public CthulhuAVamprossClass(){
-    whenToUpgrade = 6;
+    whenToUpgrade = StaticClassRef.LEVEL3;
   }
 
   public override string ClassDesc()

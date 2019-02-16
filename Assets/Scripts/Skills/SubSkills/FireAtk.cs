@@ -23,7 +23,7 @@ public class FireAtk : Skill
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, value, true)){
           if (!tl.HasObstacle()) {
-              tl.SetTurnsOnFire(2);
+              tl.SetTurnsOnFire(2, attacker);
           }
       }
   }

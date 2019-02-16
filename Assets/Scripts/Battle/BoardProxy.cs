@@ -50,7 +50,7 @@ public class BoardProxy : MonoBehaviour
         BuildTestBoard();
         PopulatePlayer();
         PopulateEnemies();
-        PlaceObstacles();
+        PlaceObstaclesAlt();
         foreach(UnitProxy unit in GetUnits())
         {
             unit.AcceptAction(Skill.Actions.BeginGame,null);
@@ -116,20 +116,49 @@ public class BoardProxy : MonoBehaviour
         }
     }
 
-    void PlaceObstacles()
+    //void PlaceObstacles()
+    //{
+    //    Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(-1));
+    //    Debug.Log("PopulateObs: " + validTls.Count.ToString());
+    //    for (int i = 0; i < boardMeta.enemies.Length * 2; i++)
+    //    {
+    //        //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
+    //        ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[0], transform);
+    //        obs.Init();
+    //        TileProxy popTile = validTls.Dequeue();
+    //        popTile.ReceiveGridObjectProxy(obs);
+    //        obs.SnapToCurrentPosition();
+    //        Debug.Log("Obstacle placed at: " + popTile.GetPosition().ToString());
+    //    }
+    //}
+
+    void PlaceObstaclesAlt()
     {
-        Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(-1));
-        Debug.Log("PopulateObs: " + validTls.Count.ToString());
-        for (int i = 0; i < boardMeta.enemies.Length * 2; i++)
-        {
-            //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
-            ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[0], transform);
-            obs.Init();
-            TileProxy popTile = validTls.Dequeue();
-            popTile.ReceiveGridObjectProxy(obs);
-            obs.SnapToCurrentPosition();
-            Debug.Log("Obstacle placed at: " + popTile.GetPosition().ToString());
+        int obsRand = UnityEngine.Random.Range(0,3);
+        for (int y =  0; y < height; y++) {
+            for (int x = width/2 - 1; x < width/2 + 2; x++) {
+                if (obsRand == 0 ? HasObs1(x,y) : (obsRand == 1 ? HasObs2(x,y) : HasObs3(x,y))) {
+                    ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[0], transform);
+                    obs.Init();
+                    if (!tiles[x,y].HasUnit()) {
+                        tiles[x,y].ReceiveGridObjectProxy(obs);
+                        obs.SnapToCurrentPosition();
+                    }
+                }
+            }
         }
+    }
+
+    bool HasObs1(int x, int y){
+      return y > height * .70 || y < height * .30;
+    }
+
+    bool HasObs2(int x, int y){
+      return y < height * .70 && y > height * .40;
+    }
+
+    bool HasObs3(int x, int y){
+      return (y < height * .80 && y > height * .60) || (y < height * .40 && y > height * .20);
     }
   
     TileProxy[] GetSideTiles(int team)

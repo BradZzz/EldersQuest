@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/TurnActions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Classes/Egypt/Soldier/EgyptBesClass.cs">
     <Files>
       <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="198" Column="106" />
-      <File FileName="Assets/Scripts/Battle/TurnActions.cs" Line="51" Column="16" />
+      <File FileName="Assets/Scripts/Battle/TurnActions.cs" Line="55" Column="22" />
       <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="38" Column="115" />
+      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="161" Column="92" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptBaseSoldier.cs" Line="10" Column="42" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptBesClass.cs" Line="15" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

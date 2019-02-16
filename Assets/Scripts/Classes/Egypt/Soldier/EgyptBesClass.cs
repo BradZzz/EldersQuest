@@ -12,7 +12,7 @@ public class EgyptBesClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 mv\nAegis Attack";
+      return "+1 mv\nAegisAlliesAttack";
   }
 
   public override string ClassName()

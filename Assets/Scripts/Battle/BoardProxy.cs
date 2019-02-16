@@ -51,6 +51,10 @@ public class BoardProxy : MonoBehaviour
         PopulatePlayer();
         PopulateEnemies();
         PlaceObstacles();
+        foreach(UnitProxy unit in GetUnits())
+        {
+            unit.AcceptAction(Skill.Actions.BeginGame,null);
+        }
         PanelControllerNew.instance.LoadInitUnits(GetUnits());
         TurnController.instance.StartTurn();
     }

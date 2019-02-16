@@ -119,6 +119,20 @@ public class PanelControllerNew : MonoBehaviour
                 child.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrentClass() != null 
                   ? unit.GetData().GetCurrentClass().ClassName() : unit.GetData().GetUnitType().ToString();
             }
+            if (child.name.Equals("Skills")) {
+                string txt = unit.GetData().GetSkills().Any() ? unit.GetData().GetSkills().Aggregate((s1, s2) => s1 + "\n" + s2) : "";
+                child.GetComponent<TextMeshProUGUI>().text = txt;
+            }
+            if (child.name.Equals("Exp")) {
+                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetLvl().ToString();
+            }
+            if (child.name.Equals("Aegis")) {
+                if (unit.GetData().GetAegis()) {
+                    child.gameObject.SetActive(true);
+                } else {
+                    child.gameObject.SetActive(false);
+                }
+            }
             if (child.name.Equals("HealthOutline")) {
                 foreach (Transform t in child.transform)
                 {

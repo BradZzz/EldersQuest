@@ -31,15 +31,17 @@ public class UnitProxy : GridObjectProxy
 
     public bool IsAttacked(UnitProxy oppUnit)
     {
+      Debug.Log("IsAttacked");
+      oppUnit.GetData().GetTurnActions().Attack();
+      PanelControllerNew.SwitchChar(oppUnit);
+
       if (_data.GetAegis()) {
+          Debug.Log("Aegis!");
           _data.SetAegis(false);
           FloatNumber(0, Color.blue);
           return false;
       }
-
-      //Decrement the attacking units attack actions and update the ui
-      oppUnit.GetData().GetTurnActions().Attack();
-      PanelControllerNew.SwitchChar(oppUnit);
+      Debug.Log("No Aegis");
 
       //Damage the unit
       GetData().IsAttacked(oppUnit.GetData().GetAttack());

@@ -35,6 +35,8 @@ public class BasicBrain : MonoBehaviour
             bool didSomething = true;
             while (didSomething)
             {
+                Debug.Log("AI Char: " + unit.GetData().characterMoniker + " : " + unit.GetData().GetTurnActions().GetMoves() + 
+                  "/" + unit.GetData().GetTurnActions().GetAttacks());
                 didSomething = false;
                 //Look at all the visitable tiles
                 List<TileProxy> visitableTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed(), true);

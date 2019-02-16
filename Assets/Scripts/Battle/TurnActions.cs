@@ -49,11 +49,11 @@ public abstract class TurnActions
     }
 
     public int GetMoves(){
-        return mv;
+        return cMv;
     }
 
     public int GetAttacks(){
-        return atk;
+        return cAtk;
     }
 
     public bool CanAttack()

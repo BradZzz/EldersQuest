@@ -25,7 +25,7 @@ public class EgyptConjurerClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptElementalistClass(), new EgyptGeomancerClass()};
   }
 
   public override Unit UpgradeCharacter(Unit unit)

@@ -25,7 +25,7 @@ public class EgyptScionClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptBesClass(), new EgyptHapyClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

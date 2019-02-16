@@ -25,7 +25,7 @@ public class HumanIWarlockClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanWizardClass(), new HumanArchMageClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

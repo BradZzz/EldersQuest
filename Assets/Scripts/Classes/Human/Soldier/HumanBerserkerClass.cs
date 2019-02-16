@@ -25,7 +25,7 @@ public class HumanBerserkerClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanFMarineClass(), new HumanGDancerClass() };
   }
 
  

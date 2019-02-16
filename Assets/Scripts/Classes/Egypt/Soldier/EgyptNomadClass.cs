@@ -12,7 +12,7 @@ public class EgyptNomadClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\n+1 atk";
+    return "+1 atk\n+1 hp";
   }
 
   public override string ClassName()
@@ -25,7 +25,7 @@ public class EgyptNomadClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptAshClass(), new EgyptAnukeClass() };
   }
 
  

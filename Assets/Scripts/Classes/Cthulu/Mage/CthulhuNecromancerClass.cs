@@ -12,7 +12,7 @@ public class CthulhuNecromancerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+3 hp\nSkeleKill";
+    return "+2 hp\nSkeleKill";
   }
 
   public override string ClassName()
@@ -25,13 +25,13 @@ public class CthulhuNecromancerClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new CthulhuLichClass(), new CthulhuFurymancerClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)
   {
       int hp = unit.GetMaxHP();
-      unit.SetMaxHP(hp + 3);
+      unit.SetMaxHP(hp + 2);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("SkeleKill");
       unit.SetSkills(skills.ToArray());

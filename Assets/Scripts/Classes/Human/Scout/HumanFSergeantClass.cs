@@ -25,7 +25,7 @@ public class HumanFSergeantClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanCSergeantClass(), new HumanMSergeantClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

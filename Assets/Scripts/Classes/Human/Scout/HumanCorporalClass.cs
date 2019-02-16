@@ -25,7 +25,7 @@ public class HumanCorporalClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanCaptainClass(), new HumanLieutenantClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

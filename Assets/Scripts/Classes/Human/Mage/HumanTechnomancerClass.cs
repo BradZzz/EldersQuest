@@ -25,7 +25,7 @@ public class HumanTechnomancerClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanTinkererClass(), new HumanGeniusClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

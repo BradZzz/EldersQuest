@@ -25,7 +25,7 @@ public class CthulhuVamprossClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new CthulhuAVamprossClass(), new CthulhuSuccubusClass() };
   }
 
  
@@ -33,7 +33,7 @@ public class CthulhuVamprossClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("nHealAtk");
+      skills.Add("HealAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

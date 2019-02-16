@@ -12,7 +12,7 @@ public class EgyptWhispererClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nFireMove";
+    return "+1 hp\nFireMove";
   }
 
   public override string ClassName()
@@ -25,7 +25,7 @@ public class EgyptWhispererClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptRChosenClass(), new EgyptArsonistClass()};
   }
  
   public override Unit UpgradeCharacter(Unit unit)

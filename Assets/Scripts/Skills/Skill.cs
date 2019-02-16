@@ -23,6 +23,7 @@ public abstract class Skill
 
     public static Skill ReturnSkillByString(SkillClasses sClass){
         switch(sClass){
+            case SkillClasses.AegisAlliesAtk: return new AegisAlliesAtk();
             case SkillClasses.AegisAtk: return new AegisAtk();
             case SkillClasses.AegisBegin: return new AegisBegin();
             case SkillClasses.AegisWait: return new AegisWait();
@@ -32,6 +33,7 @@ public abstract class Skill
             case SkillClasses.EnfeebleAtk: return new EnfeebleAtk();
             case SkillClasses.FireAtk: return new FireAtk();
             case SkillClasses.FireDef: return new FireDef();
+            case SkillClasses.FireKill: return new FireKill();
             case SkillClasses.FireMove: return new FireMove();
             case SkillClasses.ForceAtk: return new ForceAtk();  
             case SkillClasses.HealAlliesAtk: return new HealAlliesAtk(); 
@@ -40,6 +42,8 @@ public abstract class Skill
             case SkillClasses.HealTurn: return new HealTurn();
             case SkillClasses.HealWait: return new HealWait();
             case SkillClasses.RageAlliesWait: return new RageAlliesWait();
+            case SkillClasses.RageAtk: return new RageAtk();
+            case SkillClasses.RageDef: return new RageDef();
             case SkillClasses.RageKill: return new RageKill();
             case SkillClasses.RageMove: return new RageMove();
             case SkillClasses.RageWait: return new RageWait();
@@ -58,8 +62,8 @@ public abstract class Skill
     }
 
     public enum SkillClasses{
-        AegisAtk, AegisBegin, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, FireAtk, FireDef, FireMove, ForceAtk, 
+        AegisAlliesAtk, AegisAtk, AegisBegin, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, FireAtk, FireDef, FireKill, FireMove, ForceAtk, 
         HealAtk, HealAlliesAtk, HealKill, HealTurn, HealWait,
-        RageAlliesWait, RageKill, RageMove, RageWait, RootAtk, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
+        RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
     }
 }

@@ -171,7 +171,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void DecrementTileEffects(){
         if (fireTrns > 0 && HasUnit()) {
-            if (GetUnit().IsAttackedEnvironment(1)){
+            //Only injure unit from fire if it's that unit's team's turn
+            if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && GetUnit().IsAttackedEnvironment(1)){
                 ConditionTracker.instance.EvalDeath(GetUnit());
             }
         }

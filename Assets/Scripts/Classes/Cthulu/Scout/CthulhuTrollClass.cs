@@ -25,7 +25,7 @@ public class CthulhuTrollClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new CthulhuPBeastClass(), new CthulhuDEaterClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

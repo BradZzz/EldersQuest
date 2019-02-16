@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitProxy : GridObjectProxy
 {
@@ -29,10 +30,12 @@ public class UnitProxy : GridObjectProxy
       _data.SetLvl(_data.GetLvl()+1);
     }
 
-    public bool IsAttacked(UnitProxy oppUnit)
+    public bool IsAttacked(UnitProxy oppUnit, bool useAttack = true)
     {
       Debug.Log("IsAttacked");
-      oppUnit.GetData().GetTurnActions().Attack();
+      if (useAttack) {
+          oppUnit.GetData().GetTurnActions().Attack();
+      }
       PanelControllerNew.SwitchChar(oppUnit);
 
       if (_data.GetAegis()) {
@@ -46,6 +49,7 @@ public class UnitProxy : GridObjectProxy
       //Damage the unit
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       Shake();
+      FloatNumber(oppUnit.GetData().GetAttack(), Color.red);
       if (GetData().IsDead())
       {
         return true;
@@ -115,8 +119,31 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
+    public void FloatUp(int num, Color color){
+        StartCoroutine(FloatUpAnim(num, color));
+    }
+
+    IEnumerator FloatUpAnim(int num, Color color)
+    {
+        Debug.Log("FloatUpAnim");
+        Vector3 pos = this.transform.position;
+        Debug.Log("FloatUpAnim pos: " + pos.ToString());
+        pos.y += 1.3f;
+        GameObject numObj = Instantiate(new GameObject(), pos, Quaternion.identity, this.transform);
+        //GameObject numObj = Instantiate(new GameObject(), this.transform, true);
+        numObj.AddComponent<TextMesh>();
+        numObj.GetComponent<TextMesh>().characterSize = .2f;
+        numObj.GetComponent<TextMesh>().text = num.ToString();
+        numObj.GetComponent<TextMesh>().color = color;
+        iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .5f);
+        iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .5f);
+        yield return new WaitForSeconds(1f);
+        Destroy(numObj);
+        yield return null;
+    }
+
     public void FloatNumber(int num, Color color){
-        Jump();
+        FloatUp(num, color);
     }
 
     public void HealUnit(int value){

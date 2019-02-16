@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharSelectScreen.unity
     guid: a920ca02a00ed4092a25943077e801bd
+  - enabled: 1
+    path: Assets/Scenes/TechScene.unity
+    guid: 18d80c623e60243f0a49d39a16d54036
+  - enabled: 1
+    path: Assets/Scenes/FactionScene.unity
+    guid: 28f8962f5c3ee4a0cbfcd973839c8670
   m_configObjects: {}

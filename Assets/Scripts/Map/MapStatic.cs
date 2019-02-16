@@ -35,28 +35,31 @@ public class MapStatic
     {
         List<Unit> units = new List<Unit>();
         Array values = Enum.GetValues(typeof(Unit.UnitType));
-        for(int i = 0; i < 3 && i < lvl; i++) {
-            int exp = UnityEngine.Random.Range(0,lvl);
+        int max = 3 > lvl ? lvl : 3;
+        int lvlCnt = lvl;
+        for(int i = 0; i < max; i++) {
+            int exp = UnityEngine.Random.Range(0,lvlCnt);
             Unit newUnit = Unit.BuildInitial(Unit.FactionType.Egypt, 
               (Unit.UnitType)values.GetValue(UnityEngine.Random.Range(0,values.Length-1)), BoardProxy.ENEMY_TEAM);
-            if (i == 2) {
-                newUnit.SetLvl(lvl);
+            if (i == max - 1) {
+                newUnit.SetLvl(lvlCnt);
             } else {
                 newUnit.SetLvl(exp);
             }
-            lvl -= exp;
+            lvlCnt -= exp;
+            units.Add(newUnit);
         }
-        if (lvl < 3) {
+        Debug.Log("Units: " + units.Count.ToString());
+        if (units.Count < 3) {
             return units.ToArray();
         }
         /*
           Upgrade units here
         */
         for(int i = 0; i < units.Count; i++){
-            ClassNode cNode = units[i].GetCurrentClass();
-            while(units[i].GetLvl() >= cNode.GetWhenToUpgrade()) {
+            while(units[i].GetLvl() >= units[i].GetCurrentClass().GetWhenToUpgrade()) {
                 int choice = UnityEngine.Random.Range(0,2);
-                ClassNode pickedUpgrade = cNode.GetChildren()[choice];
+                ClassNode pickedUpgrade = units[i].GetCurrentClass().GetChildren()[choice];
                 units[i] = pickedUpgrade.UpgradeCharacter(units[i]);
                 units[i].SetCurrentClass(pickedUpgrade.GetType().ToString());
             }

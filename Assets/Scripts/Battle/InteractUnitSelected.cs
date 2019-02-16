@@ -94,9 +94,12 @@ public class InteractUnitSelected : InteractMode
         }
         else
         {
-            if (toAttack != obj) {
+            if (toAttack != obj && currentUnit != obj) {
               toAttack = obj;
-              PanelControllerNew.SwitchChar(currentUnit, toAttack);
+              UnitProxy player = currentUnit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM ? currentUnit : toAttack;
+              UnitProxy enemy = currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM ? currentUnit : toAttack;
+
+              PanelControllerNew.SwitchChar(player, enemy);
             } else {
               if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
                 && allTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))

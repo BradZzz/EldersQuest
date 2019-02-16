@@ -30,6 +30,10 @@ public class FireMove : Skill
   }
 
   public override void DidMove(UnitProxy unit, List<TileProxy> path){
+      //path.RemoveAt(0);
+      if (path == null || path.Count == 0) {
+          return;
+      }
       path.RemoveAt(0);
       foreach(TileProxy tile in path) {
           tile.SetTurnsOnFire(value * 2, unit);

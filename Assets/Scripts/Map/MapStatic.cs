@@ -57,11 +57,11 @@ public class MapStatic
           Upgrade units here
         */
         for(int i = 0; i < units.Count; i++){
-            while(units[i].GetLvl() >= units[i].GetCurrentClass().GetWhenToUpgrade()) {
-                int choice = UnityEngine.Random.Range(0,2);
+            while(units[i].GetLvl() >= units[i].GetCurrentClass().GetWhenToUpgrade() && units[i].GetCurrentClass().GetChildren().Length > 0) {
+                int choice = UnityEngine.Random.Range(0,units[i].GetCurrentClass().GetChildren().Length);
                 ClassNode pickedUpgrade = units[i].GetCurrentClass().GetChildren()[choice];
                 units[i] = pickedUpgrade.UpgradeCharacter(units[i]);
-                units[i].SetCurrentClass(pickedUpgrade.GetType().ToString());
+                units[i].SetCurrentClass(pickedUpgrade.GetType().ToString());    
             }
         }
         return units.ToArray();

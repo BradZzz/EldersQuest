@@ -68,9 +68,9 @@
 //    }
 //}
 
- using System;
- using UnityEngine;
- using UnityEngine.EventSystems;
+using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -98,17 +98,18 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
          //    this.transform.parent = this.transform.parent.parent;
          //}
          //this.transform.parent = this.transform.parent.parent;
-         transform.parent = transform.root;
+         //transform.parent = transform.root;
          transform.parent = transform.parent.parent;
      }
  
      public void OnEndDrag(PointerEventData eventData)
      {
         Debug.Log("OnEndDrag: " + parent.name);
-         if (initialPointerId == eventData.pointerId)
-         {
-             initialPointerId = int.MaxValue;
-         }
+        SetParent(parent);
+        if (initialPointerId == eventData.pointerId)
+        {
+           initialPointerId = int.MaxValue;
+        }
      }
  
      public void OnDrag(PointerEventData eventData)
@@ -123,6 +124,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Debug.Log("Parent Set To: " + parent.name);
         this.parent = parent;
         this.transform.parent = this.parent;
+        this.transform.parent.gameObject.SetActive(false);
+        this.transform.parent.gameObject.SetActive(true);
         //LayoutRebuilder.ForceRebuildLayoutImmediate(this.toReturn.GetComponent<RectTransform>());
      }
   
@@ -133,7 +136,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
      public void SetToReturn(Transform toReturn){
         Debug.Log("toReturn Set To: " + toReturn.name);
         this.toReturn = toReturn;
-        LayoutRebuilder.ForceRebuildLayoutImmediate(this.toReturn.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(this.parent.GetComponent<RectTransform>());
      }
   
      public Transform GetToReturn(){

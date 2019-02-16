@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TechTreeNav : MonoBehaviour
@@ -198,5 +199,25 @@ public class TechTreeNav : MonoBehaviour
               t.GetChild(0).GetComponent<TextMeshProUGUI>().text = val;
             }
         }
+    }
+
+    public void SaveAndReturn(){
+        PlayerMeta player = BaseSaver.GetPlayer();
+        List<Unit> units = new List<Unit>();
+        foreach (Transform child in chrSelect.transform)
+        {
+            foreach (Transform chld in child)
+            {
+                foreach(Unit unt in player.characters){
+                    if (chld.name.Equals("CharName") && chld.GetComponent<TextMeshProUGUI>().text.Equals(unt.characterMoniker)) {
+                        units.Add(unt);
+                    }
+                }
+            }
+        }
+        player.characters = units.ToArray();
+        //player.characters.Reverse();
+        BaseSaver.PutPlayer(player);
+        SceneManager.LoadScene("MapScene");
     }
 }

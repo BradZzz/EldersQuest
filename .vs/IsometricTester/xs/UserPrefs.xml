@@ -1,13 +1,10 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Map/MapNavigator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/Draggable.cs">
     <Files>
-      <File FileName="Assets/Scripts/CharSelect/CharSelectController.cs" Line="10" Column="34" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="41" Column="38" />
-      <File FileName="Assets/Scripts/Map/MapStatic.cs" Line="8" Column="49" />
-      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="113" Column="13" />
-      <File FileName="Assets/Scripts/Skills/SkillReference.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Classes/StaticClassRef.cs" Line="9" Column="33" />
-      <File FileName="Assets/Scripts/Map/MapNavigator.cs" Line="116" Column="36" />
+      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="209" Column="10" />
+      <File FileName="Assets/Scripts/Utils/SceneNav.cs" Line="10" Column="5" />
+      <File FileName="Assets/Scripts/Utils/Draggable.cs" Line="70" Column="1" />
+      <File FileName="Assets/Scripts/Utils/DropZone.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

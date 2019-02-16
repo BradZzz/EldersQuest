@@ -553,10 +553,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6487763273944749694, guid: 4c916f9ca097343c7a6e3ee23e15187d,
-          type: 3}
-        m_MethodName: MoveToScene
-        m_Mode: 5
+      - m_Target: {fileID: 1851152734}
+        m_MethodName: SaveAndReturn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1617,15 +1616,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6658607716870825015, guid: 6b430de563f8f4f23890448ff68b1ed2,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5712633498373682200, guid: 6b430de563f8f4f23890448ff68b1ed2,
         type: 3}
       propertyPath: m_Name
       value: techRw
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658607716870825015, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712633498373682203, guid: 6b430de563f8f4f23890448ff68b1ed2,
         type: 3}

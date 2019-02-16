@@ -8,8 +8,8 @@ public class MapStatic
     public static Dictionary<string, BoardMeta> ReturnTestBoardDests()
     {
       Dictionary<string, BoardMeta> board = new Dictionary<string, BoardMeta>();
-      board.Add("Dest1",new BoardMeta(6, 6, CreateUnits(1), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
-      board.Add("Dest2",new BoardMeta(8, 8, CreateUnits(2), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
+      board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
+      board.Add("Dest2",new BoardMeta(8, 8, CreateFromExp(2), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
       board.Add("Dest3",new BoardMeta(10, 10, CreateFromExp(3), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
       board.Add("Dest4",new BoardMeta(10, 10, CreateFromExp(5), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest5" }));
       board.Add("Dest5",new BoardMeta(12, 12, CreateFromExp(7), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest6" }));
@@ -35,7 +35,7 @@ public class MapStatic
     {
         List<Unit> units = new List<Unit>();
         Array values = Enum.GetValues(typeof(Unit.UnitType));
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < 3 && i < lvl; i++) {
             int exp = UnityEngine.Random.Range(0,lvl);
             Unit newUnit = Unit.BuildInitial(Unit.FactionType.Egypt, 
               (Unit.UnitType)values.GetValue(UnityEngine.Random.Range(0,values.Length-1)), BoardProxy.ENEMY_TEAM);
@@ -45,6 +45,9 @@ public class MapStatic
                 newUnit.SetLvl(exp);
             }
             lvl -= exp;
+        }
+        if (lvl < 3) {
+            return units.ToArray();
         }
         /*
           Upgrade units here

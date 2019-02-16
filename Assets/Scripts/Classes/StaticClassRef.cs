@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StaticClassRef
 {
-    public static int LEVEL1 = 1;
-    public static int LEVEL2 = 2;
-    public static int LEVEL3 = 3;
+    public static int LEVEL1 = 2;
+    public static int LEVEL2 = 5;
+    public static int LEVEL3 = 8;
 
     public static ClassNode GetClass(AvailableClasses cType){
         switch(cType){

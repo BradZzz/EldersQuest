@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class UnitProxy : GridObjectProxy
 {
+    public static float NO_ATK_WAIT = .5f;
+    public static float ATK_WAIT = 1.6f;
+
     private Unit _data;
     protected override GridObject data
     {
@@ -41,7 +44,7 @@ public class UnitProxy : GridObjectProxy
       if (_data.GetAegis()) {
           Debug.Log("Aegis!");
           _data.SetAegis(false);
-          FloatUp("-aegis", Color.blue);
+          FloatUp("-aegis", Color.blue, ATK_WAIT);
           return false;
       }
       Debug.Log("No Aegis");
@@ -50,17 +53,17 @@ public class UnitProxy : GridObjectProxy
       /*
         Trigger the opponent's attack trigger here
       */
-      Animator anim = oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>();
-      if (anim != null) {
-          if (anim.GetBool("IDLE_FRONT_LEFT")) {
-              anim.SetTrigger("ATK_FRONT_LEFT");
-          } else {
-              anim.SetTrigger("ATK_BACK_LEFT");
-          }
-      }
+
+      Vector3Int animStart = oppUnit.GetPosition();
+      Vector3Int animEnd = GetPosition();
+
+      Debug.Log("animStart: " + animStart.ToString());
+      Debug.Log("animEnd: " + animEnd.ToString());
+
+      Vector3Int diff = animEnd - animStart;
+
+      StartCoroutine(AttackAnim(oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
-      Shake();
-      FloatUp("-" + oppUnit.GetData().GetAttack().ToString(), Color.red);
       if (GetData().IsDead())
       {
         return true;
@@ -68,17 +71,61 @@ public class UnitProxy : GridObjectProxy
       return false;
     }
 
+    IEnumerator AttackAnim(Animator anim, Transform opp, Vector3Int diff, string msg){
+      if (anim != null) {
+          //if (anim.GetBool("IDLE_FRONT_LEFT")) {
+          //    anim.SetTrigger("ATK_FRONT_LEFT");
+          //} else {
+          //    anim.SetTrigger("ATK_BACK_LEFT");
+          //}
+          Vector3 theScale = opp.localScale;
+          if (diff.x > 0) {
+            Debug.Log("right");
+            theScale.x = -1;
+            anim.SetBool("IDLE_FRONT_LEFT", false);
+            while(anim.GetBool("IDLE_FRONT_LEFT")){ }
+            anim.SetTrigger("ATK_BACK_LEFT");
+          } else if (diff.x < 0) {
+            Debug.Log("left");
+            theScale.x = 1;
+            anim.SetBool("IDLE_FRONT_LEFT", true);
+            while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
+            anim.SetTrigger("ATK_FRONT_LEFT");
+          } else {
+            //Defender is right below or above attacker
+            if (diff.y > 0) {
+              Debug.Log("up");
+              theScale.x = 1;
+              anim.SetBool("IDLE_FRONT_LEFT", false);
+              while(anim.GetBool("IDLE_FRONT_LEFT")){ }
+              anim.SetTrigger("ATK_BACK_LEFT");
+            } else if (diff.y < 0) {
+              Debug.Log("down");
+              theScale.x = -1;
+              anim.SetBool("IDLE_FRONT_LEFT", true);
+              while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
+              anim.SetTrigger("ATK_FRONT_LEFT");
+            }
+          }
+          opp.localScale = theScale;
+      }
+
+      yield return new WaitForSeconds(1.6f);
+      Shake();
+      FloatUp(msg, Color.red, ATK_WAIT);
+    }
+
     public bool IsAttackedEnvironment(int atkPwr)
     {
       if (_data.GetAegis()) {
           _data.SetAegis(false);
-          FloatUp("-aegis", Color.blue);
+          FloatUp("-aegis", Color.blue, ATK_WAIT);
           return false;
       }
 
       //Damage the unit
       GetData().IsAttacked(atkPwr);
-      FloatUp("-" + atkPwr.ToString(), Color.red);
+      FloatUp("-" + atkPwr.ToString(), Color.red, ATK_WAIT);
       if (GetData().IsDead())
       {
         return true;
@@ -91,9 +138,9 @@ public class UnitProxy : GridObjectProxy
         //int newHp = GetData().GetMaxHP() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp("+" + buff + " hp", Color.blue);
+              FloatUp("+" + buff + " hp", Color.blue, NO_ATK_WAIT);
           } else {
-              FloatUp("-" + buff + " hp", Color.cyan);
+              FloatUp("-" + buff + " hp", Color.cyan, NO_ATK_WAIT);
           }
         }
     }
@@ -103,9 +150,9 @@ public class UnitProxy : GridObjectProxy
         //int newAtk = GetData().GetAttack() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp("+" + buff + " atk", Color.blue);
+              FloatUp("+" + buff + " atk", Color.blue, NO_ATK_WAIT);
           } else {
-              FloatUp("-" + buff + " atk", Color.cyan);
+              FloatUp("-" + buff + " atk", Color.cyan, NO_ATK_WAIT);
           }
         }
     }
@@ -130,12 +177,13 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    public void FloatUp(string msg, Color color){
-        StartCoroutine(FloatUpAnim(msg, color));
+    public void FloatUp(string msg, Color color, float wait){
+        StartCoroutine(FloatUpAnim(msg, color, wait));
     }
 
-    IEnumerator FloatUpAnim(string msg, Color color)
+    IEnumerator FloatUpAnim(string msg, Color color, float wait)
     {
+        yield return new WaitForSeconds(wait);
         Debug.Log("FloatUpAnim");
         Vector3 pos = this.transform.position;
         Debug.Log("FloatUpAnim pos: " + pos.ToString());
@@ -158,8 +206,8 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    public void FloatString(string num, Color color){
-        FloatUp(num, color);
+    public void FloatString(string num, Color color, float wait){
+        FloatUp(num, color, wait);
     }
 
     public void HealUnit(int value){
@@ -167,7 +215,7 @@ public class UnitProxy : GridObjectProxy
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
        if (nwHlth != GetData().GetCurrHealth()) {
          GetData().SetCurrHealth(nwHlth);
-         FloatUp("+" + value.ToString(), Color.green);
+         FloatUp("+" + value.ToString(), Color.green, NO_ATK_WAIT);
        }
     }
 
@@ -249,71 +297,40 @@ public class UnitProxy : GridObjectProxy
           Debug.Log("animEnd: " + animEnd.ToString());
 
           Vector3 diff = animEnd - animStart;
-          float turnWait = .1f;
+          //float turnWait = .1f;
 
           Debug.Log("Diff: " + diff.ToString());
 
           if (diff.x > 0) {
             Debug.Log("right");
-            //if ((int)theScale.x == 1) {
-                theScale.x = -1;
-            //    yield return new WaitForSeconds(turnWait);
-            //}
-            if (anim.GetBool("IDLE_FRONT_LEFT")) {
-                anim.SetBool("IDLE_FRONT_LEFT", false);
-                while(anim.GetBool("IDLE_FRONT_LEFT")){ }
-                //yield return new WaitForSeconds(turnWait);
-            }
+            theScale.x = -1;
+            anim.SetBool("IDLE_FRONT_LEFT", false);
+            while(anim.GetBool("IDLE_FRONT_LEFT")){ }
             anim.SetBool("MV_BACK_LEFT", true);
             anim.SetBool("MV_FRONT_LEFT", false);
-            //theScale.x = -1;
           } else if (diff.x < 0) {
             Debug.Log("left");
-            //wrong up and to left
-            //if ((int)theScale.x == -1) {
-                theScale.x = 1;
-            //    yield return new WaitForSeconds(turnWait);
-            //}
-            if (!anim.GetBool("IDLE_FRONT_LEFT")) {
-                anim.SetBool("IDLE_FRONT_LEFT", true);
-                while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
-                //yield return new WaitForSeconds(turnWait);
-            }
+            theScale.x = 1;
+            anim.SetBool("IDLE_FRONT_LEFT", true);
+            while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
             anim.SetBool("MV_BACK_LEFT", false);
             anim.SetBool("MV_FRONT_LEFT", true);
-            //theScale.x = 1;
           } else {
             //Defender is right below or above attacker
             if (diff.y > 0) {
               Debug.Log("up");
-              //if ((int)theScale.x == -1) {
-                theScale.x = 1;
-              //  yield return new WaitForSeconds(turnWait);
-              //}
-              //correct
-              if (anim.GetBool("IDLE_FRONT_LEFT")) {
-                  anim.SetBool("IDLE_FRONT_LEFT", false);
-                  while(anim.GetBool("IDLE_FRONT_LEFT")){ }
-                  //yield return new WaitForSeconds(turnWait);
-              }
+              theScale.x = 1;
+              anim.SetBool("IDLE_FRONT_LEFT", false);
+              while(anim.GetBool("IDLE_FRONT_LEFT")){ }
               anim.SetBool("MV_BACK_LEFT", true);
               anim.SetBool("MV_FRONT_LEFT", false);
-              //theScale.x = 1;
             } else if (diff.y < 0) {
               Debug.Log("down");
-              //if ((int)theScale.x == 1) {
-                theScale.x = -1;
-              //  yield return new WaitForSeconds(turnWait);
-              //}
-              //wrong. anim up and to the right
-              if (!anim.GetBool("IDLE_FRONT_LEFT")) {
-                  anim.SetBool("IDLE_FRONT_LEFT", true);
-                  while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
-                  //yield return new WaitForSeconds(turnWait);
-              }
+              theScale.x = -1;
+              anim.SetBool("IDLE_FRONT_LEFT", true);
+              while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
               anim.SetBool("MV_BACK_LEFT", false);
               anim.SetBool("MV_FRONT_LEFT", true);
-              //theScale.x = -1;
             }
           }
           transform.localScale = theScale;

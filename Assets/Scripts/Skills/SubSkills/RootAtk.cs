@@ -21,7 +21,7 @@ public class RootAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
-      BoardProxy.instance.GetTileAtPosition(defender.GetPosition()).FloatUp("rooted", Color.grey);
+      BoardProxy.instance.GetTileAtPosition(defender.GetPosition()).FloatUp("rooted", Color.grey, TileProxy.ATK_WAIT);
       defender.GetData().GetTurnActions().RootForTurns(value);
   }
 

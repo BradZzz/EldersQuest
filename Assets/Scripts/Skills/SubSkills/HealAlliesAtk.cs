@@ -22,7 +22,7 @@ public class HealAlliesAtk : Skill
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(attacker, value + 1, true)){
-          tl.FloatUp("heal", Color.green);
+          tl.FloatUp("heal", Color.green, TileProxy.ATK_WAIT);
           if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam() && !tl == BoardProxy.instance.GetTileAtPosition(attacker.GetPosition())) {
               tl.GetUnit().HealUnit(1);
           }

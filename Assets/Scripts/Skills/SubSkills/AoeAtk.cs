@@ -23,12 +23,19 @@ public class AoeAtk : Skill
   {
       /* Injure everything else that isn't that defender */
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, value + 1, true)){
-          tl.FloatUp("boom", Color.magenta);
+          tl.FloatUp("boom", Color.magenta, TileProxy.ATK_WAIT);
           if (tl.HasUnit() && tl.GetUnit() != defender) {
               tl.GetUnit().IsAttacked(attacker,false);
           }
       }
   }
+
+  //IEnumerator ShowBoomAnim(UnitProxy pivot){
+  //    yield return new WaitForSeconds(1.6f);
+  //    foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(pivot, value + 1, true)){
+  //        tl.FloatUp("boom", Color.magenta);
+  //    }
+  //}
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {

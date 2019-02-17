@@ -36,7 +36,7 @@ public class RageAlliesWait : Skill
   public override void DidWait(UnitProxy unit)
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(unit, value + 1, true)){
-          tl.FloatUp("inspired", Color.yellow);
+          tl.FloatUp("inspired", Color.yellow, TileProxy.NO_ATK_WAIT);
           if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == unit.GetData().GetTeam() && !tl == BoardProxy.instance.GetTileAtPosition(unit.GetPosition())) {
               unit.ReceiveAtkBuff(1);
           }

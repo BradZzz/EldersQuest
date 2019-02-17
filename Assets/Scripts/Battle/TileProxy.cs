@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public static float NO_ATK_WAIT = .5f;
+    public static float ATK_WAIT = 1.6f;
+
     [SerializeField]
     private Tile tile;
 
@@ -203,17 +206,18 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
            if ( timeLeft <= 0 )
            {
               timeLeft = FIRE_DELAY_TIME;
-              FloatUp("fire", Color.red);
+              FloatUp("fire", Color.red, 0);
            }
        }
     }
 
-    public void FloatUp(string msg, Color color){
-        StartCoroutine(FloatUpAnim(msg, color));
+    public void FloatUp(string msg, Color color, float wait){
+        StartCoroutine(FloatUpAnim(msg, color, wait));
     }
 
-    IEnumerator FloatUpAnim(string msg, Color color)
+    IEnumerator FloatUpAnim(string msg, Color color, float wait)
     {
+        yield return new WaitForSeconds(wait);
         Debug.Log("FloatUpAnim");
         Vector3 pos = this.transform.position;
         Debug.Log("FloatUpAnim pos: " + pos.ToString());

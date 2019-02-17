@@ -226,6 +226,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         numObj.transform.rotation = Quaternion.identity;
         numObj.transform.parent = transform;
         numObj.AddComponent<TextMesh>();
+        numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
         numObj.GetComponent<TextMesh>().characterSize = .2f;
         numObj.GetComponent<TextMesh>().text = msg;
         numObj.GetComponent<TextMesh>().color = color;

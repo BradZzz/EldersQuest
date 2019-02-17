@@ -249,19 +249,20 @@ public class UnitProxy : GridObjectProxy
           Debug.Log("animEnd: " + animEnd.ToString());
 
           Vector3 diff = animEnd - animStart;
-          float turnWait = 0;
+          float turnWait = .1f;
 
           Debug.Log("Diff: " + diff.ToString());
 
           if (diff.x > 0) {
             Debug.Log("right");
-            if ((int)theScale.x == 1) {
+            //if ((int)theScale.x == 1) {
                 theScale.x = -1;
-                yield return new WaitForSeconds(turnWait);
-            }
+            //    yield return new WaitForSeconds(turnWait);
+            //}
             if (anim.GetBool("IDLE_FRONT_LEFT")) {
                 anim.SetBool("IDLE_FRONT_LEFT", false);
-                yield return new WaitForSeconds(turnWait);
+                while(anim.GetBool("IDLE_FRONT_LEFT")){ }
+                //yield return new WaitForSeconds(turnWait);
             }
             anim.SetBool("MV_BACK_LEFT", true);
             anim.SetBool("MV_FRONT_LEFT", false);
@@ -269,13 +270,14 @@ public class UnitProxy : GridObjectProxy
           } else if (diff.x < 0) {
             Debug.Log("left");
             //wrong up and to left
-            if ((int)theScale.x == -1) {
+            //if ((int)theScale.x == -1) {
                 theScale.x = 1;
-                yield return new WaitForSeconds(turnWait);
-            }
+            //    yield return new WaitForSeconds(turnWait);
+            //}
             if (!anim.GetBool("IDLE_FRONT_LEFT")) {
                 anim.SetBool("IDLE_FRONT_LEFT", true);
-                yield return new WaitForSeconds(turnWait);
+                while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
+                //yield return new WaitForSeconds(turnWait);
             }
             anim.SetBool("MV_BACK_LEFT", false);
             anim.SetBool("MV_FRONT_LEFT", true);
@@ -284,28 +286,30 @@ public class UnitProxy : GridObjectProxy
             //Defender is right below or above attacker
             if (diff.y > 0) {
               Debug.Log("up");
-              if ((int)theScale.x == -1) {
+              //if ((int)theScale.x == -1) {
                 theScale.x = 1;
-                yield return new WaitForSeconds(turnWait);
-              }
+              //  yield return new WaitForSeconds(turnWait);
+              //}
               //correct
               if (anim.GetBool("IDLE_FRONT_LEFT")) {
                   anim.SetBool("IDLE_FRONT_LEFT", false);
-                  yield return new WaitForSeconds(turnWait);
+                  while(anim.GetBool("IDLE_FRONT_LEFT")){ }
+                  //yield return new WaitForSeconds(turnWait);
               }
               anim.SetBool("MV_BACK_LEFT", true);
               anim.SetBool("MV_FRONT_LEFT", false);
               //theScale.x = 1;
             } else if (diff.y < 0) {
               Debug.Log("down");
-              if ((int)theScale.x == 1) {
+              //if ((int)theScale.x == 1) {
                 theScale.x = -1;
-                yield return new WaitForSeconds(turnWait);
-              }
+              //  yield return new WaitForSeconds(turnWait);
+              //}
               //wrong. anim up and to the right
               if (!anim.GetBool("IDLE_FRONT_LEFT")) {
                   anim.SetBool("IDLE_FRONT_LEFT", true);
-                  yield return new WaitForSeconds(turnWait);
+                  while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
+                  //yield return new WaitForSeconds(turnWait);
               }
               anim.SetBool("MV_BACK_LEFT", false);
               anim.SetBool("MV_FRONT_LEFT", true);

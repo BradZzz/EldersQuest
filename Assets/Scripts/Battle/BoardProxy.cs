@@ -138,9 +138,9 @@ public class BoardProxy : MonoBehaviour
         for (int y =  0; y < height; y++) {
             for (int x = width/2 - 1; x < width/2 + 2; x++) {
                 if (obsRand == 0 ? HasObs1(x,y) : (obsRand == 1 ? HasObs2(x,y) : HasObs3(x,y))) {
-                    ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[0], transform);
-                    obs.Init();
                     if (!tiles[x,y].HasUnit()) {
+                        ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[0], transform);
+                        obs.Init();
                         tiles[x,y].ReceiveGridObjectProxy(obs);
                         obs.SnapToCurrentPosition();
                     }

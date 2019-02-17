@@ -47,6 +47,17 @@ public class UnitProxy : GridObjectProxy
       Debug.Log("No Aegis");
 
       //Damage the unit
+      /*
+        Trigger the opponent's attack trigger here
+      */
+      Animator anim = oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>();
+      if (anim != null) {
+          if (anim.GetBool("IDLE_FRONT_LEFT")) {
+              anim.SetTrigger("ATK_FRONT_LEFT");
+          } else {
+              anim.SetTrigger("ATK_BACK_LEFT");
+          }
+      }
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       Shake();
       FloatUp("-" + oppUnit.GetData().GetAttack().ToString(), Color.red);
@@ -136,6 +147,7 @@ public class UnitProxy : GridObjectProxy
         numObj.transform.rotation = Quaternion.identity;
         numObj.transform.parent = transform;
         numObj.AddComponent<TextMesh>();
+        numObj.GetComponent<MeshRenderer>().sortingOrder = 10001;
         numObj.GetComponent<TextMesh>().characterSize = .2f;
         numObj.GetComponent<TextMesh>().text = msg;
         numObj.GetComponent<TextMesh>().color = color;
@@ -205,15 +217,103 @@ public class UnitProxy : GridObjectProxy
         {
             yield return StartCoroutine(LerpToTile(t, .15f));
         }
+        Animator anim = transform.GetChild(0).GetComponent<Animator>();
+        if (anim != null) {
+            //if (anim.GetBool("MV_BACK_LEFT")) {
+            //    anim.SetBool("IDLE_FRONT_LEFT", false);
+            //} else {
+            //    anim.SetBool("IDLE_FRONT_LEFT", true);
+            //}
+            anim.SetBool("MV_BACK_LEFT", false);
+            anim.SetBool("MV_FRONT_LEFT", false);
+        }
         AcceptAction(Skill.Actions.DidMove, null, path.ToList());
         SnapToCurrentPosition();
-
     }
 
     public virtual IEnumerator LerpToTile(TileProxy tile, float time)
     {
         Vector3 start = transform.position;
         Vector3 end = BoardProxy.GetWorldPosition(tile.GetPosition());
+        /*
+          Right here is where the animation needs to be set
+        */
+        Animator anim = transform.GetChild(0).GetComponent<Animator>();
+        if (anim != null) {
+          Vector3 theScale = transform.localScale;
+
+          Vector3Int animStart = GetPosition();
+          Vector3Int animEnd = tile.GetPosition();
+  
+          Debug.Log("animStart: " + animStart.ToString());
+          Debug.Log("animEnd: " + animEnd.ToString());
+
+          Vector3 diff = animEnd - animStart;
+          float turnWait = 0;
+
+          Debug.Log("Diff: " + diff.ToString());
+
+          if (diff.x > 0) {
+            Debug.Log("right");
+            if ((int)theScale.x == 1) {
+                theScale.x = -1;
+                yield return new WaitForSeconds(turnWait);
+            }
+            if (anim.GetBool("IDLE_FRONT_LEFT")) {
+                anim.SetBool("IDLE_FRONT_LEFT", false);
+                yield return new WaitForSeconds(turnWait);
+            }
+            anim.SetBool("MV_BACK_LEFT", true);
+            anim.SetBool("MV_FRONT_LEFT", false);
+            //theScale.x = -1;
+          } else if (diff.x < 0) {
+            Debug.Log("left");
+            //wrong up and to left
+            if ((int)theScale.x == -1) {
+                theScale.x = 1;
+                yield return new WaitForSeconds(turnWait);
+            }
+            if (!anim.GetBool("IDLE_FRONT_LEFT")) {
+                anim.SetBool("IDLE_FRONT_LEFT", true);
+                yield return new WaitForSeconds(turnWait);
+            }
+            anim.SetBool("MV_BACK_LEFT", false);
+            anim.SetBool("MV_FRONT_LEFT", true);
+            //theScale.x = 1;
+          } else {
+            //Defender is right below or above attacker
+            if (diff.y > 0) {
+              Debug.Log("up");
+              if ((int)theScale.x == -1) {
+                theScale.x = 1;
+                yield return new WaitForSeconds(turnWait);
+              }
+              //correct
+              if (anim.GetBool("IDLE_FRONT_LEFT")) {
+                  anim.SetBool("IDLE_FRONT_LEFT", false);
+                  yield return new WaitForSeconds(turnWait);
+              }
+              anim.SetBool("MV_BACK_LEFT", true);
+              anim.SetBool("MV_FRONT_LEFT", false);
+              //theScale.x = 1;
+            } else if (diff.y < 0) {
+              Debug.Log("down");
+              if ((int)theScale.x == 1) {
+                theScale.x = -1;
+                yield return new WaitForSeconds(turnWait);
+              }
+              //wrong. anim up and to the right
+              if (!anim.GetBool("IDLE_FRONT_LEFT")) {
+                  anim.SetBool("IDLE_FRONT_LEFT", true);
+                  yield return new WaitForSeconds(turnWait);
+              }
+              anim.SetBool("MV_BACK_LEFT", false);
+              anim.SetBool("MV_FRONT_LEFT", true);
+              //theScale.x = -1;
+            }
+          }
+          transform.localScale = theScale;
+        }
         float timer = 0f;
         while (timer < time)
         {

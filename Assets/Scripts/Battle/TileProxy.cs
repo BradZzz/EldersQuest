@@ -15,8 +15,15 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     private UnitProxy unitThatSetTileOnFire;
     private int fireTrns;
     private Sprite def, fireAlt;
+    private float timeLeft = 0;
+    private float FIRE_DELAY_TIME = .5f;
 
     private List<GridObjectProxy> objectProxies = new List<GridObjectProxy>();
+    //private GameObject instanceDummy;
+
+    //void Awake(){
+    //    instanceDummy = new GameObject();
+    //}
 
     public Vector3Int GetPosition()
     {
@@ -187,6 +194,46 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
             GetComponent<SpriteRenderer>().sprite = def;
             unitThatSetTileOnFire = null;
         }
+    }
+
+    // Update is called once per frame
+    void Update () {
+       if (OnFire()) {
+           timeLeft -= Time.deltaTime;
+           if ( timeLeft <= 0 )
+           {
+              timeLeft = FIRE_DELAY_TIME;
+              FloatUp("fire", Color.red);
+           }
+       }
+    }
+
+    public void FloatUp(string msg, Color color){
+        StartCoroutine(FloatUpAnim(msg, color));
+    }
+
+    IEnumerator FloatUpAnim(string msg, Color color)
+    {
+        Debug.Log("FloatUpAnim");
+        Vector3 pos = this.transform.position;
+        Debug.Log("FloatUpAnim pos: " + pos.ToString());
+        pos.x -= .3f;
+        pos.y += .3f;
+        //GameObject numObj = Instantiate(instanceDummy, pos, Quaternion.identity);
+        //GameObject numObj = Instantiate(new GameObject(), this.transform, true);
+        GameObject numObj = new GameObject();
+        numObj.transform.position = pos;
+        numObj.transform.rotation = Quaternion.identity;
+        numObj.transform.parent = transform;
+        numObj.AddComponent<TextMesh>();
+        numObj.GetComponent<TextMesh>().characterSize = .2f;
+        numObj.GetComponent<TextMesh>().text = msg;
+        numObj.GetComponent<TextMesh>().color = color;
+        iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .3f);
+        iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .3f);
+        yield return new WaitForSeconds(.4f);
+        Destroy(numObj);
+        yield return null;
     }
 
     #region events

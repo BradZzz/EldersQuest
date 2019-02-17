@@ -26,6 +26,7 @@ public class SkeleKill : Skill
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {
+      BoardProxy.instance.GetTileAtPosition(defender.GetPosition()).FloatUp("skele summon", Color.green);
       BoardProxy.instance.SummonAtPosition(defender.GetPosition(),attacker.GetData().GetTeam(), value);
   }
 

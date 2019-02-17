@@ -41,7 +41,7 @@ public class UnitProxy : GridObjectProxy
       if (_data.GetAegis()) {
           Debug.Log("Aegis!");
           _data.SetAegis(false);
-          FloatNumber(0, Color.blue);
+          FloatUp("-aegis", Color.blue);
           return false;
       }
       Debug.Log("No Aegis");
@@ -49,7 +49,7 @@ public class UnitProxy : GridObjectProxy
       //Damage the unit
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       Shake();
-      FloatNumber(oppUnit.GetData().GetAttack(), Color.red);
+      FloatUp("-" + oppUnit.GetData().GetAttack().ToString(), Color.red);
       if (GetData().IsDead())
       {
         return true;
@@ -61,13 +61,13 @@ public class UnitProxy : GridObjectProxy
     {
       if (_data.GetAegis()) {
           _data.SetAegis(false);
-          FloatNumber(0, Color.blue);
+          FloatUp("-aegis", Color.blue);
           return false;
       }
 
       //Damage the unit
       GetData().IsAttacked(atkPwr);
-      FloatNumber(atkPwr, Color.red);
+      FloatUp("-" + atkPwr.ToString(), Color.red);
       if (GetData().IsDead())
       {
         return true;
@@ -80,9 +80,9 @@ public class UnitProxy : GridObjectProxy
         //int newHp = GetData().GetMaxHP() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatNumber(buff, Color.blue);
+              FloatUp("+" + buff + " hp", Color.blue);
           } else {
-              FloatNumber(buff, Color.cyan);
+              FloatUp("-" + buff + " hp", Color.cyan);
           }
         }
     }
@@ -92,9 +92,9 @@ public class UnitProxy : GridObjectProxy
         //int newAtk = GetData().GetAttack() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatNumber(buff, Color.blue);
+              FloatUp("+" + buff + " atk", Color.blue);
           } else {
-              FloatNumber(buff, Color.cyan);
+              FloatUp("-" + buff + " atk", Color.cyan);
           }
         }
     }
@@ -119,21 +119,25 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    public void FloatUp(int num, Color color){
-        StartCoroutine(FloatUpAnim(num, color));
+    public void FloatUp(string msg, Color color){
+        StartCoroutine(FloatUpAnim(msg, color));
     }
 
-    IEnumerator FloatUpAnim(int num, Color color)
+    IEnumerator FloatUpAnim(string msg, Color color)
     {
         Debug.Log("FloatUpAnim");
         Vector3 pos = this.transform.position;
         Debug.Log("FloatUpAnim pos: " + pos.ToString());
         pos.y += 1.3f;
-        GameObject numObj = Instantiate(new GameObject(), pos, Quaternion.identity, this.transform);
+        //GameObject numObj = Instantiate(new GameObject(), pos, Quaternion.identity, this.transform);
         //GameObject numObj = Instantiate(new GameObject(), this.transform, true);
+        GameObject numObj = new GameObject();
+        numObj.transform.position = pos;
+        numObj.transform.rotation = Quaternion.identity;
+        numObj.transform.parent = transform;
         numObj.AddComponent<TextMesh>();
         numObj.GetComponent<TextMesh>().characterSize = .2f;
-        numObj.GetComponent<TextMesh>().text = num.ToString();
+        numObj.GetComponent<TextMesh>().text = msg;
         numObj.GetComponent<TextMesh>().color = color;
         iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .5f);
         iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .5f);
@@ -142,7 +146,7 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    public void FloatNumber(int num, Color color){
+    public void FloatString(string num, Color color){
         FloatUp(num, color);
     }
 
@@ -151,7 +155,7 @@ public class UnitProxy : GridObjectProxy
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
        if (nwHlth != GetData().GetCurrHealth()) {
          GetData().SetCurrHealth(nwHlth);
-         FloatNumber(value, Color.green);
+         FloatUp("+" + value.ToString(), Color.green);
        }
     }
 

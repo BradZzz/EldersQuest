@@ -106,6 +106,11 @@ public class InteractUnitSelected : InteractMode
                 && currentUnit.GetData().GetTurnActions().CanAttack())
               {
                   toAttack = null;
+                  //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
+                  if (currentUnit != null) {
+                      currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
+                  }
+
                   if (obj.IsAttacked(currentUnit))
                   {
                       //Log the kill with the unit
@@ -116,11 +121,6 @@ public class InteractUnitSelected : InteractMode
                       ConditionTracker.instance.EvalDeath(obj);                     
                       //Turn off the tiles
                       StartCoroutine(ResetTiles());
-                  }
-  
-                  //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
-                  if (currentUnit != null) {
-                      currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
                   }
   
                   OnDisable();

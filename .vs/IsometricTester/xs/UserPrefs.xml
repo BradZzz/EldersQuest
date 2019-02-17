@@ -1,8 +1,10 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/UnitProxy.cs">
     <Files>
-      <File FileName="Assets/Scripts/Skills/SubSkills/AoeAtk.cs" Line="27" Column="34" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="32" Column="17" />
+      <File FileName="Assets/Scripts/Skills/SubSkills/AoeAtk.cs" Line="28" Column="33" />
+      <File FileName="Assets/Scripts/Skills/Skill.cs" Line="19" Column="29" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="114" Column="27" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="52" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

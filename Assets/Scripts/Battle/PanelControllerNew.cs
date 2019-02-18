@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PanelControllerNew : MonoBehaviour
 {
+    public static float TURN_TEXT_WAIT = 2f;
+    
     public static PanelControllerNew instance;
 
     public GameObject playerMain;
@@ -18,6 +20,9 @@ public class PanelControllerNew : MonoBehaviour
     public GameObject enemySub1;
     public GameObject enemySub2;
     public GameObject enemySub3;
+
+    public GameObject turnUI;
+    public TextMeshProUGUI turnTransition;
 
     private List<UnitProxy> players;
     private List<UnitProxy> enemies;
@@ -53,6 +58,21 @@ public class PanelControllerNew : MonoBehaviour
         instance.enemySub1.SetActive(false);
         instance.enemySub2.SetActive(false);
         instance.enemySub3.SetActive(false);
+
+        instance.turnUI.SetActive(false);
+        //instance.turnTransition.text = "";
+    }
+
+    public static void DisplayTT(string msg){
+        instance.StartCoroutine(instance.DisplayTurnText(msg));
+    }
+
+    IEnumerator DisplayTurnText(string msg){
+        instance.turnUI.SetActive(true);
+        instance.turnUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+        yield return new WaitForSeconds(TURN_TEXT_WAIT);
+        instance.turnUI.SetActive(false);
+        //instance.turnUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
     }
 
     public static void SwitchChar(UnitProxy unit)

@@ -34,8 +34,21 @@ public class TurnController : MonoBehaviour
         currentTeam = GetTeam() == BoardProxy.ENEMY_TEAM ? BoardProxy.PLAYER_TEAM : BoardProxy.ENEMY_TEAM;
     }
 
-    public void StartTurn()
+    public void DisplayStartGameText(){
+        PanelControllerNew.DisplayTT("Begin Battle!");
+    }
+
+    public void DisplayTurnText(){
+        PanelControllerNew.DisplayTT(currentTeam == BoardProxy.PLAYER_TEAM ? "Player Turn" : "Enemy Turn");
+    }
+
+    public void StartTurn(bool firstTurn)
     {
+        if (firstTurn) {
+            DisplayStartGameText();
+        } else {
+            DisplayTurnText();
+        }
         //Turn off all the units not on the team.
         //Turn on all the units with the current team.
         foreach(UnitProxy unit in BoardProxy.instance.GetUnits())
@@ -86,7 +99,7 @@ public class TurnController : MonoBehaviour
         //Switch controller teams
         SwitchTeams();
         //Perform start turn actions
-        StartTurn();
+        StartTurn(false);
 
         //Run AI (if applicable)
         if (currentTeam == BoardProxy.ENEMY_TEAM && !BoardProxy.HUMAN_PLAYER)

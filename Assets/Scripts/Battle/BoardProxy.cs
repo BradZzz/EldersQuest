@@ -56,7 +56,7 @@ public class BoardProxy : MonoBehaviour
             unit.AcceptAction(Skill.Actions.BeginGame,null);
         }
         PanelControllerNew.instance.LoadInitUnits(GetUnits());
-        TurnController.instance.StartTurn();
+        TurnController.instance.StartTurn(true);
     }
 
     public void SummonAtPosition(Vector3Int pos, int team, int val){
@@ -198,7 +198,9 @@ public class BoardProxy : MonoBehaviour
   
     public void EndTurn()
     {
-        TurnController.instance.EndTurn();
+        if (HUMAN_PLAYER || (!HUMAN_PLAYER && TurnController.instance.currentTeam == BoardProxy.PLAYER_TEAM)) {
+            TurnController.instance.EndTurn();
+        }
     }
   
     public List<UnitProxy> GetUnits()

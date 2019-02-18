@@ -35,7 +35,9 @@ public class BasicBrain : MonoBehaviour
             bool didSomething = true;
             while (didSomething)
             {
-                while (!AnimationInteractionController.AllAnimationsFinished()) {}
+                if (!AnimationInteractionController.AllAnimationsFinished()) { 
+                    yield return new WaitForSeconds(AnimationInteractionController.ATK_WAIT);
+                }
                 Debug.Log("AI Char: " + unit.GetData().characterMoniker + " : " + unit.GetData().GetTurnActions().GetMoves() + 
                   "/" + unit.GetData().GetTurnActions().GetAttacks());
                 didSomething = false;

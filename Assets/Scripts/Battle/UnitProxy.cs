@@ -44,7 +44,7 @@ public class UnitProxy : GridObjectProxy
       if (_data.GetAegis()) {
           Debug.Log("Aegis!");
           _data.SetAegis(false);
-          FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis");
+          FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis", true);
           return false;
       }
       Debug.Log("No Aegis");
@@ -74,11 +74,6 @@ public class UnitProxy : GridObjectProxy
 
     IEnumerator AttackAnim(Animator anim, Transform opp, Vector3Int diff, string msg){
       if (anim != null) {
-          //if (anim.GetBool("IDLE_FRONT_LEFT")) {
-          //    anim.SetTrigger("ATK_FRONT_LEFT");
-          //} else {
-          //    anim.SetTrigger("ATK_BACK_LEFT");
-          //}
           Vector3 theScale = opp.localScale;
           if (diff.x > 0) {
             Debug.Log("right");
@@ -111,10 +106,11 @@ public class UnitProxy : GridObjectProxy
           opp.localScale = theScale;
       }
 
-      yield return new WaitForSeconds(anim != null ? AnimationInteractionController.GetClipLEngthByName(anim, "ATK_FRONT_LEFT") : 1f);
-      Shake();
+      //yield return new WaitForSeconds(anim != null ? AnimationInteractionController.GetClipLengthByName(anim, "ATK_FRONT_LEFT") : 1f);
+      //Shake();
       //FloatUp(msg, Color.red, ATK_WAIT);
-      FloatUp(Skill.Actions.None, msg, Color.red, "Was attacked");
+      FloatUp(Skill.Actions.DidAttack, msg, Color.red, "Was attacked", true);
+      yield return null;
     }
 
     public bool IsAttackedEnvironment(int atkPwr)
@@ -122,14 +118,14 @@ public class UnitProxy : GridObjectProxy
       if (_data.GetAegis()) {
           _data.SetAegis(false);
           //FloatUp("-aegis", Color.blue, ATK_WAIT);
-          FloatUp(Skill.Actions.None, "-aegis", Color.blue, "Lost aegis env");
+          FloatUp(Skill.Actions.None, "-aegis", Color.blue, "Lost aegis env", true);
           return false;
       }
 
       //Damage the unit
       GetData().IsAttacked(atkPwr);
       //FloatUp("-" + atkPwr.ToString(), Color.red, ATK_WAIT);
-      FloatUp(Skill.Actions.None, "-" + atkPwr.ToString(), Color.red, "Took env damage");
+      FloatUp(Skill.Actions.None, "-" + atkPwr.ToString(), Color.red, "Took env damage", true);
       if (GetData().IsDead())
       {
         return true;
@@ -142,9 +138,9 @@ public class UnitProxy : GridObjectProxy
         //int newHp = GetData().GetMaxHP() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp(Skill.Actions.None, "+" + buff + " hp", Color.blue, "HP Buff");
+              FloatUp(Skill.Actions.None, "+" + buff + " hp", Color.blue, "HP Buff", false);
           } else {
-              FloatUp(Skill.Actions.None, "-" + buff + " hp", Color.cyan, "HP Sickness");
+              FloatUp(Skill.Actions.None, "-" + buff + " hp", Color.cyan, "HP Sickness", true);
           }
         }
     }
@@ -154,9 +150,9 @@ public class UnitProxy : GridObjectProxy
         //int newAtk = GetData().GetAttack() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp(Skill.Actions.None, "+" + buff + " atk", Color.blue, "atk buff");
+              FloatUp(Skill.Actions.None, "+" + buff + " atk", Color.blue, "atk buff", false);
           } else {
-              FloatUp(Skill.Actions.None, "-" + buff + " atk", Color.cyan, "atk sickness");
+              FloatUp(Skill.Actions.None, "-" + buff + " atk", Color.cyan, "atk sickness", true);
           }
         }
     }
@@ -171,15 +167,16 @@ public class UnitProxy : GridObjectProxy
         //Perform after kill skills
         cUnit.AcceptAction(Skill.Actions.DidKill,obj);
 
-        yield return new WaitForSeconds(UnitProxy.ATK_WAIT * 2);
+        //yield return new WaitForSeconds(UnitProxy.ATK_WAIT * 2);
 
-        obj.FloatUp(Skill.Actions.DidKill, "Death", Color.red, "Killed Unit");
+        obj.FloatUp(Skill.Actions.DidKill, "Death", Color.red, "Killed Unit", false, true);
 
-        yield return new WaitForSeconds(UnitProxy.NO_ATK_WAIT);
+        //yield return new WaitForSeconds(UnitProxy.NO_ATK_WAIT);
         //Check the conditiontracker for game end
-        ConditionTracker.instance.EvalDeath(obj);                     
+        //ConditionTracker.instance.EvalDeath(obj);                     
         //Turn off the tiles
         //StartCoroutine(ResetTiles());
+        yield return null;
     }
 
     public void Shake(){
@@ -206,8 +203,8 @@ public class UnitProxy : GridObjectProxy
     //    StartCoroutine(FloatUpAnim(msg, color, wait));
     //}
 
-    public void FloatUp(Skill.Actions interaction, string msg, Color color, string desc){
-        AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc);
+    public void FloatUp(Skill.Actions interaction, string msg, Color color, string desc, bool shakeChar, bool deathConsideration = false){
+        AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc, shakeChar, deathConsideration);
     }
 
     //IEnumerator FloatUpAnim(string msg, Color color, float wait)
@@ -242,7 +239,7 @@ public class UnitProxy : GridObjectProxy
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
        if (nwHlth != GetData().GetCurrHealth()) {
          GetData().SetCurrHealth(nwHlth);
-         FloatUp(Skill.Actions.None, "+" + value.ToString(), Color.green, "Unit Healed");
+         FloatUp(Skill.Actions.None, "+" + value.ToString(), Color.green, "Unit Healed", false);
        }
     }
 

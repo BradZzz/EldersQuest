@@ -99,7 +99,9 @@ public class ConditionTracker : MonoBehaviour
     }
 
     IEnumerator TimeEndGame(bool won){
-        yield return new WaitForSeconds(1f);
+        if (!AnimationInteractionController.AllAnimationsFinished()) { 
+            yield return new WaitForSeconds(AnimationInteractionController.AFTER_KILL);
+        }
         BoardProxy.instance.gameOverPanel.SetActive(true);
         this.won = won;
         string txt = "Defeat";

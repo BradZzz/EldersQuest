@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UnitProxy : GridObjectProxy
 {
     public static float NO_ATK_WAIT = .5f;
-    public static float ATK_WAIT = 1.6f;
+    public static float ATK_WAIT = 1.1f;
 
     private Unit _data;
     protected override GridObject data
@@ -167,12 +167,13 @@ public class UnitProxy : GridObjectProxy
         //Perform after kill skills
         cUnit.AcceptAction(Skill.Actions.DidKill,obj);
 
-        obj.FloatUp("Death", Color.red, .2f);
-        obj.FloatUp("Death", Color.red, .4f);
-        obj.FloatUp("Death", Color.red, .6f);
-        obj.FloatUp("Death", Color.red, .8f);
-        obj.FloatUp("Death", Color.red, 1f);
-        yield return new WaitForSeconds(UnitProxy.ATK_WAIT - UnitProxy.NO_ATK_WAIT);
+        yield return new WaitForSeconds(UnitProxy.ATK_WAIT * 2);
+
+        obj.FloatUp("Death", Color.red, 0);
+        obj.FloatUp("Death", Color.red, UnitProxy.NO_ATK_WAIT/3);
+        obj.FloatUp("Death", Color.red, 2*UnitProxy.NO_ATK_WAIT/3);
+
+        yield return new WaitForSeconds(UnitProxy.NO_ATK_WAIT);
         //Check the conditiontracker for game end
         ConditionTracker.instance.EvalDeath(obj);                     
         //Turn off the tiles

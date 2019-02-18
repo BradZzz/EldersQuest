@@ -48,7 +48,7 @@ public class ConditionTracker : MonoBehaviour
                         {
                             if (teams[key] == 0)
                             {
-                                EndGame(key == BoardProxy.ENEMY_TEAM);
+                                StartCoroutine(WaitEndGame(key));
                             }
                         }
                     }
@@ -56,6 +56,11 @@ public class ConditionTracker : MonoBehaviour
                 default: break;
             }
         }
+    }
+
+    IEnumerator WaitEndGame(int key){
+        yield return new WaitForSeconds(1f);
+        EndGame(key == BoardProxy.ENEMY_TEAM);
     }
 
     public void EvalDeath(UnitProxy unit){

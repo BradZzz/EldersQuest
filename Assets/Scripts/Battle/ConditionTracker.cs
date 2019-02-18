@@ -71,7 +71,7 @@ public class ConditionTracker : MonoBehaviour
         string txt = "Defeat";
         if (won){
             List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
-              && !unit.GetData().GetSummoned()).ToList();
+              && unit.GetData().GetCurrHealth() > 0 && !unit.GetData().GetSummoned()).ToList();
             PlayerMeta player = BaseSaver.GetPlayer();
             List<Unit> pChars = units.Select(unit => new Unit(unit.GetData())).ToList();
             List<string> dests = new List<string>(player.stats.dests);
@@ -85,7 +85,6 @@ public class ConditionTracker : MonoBehaviour
             }
             player.stats.dests = dests.ToArray();
             player.characters = pChars.ToArray();
-            player.stats.dests = dests.ToArray();
             BaseSaver.PutPlayer(player);
             txt = "Victory";
         }

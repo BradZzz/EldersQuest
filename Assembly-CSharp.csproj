@@ -280,6 +280,7 @@
     <Compile Include="Assets\Scripts\Utils\Glossary.cs" />
     <Compile Include="Assets\Scripts\Utils\HelperScripts.cs" />
     <Compile Include="Assets\Scripts\Utils\HighlightShift.cs" />
+    <Compile Include="Assets\Scripts\Utils\OffsetScroller.cs" />
     <Compile Include="Assets\Scripts\Utils\PlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\Utils\Pnt.cs" />
     <Compile Include="Assets\Scripts\Utils\SceneNav.cs" />
@@ -348,9 +349,11 @@
     <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_white2x.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\Shaders\UnlitAlphaWithFade.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_white1x.xml" />
     <None Include="Assets\Sprites\space-kit-1.0\License.txt" />
+    <None Include="Assets\Shaders\SomianUnlitTransparent.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />

@@ -25,7 +25,9 @@ public class AoeAtk : Skill
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, value + 1, true)){
           tl.FloatUp("boom", Color.magenta, TileProxy.ATK_WAIT);
           if (tl.HasUnit() && tl.GetUnit() != defender) {
-              tl.GetUnit().IsAttacked(attacker,false);
+              if (tl.GetUnit().IsAttacked(attacker, false)){
+                  tl.GetUnit().DelayedKill(tl.GetUnit(), attacker);
+              }
           }
       }
   }

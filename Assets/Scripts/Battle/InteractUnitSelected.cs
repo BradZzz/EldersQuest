@@ -113,13 +113,8 @@ public class InteractUnitSelected : InteractMode
 
                   if (obj.IsAttacked(currentUnit))
                   {
-                      //Log the kill with the unit
-                      currentUnit.AddLevel();
-                      //Perform after kill skills
-                      currentUnit.AcceptAction(Skill.Actions.DidKill,obj);
-                      //Check the conditiontracker for game end
-                      ConditionTracker.instance.EvalDeath(obj);                     
-                      //Turn off the tiles
+                      //StartCoroutine(DelayKill(obj, currentUnit));
+                      obj.DelayedKill(obj,currentUnit);
                       StartCoroutine(ResetTiles());
                   }
   
@@ -129,6 +124,24 @@ public class InteractUnitSelected : InteractMode
             }
         }
     }
+
+    //IEnumerator DelayKill(UnitProxy obj, UnitProxy cUnit){
+    //    //Log the kill with the unit
+    //    cUnit.AddLevel();
+    //    //Perform after kill skills
+    //    cUnit.AcceptAction(Skill.Actions.DidKill,obj);
+
+    //    obj.FloatUp("Death", Color.red, .2f);
+    //    obj.FloatUp("Death", Color.red, .4f);
+    //    obj.FloatUp("Death", Color.red, .6f);
+    //    obj.FloatUp("Death", Color.red, .8f);
+    //    obj.FloatUp("Death", Color.red, 1f);
+    //    yield return new WaitForSeconds(UnitProxy.ATK_WAIT - UnitProxy.NO_ATK_WAIT);
+    //    //Check the conditiontracker for game end
+    //    ConditionTracker.instance.EvalDeath(obj);                     
+    //    //Turn off the tiles
+    //    StartCoroutine(ResetTiles());
+    //}
 
     private void HighlightTiles(UnitProxy obj)
     {

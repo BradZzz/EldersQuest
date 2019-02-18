@@ -87,14 +87,14 @@ public class Unit : GridObject
       int trnMvs, int trnAtks, string[] skills, string currentClass, UnitType uType = UnitType.Soldier, FactionType fType = FactionType.Human)
     {
         Setup(cName + UnityEngine.Random.Range(0,1).ToString(),cMonik, cLvl, team, 
-          mxHlth, atk, moveSpeed, atkRange, trnAtks, trnMvs, skills, currentClass, uType, fType);
+          mxHlth, atk, moveSpeed, atkRange, trnMvs, trnAtks, skills, currentClass, uType, fType);
     }
 
     public Unit(Unit unit)
     {
         Setup(unit.characterName, unit.characterMoniker, unit.GetLvl(), unit.team, 
           unit.mxHlth, unit.GetBaseAttack(), unit.GetMoveSpeed(), unit.GetAtkRange(), 
-        unit.trnAtks, unit.trnMvs, unit.GetSkills(), unit.currentClass, unit.uType, unit.fType);
+        unit.trnMvs, unit.trnAtks, unit.GetSkills(), unit.currentClass, unit.uType, unit.fType);
     }
 
     void Setup(string cName, string cMonik, int cLvl, int team, int mxHlth, int atk, int moveSpeed, int atkRange,

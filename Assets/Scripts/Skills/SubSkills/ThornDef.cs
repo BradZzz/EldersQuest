@@ -25,7 +25,11 @@ public class ThornDef : Skill
           tl.FloatUp("thorn dmg", Color.green, TileProxy.ATK_WAIT);
           if (tl.HasUnit() && !tl == BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
               if (tl.GetUnit().IsAttackedEnvironment(value)){
-                  defender.GetData().SetLvl(defender.GetData().GetLvl() + 1);
+                  tl.GetUnit().DelayedKill(tl.GetUnit(), defender);
+                  //defender.GetData().SetLvl(defender.GetData().GetLvl() + 1);
+                  //if (tl.GetUnit().IsAttacked(attacker, false)){
+                  //    tl.GetUnit().DelayedKill(tl.GetUnit(), attacker);
+                  //}
               }
           }
       }

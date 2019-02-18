@@ -22,14 +22,10 @@ public class ThornDef : Skill
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, 2, true)){
-          tl.FloatUp("thorn dmg", Color.green, TileProxy.ATK_WAIT);
+          tl.FloatUp(Skill.Actions.DidDefend, "thorn dmg", Color.green, "Thorn Defense");
           if (tl.HasUnit() && !tl == BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
               if (tl.GetUnit().IsAttackedEnvironment(value)){
                   tl.GetUnit().DelayedKill(tl.GetUnit(), defender);
-                  //defender.GetData().SetLvl(defender.GetData().GetLvl() + 1);
-                  //if (tl.GetUnit().IsAttacked(attacker, false)){
-                  //    tl.GetUnit().DelayedKill(tl.GetUnit(), attacker);
-                  //}
               }
           }
       }

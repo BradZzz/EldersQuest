@@ -206,40 +206,40 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
            if ( timeLeft <= 0 )
            {
               timeLeft = FIRE_DELAY_TIME;
-              FloatUp("fire", Color.red, 0);
+              FloatUp(Skill.Actions.None, "fire", Color.red, "Tile on fire");
            }
        }
     }
 
-    public void FloatUp(string msg, Color color, float wait){
-        StartCoroutine(FloatUpAnim(msg, color, wait));
+    public void FloatUp(Skill.Actions interaction, string msg, Color color, string desc){
+        AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc);
     }
 
-    IEnumerator FloatUpAnim(string msg, Color color, float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        Debug.Log("FloatUpAnim");
-        Vector3 pos = this.transform.position;
-        Debug.Log("FloatUpAnim pos: " + pos.ToString());
-        pos.x -= .3f;
-        pos.y += .3f;
-        //GameObject numObj = Instantiate(instanceDummy, pos, Quaternion.identity);
-        //GameObject numObj = Instantiate(new GameObject(), this.transform, true);
-        GameObject numObj = new GameObject();
-        numObj.transform.position = pos;
-        numObj.transform.rotation = Quaternion.identity;
-        numObj.transform.parent = transform;
-        numObj.AddComponent<TextMesh>();
-        numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
-        numObj.GetComponent<TextMesh>().characterSize = .2f;
-        numObj.GetComponent<TextMesh>().text = msg;
-        numObj.GetComponent<TextMesh>().color = color;
-        iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .3f);
-        iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .3f);
-        yield return new WaitForSeconds(.4f);
-        Destroy(numObj);
-        yield return null;
-    }
+    //IEnumerator FloatUpAnim(string msg, Color color, float wait)
+    //{
+    //    yield return new WaitForSeconds(wait);
+    //    Debug.Log("FloatUpAnim");
+    //    Vector3 pos = this.transform.position;
+    //    Debug.Log("FloatUpAnim pos: " + pos.ToString());
+    //    pos.x -= .3f;
+    //    pos.y += .3f;
+    //    //GameObject numObj = Instantiate(instanceDummy, pos, Quaternion.identity);
+    //    //GameObject numObj = Instantiate(new GameObject(), this.transform, true);
+    //    GameObject numObj = new GameObject();
+    //    numObj.transform.position = pos;
+    //    numObj.transform.rotation = Quaternion.identity;
+    //    numObj.transform.parent = transform;
+    //    numObj.AddComponent<TextMesh>();
+    //    numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
+    //    numObj.GetComponent<TextMesh>().characterSize = .2f;
+    //    numObj.GetComponent<TextMesh>().text = msg;
+    //    numObj.GetComponent<TextMesh>().color = color;
+    //    iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .3f);
+    //    iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .3f);
+    //    yield return new WaitForSeconds(.4f);
+    //    Destroy(numObj);
+    //    yield return null;
+    //}
 
     #region events
     public void OnPointerDown(PointerEventData eventData)

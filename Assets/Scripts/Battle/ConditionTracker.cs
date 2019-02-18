@@ -71,6 +71,35 @@ public class ConditionTracker : MonoBehaviour
 
     void EndGame(bool won)
     {
+        //while (!AnimationInteractionController.AllAnimationsFinished()) {}
+        //BoardProxy.instance.gameOverPanel.SetActive(true);
+        //this.won = won;
+        //string txt = "Defeat";
+        //if (won){
+        //    List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
+        //      && unit.GetData().GetCurrHealth() > 0 && !unit.GetData().GetSummoned()).ToList();
+        //    PlayerMeta player = BaseSaver.GetPlayer();
+        //    List<Unit> pChars = units.Select(unit => new Unit(unit.GetData())).ToList();
+        //    List<string> dests = new List<string>(player.stats.dests);
+        //    foreach (string unlock in BaseSaver.GetBoard().unlocks)
+        //    {
+        //        if (!dests.Contains(unlock))
+        //        {
+        //            dests.Add(unlock);
+        //            unlkChar = true;
+        //        }
+        //    }
+        //    player.stats.dests = dests.ToArray();
+        //    player.characters = pChars.ToArray();
+        //    BaseSaver.PutPlayer(player);
+        //    txt = "Victory";
+        //}
+        //BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = txt;
+        StartCoroutine(TimeEndGame(won));
+    }
+
+    IEnumerator TimeEndGame(bool won){
+        yield return new WaitForSeconds(1f);
         BoardProxy.instance.gameOverPanel.SetActive(true);
         this.won = won;
         string txt = "Defeat";

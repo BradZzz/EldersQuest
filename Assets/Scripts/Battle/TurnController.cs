@@ -87,6 +87,7 @@ public class TurnController : MonoBehaviour
   
     public void EndTurn()
     {
+        //while (!AnimationInteractionController.AllAnimationsFinished()) {}
         Debug.Log("EndTurn");
         //Perform end turn actions
         EndTurnActions();

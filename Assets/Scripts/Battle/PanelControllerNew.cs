@@ -60,7 +60,6 @@ public class PanelControllerNew : MonoBehaviour
         instance.enemySub3.SetActive(false);
 
         instance.turnUI.SetActive(false);
-        //instance.turnTransition.text = "";
     }
 
     public static void DisplayTT(string msg){

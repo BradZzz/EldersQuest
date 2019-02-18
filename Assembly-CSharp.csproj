@@ -134,6 +134,7 @@
     <Compile Include="Assets\Libraries\OutlineEffect\LinkedSet.cs" />
     <Compile Include="Assets\Libraries\OutlineEffect\Outline.cs" />
     <Compile Include="Assets\Libraries\OutlineEffect\OutlineEffect.cs" />
+    <Compile Include="Assets\Scripts\Battle\AnimationInteractionController.cs" />
     <Compile Include="Assets\Scripts\Battle\Board.cs" />
     <Compile Include="Assets\Scripts\Battle\BoardProxy.cs" />
     <Compile Include="Assets\Scripts\Battle\Brains\AIBrain.cs" />

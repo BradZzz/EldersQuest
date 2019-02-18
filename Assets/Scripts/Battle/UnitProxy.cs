@@ -44,7 +44,7 @@ public class UnitProxy : GridObjectProxy
       if (_data.GetAegis()) {
           Debug.Log("Aegis!");
           _data.SetAegis(false);
-          FloatUp("-aegis", Color.blue, ATK_WAIT);
+          FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis");
           return false;
       }
       Debug.Log("No Aegis");
@@ -62,7 +62,8 @@ public class UnitProxy : GridObjectProxy
 
       Vector3Int diff = animEnd - animStart;
 
-      StartCoroutine(AttackAnim(oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
+      StartCoroutine(AttackAnim(oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
+        oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       if (GetData().IsDead())
       {
@@ -110,22 +111,25 @@ public class UnitProxy : GridObjectProxy
           opp.localScale = theScale;
       }
 
-      yield return new WaitForSeconds(1.6f);
+      yield return new WaitForSeconds(anim != null ? AnimationInteractionController.GetClipLEngthByName(anim, "ATK_FRONT_LEFT") : 1f);
       Shake();
-      FloatUp(msg, Color.red, ATK_WAIT);
+      //FloatUp(msg, Color.red, ATK_WAIT);
+      FloatUp(Skill.Actions.None, msg, Color.red, "Was attacked");
     }
 
     public bool IsAttackedEnvironment(int atkPwr)
     {
       if (_data.GetAegis()) {
           _data.SetAegis(false);
-          FloatUp("-aegis", Color.blue, ATK_WAIT);
+          //FloatUp("-aegis", Color.blue, ATK_WAIT);
+          FloatUp(Skill.Actions.None, "-aegis", Color.blue, "Lost aegis env");
           return false;
       }
 
       //Damage the unit
       GetData().IsAttacked(atkPwr);
-      FloatUp("-" + atkPwr.ToString(), Color.red, ATK_WAIT);
+      //FloatUp("-" + atkPwr.ToString(), Color.red, ATK_WAIT);
+      FloatUp(Skill.Actions.None, "-" + atkPwr.ToString(), Color.red, "Took env damage");
       if (GetData().IsDead())
       {
         return true;
@@ -138,9 +142,9 @@ public class UnitProxy : GridObjectProxy
         //int newHp = GetData().GetMaxHP() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp("+" + buff + " hp", Color.blue, NO_ATK_WAIT);
+              FloatUp(Skill.Actions.None, "+" + buff + " hp", Color.blue, "HP Buff");
           } else {
-              FloatUp("-" + buff + " hp", Color.cyan, NO_ATK_WAIT);
+              FloatUp(Skill.Actions.None, "-" + buff + " hp", Color.cyan, "HP Sickness");
           }
         }
     }
@@ -150,9 +154,9 @@ public class UnitProxy : GridObjectProxy
         //int newAtk = GetData().GetAttack() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp("+" + buff + " atk", Color.blue, NO_ATK_WAIT);
+              FloatUp(Skill.Actions.None, "+" + buff + " atk", Color.blue, "atk buff");
           } else {
-              FloatUp("-" + buff + " atk", Color.cyan, NO_ATK_WAIT);
+              FloatUp(Skill.Actions.None, "-" + buff + " atk", Color.cyan, "atk sickness");
           }
         }
     }
@@ -169,9 +173,7 @@ public class UnitProxy : GridObjectProxy
 
         yield return new WaitForSeconds(UnitProxy.ATK_WAIT * 2);
 
-        obj.FloatUp("Death", Color.red, 0);
-        obj.FloatUp("Death", Color.red, UnitProxy.NO_ATK_WAIT/3);
-        obj.FloatUp("Death", Color.red, 2*UnitProxy.NO_ATK_WAIT/3);
+        obj.FloatUp(Skill.Actions.DidKill, "Death", Color.red, "Killed Unit");
 
         yield return new WaitForSeconds(UnitProxy.NO_ATK_WAIT);
         //Check the conditiontracker for game end
@@ -200,45 +202,47 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    public void FloatUp(string msg, Color color, float wait){
-        StartCoroutine(FloatUpAnim(msg, color, wait));
+    //public void FloatUp(string msg, Color color, float wait){
+    //    StartCoroutine(FloatUpAnim(msg, color, wait));
+    //}
+
+    public void FloatUp(Skill.Actions interaction, string msg, Color color, string desc){
+        AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc);
     }
 
-    IEnumerator FloatUpAnim(string msg, Color color, float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        Debug.Log("FloatUpAnim");
-        Vector3 pos = this.transform.position;
-        Debug.Log("FloatUpAnim pos: " + pos.ToString());
-        pos.y += 1.3f;
-        //GameObject numObj = Instantiate(new GameObject(), pos, Quaternion.identity, this.transform);
-        //GameObject numObj = Instantiate(new GameObject(), this.transform, true);
-        GameObject numObj = new GameObject();
-        numObj.transform.position = pos;
-        numObj.transform.rotation = Quaternion.identity;
-        numObj.transform.parent = transform;
-        numObj.AddComponent<TextMesh>();
-        numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
-        numObj.GetComponent<TextMesh>().characterSize = .2f;
-        numObj.GetComponent<TextMesh>().text = msg;
-        numObj.GetComponent<TextMesh>().color = color;
-        iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .5f);
-        iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .5f);
-        yield return new WaitForSeconds(1f);
-        Destroy(numObj);
-        yield return null;
-    }
+    //IEnumerator FloatUpAnim(string msg, Color color, float wait)
+    //{
+    //    yield return new WaitForSeconds(wait);
+    //    Debug.Log("FloatUpAnim");
+    //    Vector3 pos = this.transform.position;
+    //    Debug.Log("FloatUpAnim pos: " + pos.ToString());
+    //    pos.y += 1.3f;
+    //    GameObject numObj = new GameObject();
+    //    numObj.transform.position = pos;
+    //    numObj.transform.rotation = Quaternion.identity;
+    //    numObj.transform.parent = transform;
+    //    numObj.AddComponent<TextMesh>();
+    //    numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
+    //    numObj.GetComponent<TextMesh>().characterSize = .2f;
+    //    numObj.GetComponent<TextMesh>().text = msg;
+    //    numObj.GetComponent<TextMesh>().color = color;
+    //    iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .5f);
+    //    iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .5f);
+    //    yield return new WaitForSeconds(1f);
+    //    Destroy(numObj);
+    //    yield return null;
+    //}
 
-    public void FloatString(string num, Color color, float wait){
-        FloatUp(num, color, wait);
-    }
+    //public void FloatString(string num, Color color, float wait){
+    //    FloatUp(num, color, wait);
+    //}
 
     public void HealUnit(int value){
        int nwHlth = GetData().GetCurrHealth() + value;
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
        if (nwHlth != GetData().GetCurrHealth()) {
          GetData().SetCurrHealth(nwHlth);
-         FloatUp("+" + value.ToString(), Color.green, NO_ATK_WAIT);
+         FloatUp(Skill.Actions.None, "+" + value.ToString(), Color.green, "Unit Healed");
        }
     }
 

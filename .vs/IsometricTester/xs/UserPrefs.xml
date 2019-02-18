@@ -1,16 +1,15 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Brains/BasicBrain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/TurnController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="61" Column="38" />
-      <File FileName="Assets/Scripts/Battle/TurnActionsBasicUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="116" Column="69" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="171" Column="1" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/AoeAtk.cs" Line="23" Column="4" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/ThornDef.cs" Line="29" Column="80" />
-      <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="59" Column="45" />
-      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="99" Column="33" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="199" Column="24" />
-      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="15" Column="24" />
+      <File FileName="Assets/Scripts/Battle/AnimationInteractionController.cs" Line="41" Column="19" />
+      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="114" Column="32" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="169" Column="26" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="208" Column="42" />
+      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="88" Column="17" />
+      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="74" Column="75" />
+      <File FileName="Assets/Scripts/Battle/Brains/AIBrain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="112" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

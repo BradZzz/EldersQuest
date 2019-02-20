@@ -207,33 +207,6 @@ public class UnitProxy : GridObjectProxy
         AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc, shakeChar, deathConsideration);
     }
 
-    //IEnumerator FloatUpAnim(string msg, Color color, float wait)
-    //{
-    //    yield return new WaitForSeconds(wait);
-    //    Debug.Log("FloatUpAnim");
-    //    Vector3 pos = this.transform.position;
-    //    Debug.Log("FloatUpAnim pos: " + pos.ToString());
-    //    pos.y += 1.3f;
-    //    GameObject numObj = new GameObject();
-    //    numObj.transform.position = pos;
-    //    numObj.transform.rotation = Quaternion.identity;
-    //    numObj.transform.parent = transform;
-    //    numObj.AddComponent<TextMesh>();
-    //    numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
-    //    numObj.GetComponent<TextMesh>().characterSize = .2f;
-    //    numObj.GetComponent<TextMesh>().text = msg;
-    //    numObj.GetComponent<TextMesh>().color = color;
-    //    iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .5f);
-    //    iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .5f);
-    //    yield return new WaitForSeconds(1f);
-    //    Destroy(numObj);
-    //    yield return null;
-    //}
-
-    //public void FloatString(string num, Color color, float wait){
-    //    FloatUp(num, color, wait);
-    //}
-
     public void HealUnit(int value){
        int nwHlth = GetData().GetCurrHealth() + value;
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;

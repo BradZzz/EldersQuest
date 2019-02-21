@@ -11,9 +11,8 @@
     public static readonly string SelectCharAcceptSound = "event:/UI/char_select/select_accept";
 
     //attacks
-    public static readonly string CreatureAttackSound = "event:/char/attacks/creature";
-    public static readonly string IceAttackSound = "event:/char/attacks/ice";
-    public static readonly string FireAttackSound = "event:/char/attacks/fire";
+    public static readonly string Unit001AttackSound = "event:/char/unit001/attack_1";
+
 
     #endregion
 

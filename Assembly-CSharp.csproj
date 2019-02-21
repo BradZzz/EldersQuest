@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Audio\Scripts\Characters\Unit00AnimationHelper.cs" />
     <Compile Include="Assets\Audio\Scripts\FMODPaths.cs" />
     <Compile Include="Assets\Libraries\Add Ons\2D Extras\Brushes\Tint Brush Smooth\Scripts\TintTextureGenerator.cs" />
     <Compile Include="Assets\Libraries\Add Ons\2D Extras\GridInformation\Scripts\GridInformation.cs" />

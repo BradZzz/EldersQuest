@@ -74,7 +74,7 @@ public class ForceAtk : Skill
       }
       TileProxy nwDefTile = BoardProxy.instance.GetTileAtPosition(diff);
       if (nwDefTile != null && !nwDefTile.HasObstruction()) {
-          TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(diff);
+          TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(posDef);
       
           defender.ZapToTile(nwDefTile, oldTile, "ForceAtk");
 

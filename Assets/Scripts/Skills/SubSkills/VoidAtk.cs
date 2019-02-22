@@ -38,7 +38,7 @@ public class VoidAtk : Skill
               //tl.ReceiveGridObjectProxy(defender);
               //defTile.FloatUp(Skill.Actions.None, "poof", Color.cyan, "VoidAtk");
               //defTile.RemoveGridObjectProxy(defender);
-              defender.SnapToCurrentPosition();
+              //defender.SnapToCurrentPosition();
               break;
           }
       }

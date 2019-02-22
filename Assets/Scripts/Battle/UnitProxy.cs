@@ -346,13 +346,18 @@ public class UnitProxy : GridObjectProxy
 
     }
 
-    public void ZapToTile(TileProxy newTl, TileProxy oldTl, string actStr){
+    public void ZapToTile(TileProxy newTl, TileProxy oldTl, string actStr){  
+        StartCoroutine(WaitForZap(newTl, oldTl, actStr));
+    }
+
+    IEnumerator WaitForZap(TileProxy newTl, TileProxy oldTl, string actStr){
+        yield return new WaitForSeconds(2f);
+
         newTl.ReceiveGridObjectProxy(this);
         newTl.FloatUp(Skill.Actions.None, "whabam!", Color.blue, actStr);
-        data.SetPosition(newTl.GetPosition());
 
         oldTl.RemoveGridObjectProxy(this);
         oldTl.FloatUp(Skill.Actions.None, "poof", Color.cyan, actStr);
-        SnapToCurrentPosition();  
+        SnapToCurrentPosition(); 
     }
 }

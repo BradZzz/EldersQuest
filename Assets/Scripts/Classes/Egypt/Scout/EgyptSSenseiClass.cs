@@ -30,8 +30,7 @@ public class EgyptSSenseiClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      int hp = unit.GetMaxHP();
-      unit.SetMaxHP(hp + 1);
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("FireMove");
       unit.SetSkills(skills.ToArray());

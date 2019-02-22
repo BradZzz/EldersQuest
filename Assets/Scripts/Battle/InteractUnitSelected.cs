@@ -103,7 +103,8 @@ public class InteractUnitSelected : InteractMode
             } else {
               if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
                 && attackableTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
-                && currentUnit.GetData().GetTurnActions().CanAttack())
+                && currentUnit.GetData().GetTurnActions().CanAttack()
+                && !obj.GetData().IsDead())
               {
                   toAttack = null;
                   //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);

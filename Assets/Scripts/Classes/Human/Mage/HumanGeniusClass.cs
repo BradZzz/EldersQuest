@@ -12,7 +12,7 @@ public class HumanGeniusClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nForceAtk";
+    return "+2 hp\nAegisAlliesAtk";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanGeniusClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("ForceAtk");
+      skills.Add("AegisAlliesAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

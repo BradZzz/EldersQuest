@@ -109,7 +109,16 @@ public class ConditionTracker : MonoBehaviour
             List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
               && unit.GetData().GetCurrHealth() > 0 && !unit.GetData().GetSummoned()).ToList();
             PlayerMeta player = BaseSaver.GetPlayer();
-            List<Unit> pChars = units.Select(unit => new Unit(unit.GetData())).ToList();
+            List<Unit> pChars = new List<Unit>(player.characters);
+            //Remove the top three chars from the roster
+            pChars.RemoveAt(0);
+            pChars.RemoveAt(0);
+            pChars.RemoveAt(0);
+            //Fill them back in if they are still on the board
+            List<Unit> pCharsBoard = new List<Unit>(new HashSet<Unit>(units.Select(unit => new Unit(unit.GetData()))));
+            foreach(Unit unt in pCharsBoard) {
+                pChars.Add(unt);
+            }
             List<string> dests = new List<string>(player.stats.dests);
             foreach (string unlock in BaseSaver.GetBoard().unlocks)
             {

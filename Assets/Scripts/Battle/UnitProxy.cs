@@ -23,6 +23,9 @@ public class UnitProxy : GridObjectProxy
         InteractivityManager.instance.OnUnitSelected(this);
     }
 
+    void Awake(){
+        aegisObj.SetActive(false);
+    }
 
     public void Init()
     {

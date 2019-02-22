@@ -98,6 +98,9 @@ public class CharSelectController : MonoBehaviour
         List<Unit> units = new List<Unit>(player.characters);
         units.Add(selected);
         player.characters = units.ToArray();
+
+        Debug.Log("Current Player Chars: " + player.characters.Length.ToString());
+
         BaseSaver.PutPlayer(player);
         CharAcceptSound();
         SceneManager.LoadScene("MapScene");
@@ -105,7 +108,7 @@ public class CharSelectController : MonoBehaviour
 
     #region SFX
 
-   private void SelectCharSound(int picked)
+    private void SelectCharSound(int picked)
     {
         switch (picked)
         {

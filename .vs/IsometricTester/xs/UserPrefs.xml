@@ -2,13 +2,15 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Unit.cs">
     <Files>
       <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="46" Column="48" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="351" Column="6" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="378" Column="97" />
       <File FileName="Assets/Scripts/Skills/SubSkills/ForceAtk.cs" Line="77" Column="77" />
       <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="67" Column="32" />
       <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="91" Column="58" />
       <File FileName="Assets/Scripts/Skills/SubSkills/VoidAtk.cs" Line="35" Column="55" />
       <File FileName="Assets/Scripts/Skills/SubSkills/WarpAtk.cs" Line="29" Column="42" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="329" Column="55" />
+      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="328" Column="1" />
+      <File FileName="Assets/Scripts/Skills/SubSkills/AegisBegin.cs" Line="7" Column="24" />
+      <File FileName="Assets/Scripts/Battle/AnimationInteractionController.cs" Line="63" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

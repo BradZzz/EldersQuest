@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UnitProxy : GridObjectProxy
 {
+    public GameObject aegisObj;
+
     public static float NO_ATK_WAIT = .5f;
     public static float ATK_WAIT = 1.1f;
 
@@ -41,14 +43,6 @@ public class UnitProxy : GridObjectProxy
       }
       PanelControllerNew.SwitchChar(oppUnit);
 
-      if (_data.GetAegis()) {
-          Debug.Log("Aegis!");
-          _data.SetAegis(false);
-          FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis", true);
-          return false;
-      }
-      Debug.Log("No Aegis");
-
       //Damage the unit
       /*
         Trigger the opponent's attack trigger here
@@ -62,8 +56,19 @@ public class UnitProxy : GridObjectProxy
 
       Vector3Int diff = animEnd - animStart;
 
+      if (_data.GetAegis()) {
+          Debug.Log("Aegis!");
+          _data.SetAegis(false);
+          StartCoroutine(AttackAnim(oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
+            oppUnit.gameObject.transform, diff, ""));
+          FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis", true);
+          return false;
+      }
+      Debug.Log("No Aegis");
+
       StartCoroutine(AttackAnim(oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
         oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
+
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       if (GetData().IsDead())
       {
@@ -351,7 +356,7 @@ public class UnitProxy : GridObjectProxy
     }
 
     IEnumerator WaitForZap(TileProxy newTl, TileProxy oldTl, string actStr){
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(AnimationInteractionController.ANIMATION_WAIT_TIME_LIMIT);
 
         newTl.ReceiveGridObjectProxy(this);
         newTl.FloatUp(Skill.Actions.None, "whabam!", Color.blue, actStr);
@@ -359,5 +364,20 @@ public class UnitProxy : GridObjectProxy
         oldTl.RemoveGridObjectProxy(this);
         oldTl.FloatUp(Skill.Actions.None, "poof", Color.cyan, actStr);
         SnapToCurrentPosition(); 
+    }
+
+    void Update(){
+        if (GetData().GetAegis()) {
+            aegisObj.SetActive(true);
+        } else {
+            if (aegisObj.activeInHierarchy) {
+                StartCoroutine(PopAegis());
+            }
+        }
+    }
+
+    IEnumerator PopAegis(){
+        yield return new WaitForSeconds(AnimationInteractionController.ANIMATION_WAIT_TIME_LIMIT);
+        aegisObj.SetActive(false);
     }
 }

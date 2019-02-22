@@ -328,7 +328,7 @@ public class Unit : GridObject
 
         string uName = GenerateRandomName(avoidNames);
 
-        Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 2, 1, 1, new string[]{ "WarpAtk" }, "", uType, fType);
+        Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 2, 1, 1, new string[]{ "AegisBegin" }, "", uType, fType);
         ClassNode classObj = ClassNode.ComputeClassObject(fType,uType);
         bUnit = classObj.UpgradeCharacter(bUnit);
         bUnit.SetCurrentClass(classObj.GetType().Name);

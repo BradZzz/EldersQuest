@@ -1,28 +1,8 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skills/SubSkills/HealWait.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Brains/BasicBrain.cs">
     <Files>
-      <File FileName="Assets/Scripts/Classes/Human/Mage/HumanGeniusClass.cs" Line="16" Column="4" />
-      <File FileName="Assets/Scripts/Classes/Human/Mage/HumanTechnomancerClass.cs" Line="32" Column="4" />
-      <File FileName="Assets/Scripts/Classes/Human/Soldier/HumanGPaladinClass.cs" Line="34" Column="1" />
-      <File FileName="Assets/Scripts/Classes/Human/Soldier/HumanIPaladinClass.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/AegisAlliesAtk.cs" Line="26" Column="106" />
-      <File FileName="Assets/Scripts/Classes/Human/Mage/HumanTinkererClass.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/ForceAtk.cs" Line="77" Column="51" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/VoidAtk.cs" Line="28" Column="47" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/WarpAtk.cs" Line="28" Column="51" />
-      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="56" Column="99" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="72" Column="33" />
-      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="58" Column="13" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/HealAlliesAtk.cs" Line="34" Column="42" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="211" Column="46" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="264" Column="17" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/RageAlliesWait.cs" Line="41" Column="38" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/RootAtk.cs" Line="24" Column="27" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/ThornDef.cs" Line="27" Column="49" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/HealAtk.cs" Line="24" Column="55" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/HealKill.cs" Line="29" Column="56" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/HealTurn.cs" Line="43" Column="47" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/HealWait.cs" Line="38" Column="13" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="29" Column="52" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

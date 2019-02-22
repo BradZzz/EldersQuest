@@ -22,17 +22,13 @@ public class HealAlliesAtk : Skill
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(attacker, value + 1, true)){
-          tl.FloatUp(Skill.Actions.DidAttack, "heal", Color.green, "Allies healed from another unit's attack");
-          Debug.Log("HealAlliesAtk");
-          if (tl.HasUnit()) {
-            Debug.Log(tl.HasUnit().ToString());
-            Debug.Log((tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam()).ToString());
-            Debug.Log(tl != BoardProxy.instance.GetTileAtPosition(attacker.GetPosition()));
-            if (tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam() 
-              && tl != BoardProxy.instance.GetTileAtPosition(attacker.GetPosition())) {
-                Debug.Log("Attempting to heal unit");
-                tl.GetUnit().HealUnit(1, Skill.Actions.DidAttack);
-            }
+          bool isAttacker = tl == BoardProxy.instance.GetTileAtPosition(attacker.GetPosition());
+          if (!isAttacker) {
+              tl.FloatUp(Skill.Actions.DidAttack, "heal", Color.green, "Allies healed from another unit's attack");
+              if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam()) {
+                    Debug.Log("Attempting to heal unit");
+                    tl.GetUnit().HealUnit(1, Skill.Actions.DidAttack);
+              }
           }
       }
   }

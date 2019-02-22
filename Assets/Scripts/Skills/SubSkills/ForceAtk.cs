@@ -75,11 +75,14 @@ public class ForceAtk : Skill
       TileProxy nwDefTile = BoardProxy.instance.GetTileAtPosition(diff);
       if (nwDefTile != null && !nwDefTile.HasObstruction()) {
           TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(diff);
-          nwDefTile.ReceiveGridObjectProxy(defender);
-          nwDefTile.FloatUp(Skill.Actions.None, "whabam!", Color.blue, "ForceAtk");
-          oldTile.RemoveGridObjectProxy(defender);
-          oldTile.FloatUp(Skill.Actions.None, "poof", Color.cyan, "ForceAtk");
-          defender.SnapToCurrentPosition();   
+      
+          defender.ZapToTile(nwDefTile, oldTile, "ForceAtk");
+
+          //nwDefTile.ReceiveGridObjectProxy(defender);
+          //nwDefTile.FloatUp(Skill.Actions.None, "whabam!", Color.blue, "ForceAtk");
+          //oldTile.RemoveGridObjectProxy(defender);
+          //oldTile.FloatUp(Skill.Actions.None, "poof", Color.cyan, "ForceAtk");
+          //defender.SnapToCurrentPosition();   
       } else if (nwDefTile != null) {
           Debug.Log("Character was slammed into obstacle! Might want to do something here.");
       }

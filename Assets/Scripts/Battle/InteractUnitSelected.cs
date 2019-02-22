@@ -102,7 +102,7 @@ public class InteractUnitSelected : InteractMode
               PanelControllerNew.SwitchChar(player, enemy);
             } else {
               if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
-                && allTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
+                && attackableTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
                 && currentUnit.GetData().GetTurnActions().CanAttack())
               {
                   toAttack = null;

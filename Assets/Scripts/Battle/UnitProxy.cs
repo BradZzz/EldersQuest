@@ -345,4 +345,14 @@ public class UnitProxy : GridObjectProxy
         data.SetPosition(tile.GetPosition());
 
     }
+
+    public void ZapToTile(TileProxy newTl, TileProxy oldTl, string actStr){
+        newTl.ReceiveGridObjectProxy(this);
+        newTl.FloatUp(Skill.Actions.None, "whabam!", Color.blue, actStr);
+        data.SetPosition(newTl.GetPosition());
+
+        oldTl.RemoveGridObjectProxy(this);
+        oldTl.FloatUp(Skill.Actions.None, "poof", Color.cyan, actStr);
+        SnapToCurrentPosition();  
+    }
 }

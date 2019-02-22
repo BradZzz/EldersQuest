@@ -42,9 +42,11 @@ public class BasicBrain : MonoBehaviour
                   "/" + unit.GetData().GetTurnActions().GetAttacks());
                 didSomething = false;
                 //Look at all the visitable tiles
-                List<TileProxy> visitableTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed(), true);
+                //List<TileProxy> visitableTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed(), true);
+                //Look at all the attackable tiles
+                List<TileProxy> attackableTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetAttackRange(), true);
                 //Look at all the tiles the opposing team is on from the visitable tiles
-                List<TileProxy> opposingTeamTiles = new List<TileProxy>(visitableTiles.Where(tile => tile.HasUnit() 
+                List<TileProxy> opposingTeamTiles = new List<TileProxy>(attackableTiles.Where(tile => tile.HasUnit() 
                     && tile.GetUnit().GetData().GetTeam() != BoardProxy.ENEMY_TEAM));
                 //Look at all the tiles in range
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());

@@ -32,7 +32,9 @@ public class VoidAtk : Skill
       foreach (TileProxy tl in path)
       {
           if (tl != defTile && tl != atkTile) {
+              tl.FloatUp(Skill.Actions.None, "whabam!", Color.blue, "VoidAtk");
               tl.ReceiveGridObjectProxy(defender);
+              defTile.FloatUp(Skill.Actions.None, "poof", Color.cyan, "VoidAtk");
               defTile.RemoveGridObjectProxy(defender);
               defender.SnapToCurrentPosition();
               break;

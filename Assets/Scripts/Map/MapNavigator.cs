@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MapNavigator : MonoBehaviour
 {
-  public GameObject[] dests;
 
+  public GameObject[] w1Dests;
+  public GameObject[] w2Dests;
+  public GameObject[] w3Dests;
+  public GameObject[] w4Dests;
+
+  private GameObject[] dests;
   private List<string> destSave;
   private List<GameObject> openDests;
   private string selected;
@@ -17,6 +23,40 @@ public class MapNavigator : MonoBehaviour
     selected = "";
     PlayerMeta meta = BaseSaver.GetPlayer();
     destSave = new List<string>(meta.stats.dests);
+    if (BaseSaver.GetGame().GameEnded()) {
+        SceneManager.LoadScene("ScrollingTextScene");
+    }
+
+    ChangeDests(w1Dests,false);
+    ChangeDests(w2Dests,false);
+    ChangeDests(w3Dests,false);
+    ChangeDests(w4Dests,false);
+
+    PlayerMeta player = BaseSaver.GetPlayer();
+    switch(player.world){
+        case GameMeta.World.mountain: 
+          ChangeDests(w2Dests,true);
+          dests = w2Dests;
+        break;
+        case GameMeta.World.pyramid:
+          ChangeDests(w3Dests,true);
+          dests = w3Dests;
+        break;
+        case GameMeta.World.candy: 
+          ChangeDests(w4Dests,true);
+          dests = w4Dests;
+        break;
+        default:
+          ChangeDests(w1Dests,true);
+          dests = w1Dests;
+          break;
+    }
+  }
+
+  void ChangeDests(GameObject[] iDests, bool valid){
+      foreach(GameObject iDe in iDests){
+          iDe.SetActive(valid);
+      }
   }
 
   void Start()

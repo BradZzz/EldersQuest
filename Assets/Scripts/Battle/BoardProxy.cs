@@ -82,7 +82,7 @@ public class BoardProxy : MonoBehaviour
         Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.PLAYER_TEAM));
         List<UnitProxy> units = new List<UnitProxy>();
         Debug.Log("PopulatePlayer: " + validTls.Count.ToString());
-        for (int i = 0; i < player.characters.Length && i < height; i++)
+        for (int i = 0; i < player.characters.Length && i < height && i < 3; i++)
         {
             Unit cMeta = new Unit(player.characters[i]);
             UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);

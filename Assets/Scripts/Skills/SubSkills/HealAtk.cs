@@ -21,7 +21,7 @@ public class HealAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
-      attacker.HealUnit(value);
+      attacker.HealUnit(value, Skill.Actions.DidAttack);
   }
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)

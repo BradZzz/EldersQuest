@@ -26,7 +26,9 @@ public class WarpAtk : Skill
 
       if (availableTiles.Count > 0) {
           TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(defender.GetPosition());
+          availableTiles[0].FloatUp(Skill.Actions.None, "whabam!", Color.blue, "WarpAtk");
           availableTiles[0].ReceiveGridObjectProxy(defender);
+          oldTile.FloatUp(Skill.Actions.None, "poof", Color.cyan, "WarpAtk");
           oldTile.RemoveGridObjectProxy(defender);
           defender.SnapToCurrentPosition(); 
       } 

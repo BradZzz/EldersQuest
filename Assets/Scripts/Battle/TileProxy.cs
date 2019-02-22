@@ -9,6 +9,10 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     public static float NO_ATK_WAIT = .5f;
     public static float ATK_WAIT = 1.6f;
 
+    public static Color MOVE = Color.grey;
+    public Color ATK_INACTIVE = new Color(.86f,.079f,.24f);
+    public static Color ATK_ACTIVE = Color.magenta;
+
     [SerializeField]
     private Tile tile;
 
@@ -57,7 +61,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void HighlightSelected()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        GetComponent<Renderer>().material.color = MOVE;
     }
 
     public void HighlightSelectedAdv(UnitProxy inRangeUnit, List<TileProxy> visitable, List<TileProxy> attackable)
@@ -69,7 +73,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         {
             if (!canAtk && !canMv)
             {
-                GetComponent<Renderer>().material.color = Color.red;
+                GetComponent<Renderer>().material.color = MOVE;
             }
             return;
         }
@@ -80,11 +84,11 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
             {
                 if (HasUnit() && inRangeUnit.GetData().GetTeam() != GetUnit().GetData().GetTeam())
                 {
-                    GetComponent<Renderer>().material.color = Color.blue;
+                    GetComponent<Renderer>().material.color = ATK_ACTIVE;
                 }
                 else if (!HasObstacle())
                 {
-                    GetComponent<Renderer>().material.color = Color.cyan;
+                    GetComponent<Renderer>().material.color = ATK_INACTIVE;
                 }
             }
         }
@@ -94,7 +98,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
             {
                 if (!(HasUnit() && canAtk))
                 {
-                    GetComponent<Renderer>().material.color = Color.red;
+                    GetComponent<Renderer>().material.color = MOVE;
                 }
             }  
         }
@@ -146,17 +150,17 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public UnitProxy GetUnit()
     {
-        return (UnitProxy) objectProxies.Where(op => op is UnitProxy).First();
+        return (UnitProxy) objectProxies.ToList().Where(op => op is UnitProxy).First();
     }
 
     public bool HasObstacle()
     {
-        return objectProxies.Where(op => op is ObstacleProxy).Any();
+        return objectProxies.ToList().Where(op => op is ObstacleProxy).Any();
     }
 
     public bool HasUnit()
     {
-        return objectProxies.Where(op => op is UnitProxy).Any();
+        return objectProxies.ToList().Where(op => op is UnitProxy).Any();
     }
 
     public bool HasObstruction()
@@ -166,7 +170,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public bool UnitOnTeam(int team)
     {
-        return objectProxies.Where(op => op is UnitProxy && ((UnitProxy)op).GetData().GetTeam() == team).Any();
+        return objectProxies.ToList().Where(op => op is UnitProxy && ((UnitProxy)op).GetData().GetTeam() == team).Any();
     }
 
     public void SetTurnsOnFire(int trns, UnitProxy unit){
@@ -215,39 +219,15 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc);
     }
 
-    //IEnumerator FloatUpAnim(string msg, Color color, float wait)
-    //{
-    //    yield return new WaitForSeconds(wait);
-    //    Debug.Log("FloatUpAnim");
-    //    Vector3 pos = this.transform.position;
-    //    Debug.Log("FloatUpAnim pos: " + pos.ToString());
-    //    pos.x -= .3f;
-    //    pos.y += .3f;
-    //    //GameObject numObj = Instantiate(instanceDummy, pos, Quaternion.identity);
-    //    //GameObject numObj = Instantiate(new GameObject(), this.transform, true);
-    //    GameObject numObj = new GameObject();
-    //    numObj.transform.position = pos;
-    //    numObj.transform.rotation = Quaternion.identity;
-    //    numObj.transform.parent = transform;
-    //    numObj.AddComponent<TextMesh>();
-    //    numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
-    //    numObj.GetComponent<TextMesh>().characterSize = .2f;
-    //    numObj.GetComponent<TextMesh>().text = msg;
-    //    numObj.GetComponent<TextMesh>().color = color;
-    //    iTween.ShakePosition(numObj,new Vector3(0,.25f,0), .3f);
-    //    iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .2f,pos.z), .3f);
-    //    yield return new WaitForSeconds(.4f);
-    //    Destroy(numObj);
-    //    yield return null;
-    //}
-
     #region events
     public void OnPointerDown(PointerEventData eventData)
     {
-        InteractivityManager.instance.OnTileSelected(this);
-        foreach (var obj in objectProxies.ToList())
-        {
-            obj.OnSelected();
+        if (TurnController.instance.PlayersTurn()){
+            InteractivityManager.instance.OnTileSelected(this);
+            foreach (var obj in objectProxies.ToList())
+            {
+                obj.OnSelected();
+            }
         }
     }
     public void OnPointerExit(PointerEventData eventData)
@@ -257,7 +237,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        InteractivityManager.instance.OnTileHovered(this);
+        if (TurnController.instance.PlayersTurn()){
+            InteractivityManager.instance.OnTileHovered(this);
+        }
     }
 
     Vector3 _startPosition;

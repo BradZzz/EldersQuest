@@ -23,7 +23,7 @@ public class AegisAlliesAtk : Skill
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(attacker, value + 1, true)){
           tl.FloatUp(Skill.Actions.DidAttack, "+1 aegis allies", Color.blue, "Aegis Allies");
-          if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam() && !tl == BoardProxy.instance.GetTileAtPosition(attacker.GetPosition())) {
+          if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam() && tl != BoardProxy.instance.GetTileAtPosition(attacker.GetPosition())) {
               tl.GetUnit().GetData().SetAegis(true);
           }
       }

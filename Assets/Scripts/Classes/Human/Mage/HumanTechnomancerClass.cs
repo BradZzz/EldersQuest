@@ -12,7 +12,7 @@ public class HumanTechnomancerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn\n+1 atk";
+    return "+1 mv trn\nAegisAlliesAtk";
   }
 
   public override string ClassName()
@@ -30,9 +30,10 @@ public class HumanTechnomancerClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      int atk = unit.GetAttack();
-      unit.SetAttack(atk + 1);
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
+      List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("AegisAlliesAtk");
+      unit.SetSkills(skills.ToArray());
       return unit;
   }
 }

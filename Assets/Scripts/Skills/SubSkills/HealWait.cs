@@ -35,7 +35,7 @@ public class HealWait : Skill
 
   public override void DidWait(UnitProxy unit)
   {
-       unit.HealUnit(value);
+       unit.HealUnit(value, Skill.Actions.None);
   }
 
   public override void EndTurn(UnitProxy unit)

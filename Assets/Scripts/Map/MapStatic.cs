@@ -33,13 +33,21 @@ public class MapStatic
 
     static Unit[] CreateFromExp(int lvl)
     {
+        PlayerMeta player = BaseSaver.GetPlayer();
+        Unit.FactionType eFaction = Unit.FactionType.Egypt;
+        switch(player.faction){
+            case Unit.FactionType.Human: eFaction = Unit.FactionType.Egypt; break;
+            case Unit.FactionType.Egypt: eFaction = Unit.FactionType.Cthulhu; break;
+            case Unit.FactionType.Cthulhu: eFaction = Unit.FactionType.Human; break;
+        }
+
         List<Unit> units = new List<Unit>();
         Array values = Enum.GetValues(typeof(Unit.UnitType));
         int max = 3 > lvl ? lvl : 3;
         int lvlCnt = lvl;
         for(int i = 0; i < max; i++) {
             int exp = UnityEngine.Random.Range(0,lvlCnt);
-            Unit newUnit = Unit.BuildInitial(Unit.FactionType.Egypt, 
+            Unit newUnit = Unit.BuildInitial(player.world != GameMeta.World.candy ? eFaction : (Unit.FactionType)UnityEngine.Random.Range(0, 3), 
               (Unit.UnitType)values.GetValue(UnityEngine.Random.Range(0,values.Length-1)), BoardProxy.ENEMY_TEAM);
             if (i == max - 1) {
                 newUnit.SetLvl(lvlCnt);

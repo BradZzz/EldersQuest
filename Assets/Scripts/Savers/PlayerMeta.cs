@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerMeta
 {
+  public GameMeta.World world;
   public Unit.FactionType faction;
   public Unit[] characters;
   public string[] items;
@@ -15,6 +16,7 @@ public class PlayerMeta
 
   public PlayerMeta()
   {
+    world = GameMeta.World.nile;
     characters = new Unit[0];
     items = new string[0];
     stats = new StatMeta();

@@ -20,6 +20,14 @@ public class MenuController : MonoBehaviour
     PrintSave("sv1", save1);
     PrintSave("sv2", save2);
     PrintSave("sv3", save3);
+
+    GameMeta game = BaseSaver.GetGame();
+    if (game == null) {
+        Debug.Log("Game is null");
+        BaseSaver.PutGame(new GameMeta());
+    } else {
+        Debug.Log("Game is not null");
+    }
   }
 
   void PrintSave(string save, TextMeshProUGUI txt)

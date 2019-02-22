@@ -111,7 +111,7 @@ public class BasicBrain : MonoBehaviour
                 yield return new WaitForSeconds(.25f); 
             }
         }
-        yield return new WaitForSeconds(AnimationInteractionController.NO_ATK_WAIT); 
+        //yield return new WaitForSeconds(AnimationInteractionController.NO_ATK_WAIT); 
         //No more actions, end turn 
         TurnController.instance.EndTurn();
         yield return null;

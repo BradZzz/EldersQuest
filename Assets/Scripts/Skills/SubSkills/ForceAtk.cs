@@ -76,12 +76,23 @@ public class ForceAtk : Skill
       if (nwDefTile != null && !nwDefTile.HasObstruction()) {
           TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(diff);
           nwDefTile.ReceiveGridObjectProxy(defender);
+          nwDefTile.FloatUp(Skill.Actions.None, "whabam!", Color.blue, "ForceAtk");
           oldTile.RemoveGridObjectProxy(defender);
+          oldTile.FloatUp(Skill.Actions.None, "poof", Color.cyan, "ForceAtk");
           defender.SnapToCurrentPosition();   
       } else if (nwDefTile != null) {
           Debug.Log("Character was slammed into obstacle! Might want to do something here.");
       }
   }
+
+  //IEnumerator MoveDefender(UnitProxy unit, TileProxy oTl, TileProxy nTl){
+  //        yield return new WaitForSeconds(.2f);
+  //        oTl.RemoveGridObjectProxy(unit);
+  //        oTl.FloatUp(Skill.Actions.DidAttack, "poof", Color.cyan, "ForceAtk");
+  //        nTl.ReceiveGridObjectProxy(unit);
+  //        nTl.FloatUp(Skill.Actions.DidAttack, "whabam!", Color.blue, "ForceAtk");
+  //        unit.SnapToCurrentPosition();   
+  //}
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {

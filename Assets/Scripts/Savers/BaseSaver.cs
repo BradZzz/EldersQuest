@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseSaver
 {
+  private static string GAME = "GAME";
   private static string SAVE_NUMBER = "SAVE_NUMBER";
 
   private static string PLAYER = "PLAYER";
@@ -38,6 +39,29 @@ public class BaseSaver
     PlayerPrefs.SetString(SAVE_NUMBER, save);
 
     Debug.Log("Save set: " + save);
+  }
+
+  /*
+   * Save Game
+   */ 
+  public static void PutGame(GameMeta game)
+  {
+    string json = JsonUtility.ToJson(game);
+    PlayerPrefs.SetString(GAME, json);
+
+    Debug.Log("GAME set: " + GAME + ":" + json);
+  }
+
+
+  public static GameMeta GetGame()
+  {
+    string json = PlayerPrefs.GetString(GAME);
+    Debug.Log("GAME got: " + GAME + ":" + json);
+    if (json == null)
+    {
+      return null;
+    }
+    return JsonUtility.FromJson<GameMeta>(json);
   }
 
   /*

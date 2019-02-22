@@ -37,7 +37,7 @@ public class RageAlliesWait : Skill
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(unit, value + 1, true)){
           tl.FloatUp(Skill.Actions.DidWait, "inspired", Color.yellow, "+1 atk allies from waiting");
-          if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == unit.GetData().GetTeam() && !tl == BoardProxy.instance.GetTileAtPosition(unit.GetPosition())) {
+          if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == unit.GetData().GetTeam() && tl != BoardProxy.instance.GetTileAtPosition(unit.GetPosition())) {
               unit.ReceiveAtkBuff(1);
           }
       }

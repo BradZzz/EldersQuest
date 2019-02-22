@@ -237,8 +237,11 @@
     <Compile Include="Assets\Scripts\Savers\BoardMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CharMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CondMeta.cs" />
+    <Compile Include="Assets\Scripts\Savers\GameMeta.cs" />
+    <Compile Include="Assets\Scripts\Savers\HighScoreMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\PlayerMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\StatMeta.cs" />
+    <Compile Include="Assets\Scripts\ScrollingText\StorySceneHolder.cs" />
     <Compile Include="Assets\Scripts\Skills\Skill.cs" />
     <Compile Include="Assets\Scripts\Skills\SkillReference.cs" />
     <Compile Include="Assets\Scripts\Skills\SkillWrap.cs" />

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Glossary : MonoBehaviour
 {
+    public static bool PROD = false;
+
     public UnitProxy[] units;
     public ObstacleProxy[] obstacles;
 

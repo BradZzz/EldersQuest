@@ -22,7 +22,7 @@ public class FireDef : Skill
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, value, true)){
-          if (!tl.HasObstacle() && !tl == BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
+          if (!tl.HasObstacle() && tl != BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
               tl.SetTurnsOnFire(2, defender);
           }
       }

@@ -26,7 +26,7 @@ public class HealKill : Skill
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {
-       attacker.HealUnit(value);
+       attacker.HealUnit(value, Skill.Actions.DidAttack);
   }
 
   public override void DidWait(UnitProxy unit)

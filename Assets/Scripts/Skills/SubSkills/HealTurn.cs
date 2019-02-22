@@ -40,7 +40,7 @@ public class HealTurn : Skill
 
   public override void EndTurn(UnitProxy unit)
   {
-       unit.HealUnit(value);
+       unit.HealUnit(value, Skill.Actions.None);
   }
 
   public override string PrintDetails(){

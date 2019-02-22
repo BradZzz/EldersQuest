@@ -23,7 +23,7 @@ public class ThornDef : Skill
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, 2, true)){
           tl.FloatUp(Skill.Actions.DidDefend, "thorn dmg", Color.green, "Thorn Defense");
-          if (tl.HasUnit() && !tl == BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
+          if (tl.HasUnit() && tl != BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
               if (tl.GetUnit().IsAttackedEnvironment(value)){
                   tl.GetUnit().DelayedKill(tl.GetUnit(), defender);
               }

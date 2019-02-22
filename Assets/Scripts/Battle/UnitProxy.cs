@@ -207,12 +207,13 @@ public class UnitProxy : GridObjectProxy
         AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc, shakeChar, deathConsideration);
     }
 
-    public void HealUnit(int value){
+    public void HealUnit(int value, Skill.Actions action){
+        Debug.Log("Healing: " + GetData().characterMoniker + " for " + value.ToString());
        int nwHlth = GetData().GetCurrHealth() + value;
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
        if (nwHlth != GetData().GetCurrHealth()) {
          GetData().SetCurrHealth(nwHlth);
-         FloatUp(Skill.Actions.None, "+" + value.ToString(), Color.green, "Unit Healed", false);
+         FloatUp(action, "+" + value.ToString(), Color.green, "Unit Healed", false);
        }
     }
 

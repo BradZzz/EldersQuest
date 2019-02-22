@@ -29,6 +29,10 @@ public class TurnController : MonoBehaviour
         return currentTeam;
     }
 
+    public bool PlayersTurn(){
+        return GetTeam() == BoardProxy.PLAYER_TEAM;
+    }
+
     void SwitchTeams()
     {
         currentTeam = GetTeam() == BoardProxy.ENEMY_TEAM ? BoardProxy.PLAYER_TEAM : BoardProxy.ENEMY_TEAM;

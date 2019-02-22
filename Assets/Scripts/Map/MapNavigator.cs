@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class MapNavigator : MonoBehaviour
   public GameObject[] w2Dests;
   public GameObject[] w3Dests;
   public GameObject[] w4Dests;
+  public GameObject descPnl;
 
   private GameObject[] dests;
   private List<string> destSave;
@@ -31,6 +33,7 @@ public class MapNavigator : MonoBehaviour
     ChangeDests(w2Dests,false);
     ChangeDests(w3Dests,false);
     ChangeDests(w4Dests,false);
+    descPnl.SetActive(false);
 
     PlayerMeta player = BaseSaver.GetPlayer();
     switch(player.world){
@@ -164,6 +167,8 @@ public class MapNavigator : MonoBehaviour
       }
       this.selected = selected;
       ByName(this.selected).transform.GetChild(0).gameObject.SetActive(true);
+
+      setDesc("Map: " + this.selected + "\n\n" + MapStatic.ReturnTestBoardDests()[selected].ReturnMapDesc());
     }
   }
 
@@ -182,5 +187,14 @@ public class MapNavigator : MonoBehaviour
   public string GetSelect()
   {
     return selected;
+  }
+
+  public void setDesc(string msg){
+      if (msg.Length == 0) {
+          descPnl.SetActive(false);
+      } else {
+          descPnl.SetActive(true);
+          descPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+      }
   }
 }

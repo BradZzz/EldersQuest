@@ -210,13 +210,16 @@ public class TechTreeNav : MonoBehaviour
             {
                 foreach(Unit unt in player.characters){
                     if (chld.name.Equals("CharName") && chld.GetComponent<TextMeshProUGUI>().text.Equals(unt.characterMoniker)) {
-                        units.Add(unt);
+                        if (!units.Where(un => un.characterMoniker.Equals(unt.characterMoniker)).Any()) {
+                            units.Add(unt);
+                        }
                     }
                 }
             }
         }
         player.characters = units.ToArray();
         //player.characters.Reverse();
+        Debug.Log("Player Units: " + player.characters.Length.ToString());
         BaseSaver.PutPlayer(player);
         SceneManager.LoadScene("MapScene");
     }

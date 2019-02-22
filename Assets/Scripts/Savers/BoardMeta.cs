@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -35,5 +36,12 @@ public class BoardMeta
         this.enemies = enemies;
         this.conditions = conditions;
         this.unlocks = unlocks;
+    }
+
+    public string ReturnMapDesc(){
+        string retString = "";
+        int lvl = enemies.Sum(emy => emy.GetLvl());
+        retString += "pwr lvl: " + lvl.ToString();
+        return retString;
     }
 }

@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/BoardProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Unit.cs">
     <Files>
-      <File FileName="Assets/Scripts/Classes/Human/Mage/HumanGeniusClass.cs" Line="15" Column="36" />
-      <File FileName="Assets/Scripts/Classes/Human/Mage/HumanTechnomancerClass.cs" Line="15" Column="32" />
-      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="138" Column="34" />
-      <File FileName="Assets/Scripts/CharSelect/CharSelectController.cs" Line="101" Column="1" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="73" Column="45" />
+      <File FileName="Assets/Scripts/Map/MapNavigator.cs" Line="168" Column="32" />
+      <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="143" Column="51" />
+      <File FileName="Assets/Scripts/Savers/BoardMeta.cs" Line="41" Column="19" />
+      <File FileName="Assets/Scripts/Map/MapStatic.cs" Line="50" Column="38" />
+      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="118" Column="36" />
+      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="217" Column="15" />
+      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="326" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

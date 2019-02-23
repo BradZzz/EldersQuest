@@ -121,7 +121,9 @@ public class ConditionTracker : MonoBehaviour
             //Fill them back in if they are still on the board
             List<Unit> pCharsBoard = new List<Unit>(new HashSet<Unit>(units.Select(unit => new Unit(unit.GetData()))));
             foreach(Unit unt in pCharsBoard) {
-                pChars.Add(unt);
+                if (!pChars.Where(pCh => pCh.characterMoniker.Equals(unt.characterMoniker)).Any()) {
+                    pChars.Add(unt);
+                }
             }
             List<string> dests = new List<string>(player.stats.dests);
             foreach (string unlock in BaseSaver.GetBoard().unlocks)

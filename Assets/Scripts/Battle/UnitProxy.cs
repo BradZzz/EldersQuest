@@ -351,7 +351,7 @@ public class UnitProxy : GridObjectProxy
         }
 
         data.SetPosition(tile.GetPosition());
-
+        tile.CreateSmoke();
     }
 
     public void ZapToTile(TileProxy newTl, TileProxy oldTl, string actStr){  

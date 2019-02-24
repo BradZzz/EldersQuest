@@ -219,6 +219,20 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc);
     }
 
+    public void CreateSmoke(){
+        StartCoroutine(CreateSmokeAnim());
+    }
+
+    IEnumerator CreateSmokeAnim(){
+        Vector3 instPos = transform.position;
+        instPos.y += .8f;
+        GameObject smoke = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().Smoke, instPos, Quaternion.identity);
+        //smoke.transform.position = Vector3.zero;
+        //smoke.GetComponent<RectTransform>().ForceUpdateRectTransforms();
+        yield return new WaitForSeconds(1f);
+        Destroy(smoke);
+    }
+
     #region events
     public void OnPointerDown(PointerEventData eventData)
     {

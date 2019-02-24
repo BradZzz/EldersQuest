@@ -50,3 +50,5 @@ MonoBehaviour:
   - {fileID: 4566907892727034715, guid: bdd97f605b31a4d5ea9a910caaf8c044, type: 3}
   summonedSkeleton: {fileID: 4488396556959502835, guid: 2a524645c86b747628c8716bcd5e3e3f,
     type: 3}
+  Smoke: {fileID: 6565869410425460684, guid: 71815da0e26444fb1b531ea8e73196b6, type: 3}
+  Laser: {fileID: 6180251007682999482, guid: 3457a68efe8454c1c83278ad3eee00be, type: 3}

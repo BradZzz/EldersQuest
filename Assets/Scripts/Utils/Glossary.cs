@@ -10,4 +10,7 @@ public class Glossary : MonoBehaviour
     public ObstacleProxy[] obstacles;
 
     public UnitProxy summonedSkeleton;
+
+    public GameObject Smoke;
+    public GameObject Laser;
 }

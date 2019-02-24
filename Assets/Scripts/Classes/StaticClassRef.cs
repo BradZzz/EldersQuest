@@ -156,6 +156,15 @@ public class StaticClassRef
             case AvailableClasses.CthulhuApparitionClass: return new CthulhuApparitionClass();
             case AvailableClasses.CthulhuPBeastClass: return new CthulhuPBeastClass();
             case AvailableClasses.CthulhuDEaterClass: return new CthulhuDEaterClass();
+            /* lvl 4 */
+            case AvailableClasses.CthulhuPRiderClass: return new CthulhuPRiderClass();
+            case AvailableClasses.CthulhuNyarlathotepClass: return new CthulhuNyarlathotepClass();
+            case AvailableClasses.CthulhuDRiderClass: return new CthulhuDRiderClass();
+            case AvailableClasses.CthulhuPBearerClass: return new CthulhuPBearerClass();
+            case AvailableClasses.CthulhuFRiderClass: return new CthulhuFRiderClass();
+            case AvailableClasses.CthulhuYigClass: return new CthulhuYigClass();
+            case AvailableClasses.CthulhuAzathothClass: return new CthulhuAzathothClass();
+            case AvailableClasses.CthulhuYogsothothClass: return new CthulhuYogsothothClass();
 
             case AvailableClasses.CthulhuBaseSoldier: return new CthulhuBaseSoldier();
             /* lvl 2 */
@@ -166,6 +175,16 @@ public class StaticClassRef
             case AvailableClasses.CthulhuSuccubusClass: return new CthulhuSuccubusClass();
             case AvailableClasses.CthulhuSBehemothClass: return new CthulhuSBehemothClass();
             case AvailableClasses.CthulhuRGiantClass: return new CthulhuRGiantClass();
+            /* lvl 4 */
+            case AvailableClasses.CthulhuVampireClass: return new CthulhuVampireClass();
+            case AvailableClasses.CthulhuEssilexClass: return new CthulhuEssilexClass();
+            case AvailableClasses.CthulhuLilithClass: return new CthulhuLilithClass();
+            case AvailableClasses.CthulhuEveClass: return new CthulhuEveClass();
+            case AvailableClasses.CthulhuGodzillaClass: return new CthulhuGodzillaClass();
+            case AvailableClasses.CthulhuThingClass: return new CthulhuThingClass();
+            case AvailableClasses.CthulhuWRiderClass: return new CthulhuWRiderClass();
+            case AvailableClasses.CthulhuADeathClass: return new CthulhuADeathClass();
+
             default: return new HumanBaseSoldier();
         }
     }
@@ -223,10 +242,16 @@ public class StaticClassRef
         /* Cthulhu Scout */
         CthulhuBaseScout, CthulhuStolisClass, CthulhuTrollClass,
         CthulhuHTotemClass, CthulhuApparitionClass, CthulhuPBeastClass, CthulhuDEaterClass,
+        /* lvl 4 */
+        CthulhuPRiderClass, CthulhuNyarlathotepClass, CthulhuDRiderClass, CthulhuPBearerClass,
+        CthulhuFRiderClass, CthulhuYigClass, CthulhuAzathothClass, CthulhuYogsothothClass,
 
         /* Cthulhu Soldier */
         CthulhuBaseSoldier, CthulhuVamprossClass, CthulhuGoliathClass, 
         CthulhuAVamprossClass, CthulhuSuccubusClass, CthulhuSBehemothClass, CthulhuRGiantClass,
+        /* lvl 4 */
+        CthulhuVampireClass, CthulhuEssilexClass, CthulhuLilithClass, CthulhuEveClass,
+        CthulhuGodzillaClass, CthulhuThingClass, CthulhuWRiderClass, CthulhuADeathClass,
 
         None
     }

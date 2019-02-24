@@ -227,8 +227,6 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         Vector3 instPos = transform.position;
         instPos.y += .8f;
         GameObject smoke = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().Smoke, instPos, Quaternion.identity);
-        //smoke.transform.position = Vector3.zero;
-        //smoke.GetComponent<RectTransform>().ForceUpdateRectTransforms();
         yield return new WaitForSeconds(1f);
         Destroy(smoke);
     }

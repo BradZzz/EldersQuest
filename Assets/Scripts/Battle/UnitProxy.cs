@@ -118,6 +118,7 @@ public class UnitProxy : GridObjectProxy
       //Shake();
       //FloatUp(msg, Color.red, ATK_WAIT);
       FloatUp(Skill.Actions.DidAttack, msg, Color.red, "Was attacked", true);
+      GetComponent<UnitProxy>().CreateLaserHit();
       yield return null;
     }
 
@@ -382,5 +383,18 @@ public class UnitProxy : GridObjectProxy
     IEnumerator PopAegis(){
         yield return new WaitForSeconds(AnimationInteractionController.ANIMATION_WAIT_TIME_LIMIT);
         aegisObj.SetActive(false);
+    }
+
+    public void CreateLaserHit(){
+        StartCoroutine(CreateLaserAnim());
+    }
+
+    IEnumerator CreateLaserAnim(){
+        yield return new WaitForSeconds(AnimationInteractionController.ATK_WAIT);
+        Vector3 instPos = transform.position;
+        instPos.y += .4f;
+        GameObject smoke = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().Laser, instPos, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+        Destroy(smoke);
     }
 }

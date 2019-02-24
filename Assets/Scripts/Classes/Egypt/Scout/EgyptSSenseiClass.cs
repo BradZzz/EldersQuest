@@ -25,7 +25,7 @@ public class EgyptSSenseiClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptCWalkerClass(), new EgyptDCarrierClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

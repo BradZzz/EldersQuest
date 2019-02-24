@@ -25,7 +25,7 @@ public class EgyptArsonistClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptFelonClass(), new EgyptFirefighterClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

@@ -25,7 +25,7 @@ public class EgyptGenieClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptWMasterClass(), new EgyptRSpectreClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

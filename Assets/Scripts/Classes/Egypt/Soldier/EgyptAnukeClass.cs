@@ -25,7 +25,7 @@ public class EgyptAnukeClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptAnMessiahClass(), new EgyptMSandsClass()};
   }
 
   public override Unit UpgradeCharacter(Unit unit)

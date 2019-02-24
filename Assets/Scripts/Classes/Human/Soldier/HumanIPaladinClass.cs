@@ -12,7 +12,7 @@ public class HumanIPaladinClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+2hp\nVoidAtk";
+      return "+2 hp\nVoidAtk";
   }
 
   public override string ClassName()
@@ -25,7 +25,7 @@ public class HumanIPaladinClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanInquisitorClass(), new HumanTormentorClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

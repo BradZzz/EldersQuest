@@ -25,7 +25,7 @@ public class EgyptFBenderClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptPorcupineClass(), new EgyptFEnforcerClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

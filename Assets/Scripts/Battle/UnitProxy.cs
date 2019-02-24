@@ -9,8 +9,9 @@ public class UnitProxy : GridObjectProxy
 {
     public GameObject aegisObj;
 
-    public static float NO_ATK_WAIT = .5f;
-    public static float ATK_WAIT = 1.1f;
+    //public static float NO_ATK_WAIT = .5f;
+    //public static float ATK_WAIT = 1.1f;
+    public static float MV_TIME = .25f;
 
     private Unit _data;
     protected override GridObject data
@@ -270,7 +271,7 @@ public class UnitProxy : GridObjectProxy
         yield return 0f;
         foreach (var t in path.Reverse())
         {
-            yield return StartCoroutine(LerpToTile(t, .15f));
+            yield return StartCoroutine(LerpToTile(t, MV_TIME));
         }
         Animator anim = transform.GetChild(0).GetComponent<Animator>();
         if (anim != null) {

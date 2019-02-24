@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class GameMeta
 {
-  public static int AMOUNT_OF_LVLS = 10;
+  public static int AMOUNT_OF_LVLS = 11;
 
   public Unit.FactionType[] unlockedFactions;
   public HighScoreMeta[] scores;

@@ -25,7 +25,7 @@ public class HumanFMarineClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanBloodBenderClass(), new HumanDMercenaryClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

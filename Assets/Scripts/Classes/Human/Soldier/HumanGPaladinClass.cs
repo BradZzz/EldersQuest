@@ -12,7 +12,7 @@ public class HumanGPaladinClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+2 mv/BideWait";
+      return "+2 mv/nBideWait";
   }
 
   public override string ClassName()
@@ -25,7 +25,7 @@ public class HumanGPaladinClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanCCrusaderClass(), new HumanDCrusaderClass()  };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

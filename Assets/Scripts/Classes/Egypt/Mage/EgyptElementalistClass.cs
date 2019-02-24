@@ -25,7 +25,7 @@ public class EgyptElementalistClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptVWhispererClass(), new EgyptTConduitClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

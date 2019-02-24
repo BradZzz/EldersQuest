@@ -25,7 +25,7 @@ public class HumanGDancerClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanGNinjaClass(), new HumanRSamuraiClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

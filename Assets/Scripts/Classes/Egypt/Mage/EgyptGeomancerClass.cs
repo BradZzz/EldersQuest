@@ -25,7 +25,7 @@ public class EgyptGeomancerClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new EgyptEMoverClass(), new EgyptHSpeakerClass() };
   }
  
   public override Unit UpgradeCharacter(Unit unit)

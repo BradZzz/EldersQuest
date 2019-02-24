@@ -317,7 +317,7 @@ public class Unit : GridObject
         string rStr = "";
         var gSkills = GetSkills().GroupBy(skill => skill);
         foreach(var skill in gSkills){
-            rStr += "" + skill.Count().ToString() + "-" + skill.Key;
+            rStr += "(" + skill.Count().ToString() + ")" + skill.Key + "\n";
         }
         return rStr;
     }

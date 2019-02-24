@@ -2,8 +2,11 @@
 
 public class PinchZoom : MonoBehaviour
 {
-    public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
-    public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
+    public float perspectiveZoomSpeed = 0.1f;        // The rate of change of the field of view in perspective mode.
+    public float orthoZoomSpeed = 0.1f;        // The rate of change of the orthographic size in orthographic mode.
+
+    public int clampLeft = 1;
+    public int clampRight = 3;
 
     private Camera camera;
 
@@ -40,6 +43,8 @@ public class PinchZoom : MonoBehaviour
 
                 // Make sure the orthographic size never drops below zero.
                 camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
+
+                camera.orthographicSize = camera.orthographicSize < clampLeft ? clampLeft : (camera.orthographicSize > clampRight ? clampRight : camera.orthographicSize);
             }
             else
             {

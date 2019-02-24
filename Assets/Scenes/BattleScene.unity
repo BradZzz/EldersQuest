@@ -1344,38 +1344,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
---- !u!84 &335324973
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 2340
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &370120970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,6 +2895,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711448755}
   m_CullTransparentMesh: 0
+--- !u!84 &720496887
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 2340
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &739300177
 GameObject:
   m_ObjectHideFlags: 0
@@ -5898,7 +5898,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300744985}
   m_CullTransparentMesh: 0
---- !u!84 &1300931364
+--- !u!84 &1377150437
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6331,12 +6331,12 @@ PrefabInstance:
     - target: {fileID: 4649587326441318474, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 4649587326441318474, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 4649587326441318453, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}
@@ -6344,6 +6344,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 107f39f605d0d4aaebac6f7fe6f6ac82,
         type: 3}
+    - target: {fileID: 4649587326441318453, guid: 7b9d01703203c4005a0f7d0160a2626e,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4649587326145284435, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}
       propertyPath: m_RaycastTarget
@@ -7899,7 +7904,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1300931364}
+  m_TargetTexture: {fileID: 720496887}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -8042,8 +8047,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1612299825}
   outlineCamera: {fileID: 1604055430}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1300931364}
-  extraRenderTexture: {fileID: 335324973}
+  renderTexture: {fileID: 720496887}
+  extraRenderTexture: {fileID: 1377150437}
 --- !u!82 &1612299828
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8229,6 +8234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perspectiveZoomSpeed: 0.5
   orthoZoomSpeed: 0.5
+  clampLeft: 1
+  clampRight: 3
 --- !u!1 &1619778265
 GameObject:
   m_ObjectHideFlags: 0
@@ -10560,18 +10567,18 @@ PrefabInstance:
     - target: {fileID: 4649587326441318474, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 4649587326441318474, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 4649587326441318453, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 107f39f605d0d4aaebac6f7fe6f6ac82,
+      objectReference: {fileID: 21300002, guid: 881fe00b8b46e4aee99a4e2c47ee8d64,
         type: 3}
     - target: {fileID: 4649587326145284435, guid: 7b9d01703203c4005a0f7d0160a2626e,
         type: 3}

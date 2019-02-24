@@ -33,16 +33,19 @@ public abstract class Skill
             case SkillClasses.BideKill: return new BideKill();
             case SkillClasses.BideWait: return new BideWait();
             case SkillClasses.EnfeebleAtk: return new EnfeebleAtk();
+            case SkillClasses.EnfeebleEnemiesWait: return new EnfeebleEnemiesWait();
             case SkillClasses.FireAtk: return new FireAtk();
             case SkillClasses.FireDef: return new FireDef();
             case SkillClasses.FireKill: return new FireKill();
             case SkillClasses.FireMove: return new FireMove();
             case SkillClasses.ForceAtk: return new ForceAtk();  
             case SkillClasses.HealAlliesAtk: return new HealAlliesAtk(); 
+            case SkillClasses.HealAlliesWait: return new HealAlliesWait(); 
             case SkillClasses.HealAtk: return new HealAtk(); 
             case SkillClasses.HealKill: return new HealKill();
             case SkillClasses.HealTurn: return new HealTurn();
             case SkillClasses.HealWait: return new HealWait();
+            case SkillClasses.HobbleAtk: return new HobbleAtk();
             case SkillClasses.RageAlliesWait: return new RageAlliesWait();
             case SkillClasses.RageAtk: return new RageAtk();
             case SkillClasses.RageDef: return new RageDef();
@@ -50,6 +53,7 @@ public abstract class Skill
             case SkillClasses.RageMove: return new RageMove();
             case SkillClasses.RageWait: return new RageWait();
             case SkillClasses.RootAtk: return new RootAtk();
+            case SkillClasses.RootEnemiesWait: return new RootEnemiesWait();
             case SkillClasses.SicklyAtk: return new SicklyAtk();
             case SkillClasses.SkeleKill: return new SkeleKill();
             case SkillClasses.ThornDef: return new ThornDef();       
@@ -64,8 +68,9 @@ public abstract class Skill
     }
 
     public enum SkillClasses{
-        AegisAlliesAtk, AegisAtk, AegisBegin, AegisKill, AegisTurn, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, FireAtk, FireDef, FireKill, FireMove, ForceAtk, 
-        HealAtk, HealAlliesAtk, HealKill, HealTurn, HealWait,
-        RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
+        AegisAlliesAtk, AegisAtk, AegisBegin, AegisKill, AegisTurn, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, EnfeebleEnemiesWait,
+        FireAtk, FireDef, FireKill, FireMove, ForceAtk, 
+        HealAtk, HealAlliesAtk, HealAlliesWait, HealKill, HealTurn, HealWait, HobbleAtk,
+        RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, RootEnemiesWait, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
     }
 }

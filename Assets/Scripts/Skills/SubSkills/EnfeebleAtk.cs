@@ -21,6 +21,7 @@ public class EnfeebleAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
+      BoardProxy.instance.GetTileAtPosition(defender.GetPosition()).FloatUp(Skill.Actions.DidAttack, "enfeeble", Color.grey, "Player enfeebled from atk");
       defender.GetData().GetTurnActions().EnfeebledForTurns(value);
   }
 

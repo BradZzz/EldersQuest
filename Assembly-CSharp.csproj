@@ -165,26 +165,50 @@
     <Compile Include="Assets\Scripts\CharSelect\CharSelectController.cs" />
     <Compile Include="Assets\Scripts\Classes\ClassNode.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuBaseMage.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuDevilClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuFaustusClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuFurymancerClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuGDispatcherClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuGrandDemonClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuJudasClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuLesserDemonClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuLichClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuNecromancerClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuPApostleClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuPGoblinClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuPitLordClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuUReaperClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuVirgilClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuApparitionClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuAzathothClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuBaseScout.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuDEaterClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuDRiderClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuFRiderClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuHTotemClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuNyarlathotepClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuPBearerClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuPBeastClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuPRiderClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuStolisClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuTrollClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuYigClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Scout\CthulhuYogsothothClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuADeathClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuAVamprossClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuBaseSoldier.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuEssilexClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuEveClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuGodzillaClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuGoliathClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuLilithClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuRGiantClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuSBehemothClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuSuccubusClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuThingClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuVampireClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuVamprossClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuWRiderClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Mage\EgyptBaseMage.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Mage\EgyptBKoboldClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Mage\EgyptConjurerClass.cs" />
@@ -215,6 +239,7 @@
     <Compile Include="Assets\Scripts\Classes\Egypt\Scout\EgyptRChosenClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Scout\EgyptSSenseiClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Scout\EgyptWhispererClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptAConduitClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptAMessiahClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptAnMessiahClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptAnukeClass.cs" />
@@ -223,8 +248,10 @@
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptBesClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptBMessiahClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptHapyClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptHMessiahClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptMSandsClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptNomadClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptOracleClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptSActorClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptScionClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanArchMageClass.cs" />
@@ -664,11 +691,6 @@
     <Reference Include="Boo.Lang">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
-    <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptOracleClass.cs" />
-    <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptHMessiahClass.cs" />
-    <Compile Include="Assets\Scripts\Classes\Egypt\Soldier\EgyptAConduitClass.cs" />
-    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuDevilClass.cs" />
-    <Compile Include="Assets\Scripts\Classes\Cthulu\Mage\CthulhuFaustusClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

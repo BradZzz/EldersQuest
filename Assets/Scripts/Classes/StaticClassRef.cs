@@ -59,6 +59,15 @@ public class StaticClassRef
             case AvailableClasses.HumanIPaladinClass: return new HumanIPaladinClass();
             case AvailableClasses.HumanGDancerClass: return new HumanGDancerClass();
             case AvailableClasses.HumanFMarineClass: return new HumanFMarineClass();
+            /* lvl 4 */
+            case AvailableClasses.HumanBBenderClass: return new HumanBloodBenderClass();
+            case AvailableClasses.HumanDMercenaryClass: return new HumanDMercenaryClass();
+            case AvailableClasses.HumanGNinjaClass: return new HumanGNinjaClass();
+            case AvailableClasses.HumanRSamuraiClass: return new HumanRSamuraiClass();
+            case AvailableClasses.HumanInquisitorClass: return new HumanInquisitorClass();
+            case AvailableClasses.HumanTormentorClass: return new HumanTormentorClass();
+            case AvailableClasses.HumanCCrusaderClass: return new HumanCCrusaderClass();
+            case AvailableClasses.HumanDCrusaderClass: return new HumanDCrusaderClass();
 
             /* Egypt */
             case AvailableClasses.EgyptBaseMage: return new EgyptBaseMage();
@@ -70,7 +79,15 @@ public class StaticClassRef
             case AvailableClasses.EgyptElementalistClass: return new EgyptElementalistClass();
             case AvailableClasses.EgyptGeomancerClass: return new EgyptGeomancerClass();
             case AvailableClasses.EgyptKoboldClass: return new EgyptKoboldClass();
-
+            /* lvl 4 */
+            case AvailableClasses.EgyptVWhispererClass: return new EgyptVWhispererClass();
+            case AvailableClasses.EgyptTConduitClass: return new EgyptTConduitClass();
+            case AvailableClasses.EgyptEMoverClass: return new EgyptEMoverClass();
+            case AvailableClasses.EgyptHSpeakerClass: return new EgyptHSpeakerClass();
+            case AvailableClasses.EgyptWMasterClass: return new EgyptWMasterClass();
+            case AvailableClasses.EgyptRSpectreClass: return new EgyptRSpectreClass();
+            case AvailableClasses.EgyptBKoboldClass: return new EgyptBKoboldClass();
+            case AvailableClasses.EgyptTGoblinClass: return new EgyptTGoblinClass();
 
             case AvailableClasses.EgyptBaseScout: return new EgyptBaseScout();
             /* lvl 2 */
@@ -81,6 +98,15 @@ public class StaticClassRef
             case AvailableClasses.EgyptFBenderClass: return new EgyptFBenderClass();
             case AvailableClasses.EgyptArsonistClass: return new EgyptArsonistClass();
             case AvailableClasses.EgyptRChosenClass: return new EgyptRChosenClass();
+            /* lvl 4 */
+            case AvailableClasses.EgyptPorcupineClass: return new EgyptPorcupineClass();
+            case AvailableClasses.EgyptFEnforcerClass: return new EgyptFEnforcerClass();
+            case AvailableClasses.EgyptCWalkerClass: return new EgyptCWalkerClass();
+            case AvailableClasses.EgyptDCarrierClass: return new EgyptDCarrierClass();
+            case AvailableClasses.EgyptPChannelerClass: return new EgyptPChannelerClass();
+            case AvailableClasses.EgyptNSpeakerClass: return new EgyptNSpeakerClass();
+            case AvailableClasses.EgyptFelonClass: return new EgyptFelonClass();
+            case AvailableClasses.EgyptFirefighterClass: return new EgyptFirefighterClass();
 
             case AvailableClasses.EgyptBaseSoldier: return new EgyptBaseSoldier();
             /* lvl 2 */
@@ -91,6 +117,15 @@ public class StaticClassRef
             case AvailableClasses.EgyptAnukeClass: return new EgyptAnukeClass();
             case AvailableClasses.EgyptBesClass: return new EgyptBesClass();
             case AvailableClasses.EgyptHapyClass: return new EgyptHapyClass();
+            /* lvl 4 */
+            case AvailableClasses.EgyptAMessiahClass: return new EgyptAMessiahClass();
+            case AvailableClasses.EgyptSActorClass: return new EgyptSActorClass();
+            case AvailableClasses.EgyptAnMessiahClass: return new EgyptAnMessiahClass();
+            case AvailableClasses.EgyptMSandsClass: return new EgyptMSandsClass();
+            case AvailableClasses.EgyptBMessiahClass: return new EgyptBMessiahClass();
+            case AvailableClasses.EgyptOracleClass: return new EgyptOracleClass();
+            case AvailableClasses.EgyptHMessiahClass: return new EgyptHMessiahClass();
+            case AvailableClasses.EgyptAConduitClass: return new EgyptAConduitClass();
 
             /* Cthulhu */
             case AvailableClasses.CthulhuBaseMage: return new CthulhuBaseMage();
@@ -102,6 +137,15 @@ public class StaticClassRef
             case AvailableClasses.CthulhuPitLordClass: return new CthulhuPitLordClass();
             case AvailableClasses.CthulhuFurymancerClass: return new CthulhuFurymancerClass();
             case AvailableClasses.CthulhuGrandDemonClass: return new CthulhuGrandDemonClass();
+            /* lvl 4 */
+            case AvailableClasses.CthulhuDevilClass: return new CthulhuDevilClass();
+            case AvailableClasses.CthulhuFaustusClass: return new CthulhuFaustusClass();
+            case AvailableClasses.CthulhuJudasClass: return new CthulhuJudasClass();
+            case AvailableClasses.CthulhuVirgilClass: return new CthulhuVirgilClass();
+            case AvailableClasses.CthulhuUReaperClass: return new CthulhuUReaperClass();
+            case AvailableClasses.CthulhuPApostleClass: return new CthulhuPApostleClass();
+            case AvailableClasses.CthulhuPGoblinClass: return new CthulhuPGoblinClass();
+            case AvailableClasses.CthulhuGDispatcherClass: return new CthulhuGDispatcherClass();
 
             case AvailableClasses.CthulhuBaseScout: return new CthulhuBaseScout();
             /* lvl 2 */
@@ -144,22 +188,37 @@ public class StaticClassRef
         /* Human Soldier */
         HumanBaseSoldier, HumanBerserkerClass, HumanPaladinClass,
         HumanGPaladinClass, HumanGDancerClass, HumanIPaladinClass, HumanFMarineClass,
+        /* lvl 4 */
+        HumanBBenderClass, HumanDMercenaryClass, HumanGNinjaClass, HumanRSamuraiClass,
+        HumanInquisitorClass, HumanTormentorClass, HumanCCrusaderClass, HumanDCrusaderClass,
 
         /* Egypt Mage */
         EgyptBaseMage, EgyptConjurerClass, EgyptDjinnClass,
         EgyptGenieClass, EgyptElementalistClass, EgyptGeomancerClass, EgyptKoboldClass, 
+        /* lvl 4 */
+        EgyptVWhispererClass, EgyptTConduitClass, EgyptEMoverClass, EgyptHSpeakerClass,
+        EgyptWMasterClass, EgyptRSpectreClass, EgyptBKoboldClass, EgyptTGoblinClass,
 
         /* Egypt Scout */
         EgyptBaseScout, EgyptManglerClass, EgyptWhispererClass,
         EgyptSSenseiClass, EgyptFBenderClass, EgyptArsonistClass, EgyptRChosenClass,
+        /* lvl 4 */
+        EgyptPorcupineClass, EgyptFEnforcerClass, EgyptCWalkerClass, EgyptDCarrierClass,
+        EgyptPChannelerClass, EgyptNSpeakerClass, EgyptFelonClass, EgyptFirefighterClass,
 
         /* Egypt Soldier */
         EgyptBaseSoldier, EgyptNomadClass, EgyptScionClass, 
         EgyptAshClass, EgyptAnukeClass, EgyptBesClass, EgyptHapyClass,
+        /* lvl 4 */
+        EgyptAMessiahClass, EgyptSActorClass, EgyptAnMessiahClass, EgyptMSandsClass,
+        EgyptBMessiahClass, EgyptOracleClass, EgyptHMessiahClass, EgyptAConduitClass,
 
         /* Cthulhu Mage */
         CthulhuBaseMage, CthulhuLesserDemonClass, CthulhuNecromancerClass,
         CthulhuLichClass, CthulhuPitLordClass, CthulhuFurymancerClass, CthulhuGrandDemonClass,
+        /* lvl 4 */
+        CthulhuDevilClass, CthulhuFaustusClass, CthulhuJudasClass, CthulhuVirgilClass,
+        CthulhuUReaperClass, CthulhuPApostleClass, CthulhuPGoblinClass, CthulhuGDispatcherClass,
 
         /* Cthulhu Scout */
         CthulhuBaseScout, CthulhuStolisClass, CthulhuTrollClass,

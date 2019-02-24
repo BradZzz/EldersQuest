@@ -25,7 +25,7 @@ public class CthulhuRGiantClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new CthulhuADeathClass(), new CthulhuWRiderClass()};
   }
 
  

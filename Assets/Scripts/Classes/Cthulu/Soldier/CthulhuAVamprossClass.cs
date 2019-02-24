@@ -25,7 +25,7 @@ public class CthulhuAVamprossClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new CthulhuVampireClass(), new CthulhuEssilexClass() };
   }
 
  

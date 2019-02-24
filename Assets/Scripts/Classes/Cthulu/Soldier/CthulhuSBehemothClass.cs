@@ -25,7 +25,7 @@ public class CthulhuSBehemothClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new CthulhuGodzillaClass(), new CthulhuThingClass()};
   }
 
  

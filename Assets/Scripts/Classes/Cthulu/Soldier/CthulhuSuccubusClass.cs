@@ -25,7 +25,7 @@ public class CthulhuSuccubusClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new CthulhuEveClass(), new CthulhuLilithClass() };
   }
 
  

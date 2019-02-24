@@ -139,8 +139,7 @@ public class PanelControllerNew : MonoBehaviour
                   ? unit.GetData().GetCurrentClass().ClassName() : unit.GetData().GetUnitType().ToString();
             }
             if (child.name.Equals("Skills")) {
-                string txt = unit.GetData().GetSkills().Any() ? unit.GetData().GetSkills().Aggregate((s1, s2) => s1 + "\n" + s2) : "";
-                child.GetComponent<TextMeshProUGUI>().text = txt;
+                child.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetSkillDescription();
             }
             if (child.name.Equals("Exp")) {
                 child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetLvl().ToString();

@@ -313,6 +313,15 @@ public class Unit : GridObject
         }
     }
 
+    public string GetSkillDescription(){
+        string rStr = "";
+        var gSkills = GetSkills().GroupBy(skill => skill);
+        foreach(var skill in gSkills){
+            rStr += "" + skill.Count().ToString() + "-" + skill.Key;
+        }
+        return rStr;
+    }
+
     //public static Skill GetSkillByName(string skill){
     //    return Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skill));
     //}

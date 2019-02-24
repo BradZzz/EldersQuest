@@ -401,7 +401,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 400, y: 300}
+  m_CellSize: {x: 280, y: 300}
   m_Spacing: {x: 50, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2065,22 +2065,97 @@ PrefabInstance:
     - target: {fileID: 5712633497317426752, guid: 6b430de563f8f4f23890448ff68b1ed2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 28.966
+      value: 41.033997
       objectReference: {fileID: 0}
     - target: {fileID: 5712633497317426752, guid: 6b430de563f8f4f23890448ff68b1ed2,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 57.932
       objectReference: {fileID: 0}
+    - target: {fileID: 5712633497317426752, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497317426752, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497317426752, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497317426752, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -230.2
+      value: 74.4
       objectReference: {fileID: 0}
     - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 142.8
+      value: 148.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -26.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633496934528021, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000097752
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497610074038, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497610074038, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497610074038, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497610074038, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -26.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712633497610074038, guid: 6b430de563f8f4f23890448ff68b1ed2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b430de563f8f4f23890448ff68b1ed2, type: 3}

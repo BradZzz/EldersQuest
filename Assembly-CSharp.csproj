@@ -272,16 +272,19 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideKill.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\EnfeebleAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\EnfeebleEnemiesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\FireAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\FireDef.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\FireKill.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\FireMove.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\ForceAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealAlliesAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\HealAlliesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealKill.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealTurn.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealWait.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\HobbleAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageAlliesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageDef.cs" />
@@ -289,6 +292,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageMove.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RootAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\RootEnemiesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\SicklyAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\SkeleKill.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\ThornDef.cs" />
@@ -631,10 +635,6 @@
     <Reference Include="Boo.Lang">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
-    <Compile Include="Assets\Scripts\Skills\SubSkills\HobbleAtk.cs" />
-    <Compile Include="Assets\Scripts\Skills\SubSkills\RootEnemiesWait.cs" />
-    <Compile Include="Assets\Scripts\Skills\SubSkills\EnfeebleEnemiesWait.cs" />
-    <Compile Include="Assets\Scripts\Skills\SubSkills\HealAlliesWait.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

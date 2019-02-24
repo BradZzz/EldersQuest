@@ -25,7 +25,7 @@ public class HumanTinkererClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanBramblelockClass(), new HumanKootClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

@@ -12,7 +12,7 @@ public class EgyptScionClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "Aegis Attack";
+      return "AegisAtk";
   }
 
   public override string ClassName()

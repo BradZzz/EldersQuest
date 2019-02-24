@@ -209,7 +209,11 @@
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanArchMageClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanBaseMage.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanGeniusClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanGigaWizardClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanGrandMageClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanIceWizardClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanIWarlockClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanMetalmancerClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanTechnomancerClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanTinkererClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanWizardClass.cs" />
@@ -611,6 +615,21 @@
     <Reference Include="Boo.Lang">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanBramblelockClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanKootClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanAstronautClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Mage\HumanDoctorClass.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\AegisKill.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\AegisTurn.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\BideAlliesWait.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanGeneralClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanFlankCaptainClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanArcaneCommanderClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanTankCommanderClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanPKnightClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanMineSweeperClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanPMarineClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Human\Scout\HumanQEngineerClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

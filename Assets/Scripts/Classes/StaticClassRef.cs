@@ -6,7 +6,8 @@ public class StaticClassRef
 {
     public static int LEVEL1 = 2;
     public static int LEVEL2 = 5;
-    public static int LEVEL3 = 8;
+    public static int LEVEL3 = 9;
+    public static int LEVEL4 = 16;
 
     public static ClassNode GetClass(AvailableClasses cType){
         switch(cType){
@@ -20,6 +21,15 @@ public class StaticClassRef
             case AvailableClasses.HumanGeniusClass: return new HumanGeniusClass();
             case AvailableClasses.HumanTinkererClass: return new HumanTinkererClass();
             case AvailableClasses.HumanArchMageClass: return new HumanArchMageClass();
+            /* lvl 4 */
+            case AvailableClasses.HumanGigaWizardClass: return new HumanGigaWizardClass();
+            case AvailableClasses.HumanIceWizardClass: return new HumanIceWizardClass();
+            case AvailableClasses.HumanGrandMageClass: return new HumanGrandMageClass();
+            case AvailableClasses.HumanMetalmancerClass: return new HumanMetalmancerClass();
+            case AvailableClasses.HumanBramblelockClass: return new HumanBramblelockClass();
+            case AvailableClasses.HumanKootClass: return new HumanKootClass();
+            case AvailableClasses.HumanAstronautClass: return new HumanAstronautClass();
+            case AvailableClasses.HumanDoctorClass: return new HumanDoctorClass();
 
             case AvailableClasses.HumanBaseScout: return new HumanBaseScout();
             /* lvl 2 */
@@ -30,6 +40,15 @@ public class StaticClassRef
             case AvailableClasses.HumanCSergeantClass: return new HumanCSergeantClass();
             case AvailableClasses.HumanLieutenantClass: return new HumanLieutenantClass();
             case AvailableClasses.HumanCaptainClass: return new HumanCaptainClass();
+            /* lvl 4 */
+            case AvailableClasses.HumanGeneralClass: return new HumanGeneralClass();
+            case AvailableClasses.HumanFlankCaptainClass: return new HumanFlankCaptainClass();
+            case AvailableClasses.HumanArcaneCommanderClass: return new HumanArcaneCommanderClass();
+            case AvailableClasses.HumanTankCommanderClass: return new HumanTankCommanderClass();
+            case AvailableClasses.HumanPrismKnightClass: return new HumanPKnightClass();
+            case AvailableClasses.HumanMineSweeperClass: return new HumanMineSweeperClass();
+            case AvailableClasses.HumanPlasmaMarineClass: return new HumanPMarineClass();
+            case AvailableClasses.HumanQuakeEngineerClass: return new HumanQEngineerClass();
 
             case AvailableClasses.HumanBaseSoldier: return new HumanBaseSoldier();
             /* lvl 2 */
@@ -111,10 +130,16 @@ public class StaticClassRef
         /* Human Mage */
         HumanBaseMage, HumanIWarlockClass, HumanTechnomancerClass,
         HumanWizardClass, HumanGeniusClass, HumanArchMageClass, HumanTinkererClass,
+        /* lvl 4 */
+        HumanGigaWizardClass, HumanIceWizardClass, HumanGrandMageClass, HumanMetalmancerClass,
+        HumanBramblelockClass, HumanKootClass, HumanAstronautClass, HumanDoctorClass,
 
         /* Human Scout */
         HumanBaseScout, HumanCorporalClass, HumanFSergeantClass,
         HumanMSergeantClass, HumanCSergeantClass, HumanLieutenantClass, HumanCaptainClass,
+        /* lvl 4 */
+        HumanGeneralClass, HumanFlankCaptainClass, HumanArcaneCommanderClass, HumanTankCommanderClass,
+        HumanPrismKnightClass, HumanMineSweeperClass, HumanPlasmaMarineClass, HumanQuakeEngineerClass,
 
         /* Human Soldier */
         HumanBaseSoldier, HumanBerserkerClass, HumanPaladinClass,

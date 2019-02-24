@@ -25,7 +25,7 @@ public class HumanLieutenantClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanArcaneCommanderClass(), new HumanTankCommanderClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

@@ -25,7 +25,7 @@ public class HumanWizardClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanGigaWizardClass(), new HumanIceWizardClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

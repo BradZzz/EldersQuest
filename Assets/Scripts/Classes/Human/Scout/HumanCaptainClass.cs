@@ -12,7 +12,7 @@ public class HumanCaptainClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "RageMove";
+      return "+3 hp";
   }
 
   public override string ClassName()
@@ -25,14 +25,12 @@ public class HumanCaptainClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ };
+      return new ClassNode[]{ new HumanGeneralClass(), new HumanFlankCaptainClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("RageMove");
-      unit.SetSkills(skills.ToArray());
+      unit.SetMaxHP(unit.GetMaxHP() + 3);
       return unit;
   }
 }

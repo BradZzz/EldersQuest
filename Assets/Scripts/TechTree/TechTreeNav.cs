@@ -32,7 +32,7 @@ public class TechTreeNav : MonoBehaviour
             Destroy(child.gameObject);
         }
         PlayerMeta player = BaseSaver.GetPlayer();
-        foreach(Unit unt in player.characters){
+        foreach(Unit unt in player.characters.Reverse()){
             PopulateRw(unt);
         }
     }

@@ -12,12 +12,16 @@ public class GameMeta
   public Unit.FactionType[] unlockedFactions;
   public HighScoreMeta[] scores;
   public World[] unlockedWorlds;
+  public string[] skillsSeen;
+  public string[] classesSeen;
 
   public GameMeta()
   {
     unlockedFactions = new Unit.FactionType[]{ Unit.FactionType.Human };
     unlockedWorlds = new World[]{ World.nile };
     scores = new HighScoreMeta[]{ };
+    skillsSeen = new string[]{ };
+    classesSeen = new string[]{ };
   }
 
   public bool GameEnded(){

@@ -63,6 +63,13 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(nxtScene);
   }
 
+  public void ResetAtSave(string save)
+  {
+    BaseSaver.PutSave(save);
+    BaseSaver.ResetAtSave();
+    Refresh();
+  }
+
   public void ResetAll()
   {
     BaseSaver.ResetAll();

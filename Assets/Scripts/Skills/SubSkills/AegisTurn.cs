@@ -43,7 +43,17 @@ public class AegisTurn : Skill
       unit.GetData().SetAegis(true);
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Defense };
+  }
+
   public override string PrintDetails(){
-      return "AegisTurn";
+      return "Provides an Aegis shield at the end of the unit's turn. " + ReturnBlurbByString(SkillGen.Aegis);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.nostack);
   }
 }

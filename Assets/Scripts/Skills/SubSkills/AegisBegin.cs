@@ -43,7 +43,17 @@ public class AegisBegin : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Defense };
+  }
+
   public override string PrintDetails(){
-      return "AegisBegin";
+      return "Provides an Aegis shield at the beginning of battle. " + ReturnBlurbByString(SkillGen.Aegis);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.nostack);
   }
 }

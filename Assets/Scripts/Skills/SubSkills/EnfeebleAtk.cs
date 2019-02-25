@@ -44,7 +44,17 @@ public class EnfeebleAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "EnfeebleAtk";
+      return "Enfeeble on attack. " + ReturnBlurbByString(SkillGen.Enfeeble);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

@@ -43,7 +43,17 @@ public class AegisKill : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Defense };
+  }
+
   public override string PrintDetails(){
-      return "AegisKill";
+      return "Provides an Aegis shield on enemy kill. "+ ReturnBlurbByString(SkillGen.Aegis);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.nostack);
   }
 }

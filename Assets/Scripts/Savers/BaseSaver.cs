@@ -69,6 +69,29 @@ public class BaseSaver
    */ 
   public static void PutPlayer(PlayerMeta player)
   {
+    /*
+      Here is where the classes and skills need to be looked at to 
+      see if the player has seen anything new
+    */
+    GameMeta game = BaseSaver.GetGame();
+    if (game != null) {
+        List<string> classesSeen = new List<string>(game.classesSeen);
+        List<string> skillsSeen = new List<string>(game.skillsSeen);
+        foreach(Unit unt in player.characters) {
+            if (!classesSeen.Contains(unt.GetCurrentClassString())) {
+                classesSeen.Add(unt.GetCurrentClassString());
+            }
+            foreach(string skill in unt.GetSkills()){
+                if (!skillsSeen.Contains(skill)) {
+                    skillsSeen.Add(skill);
+                }
+            }
+        }
+        game.classesSeen = classesSeen.ToArray();
+        game.skillsSeen = skillsSeen.ToArray();
+        PutGame(game);
+    }
+
     string json = JsonUtility.ToJson(player);
     PlayerPrefs.SetString(AdjKy(PLAYER), json);
 

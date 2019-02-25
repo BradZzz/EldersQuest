@@ -47,7 +47,17 @@ public class FireKill : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "FireAtk";
+      return "Fire tiles generated on tile where enemy was killed. " + ReturnBlurbByString(SkillGen.Fire);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.rng);
   }
 }

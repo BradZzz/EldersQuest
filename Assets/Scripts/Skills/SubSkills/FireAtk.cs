@@ -47,7 +47,17 @@ public class FireAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "FireAtk";
+      return "Fire tiles on attack. " + ReturnBlurbByString(SkillGen.Fire);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.rng);
   }
 }

@@ -116,7 +116,17 @@ public class ForceAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "ForceAtk";
+      return "Force enemy unit on attack. " + ReturnBlurbByString(SkillGen.Force);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.nostack);
   }
 }

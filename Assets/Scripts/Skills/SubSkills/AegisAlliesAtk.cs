@@ -51,7 +51,17 @@ public class AegisAlliesAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "AegisAlliesAtk";
+      return "Provides an Aegis shield to allies in range on successful attack. " + ReturnBlurbByString(SkillGen.Aegis);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.rng);
   }
 }

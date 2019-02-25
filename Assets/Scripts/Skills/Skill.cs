@@ -20,6 +20,8 @@ public abstract class Skill
     public abstract void DidKill(UnitProxy attacker, UnitProxy defender);
 
     public abstract string PrintDetails();
+    public abstract string PrintStackDetails();
+    public abstract SkillTypes[] GetSkillTypes();
 
     public static Skill ReturnSkillByString(SkillClasses sClass){
         switch(sClass){
@@ -63,8 +65,47 @@ public abstract class Skill
         }
     }
 
+    public static string ReturnBlurbByString(SkillGen sGen){
+        switch(sGen){
+            case SkillGen.Aegis:return "An (aegis) shield blocks a unit's next incoming attack.";
+            case SkillGen.Bide:return "(Bide) raises the max health of effected units.";
+            case SkillGen.Enfeeble:return "An (enfeebled) unit has no attacks it's next turn.";
+            case SkillGen.Fire:return "A tile on (fire) burns any unit on it for 1 damage a turn.";
+            case SkillGen.Force:return "An ability with (force) pushes an enemy away from the unit.";
+            case SkillGen.Heal:return "An ability with (heal) restores a unit's lost hit points.";
+            case SkillGen.Hobble:return "(Hobble) lowers the attack of effected units down to 1.";
+            case SkillGen.Rage:return "(Rage) raises the attack of effected units.";
+            case SkillGen.Root:return "A (root)ed unit loses their next turn movement.";
+            case SkillGen.Sickly:return "(Sickly) lowers the max hp of effected units down to 1.";
+            case SkillGen.SkeleKill:return "A (skele) ability summons a friendly skeleton unit when used.";
+            case SkillGen.Thorn:return "(Thorn) damages enemy units in range by 1 when activated.";
+            case SkillGen.Void:return "An ability with (void) pulls an enemy towards the unit.";
+            case SkillGen.Wait:return "A unit successfully (wait)s when they end the turn with at least one attack and move left.";
+            case SkillGen.Warp:return "An ability with (warp) teleports an enemy to a random open space away from the unit.";
+            default: return "";
+        }
+    }
+
+    public static string ReturnStackTypeByString(SkillStack sGen){
+        switch(sGen){
+            case SkillStack.rng:return "Multiple stacks increase range of effect by 1.";
+            case SkillStack.buff:return "Multiple stacks increase buff by 1.";
+            case SkillStack.turns:return "Multiple stacks increase turns of effect.";
+            case SkillStack.nostack:return "Effect does not stack.";
+            default: return "";
+        }
+    }
+
     public enum Actions{
         BeginGame, EndedTurn, DidAttack, DidMove, DidWait, DidKill, DidDefend, None
+    }
+
+    public enum SkillGen{
+        Aegis, Bide, Wait, Enfeeble, Fire, Force, Heal, Hobble, Rage, Root, Sickly, SkeleKill, Thorn, Void, Warp, None
+    }
+
+    public enum SkillStack{
+        rng, buff, turns, nostack, None
     }
 
     public enum SkillClasses{
@@ -72,5 +113,9 @@ public abstract class Skill
         FireAtk, FireDef, FireKill, FireMove, ForceAtk, 
         HealAtk, HealAlliesAtk, HealAlliesWait, HealKill, HealTurn, HealWait, HobbleAtk,
         RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, RootEnemiesWait, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
+    }
+
+    public enum SkillTypes{
+        Offense, Defense, Utility, None
     }
 }

@@ -6,8 +6,8 @@ public class StaticClassRef
 {
     public static int LEVEL1 = 2;
     public static int LEVEL2 = 5;
-    public static int LEVEL3 = 9;
-    public static int LEVEL4 = 16;
+    public static int LEVEL3 = 11;
+    public static int LEVEL4 = 27;
 
     public static ClassNode GetClass(AvailableClasses cType){
         switch(cType){

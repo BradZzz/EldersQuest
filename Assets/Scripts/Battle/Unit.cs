@@ -167,6 +167,10 @@ public class Unit : GridObject
         return StaticClassRef.GetClass((StaticClassRef.AvailableClasses)Enum.Parse(typeof(StaticClassRef.AvailableClasses), currentClass));
     }
 
+    public string GetCurrentClassString(){
+        return currentClass;
+    }
+
     public bool GetAegis(){
         return aegis;
     }

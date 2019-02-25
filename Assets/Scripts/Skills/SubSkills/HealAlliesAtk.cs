@@ -52,7 +52,17 @@ public class HealAlliesAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "HealAlliesAtk";
+      return "Heal nearby allies on successful attack of enemy. " + ReturnBlurbByString(SkillGen.Heal);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.rng);
   }
 }

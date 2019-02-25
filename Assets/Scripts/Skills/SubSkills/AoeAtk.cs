@@ -58,7 +58,17 @@ public class AoeAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Offense };
+  }
+
   public override string PrintDetails(){
-      return "AoeAtk";
+      return "Provides an area effect damage to normal attacks. Other skills still only effect main unit targeted.";
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.rng);
   }
 }

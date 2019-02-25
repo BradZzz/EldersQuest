@@ -217,6 +217,7 @@ public class TechTreeNav : MonoBehaviour
                 }
             }
         }
+        units.Reverse();
         player.characters = units.ToArray();
         //player.characters.Reverse();
         Debug.Log("Player Units: " + player.characters.Length.ToString());

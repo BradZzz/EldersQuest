@@ -96,7 +96,8 @@ public class CharSelectController : MonoBehaviour
     public void ContinueToScene(){
         PlayerMeta player = BaseSaver.GetPlayer();
         List<Unit> units = new List<Unit>(player.characters);
-        units.Add(selected);
+        units.Insert(0,selected);
+        //units.Add(selected);
         player.characters = units.ToArray();
 
         Debug.Log("Current Player Chars: " + player.characters.Length.ToString());

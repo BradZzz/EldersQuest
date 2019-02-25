@@ -49,7 +49,7 @@ public class FireKill : Skill
 
   public override SkillTypes[] GetSkillTypes()
   {
-      return new SkillTypes[]{ SkillTypes.Utility };
+      return new SkillTypes[]{ SkillTypes.Offense };
   }
 
   public override string PrintDetails(){

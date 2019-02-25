@@ -2,8 +2,8 @@
 
 public class PinchZoom : MonoBehaviour
 {
-    public float perspectiveZoomSpeed = 0.1f;        // The rate of change of the field of view in perspective mode.
-    public float orthoZoomSpeed = 0.1f;        // The rate of change of the orthographic size in orthographic mode.
+    public float perspectiveZoomSpeed = 0.01f;        // The rate of change of the field of view in perspective mode.
+    public float orthoZoomSpeed = 0.01f;        // The rate of change of the orthographic size in orthographic mode.
 
     public int clampLeft = 1;
     public int clampRight = 3;

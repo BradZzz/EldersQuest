@@ -43,7 +43,17 @@ public class RageWait : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Offense };
+  }
+
   public override string PrintDetails(){
-      return "RageWait";
+      return "Rage self on wait. " + ReturnBlurbByString(SkillGen.Rage) + " " + ReturnBlurbByString(SkillGen.Wait);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

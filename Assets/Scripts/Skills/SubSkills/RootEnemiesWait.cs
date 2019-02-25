@@ -52,7 +52,17 @@ public class RootEnemiesWait : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "RootEnemiesWait";
+      return "Root enemies on wait. " + ReturnBlurbByString(SkillGen.Root) + " " + ReturnBlurbByString(SkillGen.Wait);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.rng);
   }
 }

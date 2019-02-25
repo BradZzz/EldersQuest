@@ -354,6 +354,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\ThornDef.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\VoidAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\WarpAtk.cs" />
+    <Compile Include="Assets\Scripts\Stats\StatsNav.cs" />
     <Compile Include="Assets\Scripts\TechTree\TechTreeNav.cs" />
     <Compile Include="Assets\Scripts\TechTree\TechTreeUnitWrap.cs" />
     <Compile Include="Assets\Scripts\Utils\Character.cs" />

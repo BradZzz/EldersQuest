@@ -43,7 +43,17 @@ public class HealWait : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Defense };
+  }
+
   public override string PrintDetails(){
-      return "HealWait";
+      return "Heal self on wait. " + ReturnBlurbByString(SkillGen.Heal) + " " + ReturnBlurbByString(SkillGen.Wait);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

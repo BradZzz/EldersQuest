@@ -43,7 +43,17 @@ public class RageAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Offense };
+  }
+
   public override string PrintDetails(){
-      return "RageAtk";
+      return "Rage self on attack. " + ReturnBlurbByString(SkillGen.Rage);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

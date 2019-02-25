@@ -54,7 +54,7 @@ public class HealAlliesAtk : Skill
 
   public override SkillTypes[] GetSkillTypes()
   {
-      return new SkillTypes[]{ SkillTypes.Utility };
+      return new SkillTypes[]{ SkillTypes.Defense };
   }
 
   public override string PrintDetails(){

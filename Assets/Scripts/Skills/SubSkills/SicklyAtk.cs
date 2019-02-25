@@ -43,7 +43,17 @@ public class SicklyAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "SicklyAtk";
+      return "Enemy contacts sickly on unit attack. " + ReturnBlurbByString(SkillGen.Sickly);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

@@ -44,7 +44,17 @@ public class RootAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "RootAtk";
+      return "Enemy rooted on attack. " + ReturnBlurbByString(SkillGen.Root);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.turns);
   }
 }

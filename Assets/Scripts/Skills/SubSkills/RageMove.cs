@@ -44,7 +44,17 @@ public class RageMove : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Offense };
+  }
+
   public override string PrintDetails(){
-      return "RageMove";
+      return "Rage self on move. Loses effect at end of turn. " + ReturnBlurbByString(SkillGen.Rage);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.nostack);
   }
 }

@@ -50,7 +50,17 @@ public class ThornDef : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Defense };
+  }
+
   public override string PrintDetails(){
-      return "ThornDef";
+      return "Summon thorns in range when hit by enemy. " + ReturnBlurbByString(SkillGen.Thorn);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.rng);
   }
 }

@@ -43,7 +43,17 @@ public class HobbleAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "HobbleAtk";
+      return "Hobble enemy on attack. " + ReturnBlurbByString(SkillGen.Hobble);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

@@ -44,7 +44,17 @@ public class SkeleKill : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "RageAtk";
+      return "Summon skeleton on enemy unit kill. " + ReturnBlurbByString(SkillGen.SkeleKill);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

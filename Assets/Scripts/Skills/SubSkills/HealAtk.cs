@@ -43,7 +43,17 @@ public class HealAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Defense };
+  }
+
   public override string PrintDetails(){
-      return "HealKill";
+      return "Heal self on successful enemy attack. " + ReturnBlurbByString(SkillGen.Heal);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

@@ -43,7 +43,17 @@ public class HealTurn : Skill
        unit.HealUnit(value, Skill.Actions.None);
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Defense };
+  }
+
   public override string PrintDetails(){
-      return "HealTurn";
+      return "Heal self at the end of turn. " + ReturnBlurbByString(SkillGen.Heal);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.buff);
   }
 }

@@ -56,7 +56,17 @@ public class WarpAtk : Skill
 
   }
 
+  public override SkillTypes[] GetSkillTypes()
+  {
+      return new SkillTypes[]{ SkillTypes.Utility };
+  }
+
   public override string PrintDetails(){
-      return "WarpAtk";
+      return "Warp enemy on attack. " + ReturnBlurbByString(SkillGen.Warp);
+  }
+
+  public override string PrintStackDetails()
+  {
+      return ReturnStackTypeByString(Skill.SkillStack.nostack);
   }
 }

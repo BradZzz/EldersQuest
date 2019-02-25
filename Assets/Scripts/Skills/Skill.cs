@@ -71,6 +71,7 @@ public abstract class Skill
         switch(sGen){
             case SkillGen.Aegis:return "An (aegis) shield blocks a unit's next incoming attack.";
             case SkillGen.Bide:return "(Bide) raises the max health of effected units.";
+            case SkillGen.Divine:return "A tile with (divine) will heal a unit for +1 at the end of the turn.";
             case SkillGen.Enfeeble:return "An (enfeebled) unit has no attacks it's next turn.";
             case SkillGen.Fire:return "A tile on (fire) burns any unit on it for 1 damage a turn.";
             case SkillGen.Force:return "An ability with (force) pushes an enemy away from the unit.";
@@ -82,9 +83,11 @@ public abstract class Skill
             case SkillGen.Root:return "A (root)ed unit loses their next turn movement.";
             case SkillGen.Sickly:return "(Sickly) lowers the max hp of effected units down to 1.";
             case SkillGen.SkeleKill:return "A (skele) ability summons a friendly skeleton unit when used.";
+            case SkillGen.Snow:return "A tile with (snow) enfeebles and roots any unit stuck in it at the end of the turn.";
             case SkillGen.Thorn:return "(Thorn) damages enemy units in range by 1 when activated.";
             case SkillGen.Void:return "An ability with (void) pulls an enemy towards the unit.";
             case SkillGen.Wait:return "A unit successfully (wait)s when they end the turn with at least one attack and move left.";
+            case SkillGen.Wall:return "A (tile) with wall will spawn an obstacle.";
             case SkillGen.Warp:return "An ability with (warp) teleports an enemy to a random open space away from the unit.";
             default: return "";
         }
@@ -105,7 +108,7 @@ public abstract class Skill
     }
 
     public enum SkillGen{
-        Aegis, Bide, Wait, Enfeeble, Fire, Force, Heal, Hobble, Nullify, Quicken, Rage, Root, Sickly, SkeleKill, Thorn, Void, Warp, None
+        Aegis, Bide, Divine, Enfeeble, Fire, Force, Heal, Hobble, Nullify, Quicken, Rage, Root, Sickly, SkeleKill, Snow, Thorn, Void, Wait, Wall, Warp, None
     }
 
     public enum SkillStack{

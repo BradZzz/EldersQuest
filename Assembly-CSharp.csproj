@@ -694,6 +694,9 @@
     <Reference Include="Boo.Lang">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
+    <Compile Include="Assets\Scripts\Skills\SubSkills\SnowMove.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\WallMove.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\DivineMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

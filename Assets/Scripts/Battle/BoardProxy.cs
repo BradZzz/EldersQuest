@@ -14,7 +14,6 @@ public class BoardProxy : MonoBehaviour
     public Tilemap tileMap;
 
     public TileProxy prefab;
-    public Sprite fireTile;
 
     public GameObject gameOverPanel;
 
@@ -139,7 +138,8 @@ public class BoardProxy : MonoBehaviour
             for (int x = width/2 - 1; x < width/2 + 2; x++) {
                 if (obsRand == 0 ? HasObs1(x,y) : (obsRand == 1 ? HasObs2(x,y) : HasObs3(x,y))) {
                     if (!tiles[x,y].HasUnit()) {
-                        ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[0], transform);
+                        int obsIdx = UnityEngine.Random.Range(1,glossary.GetComponent<Glossary>().obstacles.Length);
+                        ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[obsIdx], transform);
                         obs.Init();
                         tiles[x,y].ReceiveGridObjectProxy(obs);
                         obs.SnapToCurrentPosition();
@@ -289,7 +289,8 @@ public class BoardProxy : MonoBehaviour
     {
         Vector3 position = grid.CellToLocal(new Vector3Int(tile.position.x, tile.position.y, 0));
         TileProxy nTile = Instantiate(prefab, position, Quaternion.identity, tileMap.transform);
-        nTile.Init(tile, fireTile);
+        Glossary glossy = glossary.GetComponent<Glossary>();
+        nTile.Init(tile, glossy.fireTile, glossy.wallTile, glossy.divineTile, glossy.snowTile);
         return nTile;
     }
 

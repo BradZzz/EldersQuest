@@ -277,7 +277,7 @@ public class Unit : GridObject
 
     public void SetCurrHealth(int cHlth)
     {
-        this.cHlth = cHlth;
+        this.cHlth = cHlth > mxHlth ? mxHlth : cHlth;
     }
 
     public int GetMaxHP(){

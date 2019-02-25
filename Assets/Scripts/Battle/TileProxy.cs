@@ -20,8 +20,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     private Transform anchor;
 
     private UnitProxy unitThatSetTileOnFire;
-    private int fireTrns;
-    private Sprite def, fireAlt;
+    private int fireTrns, wallTrns, divineTrns, snowTrns;
+    private Sprite def, fireAlt, wallAlt, divineAlt, snowAlt;
     private float timeLeft = 0;
     private float FIRE_DELAY_TIME = .5f;
 
@@ -50,10 +50,13 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         transform.position = BoardProxy.instance.grid.CellToLocal(tile.position);
     }
 
-    public void Init(Tile t, Sprite fireAlt)
+    public void Init(Tile t, Sprite fireAlt, Sprite wallAlt, Sprite divineAlt, Sprite snowAlt)
     {
         def = GetComponent<SpriteRenderer>().sprite;
         this.fireAlt = fireAlt;
+        this.wallAlt = wallAlt;
+        this.divineAlt = divineAlt;
+        this.snowAlt = snowAlt;
         tile = t;
         name = t.position.ToString();//for convenience in the heirarchy
         SnapToPosition();
@@ -153,6 +156,11 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         return (UnitProxy) objectProxies.ToList().Where(op => op is UnitProxy).First();
     }
 
+    public ObstacleProxy GetObstacle()
+    {
+        return (ObstacleProxy) objectProxies.ToList().Where(op => op is ObstacleProxy).First();
+    }
+
     public bool HasObstacle()
     {
         return objectProxies.ToList().Where(op => op is ObstacleProxy).Any();
@@ -173,8 +181,22 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         return objectProxies.ToList().Where(op => op is UnitProxy && ((UnitProxy)op).GetData().GetTeam() == team).Any();
     }
 
+    void ResetTile(){
+        fireTrns = 0;
+        wallTrns = 0;
+        divineTrns = 0;
+        snowTrns = 0;
+    }
+
+    /*
+      Fire
+    */
+
     public void SetTurnsOnFire(int trns, UnitProxy unit){
         unitThatSetTileOnFire = unit;
+        if (fireTrns == 0) {
+            ResetTile();
+        }
         fireTrns += trns;
         if (fireTrns > 0) {
             GetComponent<SpriteRenderer>().sprite = fireAlt;
@@ -183,6 +205,67 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public bool OnFire(){
         return fireTrns > 0;
+    }
+
+    /*
+      Wall
+    */
+
+    public void SetTurnsWall(int trns, UnitProxy unit){
+        unitThatSetTileOnFire = unit;
+        if (wallTrns == 0) {
+            ResetTile();
+        }
+        wallTrns += trns;
+        if (wallTrns > 0) {
+            GetComponent<SpriteRenderer>().sprite = wallAlt;
+            ObstacleProxy obs = Instantiate(BoardProxy.instance.GetComponent<Glossary>().obstacles[0], transform);
+            obs.Init();
+            ReceiveGridObjectProxy(obs);
+            obs.SnapToCurrentPosition();
+        }
+    }
+
+    public bool IsWall(){
+        return wallTrns > 0;
+    }
+
+    /*
+      Divine
+    */
+
+    public void SetTurnsDivine(int trns, UnitProxy unit){
+        unitThatSetTileOnFire = unit;
+        if (divineTrns == 0) {
+            ResetTile();
+        }
+        divineTrns += trns;
+        if (divineTrns > 0) {
+            GetComponent<SpriteRenderer>().sprite = divineAlt;
+        }
+    }
+
+    public bool IsDivine(){
+        return divineTrns > 0;
+    }
+
+    /*
+      Snow
+    */
+
+    public void SetTurnsFrozen(int trns, UnitProxy unit){
+        unitThatSetTileOnFire = unit;
+        if (snowTrns == 0) {
+            ResetTile();
+        }
+        snowTrns += trns;
+        if (snowTrns > 0) {
+            GetComponent<SpriteRenderer>().sprite = snowAlt;
+        }
+    }
+
+    public bool Frozen(){
+        return snowTrns > 0;
     }
 
     public void DecrementTileEffects(){
@@ -196,8 +279,32 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
             }
         }
 
+        if (divineTrns > 0 && HasUnit()) {
+            //Divine tiles heal
+            FloatUp(Skill.Actions.None, "+1", Color.green, "Healed from tile");
+            GetUnit().GetData().SetCurrHealth(GetUnit().GetData().GetCurrHealth() + 1);
+        }
+
+        if (snowTrns > 0 && HasUnit()) {
+            //Snow tiles apply enfeeble and rooted at the end of the turn
+            if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam){
+                FloatUp(Skill.Actions.None, "enfeebled", Color.red, "Enfeebled from tile");
+                FloatUp(Skill.Actions.None, "rooted", Color.red, "Rooted from tile");
+                GetUnit().GetData().GetTurnActions().EnfeebledForTurns(1);
+                GetUnit().GetData().GetTurnActions().RootForTurns(1);
+            }
+        }
+
+        if (wallTrns <= 0 && HasObstacle()) {
+            RemoveGridObjectProxy(GetObstacle());
+        }
+
         fireTrns = fireTrns - 1 > 0 ? fireTrns - 1 : 0;
-        if (fireTrns == 0) {
+        wallTrns = wallTrns - 1 > 0 ? wallTrns - 1 : 0;
+        divineTrns = divineTrns - 1 > 0 ? divineTrns - 1 : 0;
+        snowTrns = snowTrns - 1 > 0 ? snowTrns - 1 : 0;
+
+        if (!OnFire() && !IsWall() && !Frozen() && !IsDivine()) {
             GetComponent<SpriteRenderer>().sprite = def;
             unitThatSetTileOnFire = null;
         }
@@ -211,6 +318,30 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
            {
               timeLeft = FIRE_DELAY_TIME;
               FloatUp(Skill.Actions.None, "fire", Color.red, "Tile on fire");
+           }
+       }
+       if (Frozen()) {
+           timeLeft -= Time.deltaTime;
+           if ( timeLeft <= 0 )
+           {
+              timeLeft = FIRE_DELAY_TIME;
+              FloatUp(Skill.Actions.None, "snowy", Color.blue, "Tile is frozen");
+           }
+       }
+       if (IsDivine()) {
+           timeLeft -= Time.deltaTime;
+           if ( timeLeft <= 0 )
+           {
+              timeLeft = FIRE_DELAY_TIME;
+              FloatUp(Skill.Actions.None, "holy", Color.yellow, "Tile is holy");
+           }
+       }
+       if (IsWall()) {
+           timeLeft -= Time.deltaTime;
+           if ( timeLeft <= 0 )
+           {
+              timeLeft = FIRE_DELAY_TIME;
+              FloatUp(Skill.Actions.None, "wall", Color.magenta, "Tile is wall");
            }
        }
     }

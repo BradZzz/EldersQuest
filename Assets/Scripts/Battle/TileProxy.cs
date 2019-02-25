@@ -116,7 +116,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void ReceiveGridObjectProxy(GridObjectProxy proxy)
     {
-        if (!objectProxies.Contains(proxy))
+        if (!objectProxies.Contains(proxy) && proxy != null)
         {
             objectProxies.Add(proxy);
             proxy.SetPosition(tile.position);

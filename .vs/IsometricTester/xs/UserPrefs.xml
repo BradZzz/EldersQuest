@@ -1,8 +1,14 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Stats/StatsNav.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Brains/BasicBrain.cs">
     <Files>
       <File FileName="Assets/Scripts/Skills/SubSkills/AegisAtk.cs" Line="43" Column="1" />
-      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="9" Column="6" />
+      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="62" Column="45" />
+      <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="219" Column="63" />
+      <File FileName="Assets/Scripts/Savers/HighScoreMeta.cs" Line="12" Column="22" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="16" Column="34" />
+      <File FileName="Assets/Scripts/Battle/InteractivityManager.cs" Line="28" Column="26" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="238" Column="43" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="77" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

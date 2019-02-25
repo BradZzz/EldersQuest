@@ -10,4 +10,8 @@ public class HighScoreMeta
   public GameMeta.World world;
   public Unit.FactionType faction;
   public string name;
+
+  public string ToString(){
+      return "World: " + world.ToString() + " Faction: " + faction.ToString() + "Score: " + score.ToString();
+  }
 }

@@ -58,7 +58,7 @@ public class QuickenAlliesAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Quickens allies in range on successful attack. " + ReturnBlurbByString(SkillGen.Aegis);
+      return "Quickens allies in range on successful attack. " + ReturnBlurbByString(SkillGen.Quicken);
   }
 
   public override string PrintStackDetails()

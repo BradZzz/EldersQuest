@@ -342,8 +342,10 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealTurn.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HealWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\HobbleAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\NullifyAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\NullifyEnemiesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\QuickenAlliesAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\QuickenAlliesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageAlliesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\RageDef.cs" />

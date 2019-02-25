@@ -115,9 +115,6 @@ public class UnitProxy : GridObjectProxy
           opp.localScale = theScale;
       }
 
-      //yield return new WaitForSeconds(anim != null ? AnimationInteractionController.GetClipLengthByName(anim, "ATK_FRONT_LEFT") : 1f);
-      //Shake();
-      //FloatUp(msg, Color.red, ATK_WAIT);
       FloatUp(Skill.Actions.DidAttack, msg, Color.red, "Was attacked", true);
       GetComponent<UnitProxy>().CreateLaserHit();
       yield return null;
@@ -218,7 +215,7 @@ public class UnitProxy : GridObjectProxy
     }
 
     public void HealUnit(int value, Skill.Actions action){
-        Debug.Log("Healing: " + GetData().characterMoniker + " for " + value.ToString());
+       Debug.Log("Healing: " + GetData().characterMoniker + " for " + value.ToString());
        int nwHlth = GetData().GetCurrHealth() + value;
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
        if (nwHlth != GetData().GetCurrHealth()) {

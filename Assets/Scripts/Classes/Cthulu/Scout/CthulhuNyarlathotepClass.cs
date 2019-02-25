@@ -12,7 +12,7 @@ public class CthulhuNyarlathotepClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk trn\n+1 mv";
+    return "+1 mv trn\nNullifyAtk";
   }
 
   public override string ClassName()
@@ -30,8 +30,10 @@ public class CthulhuNyarlathotepClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
+      List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("NullifyAtk");
+      unit.SetSkills(skills.ToArray());
       return unit;
   }
 }

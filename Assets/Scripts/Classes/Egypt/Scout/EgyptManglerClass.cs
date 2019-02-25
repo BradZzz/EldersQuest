@@ -12,7 +12,7 @@ public class EgyptManglerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn";
+    return "+1 hp\nSnowMove";
   }
 
   public override string ClassName()
@@ -30,7 +30,10 @@ public class EgyptManglerClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
+      List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("SnowMove");
+      unit.SetSkills(skills.ToArray());
       return unit;
   }
 }

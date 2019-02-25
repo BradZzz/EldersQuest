@@ -12,7 +12,7 @@ public class CthulhuVirgilClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk rng\nBideKill";
+    return "+1 atk rng\nNullifyAtk";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class CthulhuVirgilClass : ClassNode
   {
       unit.SetAtkRange(unit.GetAtkRange() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideKill");
+      skills.Add("NullifyAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

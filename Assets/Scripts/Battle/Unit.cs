@@ -44,6 +44,8 @@ public class Unit : GridObject
     private bool summoned;
     [SerializeField]
     private bool aegis;
+    [SerializeField]
+    private bool nullified;
 
     [SerializeField]
     private int atkBuff;
@@ -179,6 +181,14 @@ public class Unit : GridObject
         this.aegis = aegis;
     }
 
+    public bool GetNullified(){
+        return nullified;
+    }
+
+    public void SetNullified(bool nullified){
+        this.nullified = nullified;
+    }
+
     public int GetTurnAttackBuff(){
         return this.trnAtkBuff;
     }
@@ -233,7 +243,7 @@ public class Unit : GridObject
     }
   
     public string[] GetSkills(){
-        return skills;
+        return nullified ? new string[]{ }  : skills;
     }
 
     public void SetSkills(string[] skills){
@@ -377,9 +387,9 @@ public class Unit : GridObject
     static string GetRandomName()
     {
         string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse", "Gloria", "Bertram", "Silvia", 
-          "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia", "Byron", "Audrey" };
+          "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia", "Byron", "Audrey", "Brier" };
         string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Killdoom", "Everyman", "Rocketshark", 
-          "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks" };
+          "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks", "Doughnutface" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
 }

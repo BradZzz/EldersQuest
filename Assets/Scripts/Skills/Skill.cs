@@ -48,6 +48,8 @@ public abstract class Skill
             case SkillClasses.HealTurn: return new HealTurn();
             case SkillClasses.HealWait: return new HealWait();
             case SkillClasses.HobbleAtk: return new HobbleAtk();
+            case SkillClasses.NullifyEnemiesWait: return new NullifyEnemiesWait();
+            case SkillClasses.QuickenAlliesAtk: return new QuickenAlliesAtk();
             case SkillClasses.RageAlliesWait: return new RageAlliesWait();
             case SkillClasses.RageAtk: return new RageAtk();
             case SkillClasses.RageDef: return new RageDef();
@@ -74,6 +76,8 @@ public abstract class Skill
             case SkillGen.Force:return "An ability with (force) pushes an enemy away from the unit.";
             case SkillGen.Heal:return "An ability with (heal) restores a unit's lost hit points.";
             case SkillGen.Hobble:return "(Hobble) lowers the attack of effected units down to 1.";
+            case SkillGen.Nullify:return "(Nullify) prevents a unit's skills from activating for a turn.";
+            case SkillGen.Quicken:return "(Quicken) gives a unit another movement this turn.";
             case SkillGen.Rage:return "(Rage) raises the attack of effected units.";
             case SkillGen.Root:return "A (root)ed unit loses their next turn movement.";
             case SkillGen.Sickly:return "(Sickly) lowers the max hp of effected units down to 1.";
@@ -101,7 +105,7 @@ public abstract class Skill
     }
 
     public enum SkillGen{
-        Aegis, Bide, Wait, Enfeeble, Fire, Force, Heal, Hobble, Rage, Root, Sickly, SkeleKill, Thorn, Void, Warp, None
+        Aegis, Bide, Wait, Enfeeble, Fire, Force, Heal, Hobble, Nullify, Quicken, Rage, Root, Sickly, SkeleKill, Thorn, Void, Warp, None
     }
 
     public enum SkillStack{
@@ -111,7 +115,7 @@ public abstract class Skill
     public enum SkillClasses{
         AegisAlliesAtk, AegisAtk, AegisBegin, AegisKill, AegisTurn, AegisWait, AoeAtk, BideKill, BideWait, EnfeebleAtk, EnfeebleEnemiesWait,
         FireAtk, FireDef, FireKill, FireMove, ForceAtk, 
-        HealAtk, HealAlliesAtk, HealAlliesWait, HealKill, HealTurn, HealWait, HobbleAtk,
+        HealAtk, HealAlliesAtk, HealAlliesWait, HealKill, HealTurn, HealWait, HobbleAtk, NullifyEnemiesWait, QuickenAlliesAtk,
         RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, RootEnemiesWait, SicklyAtk, SkeleKill, ThornDef, VoidAtk, WarpAtk, None
     }
 

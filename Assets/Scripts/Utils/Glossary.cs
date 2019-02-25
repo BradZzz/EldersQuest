@@ -13,4 +13,9 @@ public class Glossary : MonoBehaviour
 
     public GameObject Smoke;
     public GameObject Laser;
+
+    public Sprite fireTile;
+    public Sprite snowTile;
+    public Sprite wallTile;
+    public Sprite divineTile;
 }

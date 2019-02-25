@@ -48,6 +48,16 @@ public abstract class TurnActions
         idle = false;
     }
 
+    public void SetMoves(int moves){
+        cMv = moves;
+        cMv = cMv < 0 ? 0 : cMv;
+    }
+
+    public void SetAttacks(int attacks){
+        cAtk = attacks;
+        cAtk = cAtk < 0 ? 0 : cAtk;
+    }
+
     public int GetMoves(){
         return cMv;
     }

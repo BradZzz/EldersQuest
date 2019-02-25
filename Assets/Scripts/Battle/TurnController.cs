@@ -91,28 +91,13 @@ public class TurnController : MonoBehaviour
   
     public void EndTurn()
     {
-        //if (!AnimationInteractionController.AllAnimationsFinished()) { 
-        //    yield return new WaitForSeconds(AnimationInteractionController.AFTER_KILL);
-        //}
-        //Debug.Log("EndTurn");
-        ////Perform end turn actions
-        //EndTurnActions();
-        ////Deselect selected tiles
-        //BoardProxy.instance.FlushTiles();
-        ////Play the turn cutscene
-
-        //PanelControllerNew.ClearPanels();
-
-        ////Switch controller teams
-        //SwitchTeams();
-        ////Perform start turn actions
-        //StartTurn(false);
-
-        ////Run AI (if applicable)
-        //if (currentTeam == BoardProxy.ENEMY_TEAM && !BoardProxy.HUMAN_PLAYER)
-        //{
-        //    BasicBrain.StartThinking();
-        //}
+        //If your team ended the turn, unnullify them for next turn
+        foreach(UnitProxy unit in BoardProxy.instance.GetUnits())
+        {
+            if (unit.GetData().GetTeam() == currentTeam ){
+              unit.GetData().SetNullified(false);
+            }
+        }
         StartCoroutine(ASyncTurnEnd());
     }
 

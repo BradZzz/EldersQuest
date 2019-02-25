@@ -151,6 +151,13 @@ public class PanelControllerNew : MonoBehaviour
                     child.gameObject.SetActive(false);
                 }
             }
+            if (child.name.Equals("Nullify")) {
+                if (unit.GetData().GetNullified()) {
+                    child.gameObject.SetActive(true);
+                } else {
+                    child.gameObject.SetActive(false);
+                }
+            }
             if (child.name.Equals("HealthOutline")) {
                 foreach (Transform t in child.transform)
                 {

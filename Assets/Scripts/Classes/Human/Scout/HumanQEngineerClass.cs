@@ -12,12 +12,12 @@ public class HumanQEngineerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "RootAtk\nForceAtk";
+    return "WallMove\nForceAtk";
   }
 
   public override string ClassName()
   {
-      return "Plasma Marine";
+      return "Quake Engineer Marine";
   }
 
   public override ClassNode GetParent(){
@@ -32,7 +32,7 @@ public class HumanQEngineerClass : ClassNode
   {
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("ForceAtk");
-      skills.Add("RootAtk");
+      skills.Add("WallMove");
       unit.SetSkills(skills.ToArray());      
       return unit;
   }

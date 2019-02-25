@@ -12,7 +12,7 @@ public class HumanMineSweeperClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nHealAtk";
+    return "+1 hp\nDivineMove";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanMineSweeperClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("HealAtk");
+      skills.Add("DivineMove");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

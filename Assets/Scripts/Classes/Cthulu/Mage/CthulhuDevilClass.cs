@@ -12,7 +12,7 @@ public class CthulhuDevilClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\nAegisTurn";
+    return "+1 atk\n+1 hp\nWarpAtk";
   }
 
   public override string ClassName()
@@ -31,8 +31,9 @@ public class CthulhuDevilClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetAttack(unit.GetAttack() + 1);
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("AegisTurn");
+      skills.Add("WarpAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

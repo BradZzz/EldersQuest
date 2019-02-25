@@ -12,7 +12,7 @@ public class EgyptWMasterClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "AegisAlliesAtk\nHealAlliesAtk";
+    return "AegisAlliesAtk\nWallMove";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class EgyptWMasterClass : ClassNode
   {
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("AegisAlliesAtk");
-      skills.Add("HealAlliesAtk");
+      skills.Add("WallMove");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

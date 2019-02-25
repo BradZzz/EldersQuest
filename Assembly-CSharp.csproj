@@ -327,6 +327,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideAlliesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideKill.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideWait.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\DivineMove.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\EnfeebleAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\EnfeebleEnemiesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\FireAtk.cs" />
@@ -353,8 +354,10 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\RootEnemiesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\SicklyAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\SkeleKill.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\SnowMove.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\ThornDef.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\VoidAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\WallMove.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\WarpAtk.cs" />
     <Compile Include="Assets\Scripts\Stats\StatsNav.cs" />
     <Compile Include="Assets\Scripts\TechTree\TechTreeNav.cs" />
@@ -694,9 +697,6 @@
     <Reference Include="Boo.Lang">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
-    <Compile Include="Assets\Scripts\Skills\SubSkills\SnowMove.cs" />
-    <Compile Include="Assets\Scripts\Skills\SubSkills\WallMove.cs" />
-    <Compile Include="Assets\Scripts\Skills\SubSkills\DivineMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

@@ -12,7 +12,7 @@ public class CthulhuPBearerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "EnfeebleEnemiesWait\nEnfeebleEnemiesWait";
+    return "NullifyEnemiesWait\nNullifyEnemiesWait";
   }
 
   public override string ClassName()
@@ -31,8 +31,8 @@ public class CthulhuPBearerClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("EnfeebleEnemiesWait");
-      skills.Add("EnfeebleEnemiesWait");
+      skills.Add("NullifyEnemiesWait");
+      skills.Add("NullifyEnemiesWait");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

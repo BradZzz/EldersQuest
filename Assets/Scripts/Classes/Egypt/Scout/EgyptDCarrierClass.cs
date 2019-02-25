@@ -12,7 +12,7 @@ public class EgyptDCarrierClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nSicklyAtk";
+    return "+1 mv\nEnfeebleAtk";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class EgyptDCarrierClass : ClassNode
   {
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("SicklyAtk");
+      skills.Add("EnfeebleAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

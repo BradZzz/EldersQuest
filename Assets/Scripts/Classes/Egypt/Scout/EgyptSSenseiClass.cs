@@ -12,12 +12,12 @@ public class EgyptSSenseiClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nFireMove";
+    return "+1 mv\nSnowMove";
   }
 
   public override string ClassName()
   {
-      return "Whisperer";
+      return "Ice Sensei";
   }
 
   public override ClassNode GetParent(){
@@ -32,7 +32,7 @@ public class EgyptSSenseiClass : ClassNode
   {
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireMove");
+      skills.Add("SnowMove");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

@@ -12,7 +12,7 @@ public class HumanTormentorClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 atk\nSicklyAtk";
+      return "+1 atk\nAegisTurn";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanTormentorClass : ClassNode
   {
       unit.SetAttack(unit.GetAttack() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("SicklyAtk");
+      skills.Add("AegisTurn");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

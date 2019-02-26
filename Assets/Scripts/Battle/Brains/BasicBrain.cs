@@ -33,7 +33,7 @@ public class BasicBrain : MonoBehaviour
         {
             UnitProxy unit = unitQueue.Dequeue();
             bool didSomething = true;
-            while (didSomething)
+            while (didSomething && unit.IsAlive())
             {
                 if (!AnimationInteractionController.AllAnimationsFinished()) { 
                     yield return new WaitForSeconds(AnimationInteractionController.ATK_WAIT);

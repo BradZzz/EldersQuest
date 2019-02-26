@@ -39,6 +39,10 @@ public class UnitProxy : GridObjectProxy
       _data.SetLvl(_data.GetLvl()+1);
     }
 
+    public bool IsAlive(){
+        return GetData().GetCurrHealth() > 0;
+    }
+
     public bool IsAttacked(UnitProxy oppUnit, bool useAttack = true)
     {
       Debug.Log("IsAttacked");

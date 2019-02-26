@@ -25,6 +25,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     private float timeLeft = 0;
     private float FIRE_DELAY_TIME = .5f;
 
+    private bool lifetimeWall;
+
     private List<GridObjectProxy> objectProxies = new List<GridObjectProxy>();
     //private GameObject instanceDummy;
 
@@ -107,6 +109,10 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
         }
     }
 
+    public void SetLifeWall(bool lifetimeWall){
+        this.lifetimeWall = lifetimeWall;
+    }
+
     public void ForceHighlight()
     {
         this.GetComponent<Renderer>().material.color = Color.green;
@@ -128,6 +134,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void RemoveGridObjectProxy(GridObjectProxy proxy)
     {
+        Debug.Log("Grid Object Removed: " + proxy.name);
         if (objectProxies.Contains(proxy))
         {
             objectProxies.Remove(proxy);
@@ -295,7 +302,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
             }
         }
 
-        if (wallTrns <= 0 && HasObstacle()) {
+        if (wallTrns <= 0 && HasObstacle() && !lifetimeWall) {
             RemoveGridObjectProxy(GetObstacle());
         }
 
@@ -343,6 +350,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
               timeLeft = FIRE_DELAY_TIME;
               FloatUp(Skill.Actions.None, "wall", Color.magenta, "Tile is wall");
            }
+       }
+       if (HasObstacle()) {
+         transform.GetComponent<SpriteRenderer>().color = Color.red;
        }
     }
 

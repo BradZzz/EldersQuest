@@ -394,7 +394,7 @@ public class UnitProxy : GridObjectProxy
     IEnumerator CreateLaserAnim(){
         yield return new WaitForSeconds(AnimationInteractionController.ATK_WAIT);
         Vector3 instPos = transform.position;
-        instPos.y += .4f;
+        instPos.y += .6f;
         GameObject smoke = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().Laser, instPos, Quaternion.identity);
         yield return new WaitForSeconds(1f);
         Destroy(smoke);

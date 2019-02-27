@@ -83,7 +83,7 @@ public class InteractUnitSelected : InteractMode
   //    StartCoroutine(ResetTiles());
   //}
 
-  public override void OnUnitSelected(UnitProxy obj)
+    public override void OnUnitSelected(UnitProxy obj)
     {
         if (!UnitMoving) {
             if (currentUnit == null)
@@ -103,11 +103,15 @@ public class InteractUnitSelected : InteractMode
             else
             {
                 if (toAttack != obj && currentUnit != obj) {
-                  toAttack = obj;
-                  UnitProxy player = currentUnit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM ? currentUnit : toAttack;
-                  UnitProxy enemy = currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM ? currentUnit : toAttack;
-    
-                  PanelControllerNew.SwitchChar(player, enemy);
+                  if (TurnController.instance.currentTeam == BoardProxy.PLAYER_TEAM && currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM) {
+                      currentUnit = null;
+                      OnUnitSelected(obj);
+                  } else {
+                      toAttack = obj;
+                      UnitProxy player = currentUnit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM ? currentUnit : toAttack;
+                      UnitProxy enemy = currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM ? currentUnit : toAttack;
+                      PanelControllerNew.SwitchChar(player, enemy);
+                  }
                 } else {
                   if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
                     && attackableTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))

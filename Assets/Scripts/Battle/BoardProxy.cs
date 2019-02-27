@@ -80,10 +80,12 @@ public class BoardProxy : MonoBehaviour
         PlayerMeta player = BaseSaver.GetPlayer();
         Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.PLAYER_TEAM));
         List<UnitProxy> units = new List<UnitProxy>();
+        List<Unit> roster = new List<Unit>(player.characters);
+        roster.Reverse();
         //Debug.Log("PopulatePlayer: " + validTls.Count.ToString());
-        for (int i = 0; i < player.characters.Length && i < height && i < 3; i++)
+        for (int i = 0; i < roster.Count && i < height && i < 3; i++)
         {
-            Unit cMeta = new Unit(player.characters[i]);
+            Unit cMeta = new Unit(roster[i]);
             UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
             units.Add(goodGuy);
             goodGuy.PutData(cMeta);

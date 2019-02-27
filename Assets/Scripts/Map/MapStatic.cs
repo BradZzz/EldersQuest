@@ -47,10 +47,10 @@ public class MapStatic
         int lvlCnt = lvl;
         for(int i = 0; i < max; i++) {
             int exp = UnityEngine.Random.Range(0,lvlCnt);
-            //Unit newUnit = Unit.BuildInitial(player.world != GameMeta.World.candy ? eFaction : (Unit.FactionType)UnityEngine.Random.Range(0, 3), 
-              //(Unit.UnitType)values.GetValue(UnityEngine.Random.Range(0,values.Length-1)), BoardProxy.ENEMY_TEAM);
             Unit newUnit = Unit.BuildInitial(player.world != GameMeta.World.candy ? eFaction : (Unit.FactionType)UnityEngine.Random.Range(0, 3), 
-              Unit.UnitType.Mage, BoardProxy.ENEMY_TEAM);
+              (Unit.UnitType)values.GetValue(UnityEngine.Random.Range(0,values.Length-1)), BoardProxy.ENEMY_TEAM);
+            //Unit newUnit = Unit.BuildInitial(player.world != GameMeta.World.candy ? eFaction : (Unit.FactionType)UnityEngine.Random.Range(0, 3), 
+              //Unit.UnitType.Mage, BoardProxy.ENEMY_TEAM);
             if (i == max - 1) {
                 newUnit.SetLvl(lvlCnt);
             } else {

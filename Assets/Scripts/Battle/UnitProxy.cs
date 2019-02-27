@@ -81,7 +81,11 @@ public class UnitProxy : GridObjectProxy
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       if (GetData().IsDead())
       {
-        oppUnit.AddLevel();
+        if (oppUnit == this) {
+          BoardProxy.instance.GiveLowestCharLvl(this);
+        } else {
+          oppUnit.AddLevel();
+        }
         return true;
       }
       return false;
@@ -91,13 +95,13 @@ public class UnitProxy : GridObjectProxy
       if (anim != null) {
           Vector3 theScale = opp.localScale;
           if (diff.x > 0) {
-            Debug.Log("right");
+            //Debug.Log("right");
             theScale.x = -1;
             anim.SetBool("IDLE_FRONT_LEFT", false);
             while(anim.GetBool("IDLE_FRONT_LEFT")){ }
             anim.SetTrigger("ATK_BACK_LEFT");
           } else if (diff.x < 0) {
-            Debug.Log("left");
+            //Debug.Log("left");
             theScale.x = 1;
             anim.SetBool("IDLE_FRONT_LEFT", true);
             while(!anim.GetBool("IDLE_FRONT_LEFT")){ }
@@ -105,13 +109,13 @@ public class UnitProxy : GridObjectProxy
           } else {
             //Defender is right below or above attacker
             if (diff.y > 0) {
-              Debug.Log("up");
+              //Debug.Log("up");
               theScale.x = 1;
               anim.SetBool("IDLE_FRONT_LEFT", false);
               while(anim.GetBool("IDLE_FRONT_LEFT")){ }
               anim.SetTrigger("ATK_BACK_LEFT");
             } else if (diff.y < 0) {
-              Debug.Log("down");
+              //Debug.Log("down");
               theScale.x = -1;
               anim.SetBool("IDLE_FRONT_LEFT", true);
               while(!anim.GetBool("IDLE_FRONT_LEFT")){ }

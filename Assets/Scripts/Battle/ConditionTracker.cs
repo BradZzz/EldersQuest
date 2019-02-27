@@ -112,10 +112,10 @@ public class ConditionTracker : MonoBehaviour
             List<Unit> pChars = new List<Unit>(player.characters);
             //Remove the top three chars from the roster
             pChars.RemoveAt(0);
-            if (pChars.Count > 1) {
+            if (pChars.Count > 0) {
                 pChars.RemoveAt(0);
             }
-            if (pChars.Count > 1) {
+            if (pChars.Count > 0) {
                 pChars.RemoveAt(0);
             }
             //Fill them back in if they are still on the board

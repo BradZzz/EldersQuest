@@ -23,9 +23,9 @@ public class BasicBrain : MonoBehaviour
         //List<UnitProxy> aiUnits = new List<UnitProxy>(BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM));
         List<UnitProxy> opposingUnits = new List<UnitProxy>(BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM));
 
-        Debug.Log("Beginning AI Turn");
-        //Debug.Log("aiUnits: " + aiUnits.Count.ToString());
-        Debug.Log("playerUnits: " + opposingUnits.Count.ToString());
+        //Debug.Log("Beginning AI Turn");
+        ////Debug.Log("aiUnits: " + aiUnits.Count.ToString());
+        //Debug.Log("playerUnits: " + opposingUnits.Count.ToString());
 
         Queue<UnitProxy> unitQueue = new Queue<UnitProxy>(BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM));
 
@@ -38,8 +38,8 @@ public class BasicBrain : MonoBehaviour
                 if (!AnimationInteractionController.AllAnimationsFinished()) { 
                     yield return new WaitForSeconds(AnimationInteractionController.ATK_WAIT);
                 }
-                Debug.Log("AI Char: " + unit.GetData().characterMoniker + " : " + unit.GetData().GetTurnActions().GetMoves() + 
-                  "/" + unit.GetData().GetTurnActions().GetAttacks());
+                //Debug.Log("AI Char: " + unit.GetData().characterMoniker + " : " + unit.GetData().GetTurnActions().GetMoves() + 
+                  //"/" + unit.GetData().GetTurnActions().GetAttacks());
                 didSomething = false;
                 //Look at all the visitable tiles
                 //List<TileProxy> visitableTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed(), true);
@@ -52,7 +52,7 @@ public class BasicBrain : MonoBehaviour
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());
                 if (opposingTeamTiles.Count == 0 && unit.GetData().GetTurnActions().CanMove())
                 {
-                    Debug.Log("Trying to Move");
+                    //Debug.Log("Trying to Move");
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
                     //Calculate a path from the unit to the first opposing unit (should be optimized)
                     Path<TileProxy> path = BoardProxy.instance.GetPath(start, BoardProxy.instance.GetTileAtPosition(opposingUnits[0].GetPosition()), unit);
@@ -98,7 +98,7 @@ public class BasicBrain : MonoBehaviour
                 } else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
                 {
                     //Unit in range. Attack!
-                    Debug.Log("Trying to Attack");
+                    //Debug.Log("Trying to Attack");
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
                     unit.OnSelected();
                     yield return new WaitForSeconds(.1f);

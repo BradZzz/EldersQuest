@@ -155,9 +155,17 @@ public class BoardProxy : MonoBehaviour
     //Since we have a set amount of exp, we need to always give it to the player when an enemy dies.
     //This function is called with the environment kills an enemy. Give xp to weakest ally unit
     public void GiveLowestCharLvl(UnitProxy diedUnit){
-        UnitProxy unit = GetUnits().Where(unt => unt.GetData().GetTeam() == BoardProxy.PLAYER_TEAM).OrderByDescending(unt=>unt.GetData().GetLvl()).First();
-        Debug.Log("GiveLowestCharLvl: " + unit.GetData().characterMoniker);
-        unit.AddLevel();
+        foreach(UnitProxy unt in GetUnits()){
+            Debug.Log("Looking at: " + unt.GetData().characterMoniker);
+            if (unt.GetData().GetTeam() == PLAYER_TEAM) {
+                Debug.Log("GiveLowestCharLvl: " + unt.GetData().characterMoniker);
+                unt.AddLevel();
+                break;
+            }
+        }
+        //UnitProxy unit = GetUnits().Where(unt => unt.GetData().GetTeam() == PLAYER_TEAM).OrderByDescending(unt=>unt.GetData().GetLvl()).First();
+        //Debug.Log("GiveLowestCharLvl: " + unit.GetData().characterMoniker);
+        //unit.AddLevel();
     } 
 
     bool HasObs1(int x, int y){
@@ -209,7 +217,7 @@ public class BoardProxy : MonoBehaviour
   
     public void EndTurn()
     {
-        if (HUMAN_PLAYER || (!HUMAN_PLAYER && TurnController.instance.currentTeam == BoardProxy.PLAYER_TEAM)) {
+        if (HUMAN_PLAYER || (!HUMAN_PLAYER && TurnController.instance.currentTeam == PLAYER_TEAM)) {
             TurnController.instance.EndTurn();
         }
     }

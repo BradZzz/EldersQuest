@@ -13,6 +13,8 @@
     //attacks
     public static readonly string Unit001AttackSound = "event:/char/unit001/attack_1";
 
+    public static readonly string ImpactDamageSound = "event:/char/attacks/impact_damage";
+
 
     #endregion
 

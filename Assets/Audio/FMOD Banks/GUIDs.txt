@@ -1,6 +1,7 @@
 {6e8d60c2-82f3-4a83-a989-553f3294af3c} event:/char/attacks/creature
 {9b70b055-abc7-4f0b-8dea-fdda6de1cc88} event:/char/attacks/fire
 {a6b2381f-1321-4a9d-8014-80eb3b64cbec} event:/char/attacks/ice
+{2d5d4116-4bcb-4091-a7d5-c5907c6f2c7f} event:/char/attacks/impact_damage
 {4023b061-7b24-4641-a46f-f0a374151798} event:/char/unit001/attack_1
 {d5b9d4ae-4b6a-4e85-ace8-97245599dbc2} event:/UI/char_select/select_accept
 {0ba5af35-2b71-4d54-be0c-0c66ebe96e7f} event:/UI/char_select/select_creature

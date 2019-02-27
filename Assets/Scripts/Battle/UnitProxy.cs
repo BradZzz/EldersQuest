@@ -36,6 +36,7 @@ public class UnitProxy : GridObjectProxy
     }
 
     public void AddLevel(){
+      FloatUp(Skill.Actions.DidKill, "+1xp", Color.green, "gained +1 xp", true);
       _data.SetLvl(_data.GetLvl()+1);
     }
 
@@ -80,6 +81,7 @@ public class UnitProxy : GridObjectProxy
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       if (GetData().IsDead())
       {
+        oppUnit.AddLevel();
         return true;
       }
       return false;
@@ -139,6 +141,7 @@ public class UnitProxy : GridObjectProxy
       FloatUp(Skill.Actions.None, "-" + atkPwr.ToString(), Color.red, "Took env damage", true);
       if (GetData().IsDead())
       {
+        BoardProxy.instance.GiveLowestCharLvl(this);
         return true;
       }
       return false;
@@ -174,7 +177,7 @@ public class UnitProxy : GridObjectProxy
 
     IEnumerator DelayKill(UnitProxy obj, UnitProxy cUnit){
         //Log the kill with the unit
-        cUnit.AddLevel();
+        //cUnit.AddLevel();
         //Perform after kill skills
         cUnit.AcceptAction(Skill.Actions.DidKill,obj);
 

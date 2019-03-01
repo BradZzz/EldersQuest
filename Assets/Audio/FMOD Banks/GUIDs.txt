@@ -11,6 +11,10 @@
 {12530ee7-7315-4136-93e3-2e5fc7770b94} event:/UI/select_save
 {9cd40fb4-fea1-4917-bae3-215bf200e1c8} event:/UI/select_world
 {720c9583-162c-4f53-82f1-72ee7b17b3ea} event:/test
+{2d3e417c-ba69-4814-adec-ed03ae04698b} event:/music_event
 {a3ed0f38-124a-4279-a05e-09a38ad91c75} bus:/
+{e206f382-d903-4258-b9d6-a56647f68e3b} bus:/SFX
+{602ac578-c925-4834-ac3c-4cceb59a3702} bus:/SFX/SFX_battle
+{b2fd7382-82f9-4603-8fd4-ea1743fba553} bus:/Music
 {8752b51f-2995-4b1a-b8d4-834c91ab35f4} bus:/Reverb
 {5a63793f-5af4-447b-81ff-724fbab9a43d} bank:/Master Bank

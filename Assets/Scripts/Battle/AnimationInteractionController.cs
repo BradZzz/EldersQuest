@@ -32,14 +32,14 @@ public class AnimationInteractionController : MonoBehaviour
 
     //Something is happening with the unit that needs an animation
     public static void InteractionAnimation(Skill.Actions interaction, UnitProxy unit, string msg, Color color, string animDesc, bool shakeChar, bool deathConsideration = false){
-        Debug.Log("Animation reason: " + animDesc);
+        //Debug.Log("Animation reason: " + animDesc);
         instance.StartCoroutine(instance.FloatUpAnim(msg, color, instance.ReturnWaitTime(interaction), unit.transform, shakeChar, deathConsideration));
         instance.timeLeft = ANIMATION_WAIT_TIME_LIMIT;
     }
 
     //Something is happening with the tile that needs an animation
     public static void InteractionAnimation(Skill.Actions interaction, TileProxy tile, string msg, Color color, string animDesc){
-       Debug.Log("Animation reason: " + animDesc);
+       //Debug.Log("Animation reason: " + animDesc);
        instance.StartCoroutine(instance.FloatUpAnim(msg, color, instance.ReturnWaitTime(interaction), tile.transform));
        //instance.timeLeft = ANIMATION_WAIT_TIME_LIMIT;
     }
@@ -59,9 +59,9 @@ public class AnimationInteractionController : MonoBehaviour
     IEnumerator FloatUpAnim(string msg, Color color, float wait, Transform oTransform, bool shakeChar = false, bool deathConsideration = false)
     {
         yield return new WaitForSeconds(wait);
-        Debug.Log("FloatUpAnim");
+        //Debug.Log("FloatUpAnim");
         Vector3 pos = oTransform.position;
-        Debug.Log("FloatUpAnim pos: " + pos.ToString());
+        //Debug.Log("FloatUpAnim pos: " + pos.ToString());
         //pos.x += .3f;
         //pos.y += 1f;
         if (oTransform.GetComponent<TileProxy>() != null) {

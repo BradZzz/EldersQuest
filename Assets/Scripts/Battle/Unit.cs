@@ -239,6 +239,7 @@ public class Unit : GridObject
 
     public void SetLvl(int lvl)
     {
+        Debug.Log("Adding exp to : " + characterMoniker);
         this.lvl = lvl;
     }
   
@@ -316,7 +317,7 @@ public class Unit : GridObject
 
     public void AcceptAction(Skill.Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
     {
-        Debug.Log("Cycling through skills: " + GetSkills().Length.ToString());
+        //Debug.Log("Cycling through skills: " + GetSkills().Length.ToString());
         var gSkills = GetSkills().GroupBy(skill => skill);
         foreach(var skill in gSkills){
             Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skill.Key));

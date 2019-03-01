@@ -80,10 +80,12 @@ public class BoardProxy : MonoBehaviour
         PlayerMeta player = BaseSaver.GetPlayer();
         Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.PLAYER_TEAM));
         List<UnitProxy> units = new List<UnitProxy>();
-        Debug.Log("PopulatePlayer: " + validTls.Count.ToString());
-        for (int i = 0; i < player.characters.Length && i < height && i < 3; i++)
+        List<Unit> roster = new List<Unit>(player.characters);
+        roster.Reverse();
+        //Debug.Log("PopulatePlayer: " + validTls.Count.ToString());
+        for (int i = 0; i < roster.Count && i < height && i < 3; i++)
         {
-            Unit cMeta = new Unit(player.characters[i]);
+            Unit cMeta = new Unit(roster[i]);
             UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
             units.Add(goodGuy);
             goodGuy.PutData(cMeta);
@@ -91,7 +93,7 @@ public class BoardProxy : MonoBehaviour
             TileProxy popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(goodGuy);
             goodGuy.SnapToCurrentPosition();
-            Debug.Log("goodGuy placed at: " + popTile.GetPosition().ToString());
+            //Debug.Log("goodGuy placed at: " + popTile.GetPosition().ToString());
         }
     }
   
@@ -99,7 +101,7 @@ public class BoardProxy : MonoBehaviour
     {
         Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.ENEMY_TEAM));
         List<UnitProxy> units = new List<UnitProxy>();
-        Debug.Log("PopulateEnemies: " + validTls.Count.ToString());
+        //Debug.Log("PopulateEnemies: " + validTls.Count.ToString());
         TileProxy popTile;
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
@@ -111,7 +113,7 @@ public class BoardProxy : MonoBehaviour
             popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(badGuy);
             badGuy.SnapToCurrentPosition();
-            Debug.Log("badGuy placed at: " + popTile.GetPosition().ToString());
+            //Debug.Log("badGuy placed at: " + popTile.GetPosition().ToString());
         }
     }
 
@@ -138,7 +140,7 @@ public class BoardProxy : MonoBehaviour
             for (int x = width/2 - 1; x < width/2 + 2; x++) {
                 if (obsRand == 0 ? HasObs1(x,y) : (obsRand == 1 ? HasObs2(x,y) : HasObs3(x,y))) {
                     if (!tiles[x,y].HasUnit()) {
-                        Debug.Log("Obstacle placed at: " + x.ToString() + ":" + y.ToString());
+                        //Debug.Log("Obstacle placed at: " + x.ToString() + ":" + y.ToString());
                         int obsIdx = UnityEngine.Random.Range(1,glossary.GetComponent<Glossary>().obstacles.Length);
                         ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[obsIdx], transform);
                         obs.Init();
@@ -151,6 +153,22 @@ public class BoardProxy : MonoBehaviour
             }
         }
     }
+
+    //Since we have a set amount of exp, we need to always give it to the player when an enemy dies.
+    //This function is called with the environment kills an enemy. Give xp to weakest ally unit
+    public void GiveLowestCharLvl(UnitProxy diedUnit){
+        foreach(UnitProxy unt in GetUnits()){
+            Debug.Log("Looking at: " + unt.GetData().characterMoniker);
+            if (unt.GetData().GetTeam() == PLAYER_TEAM) {
+                Debug.Log("GiveLowestCharLvl: " + unt.GetData().characterMoniker);
+                unt.AddLevel();
+                break;
+            }
+        }
+        //UnitProxy unit = GetUnits().Where(unt => unt.GetData().GetTeam() == PLAYER_TEAM).OrderByDescending(unt=>unt.GetData().GetLvl()).First();
+        //Debug.Log("GiveLowestCharLvl: " + unit.GetData().characterMoniker);
+        //unit.AddLevel();
+    } 
 
     bool HasObs1(int x, int y){
       return y > height * .70 || y < height * .30;
@@ -201,7 +219,7 @@ public class BoardProxy : MonoBehaviour
   
     public void EndTurn()
     {
-        if (HUMAN_PLAYER || (!HUMAN_PLAYER && TurnController.instance.currentTeam == BoardProxy.PLAYER_TEAM)) {
+        if (HUMAN_PLAYER || (!HUMAN_PLAYER && TurnController.instance.currentTeam == PLAYER_TEAM)) {
             TurnController.instance.EndTurn();
         }
     }

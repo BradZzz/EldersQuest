@@ -351,9 +351,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
               FloatUp(Skill.Actions.None, "wall", Color.magenta, "Tile is wall");
            }
        }
-       if (HasObstacle()) {
-         transform.GetComponent<SpriteRenderer>().color = Color.red;
-       }
+       //if (HasObstacle()) {
+       //  transform.GetComponent<SpriteRenderer>().color = Color.red;
+       //}
     }
 
     public void FloatUp(Skill.Actions interaction, string msg, Color color, string desc){

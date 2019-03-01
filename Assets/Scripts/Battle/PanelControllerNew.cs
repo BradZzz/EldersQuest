@@ -47,7 +47,7 @@ public class PanelControllerNew : MonoBehaviour
     }
 
     public static void ClearPanels(){
-        Debug.Log("Clear Panels");        
+        //Debug.Log("Clear Panels");        
 
         instance.playerMain.SetActive(false);
         instance.playerSub1.SetActive(false);
@@ -78,12 +78,12 @@ public class PanelControllerNew : MonoBehaviour
     {
         ClearPanels();
         if (unit != null) {
-            Debug.Log("SwitchChar: " + unit.GetData().characterMoniker);
+            //Debug.Log("SwitchChar: " + unit.GetData().characterMoniker);
             if (unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM) {
-                Debug.Log("Player Panel");
+                //Debug.Log("Player Panel");
                 LoadPlayerPanel(unit);
             } else {
-                Debug.Log("Enemy Panel");
+                //Debug.Log("Enemy Panel");
                 LoadEnemyPanel(unit);
             }
         }
@@ -93,7 +93,7 @@ public class PanelControllerNew : MonoBehaviour
     {
         ClearPanels();
         if (player != null && enemy != null) {
-            Debug.Log("Attacking Chars: " + player.GetData().characterMoniker + "-" + enemy.GetData().characterMoniker);
+            //Debug.Log("Attacking Chars: " + player.GetData().characterMoniker + "-" + enemy.GetData().characterMoniker);
             LoadPlayerPanel(player);
             LoadEnemyPanel(enemy);
         }

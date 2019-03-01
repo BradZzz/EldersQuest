@@ -74,6 +74,7 @@ public class AnimationInteractionController : MonoBehaviour
         if (shakeChar){
             yield return new WaitForSeconds(.2f);
             oTransform.GetComponent<UnitProxy>().Shake();
+            PlayImpactSound();
         }
         GameObject numObj = new GameObject();
         numObj.transform.position = pos;
@@ -86,7 +87,6 @@ public class AnimationInteractionController : MonoBehaviour
         numObj.GetComponent<TextMesh>().color = color;
         iTween.ShakePosition(numObj,new Vector3(0,.5f,0), .3f);
         iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .3f,pos.z), .3f);
-        PlayImpactSound();
         yield return new WaitForSeconds(.4f);
         Destroy(numObj);
         yield return null;

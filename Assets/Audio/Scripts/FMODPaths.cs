@@ -21,11 +21,20 @@
 
     #region Music
 
-
+    public static readonly string MusicEvent = "event:/music_event";
 
     #endregion
 
     #region Parameters
+
+    public static readonly string TransitionParameter = "Transition";
+
+    #endregion
+
+    #region Settings
+
+    public static readonly string VCA_MUSIC = "vca:/Music";
+    public static readonly string VCA_SFX = "vca:/SFX";
 
     #endregion
 

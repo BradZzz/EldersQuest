@@ -14,7 +14,10 @@
 {2d3e417c-ba69-4814-adec-ed03ae04698b} event:/music_event
 {a3ed0f38-124a-4279-a05e-09a38ad91c75} bus:/
 {e206f382-d903-4258-b9d6-a56647f68e3b} bus:/SFX
-{602ac578-c925-4834-ac3c-4cceb59a3702} bus:/SFX/SFX_battle
+{602ac578-c925-4834-ac3c-4cceb59a3702} bus:/SFX/SFX_impact
+{644e01f2-afc4-43ed-986b-260bb2918dcd} bus:/SFX/SFX_battle
 {b2fd7382-82f9-4603-8fd4-ea1743fba553} bus:/Music
 {8752b51f-2995-4b1a-b8d4-834c91ab35f4} bus:/Reverb
+{c905582d-00fd-4469-84e3-c3744d606fe6} vca:/Music
+{48d06d00-b3c0-48e1-a8e5-69545c43c8e0} vca:/SFX
 {5a63793f-5af4-447b-81ff-724fbab9a43d} bank:/Master Bank

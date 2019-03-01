@@ -3,6 +3,7 @@
 {a6b2381f-1321-4a9d-8014-80eb3b64cbec} event:/char/attacks/ice
 {2d5d4116-4bcb-4091-a7d5-c5907c6f2c7f} event:/char/attacks/impact_damage
 {4023b061-7b24-4641-a46f-f0a374151798} event:/char/unit001/attack_1
+{355d69b5-7048-4e15-a176-a4d9b17ac3cd} event:/char/Cthulhu/cthulhu_attack
 {d5b9d4ae-4b6a-4e85-ace8-97245599dbc2} event:/UI/char_select/select_accept
 {0ba5af35-2b71-4d54-be0c-0c66ebe96e7f} event:/UI/char_select/select_creature
 {b72779d2-3ca1-4bcc-8960-276ac3327d9c} event:/UI/char_select/select_mage

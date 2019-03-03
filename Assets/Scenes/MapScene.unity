@@ -324,7 +324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -962.80005, y: -293.3}
+  m_AnchoredPosition: {x: -962.8008, y: -293.30078}
   m_SizeDelta: {x: -2019.6, y: -688.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &377313034
@@ -7584,7 +7584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3.6999512}
+  m_AnchoredPosition: {x: 0, y: 3.6992188}
   m_SizeDelta: {x: -33.8, y: -31.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1399552270
@@ -8909,7 +8909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000011444092, y: -147.69998}
+  m_AnchoredPosition: {x: -0.000011444092, y: -147.69922}
   m_SizeDelta: {x: 750.8, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1807797851
@@ -11474,6 +11474,8 @@ GameObject:
   - component: {fileID: 2122369742}
   - component: {fileID: 2122369741}
   - component: {fileID: 2122369740}
+  - component: {fileID: 2122369743}
+  - component: {fileID: 2122369744}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11545,6 +11547,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2122369743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122369739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
+--- !u!114 &2122369744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122369739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07f98adbec5f4f429c303f3feb7030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicVolume: 1
+  sfxVolume: 1
 --- !u!1001 &2143130953
 PrefabInstance:
   m_ObjectHideFlags: 0

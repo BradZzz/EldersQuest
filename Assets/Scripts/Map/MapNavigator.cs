@@ -152,10 +152,6 @@ public class MapNavigator : MonoBehaviour
       PlayerMeta player = BaseSaver.GetPlayer();
       player.lastDest = selected;
       BaseSaver.PutPlayer(player);
-      /*
-        TODO: This is where the board eventually needs to be laoded.
-        For now we have a blank board with a few chars
-      */
       BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests()[selected]);
       SceneManager.LoadScene("BattleScene");
       MusicTransitionToBattle();

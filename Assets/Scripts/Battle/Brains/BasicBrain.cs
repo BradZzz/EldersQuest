@@ -56,43 +56,45 @@ public class BasicBrain : MonoBehaviour
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
                     //Calculate a path from the unit to the first opposing unit (should be optimized)
                     Path<TileProxy> path = BoardProxy.instance.GetPath(start, BoardProxy.instance.GetTileAtPosition(opposingUnits[0].GetPosition()), unit);
-                    //See how many of those tiles are in the tiles we are allowed to move
-                    TileProxy dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).First();
-                    //Get the path for highlighting
-                    path = BoardProxy.instance.GetPath(start, dest, unit);
-                    if (dest != start)
-                    {
-                        didSomething = true;
-                        foreach (TileProxy tl in path)
+                    if (path.Count() > 0) {
+                        //See how many of those tiles are in the tiles we are allowed to move
+                        TileProxy dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).First();
+                        //Get the path for highlighting
+                        path = BoardProxy.instance.GetPath(start, dest, unit);
+                        if (dest != start)
                         {
-                            tl.ForceHighlight();
-                        }
-                        yield return new WaitForSeconds(.25f);
-                        foreach (TileProxy tl in path)
-                        {
-                            tl.UnHighlight();
-                        }
-                        unit.OnSelected();
-                        yield return new WaitForSeconds(.25f);
-                        InteractivityManager.instance.OnTileSelected(dest);
-                        yield return new WaitForSeconds(1f);
-                    }
-                    else
-                    {
-                        if (unitQueue.Count() > 0 && !unit.GetData().GetTurnActions().idle)
-                        {
-                            //If there are more ai units left to move and this ai hasn't been put in the back of the queue yet
-                            //Put unit at the end of the queue, wait for other units to move
-                            unit.GetData().GetTurnActions().idle = true;
-                            unitQueue.Enqueue(unit);
-                            break;
+                            didSomething = true;
+                            foreach (TileProxy tl in path)
+                            {
+                                tl.ForceHighlight();
+                            }
+                            yield return new WaitForSeconds(.25f);
+                            foreach (TileProxy tl in path)
+                            {
+                                tl.UnHighlight();
+                            }
+                            unit.OnSelected();
+                            yield return new WaitForSeconds(.25f);
+                            InteractivityManager.instance.OnTileSelected(dest);
+                            yield return new WaitForSeconds(1f);
                         }
                         else
                         {
-                            //The unit has already failed to move twice. Stop trying. Move On.
-                            unit.GetData().GetTurnActions().Move();
-                            didSomething = true;
-                            yield return new WaitForSeconds(.25f);
+                            if (unitQueue.Count() > 0 && !unit.GetData().GetTurnActions().idle)
+                            {
+                                //If there are more ai units left to move and this ai hasn't been put in the back of the queue yet
+                                //Put unit at the end of the queue, wait for other units to move
+                                unit.GetData().GetTurnActions().idle = true;
+                                unitQueue.Enqueue(unit);
+                                break;
+                            }
+                            else
+                            {
+                                //The unit has already failed to move twice. Stop trying. Move On.
+                                unit.GetData().GetTurnActions().Move();
+                                didSomething = true;
+                                yield return new WaitForSeconds(.25f);
+                            }
                         }
                     }
                 } else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())

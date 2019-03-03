@@ -393,4 +393,8 @@ public class Unit : GridObject
           "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks", "Doughnutface" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
+
+    public string ToString(){
+        return characterMoniker + " : " + GetLvl();
+    }
 }

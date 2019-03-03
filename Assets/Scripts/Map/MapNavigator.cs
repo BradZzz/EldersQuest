@@ -158,6 +158,7 @@ public class MapNavigator : MonoBehaviour
       */
       BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests()[selected]);
       SceneManager.LoadScene("BattleScene");
+      MusicTransitionToBattle();
     }
     else
     {
@@ -197,4 +198,15 @@ public class MapNavigator : MonoBehaviour
           descPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
       }
   }
+
+
+    #region Music Transition
+
+    private void MusicTransitionToBattle()
+    {
+        AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 1);
+    }
+
+    #endregion
+
 }

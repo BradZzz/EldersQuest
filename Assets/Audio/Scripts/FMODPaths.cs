@@ -12,17 +12,29 @@
 
     //attacks
     public static readonly string Unit001AttackSound = "event:/char/unit001/attack_1";
+    public static readonly string CthuluAttackSound = "event:/char/Cthulhu/cthulhu_attack";
+
+    public static readonly string ImpactDamageSound = "event:/char/attacks/impact_damage";
 
 
     #endregion
 
     #region Music
 
-
+    public static readonly string MusicEvent = "event:/music_event";
 
     #endregion
 
     #region Parameters
+
+    public static readonly string TransitionParameter = "Transition";
+
+    #endregion
+
+    #region Settings
+
+    public static readonly string VCA_MUSIC = "vca:/Music";
+    public static readonly string VCA_SFX = "vca:/SFX";
 
     #endregion
 

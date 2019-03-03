@@ -74,6 +74,7 @@ public class AnimationInteractionController : MonoBehaviour
         if (shakeChar){
             yield return new WaitForSeconds(.2f);
             oTransform.GetComponent<UnitProxy>().Shake();
+            PlayImpactSound();
         }
         GameObject numObj = new GameObject();
         numObj.transform.position = pos;
@@ -103,4 +104,13 @@ public class AnimationInteractionController : MonoBehaviour
             timeLeft -= Time.deltaTime;
         }
      }
+
+    #region SFX
+
+    private void PlayImpactSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(FMODPaths.ImpactDamageSound, this.gameObject);
+    }
+
+    #endregion
 }

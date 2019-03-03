@@ -103,6 +103,7 @@ public class ConditionTracker : MonoBehaviour
             yield return new WaitForSeconds(AnimationInteractionController.AFTER_KILL);
         }
         BoardProxy.instance.gameOverPanel.SetActive(true);
+        MusicTransitionToMap();
         this.won = won;
         string txt = "Defeat";
         if (won){
@@ -163,10 +164,23 @@ public class ConditionTracker : MonoBehaviour
                 nxtScene = "CharSelectScreen";
             }
             SceneManager.LoadScene(nxtScene);
+            MusicTransitionToMap();
         }
         else
         {
             SceneManager.LoadScene("DeathScene");
+            MusicTransitionToMap();
         }
     }
+
+    #region Music Transition
+
+    private void MusicTransitionToMap()
+    {
+        AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 0);
+    }
+
+    #endregion
+
+
 }

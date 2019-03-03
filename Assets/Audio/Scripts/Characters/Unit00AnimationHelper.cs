@@ -8,4 +8,9 @@ public class Unit00AnimationHelper : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShotAttached(FMODPaths.Unit001AttackSound, this.gameObject);
     }
+
+    public void CthuluAttackSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(FMODPaths.CthuluAttackSound, this.gameObject);
+    }
 }

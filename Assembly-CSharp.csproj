@@ -316,6 +316,7 @@
     <Compile Include="Assets\Scripts\Savers\PlayerMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\StatMeta.cs" />
     <Compile Include="Assets\Scripts\ScrollingText\StorySceneHolder.cs" />
+    <Compile Include="Assets\Scripts\ScrollingText\StoryStatic.cs" />
     <Compile Include="Assets\Scripts\Skills\Skill.cs" />
     <Compile Include="Assets\Scripts\Skills\SkillReference.cs" />
     <Compile Include="Assets\Scripts\Skills\SkillWrap.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -254,5 +255,55 @@ public class StaticClassRef
         CthulhuGodzillaClass, CthulhuThingClass, CthulhuWRiderClass, CthulhuADeathClass,
 
         None
+    }
+
+    public static ClassNode GetClassByReference(string clss){
+        return GetClass((AvailableClasses)Enum.Parse(typeof(AvailableClasses), clss));
+    }
+
+    public static string GetFullClassDescription(string clss){
+      /*
+        Make two classes. Figure out the differences between them:
+        Atk, Atk rng, Atk trn, Mv, Mv trn, Hp, skills
+      */
+      ClassNode clssClss = GetClassByReference(clss);
+
+      Unit u1 = new Unit();
+      Unit u2 = new Unit();
+      u2 = clssClss.UpgradeCharacter(u2);
+      clssClss = clssClss.GetParent();
+      while (clssClss != null) {
+          u2 = clssClss.UpgradeCharacter(u2);
+          clssClss = clssClss.GetParent();
+      }
+
+
+      string reStr = "";
+      if (u1.GetAttack() != u2.GetAttack()) {
+        reStr += (u2.GetAttack() - u1.GetAttack()).ToString() + " atk. ";
+      }
+      if (u1.GetAtkRange() != u2.GetAtkRange()) {
+        reStr += (u2.GetAtkRange() - u1.GetAtkRange()).ToString() + " atk rng. ";
+      }
+      if (u1.GetTurnAttacks() != u2.GetTurnAttacks()) {
+        reStr += (u2.GetTurnAttacks() - u1.GetTurnAttacks()).ToString() + " atks trn. ";
+      }
+      if (u1.GetMoveSpeed() != u2.GetMoveSpeed()) {
+        reStr += (u2.GetMoveSpeed() - u1.GetMoveSpeed()).ToString() + " mv. ";
+      }
+      if (u1.GetTurnMoves() != u2.GetTurnMoves()) {
+        reStr += (u2.GetTurnMoves() - u1.GetTurnMoves()).ToString() + " mv trn. ";
+      }
+      if (u1.GetMaxHP() != u2.GetMaxHP()) {
+        reStr += (u2.GetMaxHP() - u1.GetMaxHP()).ToString() + " hp. ";
+      }
+      if (u2.GetSkills().Length > 0) {
+        reStr += "Skills:";
+        foreach(string skll in u2.GetSkills()){
+          reStr += " " + skll;
+        }
+        reStr += " .";
+      }
+      return reStr;
     }
 }

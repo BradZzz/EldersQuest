@@ -33,10 +33,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //private void Start()
-    //{
-    //    PlayMusic();
-    //}
+    private void Start()
+    {
+        PlayMusic();
+    }
   
     void Update()
     {

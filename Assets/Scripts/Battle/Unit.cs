@@ -10,7 +10,7 @@ public class Unit : GridObject
     public string characterName;
     public string characterMoniker;
 
-    public int mxHlth = 1;
+    public int mxHlth = 3;
 
     public TurnActions turnActions;
 
@@ -20,13 +20,13 @@ public class Unit : GridObject
     private FactionType fType;
 
     [SerializeField]
-    private int cHlth = 1;
+    private int cHlth = 3;
     [SerializeField]
     private int atk = 1;
     [SerializeField]
     private int moveSpeed = 3;
     [SerializeField]
-    private int atkRange = 3;
+    private int atkRange = 2;
     [SerializeField]
     private int lvl = 0;
     [SerializeField]

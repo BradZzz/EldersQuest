@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -24,12 +25,19 @@ public class PanelControllerNew : MonoBehaviour
     public GameObject turnUI;
     public TextMeshProUGUI turnTransition;
 
+    public GameObject dialogPnl;
+
     private List<UnitProxy> players;
     private List<UnitProxy> enemies;
 
     private void Awake()
     {
         instance = this;
+
+        instance.dialogPnl.SetActive(true);
+
+        instance.dialogPnl.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = StoryStatic.GetLevelStory();
+
         ClearPanels();
     }
 
@@ -67,11 +75,16 @@ public class PanelControllerNew : MonoBehaviour
     }
 
     IEnumerator DisplayTurnText(string msg){
-        instance.turnUI.SetActive(true);
-        instance.turnUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
-        yield return new WaitForSeconds(TURN_TEXT_WAIT);
-        instance.turnUI.SetActive(false);
-        //instance.turnUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+        if(instance.dialogPnl.activeInHierarchy){
+          yield return new WaitForSeconds(1f);
+          instance.StartCoroutine(instance.DisplayTurnText(msg));
+        } else {
+          instance.turnUI.SetActive(true);
+          instance.turnUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+          yield return new WaitForSeconds(TURN_TEXT_WAIT);
+          instance.turnUI.SetActive(false);
+          //instance.turnUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+        }
     }
 
     public static void SwitchChar(UnitProxy unit)

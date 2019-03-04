@@ -68,15 +68,7 @@ public class GameMeta
     } else {
         returnStr += "\n\n The world has been saved! Your accomplishments have been logged in the annals history.";
     }
-    List<HighScoreMeta> hScores = new List<HighScoreMeta>(game.scores);
-    HighScoreMeta thisScore = new HighScoreMeta();
-    thisScore.score = player.characters.Sum(pChar => pChar.GetLvl());
-    thisScore.faction = player.faction;
-    thisScore.world = player.world;
-    thisScore.name = "abc";
-    hScores.Add(thisScore);
-    game.scores = hScores.ToArray();
-    BaseSaver.PutGame(game);
+    HighScoreMeta.SaveCurrentScore();
 
     //Reset the current save now that the factions / worlds have been unlocked and highscores saved
     BaseSaver.ResetAtSave();

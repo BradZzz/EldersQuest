@@ -1,23 +1,28 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StoryStatic : MonoBehaviour
 {
-    public static string GetLevelStory(GameMeta.World world, Dests dest){
+    public static string GetLevelStory(){
+        PlayerMeta player = BaseSaver.GetPlayer();
+        GameMeta.World world = player.world;
+        Dests dest = (Dests)Enum.Parse(typeof(Dests), player.lastDest);
+        Unit.FactionType faction = player.faction;
         switch(world){
           case GameMeta.World.nile: 
             switch(dest){
-              case Dests.Dest1: return "Attention recruit! Enemy contact on your six! Use your skills to take him down!";
-              case Dests.Dest2: return "The enemy grows stronger as we near the point of impact. Be on the lookout!";
-              case Dests.Dest3: return "It looks like these Egyptian scum really don't want us here! They're sending me more fodder for my rifle!";
-              case Dests.Dest4: return "";
-              case Dests.Dest5: return "";
+              case Dests.Dest1: return "Attention recruit! Enemy contact near the Doomed Bay! Use all your ingenuity to take him down!";
+              case Dests.Dest2: return "The enemy grows stronger as we near the center of the attack. Be on the lookout for more egyptian scum!";
+              case Dests.Dest3: return "It looks like these Gods really don't want us here! They're sending us more fodder for our rifles!";
+              case Dests.Dest4: return "The strength of our enemy is increasing. Be careful for fire and ice attacks soldier!";
+              case Dests.Dest5: return "The Egyptian menace has blocked our advance to the south. Let's get them soldiers!";
               case Dests.Dest6: return "";
               case Dests.Dest7: return "";
               case Dests.Dest8: return "";
               case Dests.Dest9: return "";
-              case Dests.Dest10: return "";
+              case Dests.Dest10: return "Here it is recruit! The final battle! Just defeat the enemy here and we'll be able to pinpoint the location of the disturbance.";
             }
             break;
           case GameMeta.World.mountain: 
@@ -49,17 +54,49 @@ public class StoryStatic : MonoBehaviour
             }
             break;
           case GameMeta.World.candy: 
-            switch(dest){
-              case Dests.Dest1: return "";
-              case Dests.Dest2: return "";
-              case Dests.Dest3: return "";
-              case Dests.Dest4: return "";
-              case Dests.Dest5: return "";
-              case Dests.Dest6: return "";
-              case Dests.Dest7: return "";
-              case Dests.Dest8: return "";
-              case Dests.Dest9: return "";
-              case Dests.Dest10: return "";
+            switch(faction){
+              case Unit.FactionType.Human: 
+                switch(dest){
+                  case Dests.Dest1: return "";
+                  case Dests.Dest2: return "";
+                  case Dests.Dest3: return "";
+                  case Dests.Dest4: return "";
+                  case Dests.Dest5: return "";
+                  case Dests.Dest6: return "";
+                  case Dests.Dest7: return "";
+                  case Dests.Dest8: return "";
+                  case Dests.Dest9: return "";
+                  case Dests.Dest10: return "";
+                }
+              break;
+              case Unit.FactionType.Egypt: 
+                switch(dest){
+                  case Dests.Dest1: return "";
+                  case Dests.Dest2: return "";
+                  case Dests.Dest3: return "";
+                  case Dests.Dest4: return "";
+                  case Dests.Dest5: return "";
+                  case Dests.Dest6: return "";
+                  case Dests.Dest7: return "";
+                  case Dests.Dest8: return "";
+                  case Dests.Dest9: return "";
+                  case Dests.Dest10: return "";
+                }
+              break;
+              case Unit.FactionType.Cthulhu: 
+                switch(dest){
+                  case Dests.Dest1: return "";
+                  case Dests.Dest2: return "";
+                  case Dests.Dest3: return "";
+                  case Dests.Dest4: return "";
+                  case Dests.Dest5: return "";
+                  case Dests.Dest6: return "";
+                  case Dests.Dest7: return "";
+                  case Dests.Dest8: return "";
+                  case Dests.Dest9: return "";
+                  case Dests.Dest10: return "";
+                }
+              break;
             }
             break;
         }

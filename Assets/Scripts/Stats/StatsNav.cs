@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,38 +49,41 @@ public class StatsNav : MonoBehaviour
         classPnl.SetActive(true); 
         classBtn.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
+        string pnlString = "\n";
         if (game.classesSeen.Length > 0) {
-          string pnlString = "";
           foreach(string clss in game.classesSeen){
-              pnlString += clss + "\t";
+              pnlString += clss + ": " + StaticClassRef.GetFullClassDescription(clss) + "\n";
           }
-          classPnl.GetComponent<TextMeshProUGUI>().text = pnlString;
         }
+        classPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
     }
 
     void PopulateHScoresPanel(){
         hScorePnl.SetActive(true); 
         hScoreBtn.GetComponent<Outline>().effectColor = Color.red;
-        GameMeta game = BaseSaver.GetGame();  
+        GameMeta game = BaseSaver.GetGame();
+        string pnlString = "\n";  
         if (game.scores.Length > 0) {
-          string pnlString = "";
-          foreach(HighScoreMeta scr in game.scores){
-              pnlString += scr.ToString() + "\t";
+          List<HighScoreMeta> scores = new List<HighScoreMeta>(game.scores);
+          scores.OrderBy(scr => scr.score);
+          foreach(HighScoreMeta scr in scores.Take(10)){
+              pnlString += scr.ToString() + "\n";
           }
-          hScorePnl.GetComponent<TextMeshProUGUI>().text = pnlString;
         }
+        hScorePnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
     }
 
     void PopulateSkillsPanel(){
         skillPnl.SetActive(true); 
         skillBtn.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
+        string pnlString = "\n";
         if (game.skillsSeen.Length > 0) {
-          string pnlString = "";
           foreach(string skll in game.skillsSeen){
-              pnlString += skll + "\t";
+              Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skll));
+              pnlString += skll + ": " + tSkill.PrintDetails() + "\n";
           }
-          skillPnl.GetComponent<TextMeshProUGUI>().text = pnlString;
         }
+        skillPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
     }
 }

@@ -58,9 +58,9 @@ public class MenuController : MonoBehaviour
       BaseSaver.PutPlayer(player);
       nxtScene = "FactionScene";
     }
-        PlaySelectSaveSound();
-        //Load the scene
-        SceneManager.LoadScene(nxtScene);
+    PlaySelectSaveSound();
+    //Load the scene
+    SceneManager.LoadScene(nxtScene);
   }
 
   public void ResetAtSave(string save)

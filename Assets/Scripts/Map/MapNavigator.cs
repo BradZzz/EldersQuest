@@ -35,30 +35,30 @@ public class MapNavigator : MonoBehaviour
     ChangeDests(w3Dests,false);
     ChangeDests(w4Dests,false);
     descPnl.SetActive(false);
-    map.GetComponent<RectTransform>().localScale = new Vector3(1.9f,1.4f,0);
+    map.GetComponent<RectTransform>().localScale = new Vector3(1.8f,1.8f,0);
 
     PlayerMeta player = BaseSaver.GetPlayer();
     switch(player.world){
         case GameMeta.World.mountain: 
-          map.GetComponent<RectTransform>().localPosition = new Vector3(1060,-225,0);
+          map.GetComponent<RectTransform>().localPosition = new Vector3(850,-125,0);
           ChangeDests(w2Dests,true);
           dests = w2Dests;
         break;
         case GameMeta.World.pyramid:
           //Map:RectTransform(-1065,315,0)(2340,1080)(1.9,1.4)
-          map.GetComponent<RectTransform>().localPosition = new Vector3(-1065,-225,0);
+          map.GetComponent<RectTransform>().localPosition = new Vector3(-600,-125,0);
           ChangeDests(w3Dests,true);
           dests = w3Dests;
         break;
         case GameMeta.World.candy: 
           //Map:RectTransform(1060,315,0)(2340,1080)(1.9,1.4)
-          map.GetComponent<RectTransform>().localPosition = new Vector3(-1065,225,0);
+          map.GetComponent<RectTransform>().localPosition = new Vector3(-600,225,0);
           ChangeDests(w4Dests,true);
           dests = w4Dests;
         break;
         default:
           //Map:RectTransform(1060,765,0)(2340,1080)(1.9,1.4)
-          map.GetComponent<RectTransform>().localPosition = new Vector3(1060,225,0);
+          map.GetComponent<RectTransform>().localPosition = new Vector3(850,225,0);
           ChangeDests(w1Dests,true);
           dests = w1Dests;
           break;
@@ -78,6 +78,8 @@ public class MapNavigator : MonoBehaviour
 
   void Start()
   {
+    Debug.Log("Start");
+
     StopMusic();
     //AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 0);
 
@@ -218,18 +220,18 @@ public class MapNavigator : MonoBehaviour
 
     private void MusicTransitionToBattle()
     {
-        //AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 1);
-        StartMusic();
+        AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 1);
+        //StartMusic();
     }
 
     private void StartMusic()
     {
-        AudioManager.instance.PlayMusic();
+        //AudioManager.instance.PlayMusic();
     }
 
     private void StopMusic()
     {
-        AudioManager.instance.StopMusicImmediate();
+        //AudioManager.instance.StopMusicImmediate();
     }
 
     #endregion

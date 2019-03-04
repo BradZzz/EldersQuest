@@ -280,22 +280,22 @@ public class StaticClassRef
 
       string reStr = "";
       if (u1.GetAttack() != u2.GetAttack()) {
-        reStr += (u2.GetAttack() - u1.GetAttack()).ToString() + " atk. ";
+        reStr += (u2.GetAttack() > u1.GetAttack() ? "+" : "") + (u2.GetAttack() - u1.GetAttack()).ToString() + " atk. ";
       }
       if (u1.GetAtkRange() != u2.GetAtkRange()) {
-        reStr += (u2.GetAtkRange() - u1.GetAtkRange()).ToString() + " atk rng. ";
+        reStr += (u2.GetAtkRange() > u1.GetAtkRange() ? "+" : "") + (u2.GetAtkRange() - u1.GetAtkRange()).ToString() + " atk rng. ";
       }
       if (u1.GetTurnAttacks() != u2.GetTurnAttacks()) {
-        reStr += (u2.GetTurnAttacks() - u1.GetTurnAttacks()).ToString() + " atks trn. ";
+        reStr += (u2.GetTurnAttacks() > u1.GetTurnAttacks() ? "+" : "") + (u2.GetTurnAttacks() - u1.GetTurnAttacks()).ToString() + " atks trn. ";
       }
       if (u1.GetMoveSpeed() != u2.GetMoveSpeed()) {
-        reStr += (u2.GetMoveSpeed() - u1.GetMoveSpeed()).ToString() + " mv. ";
+        reStr += (u2.GetMoveSpeed() > u1.GetMoveSpeed() ? "+" : "") + (u2.GetMoveSpeed() - u1.GetMoveSpeed()).ToString() + " mv. ";
       }
       if (u1.GetTurnMoves() != u2.GetTurnMoves()) {
-        reStr += (u2.GetTurnMoves() - u1.GetTurnMoves()).ToString() + " mv trn. ";
+        reStr += (u2.GetTurnMoves() > u1.GetTurnMoves() ? "+" : "") + (u2.GetTurnMoves() - u1.GetTurnMoves()).ToString() + " mv trn. ";
       }
       if (u1.GetMaxHP() != u2.GetMaxHP()) {
-        reStr += (u2.GetMaxHP() - u1.GetMaxHP()).ToString() + " hp. ";
+        reStr += (u2.GetMaxHP() > u1.GetMaxHP() ? "+" : "") + (u2.GetMaxHP() - u1.GetMaxHP()).ToString() + " hp. ";
       }
       if (u2.GetSkills().Length > 0) {
         reStr += "Skills:";

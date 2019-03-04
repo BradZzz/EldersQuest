@@ -38,6 +38,6 @@ public class HighScoreMeta
   }
 
   public string ToString(){
-      return "World: " + world.ToString() + " Faction: " + faction.ToString() + "Score: " + score.ToString();
+      return "World: " + world.ToString() + " Faction: " + faction.ToString() + " Score: " + score.ToString();
   }
 }

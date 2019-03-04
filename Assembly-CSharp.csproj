@@ -305,6 +305,7 @@
     <Compile Include="Assets\Scripts\Factions\FactionController.cs" />
     <Compile Include="Assets\Scripts\Map\MapNavigator.cs" />
     <Compile Include="Assets\Scripts\Map\MapStatic.cs" />
+    <Compile Include="Assets\Scripts\Menu\LogoWaiter.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuController.cs" />
     <Compile Include="Assets\Scripts\Savers\BaseSaver.cs" />
     <Compile Include="Assets\Scripts\Savers\BoardMeta.cs" />

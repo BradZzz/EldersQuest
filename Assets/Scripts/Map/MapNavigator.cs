@@ -14,6 +14,7 @@ public class MapNavigator : MonoBehaviour
   public GameObject[] w3Dests;
   public GameObject[] w4Dests;
   public GameObject descPnl;
+  public GameObject map;
 
   private GameObject[] dests;
   private List<string> destSave;
@@ -34,22 +35,30 @@ public class MapNavigator : MonoBehaviour
     ChangeDests(w3Dests,false);
     ChangeDests(w4Dests,false);
     descPnl.SetActive(false);
+    map.GetComponent<RectTransform>().localScale = new Vector3(1.9f,1.4f,0);
 
     PlayerMeta player = BaseSaver.GetPlayer();
     switch(player.world){
         case GameMeta.World.mountain: 
+          map.GetComponent<RectTransform>().localPosition = new Vector3(1060,-225,0);
           ChangeDests(w2Dests,true);
           dests = w2Dests;
         break;
         case GameMeta.World.pyramid:
+          //Map:RectTransform(-1065,315,0)(2340,1080)(1.9,1.4)
+          map.GetComponent<RectTransform>().localPosition = new Vector3(-1065,-225,0);
           ChangeDests(w3Dests,true);
           dests = w3Dests;
         break;
         case GameMeta.World.candy: 
+          //Map:RectTransform(1060,315,0)(2340,1080)(1.9,1.4)
+          map.GetComponent<RectTransform>().localPosition = new Vector3(-1065,225,0);
           ChangeDests(w4Dests,true);
           dests = w4Dests;
         break;
         default:
+          //Map:RectTransform(1060,765,0)(2340,1080)(1.9,1.4)
+          map.GetComponent<RectTransform>().localPosition = new Vector3(1060,225,0);
           ChangeDests(w1Dests,true);
           dests = w1Dests;
           break;
@@ -62,8 +71,16 @@ public class MapNavigator : MonoBehaviour
       }
   }
 
+  public void GoBack(){
+    StopMusic();
+    SceneManager.LoadScene("MainScene");
+  }
+
   void Start()
   {
+    StopMusic();
+    //AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 0);
+
     Color c = Color.white;
     openDests = new List<GameObject>();
     foreach (GameObject dest in dests)
@@ -153,8 +170,9 @@ public class MapNavigator : MonoBehaviour
       player.lastDest = selected;
       BaseSaver.PutPlayer(player);
       BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests()[selected]);
-      SceneManager.LoadScene("BattleScene");
       MusicTransitionToBattle();
+      SceneManager.LoadScene("BattleScene");
+      //MusicTransitionToBattle();
     }
     else
     {
@@ -200,7 +218,18 @@ public class MapNavigator : MonoBehaviour
 
     private void MusicTransitionToBattle()
     {
-        AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 1);
+        //AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 1);
+        StartMusic();
+    }
+
+    private void StartMusic()
+    {
+        AudioManager.instance.PlayMusic();
+    }
+
+    private void StopMusic()
+    {
+        AudioManager.instance.StopMusicImmediate();
     }
 
     #endregion

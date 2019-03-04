@@ -31,14 +31,13 @@ public class AudioManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
     }
 
-    private void Start()
-    {
-        PlayMusic();
-    }
-
+    //private void Start()
+    //{
+    //    PlayMusic();
+    //}
+  
     void Update()
     {
         FMODUnity.RuntimeManager.GetVCA(FMODPaths.VCA_MUSIC).setVolume(musicVolume); // 0 - 1f
@@ -57,8 +56,11 @@ public class AudioManager : MonoBehaviour
         music.getPlaybackState(out _music);
         if (_music != FMOD.Studio.PLAYBACK_STATE.PLAYING)
         {
+            Debug.Log("Music not playing");
             music = FMODUnity.RuntimeManager.CreateInstance(FMODPaths.MusicEvent);
             music.start();
+        } else {
+            Debug.Log("Music playing");
         }
     }
 

@@ -115,12 +115,16 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void ForceHighlight()
     {
-        this.GetComponent<Renderer>().material.color = Color.green;
+        if(this != null){
+            GetComponent<Renderer>().material.color = Color.green;
+        }
     }
 
     public void UnHighlight()
     {
-        this.GetComponent<Renderer>().material.color = Color.white;
+        if(this != null){
+            GetComponent<Renderer>().material.color = Color.white;
+        }
     }
 
     public void ReceiveGridObjectProxy(GridObjectProxy proxy)

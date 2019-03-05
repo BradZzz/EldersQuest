@@ -7213,6 +7213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614909790c69443f7a2a790d50212efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  compDest: {fileID: 21300116, guid: 7e04cfc5e86ed4d89b0d4e4d0c358ca9, type: 3}
   w1Dests:
   - {fileID: 5426418160563118533}
   - {fileID: 456620137}

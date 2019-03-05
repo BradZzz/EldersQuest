@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class MapNavigator : MonoBehaviour
 {
-
+  public Sprite compDest;
   public GameObject[] w1Dests;
   public GameObject[] w2Dests;
   public GameObject[] w3Dests;
@@ -68,8 +68,12 @@ public class MapNavigator : MonoBehaviour
   }
 
   void ChangeDests(GameObject[] iDests, bool valid){
+      List<string> compDests = CompDests();
       foreach(GameObject iDe in iDests){
           iDe.SetActive(valid);
+          if (valid && compDests.Contains(iDe.name)) {
+              iDe.GetComponent<Image>().sprite = compDest;
+          }
       }
   }
 
@@ -166,9 +170,16 @@ public class MapNavigator : MonoBehaviour
     }
   }
 
+  List<string> CompDests(){
+    PlayerMeta player = BaseSaver.GetPlayer();
+    List<string> compDests = new List<string>(player.stats.dests);
+    compDests.RemoveAt(compDests.Count - 1);
+    return compDests;
+  }
+
   public void PutSelect(string selected)
   {
-    if (this.selected == selected)
+    if (this.selected == selected && !CompDests().Contains(selected))
     {
       PlayerMeta player = BaseSaver.GetPlayer();
       player.lastDest = selected;

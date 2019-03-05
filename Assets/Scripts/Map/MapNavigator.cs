@@ -21,6 +21,9 @@ public class MapNavigator : MonoBehaviour
   private List<GameObject> openDests;
   private string selected;
 
+  private Vector3 mapStartPos;
+  private Vector3 mapEndPos;
+
   void Awake()
   {
     selected = "";
@@ -37,48 +40,47 @@ public class MapNavigator : MonoBehaviour
     ChangeDests(w3Dests,false);
     ChangeDests(w4Dests,false);
     descPnl.SetActive(false);
-    map.GetComponent<RectTransform>().localScale = new Vector3(1.8f,1.8f,0);
-
-    //iTween.RotateTo(child.gameObject,iTween.Hash(
-    //   "z", 25,
-    //   "time", 5,
-    //   "easetype", "easeInOutSine",
-    //   "looptype","pingpong"
-    //));
-    //iTween.ScaleTo(child.gameObject,iTween.Hash(
-    //   "x", 1.3,
-    //   "y", 1.3,
-    //   "time", 2,
-    //   "easetype", "easeInOutSine",
-    //   "looptype","pingpong"
-    //));
 
     PlayerMeta player = BaseSaver.GetPlayer();
     switch(player.world){
         case GameMeta.World.mountain: 
-          map.GetComponent<RectTransform>().localPosition = new Vector3(850,-125,0);
-          ChangeDests(w2Dests,true);
-          dests = w2Dests;
+          StartCoroutine(ZoomScale(new Vector3(850,-125,0),w2Dests));
         break;
         case GameMeta.World.pyramid:
-          //Map:RectTransform(-1065,315,0)(2340,1080)(1.9,1.4)
-          map.GetComponent<RectTransform>().localPosition = new Vector3(-600,-125,0);
-          ChangeDests(w3Dests,true);
-          dests = w3Dests;
+          StartCoroutine(ZoomScale(new Vector3(-600,-125,0),w3Dests));
         break;
         case GameMeta.World.candy: 
-          //Map:RectTransform(1060,315,0)(2340,1080)(1.9,1.4)
-          map.GetComponent<RectTransform>().localPosition = new Vector3(-600,225,0);
-          ChangeDests(w4Dests,true);
-          dests = w4Dests;
+          StartCoroutine(ZoomScale(new Vector3(-600,225,0),w4Dests));
         break;
         default:
-          //Map:RectTransform(1060,765,0)(2340,1080)(1.9,1.4)
-          map.GetComponent<RectTransform>().localPosition = new Vector3(850,225,0);
-          ChangeDests(w1Dests,true);
-          dests = w1Dests;
+          StartCoroutine(ZoomScale(new Vector3(850,225,0),w1Dests));
           break;
     }
+  }
+
+  IEnumerator ZoomScale(Vector3 newPos, GameObject[] wDests){
+    iTween.ScaleTo(map, iTween.Hash(
+       "x", 1.8,
+       "y", 1.8,
+       "time", 2,
+       "easetype", "easeInOutSine"
+    ));
+    mapStartPos = map.GetComponent<RectTransform>().localPosition;
+    mapEndPos = newPos;
+
+    iTween.ValueTo(gameObject, iTween.Hash(
+         "from", 0f,
+         "to", 1f,
+         "time", 2,
+         "onupdate", "MoveMap"));
+    yield return new WaitForSeconds(2.2f);
+    ChangeDests(wDests,true);
+    dests = wDests;
+    Init();
+  }
+
+  public void MoveMap(float perc){
+      map.GetComponent<RectTransform>().localPosition = ((mapEndPos - mapStartPos) * perc) + mapStartPos;
   }
 
   void ChangeDests(GameObject[] iDests, bool valid){
@@ -96,7 +98,7 @@ public class MapNavigator : MonoBehaviour
     SceneManager.LoadScene("MainScene");
   }
 
-  void Start()
+  void Init()
   {
     Debug.Log("Start");
 

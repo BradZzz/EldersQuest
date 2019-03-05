@@ -14,9 +14,9 @@ public class StoryStatic : MonoBehaviour
       "If only we could get our hands on that box…";
 
     public static string[] HUMAN_DEATHS = new string[]{ 
-      "The enemy has overtook your platoon and killed you and your friends.",
-      "You were no match against the power of magic.",
-      "Everybody in the world is dead now.",
+      "The enemy has overtaken your platoon. Your friends and everyone you've ever known and loved is now dead.",
+      "Like Houdini. You were no match against the power of magic.",
+      "Everybody in the world is dead now. You are a part of the world. Unfortunate.",
     };
 
     public static string HUMAN_WIN = "With the demons and Gods defeated, our soldiers marched and closed Pandora’s box. The world soon divided again, fighting over the power of Pandora’s Box, until one day it was lost. Susie was sent to a Maximum Security Orphanage where she lived the rest of her days hating Christmas. ";

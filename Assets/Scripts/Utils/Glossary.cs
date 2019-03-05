@@ -18,4 +18,8 @@ public class Glossary : MonoBehaviour
     public Sprite snowTile;
     public Sprite wallTile;
     public Sprite divineTile;
+
+    public Sprite humanFaction;
+    public Sprite egyptFaction;
+    public Sprite chtulhuFaction;
 }

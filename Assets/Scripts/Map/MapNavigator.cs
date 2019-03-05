@@ -39,6 +39,20 @@ public class MapNavigator : MonoBehaviour
     descPnl.SetActive(false);
     map.GetComponent<RectTransform>().localScale = new Vector3(1.8f,1.8f,0);
 
+    //iTween.RotateTo(child.gameObject,iTween.Hash(
+    //   "z", 25,
+    //   "time", 5,
+    //   "easetype", "easeInOutSine",
+    //   "looptype","pingpong"
+    //));
+    //iTween.ScaleTo(child.gameObject,iTween.Hash(
+    //   "x", 1.3,
+    //   "y", 1.3,
+    //   "time", 2,
+    //   "easetype", "easeInOutSine",
+    //   "looptype","pingpong"
+    //));
+
     PlayerMeta player = BaseSaver.GetPlayer();
     switch(player.world){
         case GameMeta.World.mountain: 

@@ -29,10 +29,10 @@ public class MapNavigator : MonoBehaviour
     selected = "";
     PlayerMeta meta = BaseSaver.GetPlayer();
     destSave = new List<string>(meta.stats.dests);
-    if (BaseSaver.GetGame().GameEnded()) {
+    if (GameMeta.GameEnded()) {
         SceneManager.LoadScene("ScrollingTextScene");
     }
-    if (BaseSaver.GetGame().RosterNeedsUpgrade()) {
+    if (GameMeta.RosterNeedsUpgrade()) {
         SceneManager.LoadScene("TechScene");
     }
     ChangeDests(w1Dests,false);

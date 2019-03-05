@@ -16,6 +16,8 @@ public class GameMeta
   public string[] skillsSeen;
   public string[] classesSeen;
 
+  public bool intro;
+
   public GameMeta()
   {
     unlockedFactions = new Unit.FactionType[]{ Unit.FactionType.Human };
@@ -23,14 +25,18 @@ public class GameMeta
     scores = new HighScoreMeta[]{ };
     skillsSeen = new string[]{ };
     classesSeen = new string[]{ };
+    intro = false;
   }
 
-  public bool GameEnded(){
+  public static bool GameEnded(){
     PlayerMeta player = BaseSaver.GetPlayer();
+    if (player == null){
+        return false;
+    }
     return player.stats.dests.Length == AMOUNT_OF_LVLS;
   }
 
-  public bool RosterNeedsUpgrade(){
+  public static bool RosterNeedsUpgrade(){
     return BaseSaver.GetPlayer().characters.Where(unt => unt.GetLvl() >= unt.GetCurrentClass().GetWhenToUpgrade()).Any();
   }
 

@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Death/DeathScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScrollingText/StorySceneHolder.cs">
     <Files>
-      <File FileName="Assets/Scripts/Death/DeathScene.cs" Line="21" Column="17" />
-      <File FileName="Assets/Scripts/ScrollingText/StoryStatic.cs" Line="16" Column="40" />
-      <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="83" Column="77" />
-      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="22" Column="32" />
-      <File FileName="Assets/Scripts/ScrollingText/StorySceneHolder.cs" Line="23" Column="38" />
-      <File FileName="Assets/Scripts/Utils/HelperScripts.cs" Line="10" Column="31" />
+      <File FileName="Assets/Scripts/ScrollingText/StorySceneHolder.cs" Line="30" Column="29" />
+      <File FileName="Assets/Scripts/ScrollingText/StoryStatic.cs" Line="13" Column="37" />
+      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Savers/GameMeta.cs" Line="34" Column="22" />
+      <File FileName="Assets/Scripts/CharSelect/CharSelectController.cs" Line="18" Column="6" />
+      <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="105" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

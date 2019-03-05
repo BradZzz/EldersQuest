@@ -14,12 +14,39 @@ public class StorySceneHolder : MonoBehaviour {
   private string[] textHolder;
   private int idx;
   private int txtIdx = 0;
-  private float percentsPerSecond = 0.2f;
-  private float sceneProgress = 0;
+  //private float percentsPerSecond = 0.2f;
+  //private float sceneProgress = 0;
 
   void Awake () {
     GameMeta game = BaseSaver.GetGame();
-    textHolder = new string[]{ game.EndGameDialog() };
+    PlayerMeta player = BaseSaver.GetPlayer();
+    //textHolder = new string[]{ StoryStatic.INTRO_STRING };
+    //if (game != null) {
+    textHolder = new string[]{ };
+    if (!GameMeta.GameEnded()) {
+      List<string> txts = new List<string>();
+      if (!game.intro) {
+        txts = new List<string>(StoryStatic.INTRO_STRING);
+        game.intro = true;
+        BaseSaver.PutGame(game);
+      }
+      switch(player.faction) {
+        case Unit.FactionType.Cthulhu:txts.Add(StoryStatic.CTHULHU_INTRO);break;
+        case Unit.FactionType.Egypt:txts.Add(StoryStatic.EGYPT_INTRO);break;
+        case Unit.FactionType.Human:txts.Add(StoryStatic.HUMAN_INTRO);break;
+      }
+      textHolder = txts.ToArray();
+    } else {
+      textHolder = new string[]{ game.EndGameDialog() };
+      if (player.world == GameMeta.World.candy) {
+        switch(player.faction) {
+          case Unit.FactionType.Cthulhu:textHolder = new string[]{ StoryStatic.CTHULHU_WIN };break;
+          case Unit.FactionType.Egypt:textHolder = new string[]{ StoryStatic.EGYPT_WIN };break;
+          case Unit.FactionType.Human:textHolder = new string[]{ StoryStatic.HUMAN_WIN };break;
+        }
+      }
+    }
+    //}
     clickToContinue.SetActive(false);
   }
 
@@ -46,6 +73,8 @@ public class StorySceneHolder : MonoBehaviour {
           clickToContinue.SetActive(false);
           SkipToNextText();
         }
+      } else {
+        MoveToScene();
       }
     }
   }
@@ -69,5 +98,13 @@ public class StorySceneHolder : MonoBehaviour {
       yield return new WaitForSeconds(.08f);
     }
     clickToContinue.SetActive(true);
+  }
+
+  public void MoveToScene(){
+    if (GameMeta.GameEnded()) {
+      SceneManager.LoadScene("MainScene");
+    } else {
+      SceneManager.LoadScene("CharSelectScreen");
+    }
   }
 }

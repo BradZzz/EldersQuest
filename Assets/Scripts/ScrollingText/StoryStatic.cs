@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class StoryStatic : MonoBehaviour
 {
-    public static string INTRO_STRING = "The day before Christmas, sweet 6 year old Susie writes a letter to Santa, asking for a box with a ballerina inside. She assures him she’s been good and patient with her baby brother. While Susie is sweet, she is not a great speller and addressed her letter to Satan, postmarking her letter with a shiny unicorn sticker before throwing it into the roaring fireplace, thinking it would go up the chimney where Santa could find it.\n" + 
-      "Satan sat sprawled across a recliner made of skulls, sipping on cheap Chardonnay when sweet Susie’s letter appeared in the flames of his fireplace. He plucked it out from between two logs and saw an opportunity for mischief. He snapped his clawed fingers and a weasel-like demon appeared under hoof, Pandora’s Box clasped between it’s paws.\n" + 
-      "By the time Satan arrived at the chimney of Susie’s house, Santa had come and gone, leaving shiny wrapped gifts waited under the sparkling fir in the living room, and taking a bite of the cookies laid out for him. Satan, unphased by Santa’s sloppy seconds, gobbled down the rest of the cookies, commenting on their mediocrity before wiping his hands and the corners of his mouth with the velvet curtain in the window and belching. Satan kicked aside Santa’s gifts, placing his own front and center. Satan fluffed the bow, and straightened the box before making his way back to the fireplace. Satan paused before stepping through the flames, pilfering candy from each hanging stocking and giggling to himself.\n" +
-      "Susie sprang out of bed Christmas morning, her muscle memory kicking in before her eyes could open fully. Her feet thundered against the hardwood stairs. Her mother yelled exasperated and not yet awake, “Wait for me to get my camera!” But the sight of the box entrances Susie, she walked towards the ornate gold papered present, she touched the blood red bow, the traced the outline of her name, written in the fancy script her mother uses to sign permission slips, and unceremoniously destroyed the wrapping, uncovering the music box she had asked for. Susie lifted the lid, hoping that there would be a ballerina inside that had the same hair color as she did.\n";
+    public static string[] INTRO_STRING = new string[]{"The day before Christmas, sweet 6 year old Susie writes a letter to Santa, asking for a box with a ballerina inside. She assures him she’s been good and patient with her baby brother. While Susie is sweet, she is not a great speller and addressed her letter to Satan, postmarking her letter with a shiny unicorn sticker before throwing it into the roaring fireplace, thinking it would go up the chimney where Santa could find it.\n",
+      "Satan sat sprawled across a recliner made of skulls, sipping on cheap Chardonnay when sweet Susie’s letter appeared in the flames of his fireplace. He plucked it out from between two logs and saw an opportunity for mischief. He snapped his clawed fingers and a weasel-like demon appeared under hoof, Pandora’s Box clasped between it’s paws.\n",
+      "By the time Satan arrived at the chimney of Susie’s house, Santa had come and gone, leaving shiny wrapped gifts waited under the sparkling fir in the living room, and taking a bite of the cookies laid out for him. Satan, unphased by Santa’s sloppy seconds, gobbled down the rest of the cookies, commenting on their mediocrity before wiping his hands and the corners of his mouth with the velvet curtain in the window and belching. Satan kicked aside Santa’s gifts, placing his own front and center. Satan fluffed the bow, and straightened the box before making his way back to the fireplace. Satan paused before stepping through the flames, pilfering candy from each hanging stocking and giggling to himself.\n",
+      "Susie sprang out of bed Christmas morning, her muscle memory kicking in before her eyes could open fully. Her feet thundered against the hardwood stairs. Her mother yelled exasperated and not yet awake, “Wait for me to get my camera!” But the sight of the box entrances Susie, she walked towards the ornate gold papered present, she touched the blood red bow, the traced the outline of her name, written in the fancy script her mother uses to sign permission slips, and unceremoniously destroyed the wrapping, uncovering the music box she had asked for. Susie lifted the lid, hoping that there would be a ballerina inside that had the same hair color as she did.\n"};
 
     public static string HUMAN_INTRO = "With Susie possessed, and the northern hemisphere slowly falling under her control, the world has banded together to capture and control the Beast formerly known as Susie. Governments have entered treaties and locked themselves away to argue over how to use her powers for the betterment of their own countries, when suddenly, the Egyptian Gods of old re-enter the atmosphere.\n" +
-      "If only we could get our hands on that box…";
+      "\nIf only we could get our hands on that box…";
 
     public static string[] HUMAN_DEATHS = new string[]{ 
       "The enemy has overtaken your platoon. Your friends and everyone you've ever known and loved is now dead.",
@@ -22,7 +22,7 @@ public class StoryStatic : MonoBehaviour
     public static string HUMAN_WIN = "With the demons and Gods defeated, our soldiers marched and closed Pandora’s box. The world soon divided again, fighting over the power of Pandora’s Box, until one day it was lost. Susie was sent to a Maximum Security Orphanage where she lived the rest of her days hating Christmas. ";
 
     public static string EGYPT_INTRO = "With Susie possessed, and the northern hemisphere slowly falling under her control, Ra feels his power and worship waning as the sun begins to shine on Susie. Unwilling to give up his reign over the world, Ra commands his followers to control the demon girl, for there may only be one race of Gods that rule this world.\n" +
-      "If only we could destroy that box…";
+      "\nIf only we could destroy that box…";
 
     public static string[] EGYPT_DEATHS = new string[]{ 
       "Ra looks upon you in shame.",
@@ -32,8 +32,8 @@ public class StoryStatic : MonoBehaviour
 
     public static string EGYPT_WIN = "With the demons defeated, and the mortals put back in their place, Ra destroyed Pandora’s Box and heralded the beginning of a thousand year era of world peace and Heliocentric Worship.";
 
-    public static string CTHULHU_INTRO = "With Susie possessed, and the northern hemisphere slowly falling under her control, Ra feels his power and worship waning as the sun begins to shine on Susie. Unwilling to give up his reign over the world, Ra commands his followers to control the demon girl, for there may only be one race of Gods that rule this world.\n" +
-      "If only we could destroy that box…";
+    public static string CTHULHU_INTRO = "With Susie possessed, and the northern hemisphere slowly falling under her control, Cthulhu rouses with the commotion above him. Cthulhu rises from the deep to find a world in absolute chaos. The Egyptian Gods have returned to fight what appears to be some sort of little girl demon and we just can’t have that. Not when this mountain of skulls is so comfortable.\n" +
+      "\nIf only we could open that box wider…";
 
     public static string[] CTHULHU_DEATHS = new string[]{ 
       "You suddenly find yourself back in hell. Cthulhu calls you a wuss and you are reincarnated.",

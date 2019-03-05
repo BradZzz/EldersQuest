@@ -32,9 +32,13 @@ public class TechTreeNav : MonoBehaviour
             Destroy(child.gameObject);
         }
         PlayerMeta player = BaseSaver.GetPlayer();
-        foreach(Unit unt in player.characters.Reverse()){
-            PopulateRw(unt);
+        List<Unit> units = new List<Unit>(player.characters.Reverse());
+        for(int i = 0; i < units.Count; i++){
+            PopulateRw(units[i], i);
         }
+        //foreach(Unit unt in player.characters.Reverse()){
+        //    PopulateRw(unt);
+        //}
     }
 
     void RefreshTech(){
@@ -49,17 +53,17 @@ public class TechTreeNav : MonoBehaviour
          }
     }
 
-    void PopulateRw(Unit unt){
+    void PopulateRw(Unit unt, int idx){
         GameObject nwRow = Instantiate(chrRW, chrSelect.transform);
         nwRow.GetComponent<TechTreeUnitWrap>().unit = unt;
         nwRow.GetComponent<TechTreeUnitWrap>().Refresh();
-        RefreshMainPanel(nwRow, unt);
+        RefreshMainPanel(nwRow, unt, idx);
 
         UnityEngine.Events.UnityAction action1 = () => { instance.CharClicked(unt); };
         nwRow.GetComponent<Button>().onClick.AddListener(action1);
     }
 
-    static void RefreshMainPanel(GameObject panel, Unit unit){
+    static void RefreshMainPanel(GameObject panel, Unit unit, int unitIdx){
         Debug.Log("RefreshMainPanel: " + unit.characterMoniker);
         panel.SetActive(true);
         foreach(Transform child in panel.transform){
@@ -71,6 +75,18 @@ public class TechTreeNav : MonoBehaviour
             }
             if (child.name.Equals("HPImg")) {
                 child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetMaxHP().ToString();
+            }
+            if (child.name.Equals("Lineup")) {
+                if (unitIdx > 2) {
+                  //Reserves
+                  child.GetComponent<Image>().color = Color.red;
+                  child.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Waiting...";
+                } else {
+                  //Roster
+                  child.GetComponent<Image>().color = Color.green;
+                  child.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Battle Ready";
+
+                }
             }
             if (child.name.Equals("ExpImg")) {
                 string expStr = "*";

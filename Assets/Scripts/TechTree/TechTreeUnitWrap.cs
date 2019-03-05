@@ -11,8 +11,10 @@ public class TechTreeUnitWrap : MonoBehaviour
     public void Refresh(){
         if (unit.GetLvl() >= unit.GetCurrentClass().GetWhenToUpgrade()) {
             GetComponent<Outline>().effectColor = Color.red;
+            GetComponent<Outline>().effectDistance = new Vector2(5,-5);
         } else {
             GetComponent<Outline>().effectColor = Color.black;
+            GetComponent<Outline>().effectDistance = new Vector2(1,-1);
         }
     }
 }

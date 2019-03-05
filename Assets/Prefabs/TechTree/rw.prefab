@@ -2709,6 +2709,7 @@ GameObject:
   - component: {fileID: 6841262665732598700}
   - component: {fileID: 6841262665732598701}
   - component: {fileID: 6841262665732598698}
+  - component: {fileID: 4864398912762926883}
   m_Layer: 5
   m_Name: rw
   m_TagString: Untagged
@@ -2806,6 +2807,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1742289eb99d742508ef7c2231a4cb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4864398912762926883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841262665732598696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418d41f1938a0419ab53134a61aa2688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit:
+    characterName: 0
+    characterMoniker: Null
+    mxHlth: 1
+    uType: 2
+    fType: 0
+    cHlth: 1
+    atk: 1
+    moveSpeed: 3
+    atkRange: 3
+    lvl: 0
+    team: 0
+    trnMvs: 1
+    trnAtks: 1
+    skills: []
+    summoned: 0
+    aegis: 0
+    nullified: 0
+    atkBuff: 0
+    trnAtkBuff: 0
+    hpBuff: 0
+    currentClass: 
 --- !u!1 &6841262665802530818
 GameObject:
   m_ObjectHideFlags: 0

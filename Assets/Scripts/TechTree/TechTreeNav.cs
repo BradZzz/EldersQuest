@@ -73,7 +73,27 @@ public class TechTreeNav : MonoBehaviour
                 child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetMaxHP().ToString();
             }
             if (child.name.Equals("ExpImg")) {
-                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetLvl().ToString();
+                string expStr = "*";
+                if(unit.GetLvl() >= unit.GetCurrentClass().GetWhenToUpgrade()){
+                    Debug.Log("Rotate!");
+                    child.eulerAngles = new Vector3(0,0,-25);
+                    iTween.RotateTo(child.gameObject,iTween.Hash(
+                     "z", 25,
+                     "time", 5,
+                     "easetype", "easeInOutSine",
+                     "looptype","pingpong"
+                   ));
+                    iTween.ScaleTo(child.gameObject,iTween.Hash(
+                     "x", 1.3,
+                     "y", 1.3,
+                     "time", 2,
+                     "easetype", "easeInOutSine",
+                     "looptype","pingpong"
+                   ));
+                } else {
+                   expStr = unit.GetLvl().ToString();
+                }
+                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = expStr;
             }
             if (child.name.Equals("Stats")) {
                 foreach (Transform t in child.transform)

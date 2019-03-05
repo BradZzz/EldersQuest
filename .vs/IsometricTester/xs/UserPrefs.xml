@@ -1,8 +1,12 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TechTree/TechTreeNav.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Savers/GameMeta.cs">
     <Files>
       <File FileName="Assets/Scripts/ScrollingText/StoryStatic.cs" Line="32" Column="1" />
-      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="59" Column="1" />
+      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="86" Column="67" />
+      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="165" Column="14" />
+      <File FileName="Assets/Scripts/Map/MapNavigator.cs" Line="29" Column="32" />
+      <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="56" Column="26" />
+      <File FileName="Assets/Scripts/Savers/GameMeta.cs" Line="32" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
@@ -11,8 +15,6 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/brad/Documents/new_git/IsometricTester/Assets/Scripts/Classes/Egypt/Scout/EgyptFirefighterClass.cs" relfile="Assets/Scripts/Classes/Egypt/Scout/EgyptFirefighterClass.cs" line="30" column="1" />
-      <Breakpoint file="/Users/brad/Documents/new_git/IsometricTester/Assets/Scripts/Battle/ConditionTracker.cs" relfile="Assets/Scripts/Battle/ConditionTracker.cs" line="123" column="1" />
-      <Breakpoint file="/Users/brad/Documents/new_git/IsometricTester/Assets/Scripts/Battle/ConditionTracker.cs" relfile="Assets/Scripts/Battle/ConditionTracker.cs" line="139" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

@@ -29,7 +29,9 @@ public class MapNavigator : MonoBehaviour
     if (BaseSaver.GetGame().GameEnded()) {
         SceneManager.LoadScene("ScrollingTextScene");
     }
-
+    if (BaseSaver.GetGame().RosterNeedsUpgrade()) {
+        SceneManager.LoadScene("TechScene");
+    }
     ChangeDests(w1Dests,false);
     ChangeDests(w2Dests,false);
     ChangeDests(w3Dests,false);

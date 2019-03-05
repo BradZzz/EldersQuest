@@ -29,6 +29,10 @@ public class GameMeta
     return player.stats.dests.Length == AMOUNT_OF_LVLS;
   }
 
+  public bool RosterNeedsUpgrade(){
+    return BaseSaver.GetPlayer().characters.Where(unt => unt.GetLvl() >= unt.GetCurrentClass().GetWhenToUpgrade()).Any();
+  }
+
   public string EndGameDialog(){
     PlayerMeta player = BaseSaver.GetPlayer();
     GameMeta game = BaseSaver.GetGame();

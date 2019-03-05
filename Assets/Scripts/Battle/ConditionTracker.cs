@@ -159,7 +159,7 @@ public class ConditionTracker : MonoBehaviour
         {
             string nxtScene = "MapScene";
             PlayerMeta player = BaseSaver.GetPlayer();
-            if (unlkChar && player.characters.Length < 6)
+            if (unlkChar && player.characters.Length < GameMeta.MAX_ROSTER)
             {
                 nxtScene = "CharSelectScreen";
             }

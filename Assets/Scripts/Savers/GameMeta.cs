@@ -8,6 +8,7 @@ using UnityEngine;
 public class GameMeta
 {
   public static int AMOUNT_OF_LVLS = 11;
+  public static int MAX_ROSTER = 5;
 
   public Unit.FactionType[] unlockedFactions;
   public HighScoreMeta[] scores;

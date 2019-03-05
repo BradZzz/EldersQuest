@@ -26,7 +26,7 @@ public class TechTreeNav : MonoBehaviour
         RefreshSelect();
     }
 
-    void RefreshSelect(){
+    public void RefreshSelect(){
         foreach (Transform child in chrSelect.transform)
         {
             Destroy(child.gameObject);
@@ -238,6 +238,11 @@ public class TechTreeNav : MonoBehaviour
     }
 
     public void SaveAndReturn(){
+        SavePosition();
+        SceneManager.LoadScene("MapScene");
+    }
+
+    public void SavePosition(){
         PlayerMeta player = BaseSaver.GetPlayer();
         List<Unit> units = new List<Unit>();
         foreach (Transform child in chrSelect.transform)
@@ -258,6 +263,5 @@ public class TechTreeNav : MonoBehaviour
         //player.characters.Reverse();
         Debug.Log("Player Units: " + player.characters.Length.ToString());
         BaseSaver.PutPlayer(player);
-        SceneManager.LoadScene("MapScene");
     }
 }

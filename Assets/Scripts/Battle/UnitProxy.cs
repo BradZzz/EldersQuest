@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UnitProxy : GridObjectProxy
 {
     public GameObject aegisObj;
+    public GameObject rankObj;
 
     //public static float NO_ATK_WAIT = .5f;
     //public static float ATK_WAIT = 1.1f;
@@ -26,6 +27,7 @@ public class UnitProxy : GridObjectProxy
 
     void Awake(){
         aegisObj.SetActive(false);
+        rankObj.SetActive(false);
     }
 
     public void Init()
@@ -33,6 +35,11 @@ public class UnitProxy : GridObjectProxy
         if (_data == null)
             _data = new Unit();
         SnapToCurrentPosition();
+        int rnk = GetData().GetUnitClassRank();
+        if (rnk > 0) {
+          rankObj.SetActive(true);
+          rankObj.GetComponent<SpriteRenderer>().sprite = BoardProxy.instance.glossary.GetComponent<Glossary>().ranks[rnk - 1];
+        }
     }
 
     public void AddLevel(){

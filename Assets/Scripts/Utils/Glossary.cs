@@ -22,4 +22,7 @@ public class Glossary : MonoBehaviour
     public Sprite humanFaction;
     public Sprite egyptFaction;
     public Sprite chtulhuFaction;
+
+    public Sprite[] ranks;
+
 }

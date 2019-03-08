@@ -26,6 +26,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     private float FIRE_DELAY_TIME = .5f;
 
     private bool lifetimeWall;
+    private bool lifetimeDivine;
+    private bool lifetimeSnow;
+    private bool lifetimeFire;
 
     private List<GridObjectProxy> objectProxies = new List<GridObjectProxy>();
     //private GameObject instanceDummy;
@@ -111,6 +114,22 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void SetLifeWall(bool lifetimeWall){
         this.lifetimeWall = lifetimeWall;
+        wallTrns = 1;
+    }
+
+    public void SetLifeDivine(bool lifetimeDivine){
+        this.lifetimeDivine = lifetimeDivine;
+        divineTrns = 1;
+    }
+
+    public void SetLifeSnow(bool lifetimeSnow){
+        this.lifetimeSnow = lifetimeSnow;
+        snowTrns = 1;
+    }
+
+    public void SetLifeFire(bool lifetimeFire){
+        this.lifetimeFire = lifetimeFire;
+        fireTrns = 1;
     }
 
     public void ForceHighlight()
@@ -306,14 +325,27 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
             }
         }
 
-        if (wallTrns <= 0 && HasObstacle() && !lifetimeWall) {
+        if (wallTrns <= 0 && HasObstacle()) {
             RemoveGridObjectProxy(GetObstacle());
         }
 
-        fireTrns = fireTrns - 1 > 0 ? fireTrns - 1 : 0;
-        wallTrns = wallTrns - 1 > 0 ? wallTrns - 1 : 0;
-        divineTrns = divineTrns - 1 > 0 ? divineTrns - 1 : 0;
-        snowTrns = snowTrns - 1 > 0 ? snowTrns - 1 : 0;
+        if (!lifetimeWall) {
+          wallTrns = wallTrns - 1 > 0 ? wallTrns - 1 : 0;
+        }
+        if (!lifetimeDivine) {
+          divineTrns = divineTrns - 1 > 0 ? divineTrns - 1 : 0;
+        }
+        if (!lifetimeSnow) {
+          snowTrns = snowTrns - 1 > 0 ? snowTrns - 1 : 0;
+        }
+        if (!lifetimeFire) {
+          fireTrns = fireTrns - 1 > 0 ? fireTrns - 1 : 0;
+        }
+
+        //fireTrns = fireTrns - 1 > 0 ? fireTrns - 1 : 0;
+        //wallTrns = wallTrns - 1 > 0 ? wallTrns - 1 : 0;
+        //divineTrns = divineTrns - 1 > 0 ? divineTrns - 1 : 0;
+        //snowTrns = snowTrns - 1 > 0 ? snowTrns - 1 : 0;
 
         if (!OnFire() && !IsWall() && !Frozen() && !IsDivine()) {
             GetComponent<SpriteRenderer>().sprite = def;

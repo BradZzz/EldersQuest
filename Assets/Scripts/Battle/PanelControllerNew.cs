@@ -157,6 +157,15 @@ public class PanelControllerNew : MonoBehaviour
             if (child.name.Equals("Exp")) {
                 child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetLvl().ToString();
             }
+            if (child.name.Equals("Rank")) {
+                int rnk = unit.GetData().GetUnitClassRank();
+                if (rnk > 0) {
+                  child.gameObject.SetActive(true);
+                  child.GetChild(0).GetComponent<Image>().sprite = BoardProxy.instance.glossary.GetComponent<Glossary>().ranks[rnk - 1];
+                } else {
+                  child.gameObject.SetActive(false);
+                }
+            }
             if (child.name.Equals("Aegis")) {
                 if (unit.GetData().GetAegis()) {
                     child.gameObject.SetActive(true);

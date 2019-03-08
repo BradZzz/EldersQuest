@@ -1,12 +1,16 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/UnitProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Brains/BasicBrain.cs">
     <Files>
       <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="26" Column="27" />
       <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="35" Column="43" />
       <File FileName="Assets/Scripts/Classes/ClassNode.cs" Line="36" Column="68" />
       <File FileName="Assets/Scripts/Classes/StaticClassRef.cs" Line="11" Column="35" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="275" Column="8" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="28" Column="14" />
+      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="358" Column="32" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="38" Column="48" />
+      <File FileName="Assets/Scripts/Utils/UnitNameGenerator.cs" Line="67" Column="6" />
+      <File FileName="Assets/Scripts/CharSelect/CharSelectController.cs" Line="52" Column="18" />
+      <File FileName="Assets/Scripts/Map/MapStatic.cs" Line="50" Column="90" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="61" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

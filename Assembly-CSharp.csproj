@@ -381,6 +381,7 @@
     <Compile Include="Assets\Scripts\Utils\Pnt.cs" />
     <Compile Include="Assets\Scripts\Utils\SceneNav.cs" />
     <Compile Include="Assets\Scripts\Utils\SteadyComp.cs" />
+    <Compile Include="Assets\Scripts\Utils\UnitNameGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

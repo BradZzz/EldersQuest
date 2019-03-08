@@ -361,7 +361,7 @@ public class Unit : GridObject
           new List<string>(BaseSaver.GetPlayer().characters.Select(chr => chr.characterMoniker)) : 
           new List<string>();
 
-        string uName = GenerateRandomName(avoidNames);
+        string uName = UnitNameGenerator.GenerateRandomName(avoidNames, fType);
 
         Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 2, 1, 1, new string[]{ }, "", uType, fType);
         ClassNode classObj = ClassNode.ComputeClassObject(fType,uType);
@@ -385,24 +385,24 @@ public class Unit : GridObject
     //    }
     //}
   
-    public static string GenerateRandomName(List<string> dontPick)
-    {
-        string gotName = GetRandomName();
-        while (dontPick.Contains(gotName))
-        {
-            gotName = GetRandomName();
-        }
-        return gotName;
-    }
+    //public static string GenerateRandomName(List<string> dontPick)
+    //{
+    //    string gotName = GetRandomName();
+    //    while (dontPick.Contains(gotName))
+    //    {
+    //        gotName = GetRandomName();
+    //    }
+    //    return gotName;
+    //}
   
-    static string GetRandomName()
-    {
-        string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse", "Gloria", "Bertram", "Silvia", 
-          "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia", "Byron", "Audrey", "Brier" };
-        string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Killdoom", "Everyman", "Rocketshark", 
-          "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks", "Doughnutface" };
-        return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
-    }
+    //static string GetRandomName()
+    //{
+    //    string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse", "Gloria", "Bertram", "Silvia", 
+    //      "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia", "Byron", "Audrey", "Brier" };
+    //    string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Killdoom", "Everyman", "Rocketshark", 
+    //      "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks", "Doughnutface" };
+    //    return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
+    //}
 
     public string ToString(){
         return characterMoniker + " : " + GetLvl();

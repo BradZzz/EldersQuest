@@ -14,14 +14,16 @@ public class StorySceneHolder : MonoBehaviour {
   private string[] textHolder;
   private int idx;
   private int txtIdx = 0;
+  private bool waiting;
+
+  private IEnumerator waiter;
   //private float percentsPerSecond = 0.2f;
   //private float sceneProgress = 0;
 
   void Awake () {
     GameMeta game = BaseSaver.GetGame();
     PlayerMeta player = BaseSaver.GetPlayer();
-    //textHolder = new string[]{ StoryStatic.INTRO_STRING };
-    //if (game != null) {
+    waiting = false;
     textHolder = new string[]{ };
     if (!GameMeta.GameEnded()) {
       List<string> txts = new List<string>();
@@ -46,7 +48,6 @@ public class StorySceneHolder : MonoBehaviour {
         }
       }
     }
-    //}
     clickToContinue.SetActive(false);
   }
 
@@ -60,23 +61,37 @@ public class StorySceneHolder : MonoBehaviour {
   {
     if (Input.anyKeyDown)
     {
-      if (idx < textHolder.Length - 1 || txtIdx < textHolder[idx].Length - 1)
-      {
-        if (txtIdx < textHolder[idx].Length - 1)
-        {
-          textBox.text = textHolder[idx];
-          txtIdx = textHolder[idx].Length - 1;
-          clickToContinue.SetActive(true);
+      if (!waiting) {
+        if (waiter == null) {
+            waiter = WaitForTouch();
         }
-        else
+        StartCoroutine(waiter);
+        if (idx < textHolder.Length - 1 || txtIdx < textHolder[idx].Length - 1)
         {
-          clickToContinue.SetActive(false);
-          SkipToNextText();
+          if (txtIdx < textHolder[idx].Length - 1)
+          {
+            textBox.text = textHolder[idx];
+            txtIdx = textHolder[idx].Length - 1;
+            clickToContinue.SetActive(true);
+          }
+          else
+          {
+            clickToContinue.SetActive(false);
+            SkipToNextText();
+          }
+        } else {
+          MoveToScene();
         }
       } else {
-        MoveToScene();
+        Debug.Log("Waiting");
       }
     }
+  }
+
+  IEnumerator WaitForTouch(){
+    waiting = true;
+    yield return new WaitForSeconds(.5f);
+    waiting = false;
   }
 
   public void SkipToNextText()

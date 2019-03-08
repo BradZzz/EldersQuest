@@ -17,6 +17,8 @@ public class TechTreeNav : MonoBehaviour
     public GameObject techNext;
     public GameObject techRW;
 
+    public Image buttonImg;
+
     private Unit clickedUnit;
 
     // Start is called before the first frame update
@@ -27,6 +29,11 @@ public class TechTreeNav : MonoBehaviour
     }
 
     public void RefreshSelect(){
+        if (GameMeta.RosterNeedsUpgrade()) {
+            buttonImg.color = new Color(1,.35f,.35f);
+        } else {
+            buttonImg.color = Color.white;
+        }
         foreach (Transform child in chrSelect.transform)
         {
             Destroy(child.gameObject);

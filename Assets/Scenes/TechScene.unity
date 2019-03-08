@@ -500,6 +500,7 @@ GameObject:
   - component: {fileID: 323193992}
   - component: {fileID: 323193991}
   - component: {fileID: 323193990}
+  - component: {fileID: 323193993}
   m_Layer: 5
   m_Name: ClsBtn
   m_TagString: Untagged
@@ -617,6 +618,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323193988}
   m_CullTransparentMesh: 0
+--- !u!114 &323193993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323193988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &382425355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,6 +1786,7 @@ MonoBehaviour:
   techSelect: {fileID: 183172003}
   techNext: {fileID: 1265808011}
   techRW: {fileID: 2112840361}
+  buttonImg: {fileID: 323193991}
 --- !u!1 &1986128609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6841262665732598696, guid: ca05f965226e24dae95d2537e36451ad,
@@ -2082,16 +2099,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3211016656755415012, guid: ca05f965226e24dae95d2537e36451ad,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1851152734}
     - target: {fileID: 6841262665732598696, guid: ca05f965226e24dae95d2537e36451ad,
         type: 3}
       propertyPath: m_Name
       value: rw
       objectReference: {fileID: 0}
+    - target: {fileID: 3211016656755415012, guid: ca05f965226e24dae95d2537e36451ad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1851152734}
     - target: {fileID: 6841262665732598699, guid: ca05f965226e24dae95d2537e36451ad,
         type: 3}
       propertyPath: m_LocalPosition.x

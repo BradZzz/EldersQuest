@@ -9,6 +9,7 @@ public class CharSelectController : MonoBehaviour
 {
     public GameObject panelGroup;
     public Button contBtn;
+    public TextMeshProUGUI rosterTxt;
     
     private Unit selected;
     private GameObject[] panels;
@@ -17,6 +18,29 @@ public class CharSelectController : MonoBehaviour
     void Awake()
     {
         PlayerMeta player = BaseSaver.GetPlayer();
+        List<string> mages = new List<string>(new string[]{ "HumanBaseMage", "EgyptBaseMage", "CthulhuBaseMage" });
+        List<string> scouts = new List<string>(new string[]{ "HumanBaseScout", "EgyptBaseScout", "CthulhuBaseScout" });
+
+        int rM = 0;
+        int rSc = 0;
+        int rSo = 0;
+
+        foreach(Unit unt in player.characters){
+          ClassNode clss = unt.GetCurrentClass();
+          while(clss.GetParent() != null){
+              clss = clss.GetParent();
+          }
+          if (mages.Contains(clss.GetType().ToString())) {
+            rM++;
+          } else if (scouts.Contains(clss.GetType().ToString())) {
+            rSc++;
+          } else {
+            rSo++;
+          }
+        }
+
+        rosterTxt.text = "Current Army: \nMage: " + rM.ToString() + "\nScout: " + rSc.ToString() + "\nSoldier: " + rSo.ToString();
+
         panels = new GameObject[panelGroup.transform.childCount];
         for (int i = 0; i < panelGroup.transform.childCount; i++)
         {

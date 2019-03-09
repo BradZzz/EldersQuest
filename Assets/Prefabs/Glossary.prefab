@@ -56,8 +56,8 @@ MonoBehaviour:
   Smoke: {fileID: 6565869410425460684, guid: 71815da0e26444fb1b531ea8e73196b6, type: 3}
   Laser: {fileID: 6180251007682999482, guid: 3457a68efe8454c1c83278ad3eee00be, type: 3}
   fireTile: {fileID: 21300000, guid: e91540f9e667f4d4bb3f4fdc0bc15a80, type: 3}
-  snowTile: {fileID: 21300000, guid: e05471c78e1f443428a3ffe80f8a3aea, type: 3}
-  wallTile: {fileID: 21300000, guid: d23eb5851857e4479a91cf1311120c93, type: 3}
+  snowTile: {fileID: 21300000, guid: 751d064212f3e49feaf85afda7fdd0ee, type: 3}
+  wallTile: {fileID: 21300000, guid: 91474ce6b5dbe467cb9076207f47292a, type: 3}
   divineTile: {fileID: 21300000, guid: 72dbf6f6328d640b78e54032d1aa0574, type: 3}
   humanFaction: {fileID: 21300000, guid: 8c7677b1b1feb4246a69c72abe184ab0, type: 3}
   egyptFaction: {fileID: 21300000, guid: 78b328d1600734797ace9dc573f365bc, type: 3}

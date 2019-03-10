@@ -19,6 +19,8 @@ public class BoardEditProxy : MonoBehaviour
 
     public static bool HUMAN_PLAYER = false;
 
+    private static string FILE_BASE = "Assets/Maps/";
+
     private TileEditorProxy[,] tiles;
     private BoardMeta boardMeta;
     private int width;
@@ -478,7 +480,7 @@ public class BoardEditProxy : MonoBehaviour
 
     public static void SaveItemInfo(string fileName, string saveStr){
        string path = null;
-       path = "Assets/Maps/" + fileName + ".json";
+       path = FILE_BASE + fileName + ".json";
        //string str = saveStr;
        using (FileStream fs = new FileStream(path, FileMode.Create)){
            using (StreamWriter writer = new StreamWriter(fs)){
@@ -486,5 +488,17 @@ public class BoardEditProxy : MonoBehaviour
            }
        }
        UnityEditor.AssetDatabase.Refresh ();
+    }
+
+    public static BoardEditMeta GetItemInfo(string fileName){
+       string path = FILE_BASE + fileName + ".json";
+        StreamReader reader = new StreamReader(path); 
+        string fInfo = reader.ReadToEnd();
+        Debug.Log("fInfo: " + fInfo);
+        reader.Close();
+        if (fInfo.Length > 0){
+            return JsonUtility.FromJson<BoardEditMeta>(fInfo);
+        }
+        return null;
     }
 }

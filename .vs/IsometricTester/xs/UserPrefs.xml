@@ -1,15 +1,10 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Maps/test.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BoardEdit/BoardEditorUI.cs">
     <Files>
-      <File FileName="Assets/Scripts/BoardEdit/BoardEditorUI.cs" Line="48" Column="59" />
-      <File FileName="Assets/Scripts/BoardEdit/BoardEditProxy.cs" Line="266" Column="49" />
-      <File FileName="Assets/Scripts/BoardEdit/GridObjectEdit.cs" Line="3" Column="37" />
-      <File FileName="Assets/Scripts/BoardEdit/InteractDefaultEdit.cs" Line="23" Column="42" />
-      <File FileName="Assets/Scripts/BoardEdit/TileEditorProxy.cs" Line="262" Column="1" />
-      <File FileName="Assets/Scripts/BoardEdit/UnitEdit.cs" Line="324" Column="25" />
-      <File FileName="Assets/Scripts/Savers/BoardEditMeta.cs" Line="34" Column="28" />
-      <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="49" Column="43" />
-      <File FileName="Assets/Maps/test.json" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BoardEdit/BoardEditProxy.cs" Line="493" Column="44" />
+      <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="64" Column="49" />
+      <File FileName="Assets/Scripts/BoardEdit/BoardEditorUI.cs" Line="74" Column="21" />
+      <File FileName="Assets/Scripts/BoardEdit/InteractDefaultEdit.cs" Line="28" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -14,6 +14,11 @@ public class Glossary : MonoBehaviour
     public GameObject Smoke;
     public GameObject Laser;
 
+    public UnitProxyEditor playerTile;
+    public UnitProxyEditor enemyTile;
+    public ObstacleProxyEdit obstacleEditTile;
+
+    public Sprite grassTile;
     public Sprite fireTile;
     public Sprite snowTile;
     public Sprite wallTile;

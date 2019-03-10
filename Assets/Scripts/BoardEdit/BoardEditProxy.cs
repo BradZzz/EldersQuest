@@ -34,7 +34,7 @@ public class BoardEditProxy : MonoBehaviour
 
         tileMap = GetComponentInChildren<Tilemap>();
         instance = this;
-        tiles = new TileEditorProxy[width, height];
+        //tiles = new TileEditorProxy[width, height];
         grid = GetComponent<Grid>();
     }
 
@@ -51,6 +51,13 @@ public class BoardEditProxy : MonoBehaviour
         //}
         //PanelControllerNew.instance.LoadInitUnits(GetUnits());
         //TurnController.instance.StartTurn(true);
+    }
+
+    public void Resize(int width, int height){
+        DestroyTiles();
+        this.width = width;
+        this.height = height;
+        BuildTestBoard();
     }
 
     //public void SummonAtPosition(Vector3Int pos, int team, int val){
@@ -128,26 +135,26 @@ public class BoardEditProxy : MonoBehaviour
     //    }
     //}
 
-    void PlaceObstaclesAlt()
-    {
-        int obsRand = UnityEngine.Random.Range(0,3);
-        for (int y =  0; y < height; y++) {
-            for (int x = width/2 - 1; x < width/2 + 2; x++) {
-                if (obsRand == 0 ? HasObs1(x,y) : (obsRand == 1 ? HasObs2(x,y) : HasObs3(x,y))) {
-                    if (!tiles[x,y].HasUnit()) {
-                        //Debug.Log("Obstacle placed at: " + x.ToString() + ":" + y.ToString());
-                        int obsIdx = UnityEngine.Random.Range(1,glossary.GetComponent<Glossary>().obstacles.Length);
-                        ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[obsIdx], transform);
-                        obs.Init();
-                        tiles[x,y].ReceiveGridObjectProxy(obs);
-                        //Make sure the obstacles dont go away
-                        tiles[x,y].SetLifeWall(true);
-                        obs.SnapToCurrentPosition();
-                    }
-                }
-            }
-        }
-    }
+    //void PlaceObstaclesAlt()
+    //{
+    //    int obsRand = UnityEngine.Random.Range(0,3);
+    //    for (int y =  0; y < height; y++) {
+    //        for (int x = width/2 - 1; x < width/2 + 2; x++) {
+    //            if (obsRand == 0 ? HasObs1(x,y) : (obsRand == 1 ? HasObs2(x,y) : HasObs3(x,y))) {
+    //                if (!tiles[x,y].HasUnit()) {
+    //                    //Debug.Log("Obstacle placed at: " + x.ToString() + ":" + y.ToString());
+    //                    int obsIdx = UnityEngine.Random.Range(1,glossary.GetComponent<Glossary>().obstacles.Length);
+    //                    ObstacleProxy obs = Instantiate(glossary.GetComponent<Glossary>().obstacles[obsIdx], transform);
+    //                    obs.Init();
+    //                    tiles[x,y].ReceiveGridObjectProxy(obs);
+    //                    //Make sure the obstacles dont go away
+    //                    tiles[x,y].SetLifeWall(true);
+    //                    obs.SnapToCurrentPosition();
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     //Since we have a set amount of exp, we need to always give it to the player when an enemy dies.
     //This function is called with the environment kills an enemy. Give xp to weakest ally unit
@@ -273,6 +280,9 @@ public class BoardEditProxy : MonoBehaviour
 
     private void BuildTestBoard()
     {
+        Debug.Log("BuildTestBoard");
+        //DestroyTiles();
+        tiles = new TileEditorProxy[width, height];
         Board test = new Board(width, height);
         for (int y = 0; y < height; y++)
         {
@@ -282,7 +292,6 @@ public class BoardEditProxy : MonoBehaviour
                 test.tiles[x, y] = tile;
             }
         }
-
         BuildBoard(test);
     }
 
@@ -401,6 +410,22 @@ public class BoardEditProxy : MonoBehaviour
     //        }
     //    }
     //}
+
+    public void DestroyTiles()
+    {
+        if (tiles == null) {
+            return;
+        }
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (tiles[x, y] != null) {
+                    Destroy(tiles[x, y].gameObject);
+                }
+            }
+        }
+    }
   
     public TileEditorProxy GetTileAtPosition(Vector3Int pos)
     {

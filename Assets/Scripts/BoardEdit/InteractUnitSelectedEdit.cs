@@ -15,43 +15,48 @@ public class InteractUnitSelectedEdit : InteractModeEdit
 
     public override void OnTileSelected(TileEditorProxy tile)
     {
-        if (!UnitMoving) {
-            if (currentUnit != null && visitableTiles.Contains(tile))
-            {
-                toAttack = null;
-                TileEditorProxy startTile = BoardEditProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
-                if (startTile != tile) {
-                    UnitProxyEditor unit = startTile.GetUnit();
-                    if (unit.GetData().GetTurnActions().CanMove())
-                    {
-                        unit.GetData().GetTurnActions().Move();
-                        //PanelControllerNew.SwitchChar(unit);
-                        UnitMoving = true;
-                        StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
-                        () =>
-                        {
-                            tile.ReceiveGridObjectProxy(currentUnit);
-                            startTile.RemoveGridObjectProxy(currentUnit);
-                            UnHighlightTiles();
-                            InteractivityManagerEditor.instance.EnterDefaultMode();
-                            UnitMoving = false;
-                        }));
-                    }
-                    else
-                    {
-                        Debug.Log("Out of actions. Send signal to player they can't move unit.");
-                    }
-                }
-                else
-                {
-                    StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
-                    () =>
-                    {
-                        StartCoroutine(ResetTiles());
-                    }));
-                }
+        Debug.Log("OnTileSelected Unit");
+        //if (BoardEditorUI.instance.GetPaintTile() != BoardEditorUI.TileEditTypes.player 
+        //    && BoardEditorUI.instance.GetPaintTile() != BoardEditorUI.TileEditTypes.enemy) {
+        //    tile.gameObject.GetComponent<SpriteRenderer>().sprite = BoardEditorUI.instance.GetPaintTileSprite();
+        //}
+        //if (!UnitMoving) {
+        //    if (currentUnit != null && visitableTiles.Contains(tile))
+        //    {
+        //        toAttack = null;
+        //        TileEditorProxy startTile = BoardEditProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
+        //        if (startTile != tile) {
+        //            UnitProxyEditor unit = startTile.GetUnit();
+        //            if (unit.GetData().GetTurnActions().CanMove())
+        //            {
+        //                unit.GetData().GetTurnActions().Move();
+        //                //PanelControllerNew.SwitchChar(unit);
+        //                UnitMoving = true;
+        //                StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
+        //                () =>
+        //                {
+        //                    tile.ReceiveGridObjectProxy(currentUnit);
+        //                    startTile.RemoveGridObjectProxy(currentUnit);
+        //                    UnHighlightTiles();
+        //                    InteractivityManagerEditor.instance.EnterDefaultMode();
+        //                    UnitMoving = false;
+        //                }));
+        //            }
+        //            else
+        //            {
+        //                Debug.Log("Out of actions. Send signal to player they can't move unit.");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
+        //            () =>
+        //            {
+        //                StartCoroutine(ResetTiles());
+        //            }));
+        //        }
             
-        }
+        //}
         //else if (currentUnit != null)
         //{
         //    //Select all the tiles with opp team in all tiles
@@ -67,7 +72,7 @@ public class InteractUnitSelectedEdit : InteractModeEdit
         //    //BoardProxy.instance.FlushTiles();
         //    //PanelController.SwitchChar(null);
         //}
-     }  
+     //}  
   }
 
   IEnumerator ResetTiles()

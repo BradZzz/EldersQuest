@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitProxyEditor : GridObjectProxy
+public class UnitProxyEditor : GridObjectProxyEdit
 {
     public GameObject aegisObj;
     public GameObject rankObj;
@@ -14,8 +14,8 @@ public class UnitProxyEditor : GridObjectProxy
     //public static float ATK_WAIT = 1.1f;
     public static float MV_TIME = .25f;
 
-    private Unit _data;
-    protected override GridObject data
+    private UnitEdit _data;
+    protected override GridObjectEdit data
     {
         get { return _data; }
     }
@@ -33,7 +33,7 @@ public class UnitProxyEditor : GridObjectProxy
     public void Init()
     {
         if (_data == null)
-            _data = new Unit();
+            _data = new UnitEdit();
         SnapToCurrentPosition();
         int rnk = GetData().GetUnitClassRank();
         if (rnk > 0) {
@@ -252,12 +252,12 @@ public class UnitProxyEditor : GridObjectProxy
         return _data.GetAtkRange();
     }
 
-    public void PutData(Unit _data)
+    public void PutData(UnitEdit _data)
     {
       this._data = _data;
     }
 
-    public Unit GetData()
+    public UnitEdit GetData()
     {
       return _data;
     }

@@ -30,7 +30,7 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
     private bool lifetimeSnow;
     private bool lifetimeFire;
 
-    private List<GridObjectProxy> objectProxies = new List<GridObjectProxy>();
+    private List<GridObjectProxyEdit> objectProxies = new List<GridObjectProxyEdit>();
     //private GameObject instanceDummy;
 
     //void Awake(){
@@ -94,10 +94,6 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
                 {
                     GetComponent<Renderer>().material.color = ATK_ACTIVE;
                 }
-                else if (!HasObstacle())
-                {
-                    GetComponent<Renderer>().material.color = ATK_INACTIVE;
-                }
             }
         }
         if (canMv)
@@ -146,7 +142,7 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         }
     }
 
-    public void ReceiveGridObjectProxy(GridObjectProxy proxy)
+    public void ReceiveGridObjectProxy(GridObjectProxyEdit proxy)
     {
         if (!objectProxies.Contains(proxy) && proxy != null)
         {
@@ -155,7 +151,7 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         }
     }
 
-    public void RemoveGridObjectProxy(GridObjectProxy proxy)
+    public void RemoveGridObjectProxy(GridObjectProxyEdit proxy)
     {
         Debug.Log("Grid Object Removed: " + proxy.name);
         if (objectProxies.Contains(proxy))
@@ -164,18 +160,24 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         }
     }
 
-    public List<GridObjectProxy> GetContents()
+    public void FlushGridObjectProxies(){
+        foreach (GridObjectProxyEdit proxy in objectProxies)
+        {
+            Destroy(proxy.gameObject);
+        }
+        objectProxies.Clear();
+    }
+
+    public List<GridObjectProxyEdit> GetContents()
     {
         return objectProxies;
     }
 
-    public bool CanReceive(GridObjectProxy obj)
+    public bool CanReceive(GridObjectProxyEdit obj)
     {
-        if (obj is UnitProxy)
+        if (obj is UnitProxyEditor)
         {
             if (HasUnit())//TODO: rework to a better system with layers
-                return false;
-            if (HasObstacle())
                 return false;
         }
         return true;//for now
@@ -186,15 +188,15 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         return (UnitProxyEditor) objectProxies.ToList().Where(op => op is UnitProxyEditor).First();
     }
 
-    public ObstacleProxy GetObstacle()
-    {
-        return (ObstacleProxy) objectProxies.ToList().Where(op => op is ObstacleProxy).First();
-    }
+    //public ObstacleProxy GetObstacle()
+    //{
+    //    return (ObstacleProxy) objectProxies.ToList().Where(op => op is ObstacleProxy).First();
+    //}
 
-    public bool HasObstacle()
-    {
-        return objectProxies.ToList().Where(op => op is ObstacleProxy).Any();
-    }
+    //public bool HasObstacle()
+    //{
+    //    return objectProxies.ToList().Where(op => op is ObstacleProxy).Any();
+    //}
 
     public bool HasUnit()
     {
@@ -203,7 +205,7 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
 
     public bool HasObstruction()
     {
-        return HasUnit() || HasObstacle();
+        return HasUnit();
     }
 
     public bool UnitOnTeam(int team)
@@ -249,7 +251,7 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         wallTrns += trns;
         if (wallTrns > 0) {
             GetComponent<SpriteRenderer>().sprite = wallAlt;
-            ObstacleProxy obs = Instantiate(BoardEditProxy.instance.GetComponent<Glossary>().obstacles[0], transform);
+            ObstacleProxyEdit obs = Instantiate(BoardEditProxy.instance.GetComponent<Glossary>().obstacleEditTile, transform);
             obs.Init();
             ReceiveGridObjectProxy(obs);
             obs.SnapToCurrentPosition();
@@ -277,6 +279,16 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
 
     public bool IsDivine(){
         return divineTrns > 0;
+    }
+
+    public void CreateUnitOnTile(UnitProxyEditor unt){
+        UnitProxyEditor newEditable = Instantiate(unt, BoardEditProxy.instance.transform);
+        UnitEdit cMeta = new UnitEdit();
+        newEditable.PutData(cMeta);
+        newEditable.Init();
+        newEditable.SetPosition(GetPosition());
+        ReceiveGridObjectProxy(newEditable);
+        newEditable.SnapToCurrentPosition();
     }
 
     /*
@@ -411,12 +423,10 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
     #region events
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (TurnController.instance.PlayersTurn()){
-            InteractivityManagerEditor.instance.OnTileSelected(this);
-            foreach (var obj in objectProxies.ToList())
-            {
-                obj.OnSelected();
-            }
+        InteractivityManagerEditor.instance.OnTileSelected(this);
+        foreach (var obj in objectProxies.ToList())
+        {
+            obj.OnSelected();
         }
     }
     public void OnPointerExit(PointerEventData eventData)

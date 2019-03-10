@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -261,6 +262,46 @@ public class BoardEditProxy : MonoBehaviour
         }
         return open;
     }
+
+    public List<TileEditorProxy> GetSpecialTiles(BoardEditorUI.TileEditTypes tileType)
+    {
+        List<TileEditorProxy> units = new List<TileEditorProxy>();
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                switch(tileType){
+                  case BoardEditorUI.TileEditTypes.fire: 
+                    if (tiles[x, y].OnFire()){
+                        units.Add(tiles[x, y]);
+                    }
+                    break;
+                  case BoardEditorUI.TileEditTypes.snow: 
+                    if (tiles[x, y].Frozen()){
+                        units.Add(tiles[x, y]);
+                    }
+                    break;
+                  case BoardEditorUI.TileEditTypes.divine: 
+                    if (tiles[x, y].IsDivine()){
+                        units.Add(tiles[x, y]);
+                    }
+                    break;
+                  case BoardEditorUI.TileEditTypes.wall: 
+                    if (tiles[x, y].IsWall()){
+                        units.Add(tiles[x, y]);
+                    }
+                    break;
+                  case BoardEditorUI.TileEditTypes.grass: 
+                    if (!tiles[x, y].OnFire() && !tiles[x, y].Frozen() && !tiles[x, y].IsDivine() && !tiles[x, y].IsWall()){
+                        units.Add(tiles[x, y]);
+                    }
+                    break;
+                }
+            }
+        }
+        return units;
+    }
   
     //public Dictionary<int,int> CountTeams()
     //{
@@ -433,5 +474,17 @@ public class BoardEditProxy : MonoBehaviour
             return tiles[pos.x, pos.y];
         }
         return null;
+    }
+
+    public static void SaveItemInfo(string fileName, string saveStr){
+       string path = null;
+       path = "Assets/Maps/" + fileName + ".json";
+       //string str = saveStr;
+       using (FileStream fs = new FileStream(path, FileMode.Create)){
+           using (StreamWriter writer = new StreamWriter(fs)){
+               writer.Write(saveStr);
+           }
+       }
+       UnityEditor.AssetDatabase.Refresh ();
     }
 }

@@ -1,12 +1,15 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BoardEdit/GridObjectProxyEdit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Maps/test.json">
     <Files>
-      <File FileName="Assets/Scripts/BoardEdit/TileEditorProxy.cs" Line="252" Column="1" />
-      <File FileName="Assets/Scripts/BoardEdit/InteractDefaultEdit.cs" Line="21" Column="31" />
-      <File FileName="Assets/Scripts/BoardEdit/InteractivityManagerEditor.cs" Line="33" Column="17" />
-      <File FileName="Assets/Scripts/BoardEdit/InteractModeEdit.cs" Line="12" Column="1" />
-      <File FileName="Assets/Scripts/BoardEdit/InteractUnitSelectedEdit.cs" Line="18" Column="22" />
-      <File FileName="Assets/Scripts/BoardEdit/GridObjectProxyEdit.cs" Line="10" Column="42" />
+      <File FileName="Assets/Scripts/BoardEdit/BoardEditorUI.cs" Line="48" Column="59" />
+      <File FileName="Assets/Scripts/BoardEdit/BoardEditProxy.cs" Line="266" Column="49" />
+      <File FileName="Assets/Scripts/BoardEdit/GridObjectEdit.cs" Line="3" Column="37" />
+      <File FileName="Assets/Scripts/BoardEdit/InteractDefaultEdit.cs" Line="23" Column="42" />
+      <File FileName="Assets/Scripts/BoardEdit/TileEditorProxy.cs" Line="262" Column="1" />
+      <File FileName="Assets/Scripts/BoardEdit/UnitEdit.cs" Line="324" Column="25" />
+      <File FileName="Assets/Scripts/Savers/BoardEditMeta.cs" Line="34" Column="28" />
+      <File FileName="Assets/Scripts/Savers/BaseSaver.cs" Line="49" Column="43" />
+      <File FileName="Assets/Maps/test.json" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

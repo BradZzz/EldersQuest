@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class BoardEditorUI : MonoBehaviour
 
     public Image selImg;
 
+    public InputField nameInput;
     public InputField heightInput;
     public InputField widthInput;
 
@@ -16,11 +18,13 @@ public class BoardEditorUI : MonoBehaviour
 
     private int height;
     private int width;
+    private string mapName;
     private TileEditTypes paintTile;
 
     void Awake (){
       widthInput.onValueChanged.AddListener((value) => SetWidth(value));
       heightInput.onValueChanged.AddListener((value) => SetHeight(value));
+      nameInput.onValueChanged.AddListener((value) => SetName(value));
       instance = this;
     }
 
@@ -34,8 +38,30 @@ public class BoardEditorUI : MonoBehaviour
         this.width = int.Parse(width);
     }
 
+    public void SetName(string mapName){
+        Debug.Log("SetName: " + mapName);
+        this.mapName = mapName;
+    }
+
     public void Resize(){
-        BoardEditProxy.instance.Resize(height, width);
+        if (height > 0 && width > 0){
+            BoardEditProxy.instance.Resize(height, width);
+        }
+    }
+
+    public void SaveMap(){
+        if (mapName.Length > 0) {
+            BoardEditMeta bMeta = new BoardEditMeta(height, width, 
+              BoardEditProxy.instance.GetUnits().Where(unt => unt.GetData().GetTeam() == 0).ToArray(),
+              BoardEditProxy.instance.GetUnits().Where(unt => unt.GetData().GetTeam() == 1).ToArray(),
+              BoardEditProxy.instance.GetSpecialTiles(TileEditTypes.fire).ToArray(),
+              BoardEditProxy.instance.GetSpecialTiles(TileEditTypes.snow).ToArray(),
+              BoardEditProxy.instance.GetSpecialTiles(TileEditTypes.wall).ToArray(),
+              BoardEditProxy.instance.GetSpecialTiles(TileEditTypes.divine).ToArray()
+            );
+
+            BoardEditProxy.SaveItemInfo(mapName,JsonUtility.ToJson(bMeta));
+        }
     }
 
     public void SetTile(int tile){

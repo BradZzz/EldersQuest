@@ -321,6 +321,7 @@
     <Compile Include="Assets\Scripts\Menu\LogoWaiter.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuController.cs" />
     <Compile Include="Assets\Scripts\Savers\BaseSaver.cs" />
+    <Compile Include="Assets\Scripts\Savers\BoardEditMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\BoardMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CharMeta.cs" />
     <Compile Include="Assets\Scripts\Savers\CondMeta.cs" />

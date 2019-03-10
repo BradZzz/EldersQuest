@@ -326,6 +326,11 @@ public class UnitEdit : GridObjectEdit
         return team;
     }
 
+    public void SetTeam(int team)
+    {
+        this.team = team;
+    }
+
     //public void AcceptAction(Skill.Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
     //{
     //    //Debug.Log("Cycling through skills: " + GetSkills().Length.ToString());

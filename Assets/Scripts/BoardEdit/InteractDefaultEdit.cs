@@ -20,14 +20,14 @@ public class InteractDefaultEdit : InteractModeEdit
               case BoardEditorUI.TileEditTypes.snow:tile.SetLifeSnow(true);break;
               case BoardEditorUI.TileEditTypes.wall:tile.SetLifeWall(true);break;
             }
-        } else if (tile.HasObstacle()) {
+        } else if (!tile.HasObstacle()) {
             if (tile.HasUnit()) {
                 tile.FlushGridObjectProxies();
             } else {
                 if (BoardEditorUI.instance.GetPaintTile() == BoardEditorUI.TileEditTypes.player) {
-                    tile.CreateUnitOnTile(BoardEditorUI.instance.glossary.GetComponent<Glossary>().playerTile);
+                    tile.CreateUnitOnTile(BoardEditorUI.instance.glossary.GetComponent<Glossary>().playerTile, 0);
                 } else {
-                    tile.CreateUnitOnTile(BoardEditorUI.instance.glossary.GetComponent<Glossary>().enemyTile);
+                    tile.CreateUnitOnTile(BoardEditorUI.instance.glossary.GetComponent<Glossary>().enemyTile, 1);
                 }
             }
         }

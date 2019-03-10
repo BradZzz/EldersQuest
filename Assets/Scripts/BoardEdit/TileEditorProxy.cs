@@ -305,9 +305,10 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         return divineTrns > 0;
     }
 
-    public void CreateUnitOnTile(UnitProxyEditor unt){
+    public void CreateUnitOnTile(UnitProxyEditor unt, int team){
         UnitProxyEditor newEditable = Instantiate(unt, BoardEditProxy.instance.transform);
         UnitEdit cMeta = new UnitEdit();
+        cMeta.SetTeam(team);
         newEditable.PutData(cMeta);
         newEditable.Init();
         newEditable.SetPosition(GetPosition());

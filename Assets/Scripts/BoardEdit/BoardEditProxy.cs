@@ -470,6 +470,7 @@ public class BoardEditProxy : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 if (tiles[x, y] != null) {
+                    tiles[x, y].FlushGridObjectProxies();
                     Destroy(tiles[x, y].gameObject);
                 }
             }

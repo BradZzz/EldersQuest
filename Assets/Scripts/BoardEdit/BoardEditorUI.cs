@@ -71,7 +71,7 @@ public class BoardEditorUI : MonoBehaviour
             if (bMeta != null) {
                 height = bMeta.height;
                 width = bMeta.width;
-                BoardEditProxy.instance.Resize(height, width);
+                BoardEditProxy.instance.Resize(width, height);
                 foreach(Vector3Int unt in bMeta.players){
                     TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
                     tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().playerTile, 0);

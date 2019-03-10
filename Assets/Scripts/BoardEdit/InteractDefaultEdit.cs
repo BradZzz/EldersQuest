@@ -13,7 +13,14 @@ public class InteractDefaultEdit : InteractModeEdit
         if (BoardEditorUI.instance.GetPaintTile() != BoardEditorUI.TileEditTypes.player 
             && BoardEditorUI.instance.GetPaintTile() != BoardEditorUI.TileEditTypes.enemy) {
             tile.gameObject.GetComponent<SpriteRenderer>().sprite = BoardEditorUI.instance.GetPaintTileSprite();
-        } else {
+            tile.ClearAllEffects();
+            switch(BoardEditorUI.instance.GetPaintTile()){
+              case BoardEditorUI.TileEditTypes.divine:tile.SetLifeDivine(true);break;
+              case BoardEditorUI.TileEditTypes.fire:tile.SetLifeFire(true);break;
+              case BoardEditorUI.TileEditTypes.snow:tile.SetLifeSnow(true);break;
+              case BoardEditorUI.TileEditTypes.wall:tile.SetLifeWall(true);break;
+            }
+        } else if (tile.HasObstacle()) {
             if (tile.HasUnit()) {
                 tile.FlushGridObjectProxies();
             } else {

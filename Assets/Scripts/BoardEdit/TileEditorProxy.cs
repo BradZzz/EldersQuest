@@ -108,24 +108,48 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         }
     }
 
+    public void ClearAllEffects(){
+        SetLifeWall(false);
+        SetLifeDivine(false);
+        SetLifeSnow(false);
+        SetLifeFire(false);
+        FlushGridObjectProxies();
+    }
+
     public void SetLifeWall(bool lifetimeWall){
         this.lifetimeWall = lifetimeWall;
-        wallTrns = 1;
+        wallTrns = 0;
+        if (lifetimeWall) {
+          wallTrns = 1;
+          ObstacleProxyEdit obs = Instantiate(BoardEditProxy.instance.glossary.GetComponent<Glossary>().obstacleEditTile, BoardEditProxy.instance.transform);
+          obs.Init();
+          ReceiveGridObjectProxy(obs);
+          obs.SnapToCurrentPosition();
+        }
     }
 
     public void SetLifeDivine(bool lifetimeDivine){
         this.lifetimeDivine = lifetimeDivine;
-        divineTrns = 1;
+        divineTrns = 0;
+        if (lifetimeDivine) {
+          divineTrns = 1;
+        }
     }
 
     public void SetLifeSnow(bool lifetimeSnow){
         this.lifetimeSnow = lifetimeSnow;
-        snowTrns = 1;
+        snowTrns = 0;
+        if (lifetimeSnow) {
+          snowTrns = 1;
+        }
     }
 
     public void SetLifeFire(bool lifetimeFire){
         this.lifetimeFire = lifetimeFire;
-        fireTrns = 1;
+        fireTrns = 0;
+        if (lifetimeFire) {
+          fireTrns = 1;
+        }
     }
 
     public void ForceHighlight()
@@ -193,10 +217,10 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
     //    return (ObstacleProxy) objectProxies.ToList().Where(op => op is ObstacleProxy).First();
     //}
 
-    //public bool HasObstacle()
-    //{
-    //    return objectProxies.ToList().Where(op => op is ObstacleProxy).Any();
-    //}
+    public bool HasObstacle()
+    {
+        return objectProxies.ToList().Where(op => op is ObstacleProxyEdit).Any();
+    }
 
     public bool HasUnit()
     {
@@ -213,27 +237,27 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
         return objectProxies.ToList().Where(op => op is UnitProxyEditor && ((UnitProxyEditor)op).GetData().GetTeam() == team).Any();
     }
 
-    void ResetTile(){
-        fireTrns = 0;
-        wallTrns = 0;
-        divineTrns = 0;
-        snowTrns = 0;
-    }
+    //void ResetTile(){
+    //    fireTrns = 0;
+    //    wallTrns = 0;
+    //    divineTrns = 0;
+    //    snowTrns = 0;
+    //}
 
     /*
       Fire
     */
 
-    public void SetTurnsOnFire(int trns, UnitProxyEditor unit){
-        unitThatSetTileOnFire = unit;
-        if (fireTrns == 0) {
-            ResetTile();
-        }
-        fireTrns += trns;
-        if (fireTrns > 0) {
-            GetComponent<SpriteRenderer>().sprite = fireAlt;
-        }
-    }
+    //public void SetTurnsOnFire(int trns, UnitProxyEditor unit){
+    //    unitThatSetTileOnFire = unit;
+    //    if (fireTrns == 0) {
+    //        ResetTile();
+    //    }
+    //    fireTrns += trns;
+    //    if (fireTrns > 0) {
+    //        GetComponent<SpriteRenderer>().sprite = fireAlt;
+    //    }
+    //}
 
     public bool OnFire(){
         return fireTrns > 0;
@@ -243,20 +267,20 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
       Wall
     */
 
-    public void SetTurnsWall(int trns, UnitProxyEditor unit){
-        unitThatSetTileOnFire = unit;
-        if (wallTrns == 0) {
-            ResetTile();
-        }
-        wallTrns += trns;
-        if (wallTrns > 0) {
-            GetComponent<SpriteRenderer>().sprite = wallAlt;
-            ObstacleProxyEdit obs = Instantiate(BoardEditProxy.instance.GetComponent<Glossary>().obstacleEditTile, transform);
-            obs.Init();
-            ReceiveGridObjectProxy(obs);
-            obs.SnapToCurrentPosition();
-        }
-    }
+    //public void SetTurnsWall(int trns, UnitProxyEditor unit){
+    //    unitThatSetTileOnFire = unit;
+    //    if (wallTrns == 0) {
+    //        ResetTile();
+    //    }
+    //    wallTrns += trns;
+    //    if (wallTrns > 0) {
+    //        GetComponent<SpriteRenderer>().sprite = wallAlt;
+    //        ObstacleProxyEdit obs = Instantiate(BoardEditProxy.instance.GetComponent<Glossary>().obstacleEditTile, transform);
+    //        obs.Init();
+    //        ReceiveGridObjectProxy(obs);
+    //        obs.SnapToCurrentPosition();
+    //    }
+    //}
 
     public bool IsWall(){
         return wallTrns > 0;
@@ -266,16 +290,16 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
       Divine
     */
 
-    public void SetTurnsDivine(int trns, UnitProxyEditor unit){
-        unitThatSetTileOnFire = unit;
-        if (divineTrns == 0) {
-            ResetTile();
-        }
-        divineTrns += trns;
-        if (divineTrns > 0) {
-            GetComponent<SpriteRenderer>().sprite = divineAlt;
-        }
-    }
+    //public void SetTurnsDivine(int trns, UnitProxyEditor unit){
+    //    unitThatSetTileOnFire = unit;
+    //    if (divineTrns == 0) {
+    //        ResetTile();
+    //    }
+    //    divineTrns += trns;
+    //    if (divineTrns > 0) {
+    //        GetComponent<SpriteRenderer>().sprite = divineAlt;
+    //    }
+    //}
 
     public bool IsDivine(){
         return divineTrns > 0;
@@ -295,16 +319,16 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
       Snow
     */
 
-    public void SetTurnsFrozen(int trns, UnitProxyEditor unit){
-        unitThatSetTileOnFire = unit;
-        if (snowTrns == 0) {
-            ResetTile();
-        }
-        snowTrns += trns;
-        if (snowTrns > 0) {
-            GetComponent<SpriteRenderer>().sprite = snowAlt;
-        }
-    }
+    //public void SetTurnsFrozen(int trns, UnitProxyEditor unit){
+    //    unitThatSetTileOnFire = unit;
+    //    if (snowTrns == 0) {
+    //        ResetTile();
+    //    }
+    //    snowTrns += trns;
+    //    if (snowTrns > 0) {
+    //        GetComponent<SpriteRenderer>().sprite = snowAlt;
+    //    }
+    //}
 
     public bool Frozen(){
         return snowTrns > 0;
@@ -365,44 +389,19 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
     //    }
     //}
 
-    //// Update is called once per frame
-    //void Update () {
-    //   if (OnFire()) {
-    //       timeLeft -= Time.deltaTime;
-    //       if ( timeLeft <= 0 )
-    //       {
-    //          timeLeft = FIRE_DELAY_TIME;
-    //          FloatUp(Skill.Actions.None, "fire", Color.red, "Tile on fire");
-    //       }
-    //   }
-    //   if (Frozen()) {
-    //       timeLeft -= Time.deltaTime;
-    //       if ( timeLeft <= 0 )
-    //       {
-    //          timeLeft = FIRE_DELAY_TIME;
-    //          FloatUp(Skill.Actions.None, "snowy", Color.blue, "Tile is frozen");
-    //       }
-    //   }
-    //   if (IsDivine()) {
-    //       timeLeft -= Time.deltaTime;
-    //       if ( timeLeft <= 0 )
-    //       {
-    //          timeLeft = FIRE_DELAY_TIME;
-    //          FloatUp(Skill.Actions.None, "holy", Color.yellow, "Tile is holy");
-    //       }
-    //   }
-    //   if (IsWall()) {
-    //       timeLeft -= Time.deltaTime;
-    //       if ( timeLeft <= 0 )
-    //       {
-    //          timeLeft = FIRE_DELAY_TIME;
-    //          FloatUp(Skill.Actions.None, "wall", Color.magenta, "Tile is wall");
-    //       }
-    //   }
-    //   //if (HasObstacle()) {
-    //   //  transform.GetComponent<SpriteRenderer>().color = Color.red;
-    //   //}
-    //}
+    //Update is called once per frame
+    void Update () {
+       //if (IsWall()) {
+       //    timeLeft -= Time.deltaTime;
+       //    if ( timeLeft <= 0 )
+       //    {
+       //       timeLeft = FIRE_DELAY_TIME;
+       //    }
+       //}
+       //if (HasObstacle()) {
+       //  transform.GetComponent<SpriteRenderer>().color = Color.red;
+       //}
+    }
 
     //public void FloatUp(Skill.Actions interaction, string msg, Color color, string desc){
     //    AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc);

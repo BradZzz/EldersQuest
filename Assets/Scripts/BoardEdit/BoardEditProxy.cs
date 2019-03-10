@@ -17,6 +17,9 @@ public class BoardEditProxy : MonoBehaviour
     public static int PLAYER_TEAM = 0;
     public static int ENEMY_TEAM = 1;
 
+    public static int DEF_HEIGHT = 8;
+    public static int DEF_WIDTH = 8;
+
     public static bool HUMAN_PLAYER = false;
 
     private static string FILE_BASE = "Assets/Maps/";
@@ -31,9 +34,8 @@ public class BoardEditProxy : MonoBehaviour
 
     private void Awake()
     {
-        boardMeta = BaseSaver.GetBoard();
-        width = boardMeta.width;
-        height = boardMeta.height;
+        width = DEF_WIDTH;
+        height = DEF_HEIGHT;
 
         tileMap = GetComponentInChildren<Tilemap>();
         instance = this;
@@ -61,6 +63,10 @@ public class BoardEditProxy : MonoBehaviour
         this.width = width;
         this.height = height;
         BuildTestBoard();
+    }
+
+    public Vector2 GetDimensions(){
+        return new Vector2(width, height);
     }
 
     //public void SummonAtPosition(Vector3Int pos, int team, int val){

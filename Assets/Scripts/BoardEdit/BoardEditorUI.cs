@@ -51,7 +51,8 @@ public class BoardEditorUI : MonoBehaviour
 
     public void SaveMap(){
         if (mapName.Length > 0) {
-            BoardEditMeta bMeta = new BoardEditMeta(height, width, 
+            //Debug.Log("Dimensions: " + BoardEditProxy.instance.GetDimensions().ToString());
+            BoardEditMeta bMeta = new BoardEditMeta((int)BoardEditProxy.instance.GetDimensions()[0], (int)BoardEditProxy.instance.GetDimensions()[1], 
               BoardEditProxy.instance.GetUnits().Where(unt => unt.GetData().GetTeam() == 0).ToArray(),
               BoardEditProxy.instance.GetUnits().Where(unt => unt.GetData().GetTeam() == 1).ToArray(),
               BoardEditProxy.instance.GetSpecialTiles(TileEditTypes.fire).ToArray(),

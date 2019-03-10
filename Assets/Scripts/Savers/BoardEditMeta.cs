@@ -14,8 +14,6 @@ public class BoardEditMeta
 
     public Vector3Int[] fireTiles, snowTiles, wallTiles, divineTiles;
 
-    public string[] unlocks;
-
     public BoardEditMeta() { 
         height = 10;
         width = 10;
@@ -27,7 +25,7 @@ public class BoardEditMeta
         divineTiles = new Vector3Int[]{ };
     }
 
-    public BoardEditMeta(int height, int width, UnitProxyEditor[] players, UnitProxyEditor[] enemies, TileEditorProxy[] fireTiles, 
+    public BoardEditMeta(int width, int height, UnitProxyEditor[] players, UnitProxyEditor[] enemies, TileEditorProxy[] fireTiles, 
       TileEditorProxy[] snowTiles, TileEditorProxy[] wallTiles, TileEditorProxy[] divineTiles)
     {
         this.height = height;

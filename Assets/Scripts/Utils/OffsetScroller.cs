@@ -8,6 +8,7 @@ public class OffsetScroller : MonoBehaviour {
     public bool horizontal;
 
     public bool bob;
+    public bool weave;
 
     public float staticXOffset;
     public float staticYOffset;
@@ -36,6 +37,9 @@ public class OffsetScroller : MonoBehaviour {
         }
         if (bob) {
             offset.y = Mathf.PingPong (Time.time * scrollSpeed, .05f);
+        }
+        if (weave) {
+            offset.x = Mathf.PingPong (Time.time * scrollSpeed, .05f);
         }
         GetComponent<Renderer>().sharedMaterial.SetTextureOffset ("_MainTex", offset);
     }

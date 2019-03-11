@@ -10,10 +10,14 @@ public class StorySceneHolder : MonoBehaviour {
 
   public TextMeshProUGUI textBox;
   public GameObject clickToContinue;
+  public GameObject[] candles;
+  public GameObject[] lights;
 
   private string[] textHolder;
   private int idx;
   private int txtIdx = 0;
+  private int candleIdx;
+  private int lightIdx;
   private bool waiting;
 
   private IEnumerator waiter;
@@ -24,6 +28,10 @@ public class StorySceneHolder : MonoBehaviour {
     GameMeta game = BaseSaver.GetGame();
     PlayerMeta player = BaseSaver.GetPlayer();
     waiting = false;
+    candleIdx = 0;
+    lightIdx = 0;
+    StartCoroutine(SwitchLights());
+    StartCoroutine(SwitchCandles());
     textHolder = new string[]{ };
     if (!GameMeta.GameEnded()) {
       List<string> txts = new List<string>();
@@ -49,6 +57,22 @@ public class StorySceneHolder : MonoBehaviour {
       }
     }
     clickToContinue.SetActive(false);
+  }
+
+  IEnumerator SwitchCandles(){
+      candles[candleIdx].SetActive(false);
+      candleIdx = candleIdx == 0 ? 1 : 0;
+      candles[candleIdx].SetActive(true);
+      yield return new WaitForSeconds(.3f);
+      StartCoroutine(SwitchCandles());
+  }
+
+  IEnumerator SwitchLights(){
+      lights[lightIdx].SetActive(false);
+      lightIdx = lightIdx == 0 ? 1 : 0;
+      lights[lightIdx].SetActive(true);
+      yield return new WaitForSeconds(1f);
+      StartCoroutine(SwitchLights());
   }
 
   public void Start()

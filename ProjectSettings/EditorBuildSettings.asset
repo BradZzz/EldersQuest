@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ScrollingTextScene.unity
     guid: 514c927f689f4490e9298fee8e4f2a65
+  - enabled: 0
+    path: Assets/Scenes/EditorScene.unity
+    guid: da4bcdb3ede964db998b876c9cd3eae8
   m_configObjects: {}

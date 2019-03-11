@@ -278,6 +278,8 @@ public class BoardProxy : MonoBehaviour
             }
         }
 
+        Debug.Log("CountTeams: " + countDict[0].ToString() + "-" + countDict[1].ToString());
+
         return countDict;
     }
 

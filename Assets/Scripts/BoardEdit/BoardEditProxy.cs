@@ -494,7 +494,9 @@ public class BoardEditProxy : MonoBehaviour
                writer.Write(saveStr);
            }
        }
+       #if UNITY_EDITOR
        UnityEditor.AssetDatabase.Refresh ();
+       #endif
     }
 
     public static BoardEditMeta GetItemInfo(string fileName){

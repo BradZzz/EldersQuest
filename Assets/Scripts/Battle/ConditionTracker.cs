@@ -71,6 +71,7 @@ public class ConditionTracker : MonoBehaviour
 
     void EndGame(bool won)
     {
+        Debug.Log("EndGame: " + won.ToString());
         //while (!AnimationInteractionController.AllAnimationsFinished()) {}
         //BoardProxy.instance.gameOverPanel.SetActive(true);
         //this.won = won;
@@ -177,7 +178,9 @@ public class ConditionTracker : MonoBehaviour
 
     private void MusicTransitionToMap()
     {
-        AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 0);
+        if (AudioManager.instance != null) {
+            AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 0);
+        }
     }
 
     #endregion

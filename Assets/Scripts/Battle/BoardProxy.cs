@@ -99,6 +99,9 @@ public class BoardProxy : MonoBehaviour
         string world = "0" + (((int)player.world) + 1).ToString();
         int lvl = int.Parse(player.lastDest.Replace("Dest",""));
         string currentMap = world + "_" + (lvl < 10 ? "0" : "") + lvl;
+        if (player.world == GameMeta.World.candy) {
+            currentMap += "0" + (((int)player.faction) + 1).ToString();
+        }
         BoardEditMeta bMeta = BoardEditProxy.GetItemInfo(currentMap);
         if (bMeta != null) {
             height = bMeta.height;

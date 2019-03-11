@@ -387,7 +387,7 @@ public class UnitProxy : GridObjectProxy
     }
 
     void Update(){
-        if (GetData().GetAegis()) {
+        if (GetData() != null && GetData().GetAegis()) {
             aegisObj.SetActive(true);
         } else {
             if (aegisObj.activeInHierarchy) {

@@ -51,6 +51,32 @@ MonoBehaviour:
   - {fileID: 4566907892727034715, guid: 5a4ed4449024e4f2ab2c31aabedeb23c, type: 3}
   - {fileID: 4566907892727034715, guid: 87133737356e94fd9a5c52b0edbb7a2f, type: 3}
   - {fileID: 4566907892727034715, guid: c607da8cfc2924bf3be96782514f51b7, type: 3}
+  humanSoldier: {fileID: 5219725556591600594, guid: 152cb8658ae0b4d89998780bd5e52e85,
+    type: 3}
+  humanScout: {fileID: 5219725556591600594, guid: af4de1a64536f44a39938f12bc18d37e,
+    type: 3}
+  humanMage: {fileID: 5219725556591600594, guid: 9d7e510ddee074496a15ee1844097e12,
+    type: 3}
+  egyptSoldier: {fileID: 5219725556591600594, guid: ab1245637e438456f8f7d112e2ceab5a,
+    type: 3}
+  egyptScout: {fileID: 5219725556591600594, guid: 7c52b9921276e4fe6b34fcc66bafeb78,
+    type: 3}
+  egyptMage: {fileID: 5219725556591600594, guid: 54d98bdf5ab54443aa9b4c4dfd5a980b,
+    type: 3}
+  cthulhuSoldier: {fileID: 5219725556591600594, guid: 475c2560b5a84440280b838abe883dff,
+    type: 3}
+  cthulhuScout: {fileID: 5219725556591600594, guid: 15458fef1e7c348d5af3c24e7d5540c6,
+    type: 3}
+  cthulhuMage: {fileID: 5219725556591600594, guid: df9cf09faca564254bcb232ae5b2a00a,
+    type: 3}
+  cthulhuWisp: {fileID: 5219725556591600594, guid: 8c911eb54e900483ba50709db7da5714,
+    type: 3}
+  finalBlack: {fileID: 5219725556591600594, guid: 49730e971e3354b58a7c3e2f0f27fcd5,
+    type: 3}
+  finalRed: {fileID: 5219725556591600594, guid: d27f127f066ba48d18852d5633aec6ab,
+    type: 3}
+  finalBlue: {fileID: 5219725556591600594, guid: b46d8999f76b4466ca302c894af70ee4,
+    type: 3}
   summonedSkeleton: {fileID: 4488396556959502835, guid: 2a524645c86b747628c8716bcd5e3e3f,
     type: 3}
   Smoke: {fileID: 6565869410425460684, guid: 71815da0e26444fb1b531ea8e73196b6, type: 3}

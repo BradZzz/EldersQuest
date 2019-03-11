@@ -266,6 +266,14 @@ public class Unit : GridObject
         return cHlth <= 0;
     }
 
+    public ClassNode GetBaseClass(){
+      ClassNode clss = GetCurrentClass();
+      while(clss.GetParent() != null){
+        clss = clss.GetParent();
+      }
+      return clss;
+    }
+
     public int GetUnitClassRank(){
       int rnk = 0;
       ClassNode clss = GetCurrentClass();

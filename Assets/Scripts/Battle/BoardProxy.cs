@@ -86,7 +86,9 @@ public class BoardProxy : MonoBehaviour
         for (int i = 0; i < roster.Count && i < height && i < 3; i++)
         {
             Unit cMeta = new Unit(roster[i]);
-            UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
+            //UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
+            UnitProxy goodGuy = Instantiate(ClassNode.ComputeClassBaseUnit(cMeta.GetFactionType(), 
+              cMeta.GetUnitType(), glossary.GetComponent<Glossary>()), transform);
             units.Add(goodGuy);
             goodGuy.PutData(cMeta);
             goodGuy.Init();
@@ -106,9 +108,12 @@ public class BoardProxy : MonoBehaviour
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
-            UnitProxy badGuy = Instantiate(glossary.GetComponent<Glossary>().units[ENEMY_TEAM], transform);
+//glossary.GetComponent<Glossary>().units[ENEMY_TEAM]
+            Unit cMeta = new Unit(boardMeta.enemies[i]);
+            UnitProxy badGuy = Instantiate(ClassNode.ComputeClassBaseUnit(cMeta.GetFactionType(), 
+              cMeta.GetUnitType(), glossary.GetComponent<Glossary>()), transform);
             units.Add(badGuy);
-            badGuy.PutData(boardMeta.enemies[i]);
+            badGuy.PutData(cMeta);
             badGuy.Init();
             popTile = validTls.Dequeue();
             popTile.ReceiveGridObjectProxy(badGuy);

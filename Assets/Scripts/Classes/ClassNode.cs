@@ -41,6 +41,34 @@ public abstract class ClassNode
         return new HumanBaseSoldier();
     }
 
+    public static UnitProxy ComputeClassBaseUnit(Unit.FactionType fType, Unit.UnitType uType, Glossary glossy){
+        ClassNode rNode = new HumanBaseSoldier();
+        switch(fType) {
+          case Unit.FactionType.Human: 
+            switch(uType){
+              case Unit.UnitType.Mage: return glossy.humanMage;
+              case Unit.UnitType.Scout: return glossy.humanScout;
+              case Unit.UnitType.Soldier: return glossy.humanSoldier;
+            }
+            break;
+          case Unit.FactionType.Egypt: 
+            switch(uType){
+              case Unit.UnitType.Mage: return glossy.egyptMage;
+              case Unit.UnitType.Scout: return glossy.egyptScout;
+              case Unit.UnitType.Soldier: return glossy.egyptSoldier;
+            }
+            break;
+          case Unit.FactionType.Cthulhu: 
+            switch(uType){
+              case Unit.UnitType.Mage: return glossy.cthulhuMage;
+              case Unit.UnitType.Scout: return glossy.cthulhuScout;
+              case Unit.UnitType.Soldier: return glossy.cthulhuSoldier;
+            }
+            break;
+        }
+        return glossy.finalBlack;
+    }
+
     public abstract Unit UpgradeCharacter(Unit unit);
     public string ClassDescFull(){
       return ClassName() + ": " + ClassDesc();

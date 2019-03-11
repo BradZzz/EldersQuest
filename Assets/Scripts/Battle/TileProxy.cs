@@ -384,7 +384,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
            if ( timeLeft <= 0 )
            {
               timeLeft = FIRE_DELAY_TIME;
-              FloatUp(Skill.Actions.None, "wall", Color.magenta, "Tile is wall");
+              //FloatUp(Skill.Actions.None, "wall", Color.magenta, "Tile is wall");
            }
        }
        //if (HasObstacle()) {

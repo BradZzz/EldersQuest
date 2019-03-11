@@ -56,17 +56,19 @@ public class BoardProxy : MonoBehaviour
 
         tileMap = GetComponentInChildren<Tilemap>();
         instance = this;
-        tiles = new TileProxy[width, height];
+        //tiles = new TileProxy[width, height];
         grid = GetComponent<Grid>();
     }
 
     // Build the board here
     void Start()
     {
-        BuildTestBoard();
-        PopulatePlayer();
-        PopulateEnemies();
-        PlaceObstaclesAlt();
+        if (!BuildBoardFromFile()){
+            BuildTestBoard();
+            PopulatePlayer(GetSideTiles(PLAYER_TEAM));
+            PopulateEnemies(GetSideTiles(ENEMY_TEAM));
+            PlaceObstaclesAlt();
+        }
         foreach(UnitProxy unit in GetUnits())
         {
             unit.AcceptAction(Skill.Actions.BeginGame,null);
@@ -92,10 +94,54 @@ public class BoardProxy : MonoBehaviour
         //}
     }
 
-    void PopulatePlayer()
+    bool BuildBoardFromFile(){
+        PlayerMeta player = BaseSaver.GetPlayer();
+        string world = "0" + (((int)player.world) + 1).ToString();
+        int lvl = int.Parse(player.lastDest.Replace("Dest",""));
+        string currentMap = world + "_" + (lvl < 10 ? "0" : "") + lvl;
+        BoardEditMeta bMeta = BoardEditProxy.GetItemInfo(currentMap);
+        if (bMeta != null) {
+            height = bMeta.height;
+            width = bMeta.width;
+            BuildTestBoard();
+            //HelperScripts.Shuffle(bMeta.players);
+            //HelperScripts.Shuffle(bMeta.enemies);
+
+            PopulatePlayer(bMeta.players.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
+            PopulateEnemies(bMeta.enemies.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
+
+            //foreach(Vector3Int unt in bMeta.players){
+            //    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+            //    tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().playerTile, 0);
+            //}
+            //foreach(Vector3Int unt in bMeta.enemies){
+            //    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+            //    tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().enemyTile, 1);
+            //}
+
+            foreach(Vector3Int pt in bMeta.fireTiles){
+                tiles[pt.x, pt.y].SetLifeFire(true);
+            }
+            foreach(Vector3Int pt in bMeta.snowTiles){
+                tiles[pt.x, pt.y].SetLifeSnow(true);
+            }
+            foreach(Vector3Int pt in bMeta.wallTiles){
+                tiles[pt.x, pt.y].SetLifeWall(true);
+            }
+            foreach(Vector3Int pt in bMeta.divineTiles){
+                tiles[pt.x, pt.y].SetLifeDivine(true);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    void PopulatePlayer(TileProxy[] sideTiles)
     {
         PlayerMeta player = BaseSaver.GetPlayer();
-        Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.PLAYER_TEAM));
+        //Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.PLAYER_TEAM));
+        Queue<TileProxy> validTls = new Queue<TileProxy>(sideTiles);
         List<UnitProxy> units = new List<UnitProxy>();
         List<Unit> roster = new List<Unit>(player.characters);
         roster.Reverse();
@@ -116,16 +162,17 @@ public class BoardProxy : MonoBehaviour
         }
     }
   
-    void PopulateEnemies()
+    void PopulateEnemies(TileProxy[] sideTiles)
     {
-        Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.ENEMY_TEAM));
+        //Queue<TileProxy> validTls = new Queue<TileProxy>(GetSideTiles(BoardProxy.ENEMY_TEAM));
+        Queue<TileProxy> validTls = new Queue<TileProxy>(sideTiles);
         List<UnitProxy> units = new List<UnitProxy>();
         //Debug.Log("PopulateEnemies: " + validTls.Count.ToString());
         TileProxy popTile;
         for (int i = 0; i < boardMeta.enemies.Length && i < height; i++)
         {
             //Unit cMeta = new Unit(boardMeta.enemies[i].name + i.ToString(),1);
-//glossary.GetComponent<Glossary>().units[ENEMY_TEAM]
+            //glossary.GetComponent<Glossary>().units[ENEMY_TEAM]
             Unit cMeta = new Unit(boardMeta.enemies[i]);
             UnitProxy badGuy = Instantiate(ClassNode.ComputeClassBaseUnit(cMeta.GetFactionType(), 
               cMeta.GetUnitType(), glossary.GetComponent<Glossary>()), transform);
@@ -302,6 +349,7 @@ public class BoardProxy : MonoBehaviour
 
     private void BuildTestBoard()
     {
+        tiles = new TileProxy[width, height];
         Board test = new Board(width, height);
         for (int y = 0; y < height; y++)
         {
@@ -317,16 +365,22 @@ public class BoardProxy : MonoBehaviour
 
     public void BuildBoard(Board board)
     {
-        int width = board.tiles.GetLength(0);
-        int height = board.tiles.GetLength(1);
-
-        for (int x = 0; x < width; x++)
+        //int width = board.tiles.GetLength(0);
+        //int height = board.tiles.GetLength(1);
+        for (int y = 0; y < height; y++)
         {
-            for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
             {
                 tiles[x, y] = CreateTile(board.tiles[x, y]);
-            }
+            } 
         }
+        //for (int x = 0; x < width; x++)
+        //{
+        //    for (int y = 0; y < height; y++)
+        //    {
+        //        tiles[x, y] = CreateTile(board.tiles[x, y]);
+        //    }
+        //}
     }
 
 

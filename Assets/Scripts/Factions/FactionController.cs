@@ -65,23 +65,25 @@ public class FactionController : MonoBehaviour
     // Update is called once per frame
     public void Click(string faction)
     {
+        string aiStr = "\nCampaign: Easy\n";
         GameMeta game = BaseSaver.GetGame();
         PlayerMeta player = BaseSaver.GetPlayer();
         player.faction = (Unit.FactionType)Enum.Parse(typeof(Unit.FactionType), faction);
 
         if (finalWorld) {
             player.world = GameMeta.World.candy;
+            aiStr = "\nCampaign: Hard\n";
         } else {
             switch(player.faction){
               case Unit.FactionType.Human: player.world = GameMeta.World.nile;break;
               case Unit.FactionType.Egypt: player.world = GameMeta.World.mountain;break;
-              case Unit.FactionType.Cthulhu: player.world = GameMeta.World.pyramid;break;
+              case Unit.FactionType.Cthulhu: player.world = GameMeta.World.pyramid; aiStr = "\nCampaign: Hard\n"; break;
               default: player.world = GameMeta.World.nile;break;
             }
         }
 
         BaseSaver.PutPlayer(player);
-        desc.text = faction + ": "+ Unit.GetFactionDesc(player.faction);
+        desc.text = "- " + faction + " - " + aiStr + "Strategy: " + Unit.GetFactionDesc(player.faction);
         btn.SetActive(true);
     }
 }

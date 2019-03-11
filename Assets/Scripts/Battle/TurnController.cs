@@ -17,11 +17,17 @@ public class TurnController : MonoBehaviour
     public int currentTeam;
 
     public static TurnController instance;
+    private bool hard;
 
     private void Awake()
     {
         instance = this;
         currentTeam = BoardProxy.PLAYER_TEAM;
+        hard = false;
+        PlayerMeta player = BaseSaver.GetPlayer();
+        if (player.world == GameMeta.World.candy || player.world == GameMeta.World.pyramid){
+            hard = true;
+        }   
     }
 
     int GetTeam()
@@ -122,8 +128,11 @@ public class TurnController : MonoBehaviour
         //Run AI (if applicable)
         if (currentTeam == BoardProxy.ENEMY_TEAM && !BoardProxy.HUMAN_PLAYER)
         {
-            //BasicBrain.StartThinking();
-            AdvancedBrain.StartThinking();
+            if (hard) {
+                AdvancedBrain.StartThinking();
+            } else {
+                BasicBrain.StartThinking();
+            }
         }
     }
 }

@@ -1,14 +1,16 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/UnitProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/BoardProxy.cs">
     <Files>
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="417" Column="7" />
+      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="359" Column="14" />
       <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="6" Column="17" />
-      <File FileName="Assets/Scripts/Battle/Brains/AdvancedBrain.cs" Line="117" Column="74" />
+      <File FileName="Assets/Scripts/Battle/Brains/AdvancedBrain.cs" Line="73" Column="90" />
       <File FileName="Assets/Scripts/Battle/Path.cs" Line="4" Column="14" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="330" Column="1" />
-      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="126" Column="40" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="325" Column="42" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="160" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="68" Column="7" />
+      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="23" Column="6" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="325" Column="44" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="261" Column="22" />
+      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="86" Column="83" />
+      <File FileName="Assets/Scripts/BoardEdit/BoardEditorUI.cs" Line="70" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
@@ -17,6 +19,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/brad/Documents/new_git/IsometricTester/Assets/Scripts/Classes/Egypt/Scout/EgyptFirefighterClass.cs" relfile="Assets/Scripts/Classes/Egypt/Scout/EgyptFirefighterClass.cs" line="30" column="1" />
+      <Breakpoint file="/Users/brad/Documents/new_git/IsometricTester/Assets/Scripts/Battle/Brains/AdvancedBrain.cs" relfile="Assets/Scripts/Battle/Brains/AdvancedBrain.cs" line="108" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

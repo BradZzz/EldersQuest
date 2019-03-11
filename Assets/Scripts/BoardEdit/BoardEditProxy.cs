@@ -501,12 +501,15 @@ public class BoardEditProxy : MonoBehaviour
 
     public static BoardEditMeta GetItemInfo(string fileName){
        string path = FILE_BASE + fileName + ".json";
-        StreamReader reader = new StreamReader(path); 
-        string fInfo = reader.ReadToEnd();
-        Debug.Log("fInfo: " + fInfo);
-        reader.Close();
-        if (fInfo.Length > 0){
-            return JsonUtility.FromJson<BoardEditMeta>(fInfo);
+        if (System.IO.File.Exists(path))
+        {
+            StreamReader reader = new StreamReader(path); 
+            string fInfo = reader.ReadToEnd();
+            Debug.Log("fInfo: " + fInfo);
+            reader.Close();
+            if (fInfo.Length > 0){
+                return JsonUtility.FromJson<BoardEditMeta>(fInfo);
+            }
         }
         return null;
     }

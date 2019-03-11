@@ -115,21 +115,25 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     public void SetLifeWall(bool lifetimeWall){
         this.lifetimeWall = lifetimeWall;
         wallTrns = 1;
+        CheckWall();
     }
 
     public void SetLifeDivine(bool lifetimeDivine){
         this.lifetimeDivine = lifetimeDivine;
         divineTrns = 1;
+        CheckDivine();
     }
 
     public void SetLifeSnow(bool lifetimeSnow){
         this.lifetimeSnow = lifetimeSnow;
         snowTrns = 1;
+        CheckFrozen();
     }
 
     public void SetLifeFire(bool lifetimeFire){
         this.lifetimeFire = lifetimeFire;
         fireTrns = 1;
+        CheckFire();
     }
 
     public void ForceHighlight()
@@ -228,7 +232,11 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             ResetTile();
         }
         fireTrns += trns;
-        if (fireTrns > 0) {
+        CheckFire();
+    }
+
+    void CheckFire(){
+        if (OnFire()) {
             GetComponent<SpriteRenderer>().sprite = fireAlt;
         }
     }
@@ -247,9 +255,13 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             ResetTile();
         }
         wallTrns += trns;
-        if (wallTrns > 0) {
+        CheckWall();
+    }
+
+    void CheckWall(){
+        if (IsWall()) {
             GetComponent<SpriteRenderer>().sprite = wallAlt;
-            ObstacleProxy obs = Instantiate(BoardProxy.instance.GetComponent<Glossary>().obstacles[0], transform);
+            ObstacleProxy obs = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().obstacles[0], transform);
             obs.Init();
             ReceiveGridObjectProxy(obs);
             obs.SnapToCurrentPosition();
@@ -270,7 +282,11 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             ResetTile();
         }
         divineTrns += trns;
-        if (divineTrns > 0) {
+        CheckDivine();
+    }
+
+    void CheckDivine(){
+        if (IsDivine()) {
             GetComponent<SpriteRenderer>().sprite = divineAlt;
         }
     }
@@ -289,7 +305,11 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             ResetTile();
         }
         snowTrns += trns;
-        if (snowTrns > 0) {
+        CheckFrozen();
+    }
+
+    void CheckFrozen(){
+        if (Frozen()) {
             GetComponent<SpriteRenderer>().sprite = snowAlt;
         }
     }

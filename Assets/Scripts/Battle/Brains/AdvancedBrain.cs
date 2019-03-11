@@ -59,9 +59,6 @@ public class AdvancedBrain : MonoBehaviour
                 if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
                 {
                     //Unit in range. Attack!
-                    //Debug.Log("Trying to Attack");
-                    
-                    
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
                     unit.OnSelected();
                     yield return new WaitForSeconds(.1f);
@@ -73,16 +70,9 @@ public class AdvancedBrain : MonoBehaviour
                     opposingTeamTiles[0].GetUnit().OnSelected();
                     didSomething = true;
                 }
-                //If you need to move towards the enemies or run away, move here
+                //If you need to move towards the enemies or run away, logic through here
                 else if ((opposingTeamTiles.Count == 0 || coward) && unit.GetData().GetTurnActions().CanMove())
                 {
-                    //If the unit is low health, retreat and let the higher hp units take things over
-                    //bool coward = unit.GetData().LowHP() && HasHealthyUnits();
-                    //if (!coward) {
-                    //    //If the ai can still move, but has used their attacks, move them away from the enemy team.
-                    //    //These are usually actions a scout would take, so we are trying to protect them here
-                    //    coward = !unit.GetData().GetTurnActions().CanAttack() && unit.GetData().GetTurnActions().CanMove();
-                    //}
                     Debug.Log("Unit: " + unit.GetData().characterMoniker + " - Coward: " + coward.ToString());
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
                     //Find the closest opposing unit
@@ -112,31 +102,16 @@ public class AdvancedBrain : MonoBehaviour
                             If the dest and the original target are the same we need to
                             subtract moves from the path over 2 moves
                           */
-                          int atkDiff = unit.GetData().GetAtkRange() - 2;
+                          int atkDiff = unit.GetData().GetAtkRange() - 1;
+                          //The distance between the ai's destination and the enemy the ai is planning to attack in the future
                           TileProxy[] rngPth = BoardProxy.instance.GetPath(dest, BoardProxy.instance.GetTileAtPosition(nearestUnit.GetPosition()), unit).ToArray();
                           if (atkDiff > 0 && rngPth.Count() <= atkDiff) {
                               List<TileProxy> listPth = path.ToList();
                               int dstIdx = listPth.IndexOf(dest);
-                              if (dstIdx + atkDiff <= listPth.Count() - 1) {
-                                  dest = listPth[dstIdx + atkDiff];
+                              if (dstIdx + atkDiff - 1 <= listPth.Count() - 1) {
+                                  dest = listPth[dstIdx + atkDiff - 1];
                               }
-                              //Debug.Log("Destination changed based on range");
-                              //Debug.Log("Current dest: " + dest.GetPosition().ToString());
-                              //dest = rngPth[rngPth.Length - 1 - atkDiff];
-                              //Debug.Log("New dest: " + dest.GetPosition().ToString());
                           }
-
-                          //TileProxy[] arrPth = path.ToArray();
-                          //Debug.Log("Positioning ranged unit: " + unit.GetData().characterMoniker);
-                          //Debug.Log("Chk 1: " + (atkRng > 2).ToString());
-                          //Debug.Log("Chk 2: " + (arrPth.Length > 2).ToString());
-                          //Debug.Log("Chk 3: " + (dest == arrPth[arrPth.Length - 2]).ToString());
-                          //if (atkRng > 2 && arrPth.Length > 2 && dest == arrPth[arrPth.Length - 2]) {
-                          //    int rngDiff = atkRng - 2;
-                          //    if (arrPth.Length > (2 + rngDiff)) {
-                          //        dest = arrPth[arrPth.Length - (2 + rngDiff)];
-                          //    }
-                          //}
                         }
                         //Get the path for highlighting
                         path = BoardProxy.instance.GetPath(start, dest, unit);

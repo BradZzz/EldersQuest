@@ -13,6 +13,7 @@ public class TechTreeNav : MonoBehaviour
     public GameObject chrSelect;
     public GameObject chrRW;
 
+    public GameObject glossary;
     public GameObject techSelect;
     public GameObject techNext;
     public GameObject techRW;
@@ -20,6 +21,7 @@ public class TechTreeNav : MonoBehaviour
     public Image buttonImg;
 
     private Unit clickedUnit;
+    private PlayerMeta player;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,7 +40,7 @@ public class TechTreeNav : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        PlayerMeta player = BaseSaver.GetPlayer();
+        player = BaseSaver.GetPlayer();
         List<Unit> units = new List<Unit>(player.characters.Reverse());
         for(int i = 0; i < units.Count; i++){
             PopulateRw(units[i], i);
@@ -74,6 +76,10 @@ public class TechTreeNav : MonoBehaviour
         Debug.Log("RefreshMainPanel: " + unit.characterMoniker);
         panel.SetActive(true);
         foreach(Transform child in panel.transform){
+            if (child.name.Equals("CharImg")) {
+                UnitProxy unt = ClassNode.ComputeClassBaseUnit(instance.player.faction, unit.GetUnitType(), instance.glossary.GetComponent<Glossary>());
+                child.GetComponent<Image>().sprite = unt.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            }
             if (child.name.Equals("CharName")) {
                 child.GetComponent<TextMeshProUGUI>().text = unit.characterMoniker;
             }

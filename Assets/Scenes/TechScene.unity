@@ -1783,6 +1783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chrSelect: {fileID: 87536311}
   chrRW: {fileID: 1986128609}
+  glossary: {fileID: 6915397388733608802, guid: 88952b53949d643149b65acf24555dc4,
+    type: 3}
   techSelect: {fileID: 183172003}
   techNext: {fileID: 1265808011}
   techRW: {fileID: 2112840361}
@@ -2552,7 +2554,12 @@ PrefabInstance:
     - target: {fileID: 6841262665651060196, guid: ca05f965226e24dae95d2537e36451ad,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841262665651060196, guid: ca05f965226e24dae95d2537e36451ad,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 2274408934363503517, guid: ca05f965226e24dae95d2537e36451ad,
         type: 3}
@@ -2568,6 +2575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841262664921187016, guid: ca05f965226e24dae95d2537e36451ad,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca05f965226e24dae95d2537e36451ad, type: 3}

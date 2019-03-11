@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class CharSelectController : MonoBehaviour
 {
     public GameObject panelGroup;
+    public GameObject glossary;
     public Button contBtn;
     public TextMeshProUGUI rosterTxt;
     
@@ -45,6 +46,8 @@ public class CharSelectController : MonoBehaviour
         for (int i = 0; i < panelGroup.transform.childCount; i++)
         {
             panels[i] = panelGroup.transform.GetChild(i).gameObject;
+            UnitProxy unt = ClassNode.ComputeClassBaseUnit(player.faction, (Unit.UnitType) i, glossary.GetComponent<Glossary>());
+            panels[i].transform.GetChild(1).GetComponent<Image>().sprite = unt.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
         }
         selectableUnits = new Unit[]{
             Unit.BuildInitial(player.faction, Unit.UnitType.Mage, BoardProxy.PLAYER_TEAM),

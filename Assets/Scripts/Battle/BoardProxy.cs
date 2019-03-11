@@ -22,6 +22,11 @@ public class BoardProxy : MonoBehaviour
 
     public static bool HUMAN_PLAYER = false;
 
+    public GameObject background1;
+    public GameObject background2;
+    public GameObject background3;
+    public GameObject background4;
+
     private TileProxy[,] tiles;
     private BoardMeta boardMeta;
     private int width;
@@ -33,6 +38,18 @@ public class BoardProxy : MonoBehaviour
     private void Awake()
     {
         gameOverPanel.SetActive(false);
+        PlayerMeta player = BaseSaver.GetPlayer();
+        background1.SetActive(false);
+        background2.SetActive(false);
+        background3.SetActive(false);
+        background4.SetActive(false);
+        switch(player.world){
+            case GameMeta.World.nile:background1.SetActive(true);break;
+            case GameMeta.World.mountain:background2.SetActive(true);break;
+            case GameMeta.World.pyramid:background3.SetActive(true);break;
+            case GameMeta.World.candy:background4.SetActive(true);break;
+        }
+
         boardMeta = BaseSaver.GetBoard();
         width = boardMeta.width;
         height = boardMeta.height;

@@ -12,7 +12,7 @@ public class EgyptBaseSoldier : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\n+1 hp";
+    return "+1 hp\nAegisBegin";
   }
 
   public override string ClassName()

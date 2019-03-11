@@ -21,6 +21,7 @@ public class StorySceneHolder : MonoBehaviour {
   private bool waiting;
 
   private IEnumerator waiter;
+  private bool gameEnded;
   //private float percentsPerSecond = 0.2f;
   //private float sceneProgress = 0;
 
@@ -33,7 +34,8 @@ public class StorySceneHolder : MonoBehaviour {
     StartCoroutine(SwitchLights());
     StartCoroutine(SwitchCandles());
     textHolder = new string[]{ };
-    if (!GameMeta.GameEnded()) {
+    gameEnded = GameMeta.GameEnded();
+    if (!gameEnded) {
       List<string> txts = new List<string>();
       if (!game.intro) {
         txts = new List<string>(StoryStatic.INTRO_STRING);
@@ -140,7 +142,7 @@ public class StorySceneHolder : MonoBehaviour {
   }
 
   public void MoveToScene(){
-    if (GameMeta.GameEnded()) {
+    if (gameEnded) {
       SceneManager.LoadScene("MainScene");
     } else {
       SceneManager.LoadScene("CharSelectScreen");

@@ -50,22 +50,49 @@ public class AdvancedBrain : MonoBehaviour
                     && opposingUnits.Contains(tile.GetUnit())));
                 //Look at all the tiles in range
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());
-                if (opposingTeamTiles.Count == 0 && unit.GetData().GetTurnActions().CanMove())
+                bool coward = unit.GetData().LowHP() && HasHealthyUnits();
+                if (!coward) {
+                    //If the ai can still move, but has used their attacks, move them away from the enemy team.
+                    //These are usually actions a scout would take, so we are trying to protect them here
+                    coward = !unit.GetData().GetTurnActions().CanAttack() && unit.GetData().GetTurnActions().CanMove();
+                }
+                if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
+                {
+                    //Unit in range. Attack!
+                    //Debug.Log("Trying to Attack");
+                    
+                    
+                    TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
+                    unit.OnSelected();
+                    yield return new WaitForSeconds(.1f);
+                    oppTile.ForceHighlight();
+                    yield return new WaitForSeconds(.3f);
+                    oppTile.UnHighlight();
+                    opposingTeamTiles[0].GetUnit().OnSelected();
+                    yield return new WaitForSeconds(.5f);
+                    opposingTeamTiles[0].GetUnit().OnSelected();
+                    didSomething = true;
+                }
+                //If you need to move towards the enemies or run away, move here
+                else if ((opposingTeamTiles.Count == 0 || coward) && unit.GetData().GetTurnActions().CanMove())
                 {
                     //If the unit is low health, retreat and let the higher hp units take things over
-                    bool coward = unit.GetData().LowHP() && HasHealthyUnits();
-                    if (!coward) {
-                        //If the ai can still move, but has used their attacks, move them away from the enemy team.
-                        //These are usually actions a scout would take, so we are trying to protect them here
-                        coward = !unit.GetData().GetTurnActions().CanAttack() && unit.GetData().GetTurnActions().CanMove();
-                    }
+                    //bool coward = unit.GetData().LowHP() && HasHealthyUnits();
+                    //if (!coward) {
+                    //    //If the ai can still move, but has used their attacks, move them away from the enemy team.
+                    //    //These are usually actions a scout would take, so we are trying to protect them here
+                    //    coward = !unit.GetData().GetTurnActions().CanAttack() && unit.GetData().GetTurnActions().CanMove();
+                    //}
+                    Debug.Log("Unit: " + unit.GetData().characterMoniker + " - Coward: " + coward.ToString());
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
                     //Find the closest opposing unit
                     UnitProxy nearestUnit = GetClosestUnit(unit, opposingUnits);
                     //Calculate a path from the unit to the closest opposing unit
                     Path<TileProxy> path = BoardProxy.instance.GetPath(start, BoardProxy.instance.GetTileAtPosition(nearestUnit.GetPosition()), unit);
                     if (coward) {
+                        Debug.Log("Unit: " + unit.GetData().characterMoniker + " is trying to escape!");
                         TileProxy escapeTile = GetRetreatDest(unit, opposingUnits);
+                        Debug.Log("Escape tile: " + escapeTile.GetPosition().ToString());
                         //Calculate a path from the unit to the closest opposing unit
                         path = BoardProxy.instance.GetPath(start, escapeTile, unit);
                     }
@@ -85,14 +112,31 @@ public class AdvancedBrain : MonoBehaviour
                             If the dest and the original target are the same we need to
                             subtract moves from the path over 2 moves
                           */
-                          int atkRng = unit.GetData().GetAtkRange();
-                          TileProxy[] arrPth = path.ToArray();
-                          if (atkRng > 2 && arrPth.Length > 2 && dest == arrPth[arrPth.Length - 2]) {
-                              int rngDiff = atkRng - 2;
-                              if (arrPth.Length > (2 + rngDiff)) {
-                                  dest = arrPth[arrPth.Length - (2 + rngDiff)];
+                          int atkDiff = unit.GetData().GetAtkRange() - 2;
+                          TileProxy[] rngPth = BoardProxy.instance.GetPath(dest, BoardProxy.instance.GetTileAtPosition(nearestUnit.GetPosition()), unit).ToArray();
+                          if (atkDiff > 0 && rngPth.Count() <= atkDiff) {
+                              List<TileProxy> listPth = path.ToList();
+                              int dstIdx = listPth.IndexOf(dest);
+                              if (dstIdx + atkDiff <= listPth.Count() - 1) {
+                                  dest = listPth[dstIdx + atkDiff];
                               }
+                              //Debug.Log("Destination changed based on range");
+                              //Debug.Log("Current dest: " + dest.GetPosition().ToString());
+                              //dest = rngPth[rngPth.Length - 1 - atkDiff];
+                              //Debug.Log("New dest: " + dest.GetPosition().ToString());
                           }
+
+                          //TileProxy[] arrPth = path.ToArray();
+                          //Debug.Log("Positioning ranged unit: " + unit.GetData().characterMoniker);
+                          //Debug.Log("Chk 1: " + (atkRng > 2).ToString());
+                          //Debug.Log("Chk 2: " + (arrPth.Length > 2).ToString());
+                          //Debug.Log("Chk 3: " + (dest == arrPth[arrPth.Length - 2]).ToString());
+                          //if (atkRng > 2 && arrPth.Length > 2 && dest == arrPth[arrPth.Length - 2]) {
+                          //    int rngDiff = atkRng - 2;
+                          //    if (arrPth.Length > (2 + rngDiff)) {
+                          //        dest = arrPth[arrPth.Length - (2 + rngDiff)];
+                          //    }
+                          //}
                         }
                         //Get the path for highlighting
                         path = BoardProxy.instance.GetPath(start, dest, unit);
@@ -132,22 +176,6 @@ public class AdvancedBrain : MonoBehaviour
                             }
                         }
                     }
-                } else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
-                {
-                    //Unit in range. Attack!
-                    //Debug.Log("Trying to Attack");
-                    
-                    
-                    TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
-                    unit.OnSelected();
-                    yield return new WaitForSeconds(.1f);
-                    oppTile.ForceHighlight();
-                    yield return new WaitForSeconds(.3f);
-                    oppTile.UnHighlight();
-                    opposingTeamTiles[0].GetUnit().OnSelected();
-                    yield return new WaitForSeconds(.5f);
-                    opposingTeamTiles[0].GetUnit().OnSelected();
-                    didSomething = true;
                 }
                 yield return new WaitForSeconds(.25f); 
             }
@@ -216,11 +244,6 @@ public class AdvancedBrain : MonoBehaviour
         TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
         Vector2Int dims = BoardProxy.instance.GetDimensions();
 
-        //TileProxy corner1 = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,0,0));
-        //TileProxy corner2 = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0],0,0));
-        //TileProxy corner3 = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,dims[1],0));
-        //TileProxy corner4 = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0],dims[1],0));
-
         List<TileProxy> corners = new List<TileProxy>(new TileProxy[]{ 
             BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,0,0)),
             BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0],0,0)),
@@ -234,9 +257,10 @@ public class AdvancedBrain : MonoBehaviour
           int pthScore = 0;
           foreach(UnitProxy enemy in enemies){
               TileProxy end = BoardProxy.instance.GetTileAtPosition(enemy.GetPosition());
-              Path<TileProxy> path = BoardProxy.instance.GetPath(start, end, unit);
+              Path<TileProxy> path = BoardProxy.instance.GetPath(corner, end, unit);
               pthScore += path.Count();
           }
+          Debug.Log("Pos: " + corner.GetPosition() + " score: " + pthScore.ToString());
           if (pthScore > maxPths) {
               maxPths = pthScore;
               bestCorner = corner;

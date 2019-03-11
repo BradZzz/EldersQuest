@@ -316,13 +316,13 @@ public class UnitProxy : GridObjectProxy
           Vector3Int animStart = GetPosition();
           Vector3Int animEnd = tile.GetPosition();
   
-          Debug.Log("animStart: " + animStart.ToString());
-          Debug.Log("animEnd: " + animEnd.ToString());
+          //Debug.Log("animStart: " + animStart.ToString());
+          //Debug.Log("animEnd: " + animEnd.ToString());
 
           Vector3 diff = animEnd - animStart;
           //float turnWait = .1f;
 
-          Debug.Log("Diff: " + diff.ToString());
+          //Debug.Log("Diff: " + diff.ToString());
 
           if (diff.x > 0) {
             Debug.Log("right");

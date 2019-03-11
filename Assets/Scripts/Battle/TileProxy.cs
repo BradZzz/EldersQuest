@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClickHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public static float NO_ATK_WAIT = .5f;
     public static float ATK_WAIT = 1.6f;
@@ -411,13 +411,13 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
     #region events
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (TurnController.instance.PlayersTurn()){
-            InteractivityManager.instance.OnTileSelected(this);
-            foreach (var obj in objectProxies.ToList())
-            {
-                obj.OnSelected();
-            }
-        }
+        //if (TurnController.instance.PlayersTurn()){
+        //    InteractivityManager.instance.OnTileSelected(this);
+        //    foreach (var obj in objectProxies.ToList())
+        //    {
+        //        obj.OnSelected();
+        //    }
+        //}
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -437,6 +437,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
 
     public void OnBeginDrag (PointerEventData eventData)
     {
+       InteractivityManager.instance.OnClear(this);
        Debug.Log("OnBeginDrag");
        _startPosition = BoardProxy.instance.grid.transform.position;
        _zDistanceToCamera = Mathf.Abs (_startPosition.z - Camera.main.transform.position.z);
@@ -463,6 +464,17 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerDownH
        Debug.Log("OnEndDrag");
        _offsetToMouse = Vector3.zero;
     }
-  
-    #endregion
+
+  public void OnPointerClick(PointerEventData eventData)
+  {
+        if (TurnController.instance.PlayersTurn()){
+            InteractivityManager.instance.OnTileSelected(this);
+            foreach (var obj in objectProxies.ToList())
+            {
+                obj.OnSelected();
+            }
+        }
+  }
+
+  #endregion
 }

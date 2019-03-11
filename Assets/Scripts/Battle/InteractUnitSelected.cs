@@ -83,112 +83,112 @@ public class InteractUnitSelected : InteractMode
   //    StartCoroutine(ResetTiles());
   //}
 
-    public override void OnUnitSelected(UnitProxy obj)
-    {
-        if (!UnitMoving) {
-            if (currentUnit == null)
-            {
-                toAttack = null;
-                UnHighlightTiles();
-                currentUnit = obj;
-                //The maximum range in which a player has actions
-                allTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed() > obj.GetAttackRange() ? obj.GetMoveSpeed() : obj.GetAttackRange(), true);
-                //The attackable tiles
-                attackableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetAttackRange(), true);
-                //The visitable tiles
-                visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed());
-                HighlightTiles(obj);
-                PanelControllerNew.SwitchChar(obj);
-            }
-            else
-            {
-                if (toAttack != obj && currentUnit != obj) {
-                  if (TurnController.instance.currentTeam == BoardProxy.PLAYER_TEAM && currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM) {
-                      currentUnit = null;
-                      OnUnitSelected(obj);
-                  } else {
-                      toAttack = obj;
-                      UnitProxy player = currentUnit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM ? currentUnit : toAttack;
-                      UnitProxy enemy = currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM ? currentUnit : toAttack;
-                      PanelControllerNew.SwitchChar(player, enemy);
-                  }
+  public override void OnUnitSelected(UnitProxy obj)
+  {
+      if (!UnitMoving) {
+          if (currentUnit == null)
+          {
+              toAttack = null;
+              UnHighlightTiles();
+              currentUnit = obj;
+              //The maximum range in which a player has actions
+              allTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed() > obj.GetAttackRange() ? obj.GetMoveSpeed() : obj.GetAttackRange(), true);
+              //The attackable tiles
+              attackableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetAttackRange(), true);
+              //The visitable tiles
+              visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed());
+              HighlightTiles(obj);
+              PanelControllerNew.SwitchChar(obj);
+          }
+          else
+          {
+              if (toAttack != obj && currentUnit != obj) {
+                if (TurnController.instance.currentTeam == BoardProxy.PLAYER_TEAM && currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM) {
+                    currentUnit = null;
+                    OnUnitSelected(obj);
                 } else {
-                  if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
-                    && attackableTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
-                    && currentUnit.GetData().GetTurnActions().CanAttack()
-                    && !obj.GetData().IsDead())
-                  {
-                      toAttack = null;
-                      //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
-                      if (currentUnit != null) {
-                          currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
-                      }
-    
-                      if (obj.IsAttacked(currentUnit))
-                      {
-                          //StartCoroutine(DelayKill(obj, currentUnit));
-                          obj.DelayedKill(obj,currentUnit);
-                          StartCoroutine(ResetTiles());
-                      }
-      
-                      OnDisable();
-                      PanelControllerNew.SwitchChar(currentUnit);
-                  }
+                    toAttack = obj;
+                    UnitProxy player = currentUnit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM ? currentUnit : toAttack;
+                    UnitProxy enemy = currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM ? currentUnit : toAttack;
+                    PanelControllerNew.SwitchChar(player, enemy);
                 }
-            }
-        }
-    }
+              } else {
+                if (obj.GetData().GetTeam() != currentUnit.GetData().GetTeam() 
+                  && attackableTiles.Contains(BoardProxy.instance.GetTileAtPosition(obj.GetPosition()))
+                  && currentUnit.GetData().GetTurnActions().CanAttack()
+                  && !obj.GetData().IsDead())
+                {
+                    toAttack = null;
+                    //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
+                    if (currentUnit != null) {
+                        currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
+                    }
+  
+                    if (obj.IsAttacked(currentUnit))
+                    {
+                        //StartCoroutine(DelayKill(obj, currentUnit));
+                        obj.DelayedKill(obj,currentUnit);
+                        StartCoroutine(ResetTiles());
+                    }
+    
+                    OnDisable();
+                    PanelControllerNew.SwitchChar(currentUnit);
+                }
+              }
+          }
+      }
+  }
 
-    private void HighlightTiles(UnitProxy obj)
-    {
-        foreach (var tile in allTiles)
-        {
-            tile.HighlightSelectedAdv(obj, visitableTiles, attackableTiles);
-        }
-    }
+  private void HighlightTiles(UnitProxy obj)
+  {
+      foreach (var tile in allTiles)
+      {
+          tile.HighlightSelectedAdv(obj, visitableTiles, attackableTiles);
+      }
+  }
 
-    private void UnHighlightTiles()
-    {
-        foreach (var tile in allTiles)
-        {
-            tile.UnHighlight();
-        }
-    }
+  private void UnHighlightTiles()
+  {
+      foreach (var tile in allTiles)
+      {
+          tile.UnHighlight();
+      }
+  }
 
-    public void OnEnable()
-    {
+  public void OnEnable()
+  {
 
-    }
+  }
 
-    public void OnDisable()
-    {
-        UnHighlightTiles();
-        currentUnit = null;
-    }
+  public void OnDisable()
+  {
+      UnHighlightTiles();
+      currentUnit = null;
+  }
 
-    public override void OnTileHovered(TileProxy tile)
-    {
+  public override void OnTileHovered(TileProxy tile)
+  {
 
-    }
+  }
 
-    public override void OnTileUnHovered(TileProxy tile)
-    {
+  public override void OnTileUnHovered(TileProxy tile)
+  {
 
-    }
+  }
 
 
 
-    public void Update()
-    {
-        if (Input.GetMouseButton(1))//right click to exit
-        {
-            InteractivityManager.instance.EnterDefaultMode();
-        }
-    }
+  public void Update()
+  {
+      if (Input.GetMouseButton(1))//right click to exit
+      {
+          InteractivityManager.instance.EnterDefaultMode();
+      }
+  }
 
-    public override void OnClear(TileProxy tile)
-    {
-        tile.UnHighlight();
-        currentUnit = null;
-    }
+  public override void OnClear(TileProxy tile)
+  {
+      tile.UnHighlight();
+      currentUnit = null;
+  }
 }

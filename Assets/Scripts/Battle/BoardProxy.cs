@@ -380,11 +380,6 @@ public class BoardProxy : MonoBehaviour
               {
                   return 1;
               }
-              //else if (!t2.HasObstacle())
-              //{
-              //    return allTiles ? 1 : int.MaxValue;
-              //}
-              //return int.MaxValue;
               return allTiles ? 1 : int.MaxValue;
 
           };
@@ -419,6 +414,31 @@ public class BoardProxy : MonoBehaviour
             .ToList();
     }
 
+    /*
+        These path functions are only for the AI to avoid fire and snow tiles
+    */
+
+    //Func<TileProxy, TileProxy, double> GetAIDistanceFunction(UnitProxy thingToMove)
+    //{
+    //    return (t1, t2) =>
+    //      {
+    //          if (t2.CanReceive(thingToMove))
+    //          {
+    //              return 1;
+    //          }
+    //          return allTiles ? 1 : int.MaxValue;
+
+    //      };
+    //}
+
+    //public Path<TileProxy> GetAIEstimationPath(TileProxy from, TileProxy to, UnitProxy thingToMove)
+    //{
+    //    return PathGenerator.FindPath(from,
+    //        to,
+    //        GetDistanceFunction(thingToMove, allTiles),
+    //        GetEstimationFunction(to, thingToMove));//might not want to use a list
+    //}
+
     public void FlushTiles()
     {
         for (int x = 0; x < width; x++)
@@ -437,5 +457,9 @@ public class BoardProxy : MonoBehaviour
             return tiles[pos.x, pos.y];
         }
         return null;
+    }
+
+    public Vector2Int GetDimensions(){
+        return new Vector2Int(width, height);
     }
 }

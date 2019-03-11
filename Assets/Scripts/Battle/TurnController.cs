@@ -122,7 +122,8 @@ public class TurnController : MonoBehaviour
         //Run AI (if applicable)
         if (currentTeam == BoardProxy.ENEMY_TEAM && !BoardProxy.HUMAN_PLAYER)
         {
-            BasicBrain.StartThinking();
+            //BasicBrain.StartThinking();
+            AdvancedBrain.StartThinking();
         }
     }
 }

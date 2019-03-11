@@ -333,6 +333,14 @@ public class Unit : GridObject
         return team;
     }
 
+    public bool LowHP(){
+        return (float) GetCurrHealth() / (float) GetMaxHP() <= .25;
+    }
+
+    public bool ModerateHP(){
+        return (float) GetCurrHealth() / (float) GetMaxHP() <= .5;
+    }
+
     public void AcceptAction(Skill.Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
     {
         //Debug.Log("Cycling through skills: " + GetSkills().Length.ToString());

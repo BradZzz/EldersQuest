@@ -139,6 +139,7 @@
     <Compile Include="Assets\Scripts\Battle\AnimationInteractionController.cs" />
     <Compile Include="Assets\Scripts\Battle\Board.cs" />
     <Compile Include="Assets\Scripts\Battle\BoardProxy.cs" />
+    <Compile Include="Assets\Scripts\Battle\Brains\AdvancedBrain.cs" />
     <Compile Include="Assets\Scripts\Battle\Brains\AIBrain.cs" />
     <Compile Include="Assets\Scripts\Battle\Brains\BasicBrain.cs" />
     <Compile Include="Assets\Scripts\Battle\ConditionTracker.cs" />

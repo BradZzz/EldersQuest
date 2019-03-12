@@ -28,53 +28,66 @@ public class ForceAtk : Skill
       Vector3Int posAtk = attacker.GetPosition();
       Vector3Int posDef = defender.GetPosition();
 
-      Vector3Int diff = new Vector3Int(posDef.x,posDef.y,posDef.z);
+      Vector3Int diff = new Vector3Int(posAtk.x - posDef.x,posAtk.y - posDef.y,posAtk.z - posDef.z);
 
+      Debug.Log("Force atk: ");
+      Debug.Log("posAtk: " + posAtk.ToString());
+      Debug.Log("posDef: " + posDef.ToString());
+      Debug.Log("diff: " + diff.ToString());
       if (diff.x > 0) {
         //Defender to the right of the attacker
         if (diff.y > 0) {
+          Debug.Log("Right and Above");
           //Defender is above attacker
           //Move the defender up and to the right
-          diff.x+=1;
-          diff.y+=1;
+          posDef.x-=1;
+          posDef.y-=1;
         } else if (diff.y < 0) {
+          Debug.Log("Right and Below");
           //Defender is below attacker
           //Move the defender down and to the right
-          diff.x+=1;
-          diff.y-=1;
+          posDef.x-=1;
+          posDef.y+=1;
         } else {
-          diff.x+=1;
+          Debug.Log("Right");
+          posDef.x-=1;
         }
       } else if (diff.x < 0) {
         //Defender to the left of the attacker
         if (diff.y > 0) {
+          Debug.Log("Left and Above");
           //Defender is above attacker
           //Move the defender up and to the left
-          diff.x-=1;
-          diff.y+=1;
+          posDef.x+=1;
+          posDef.y-=1;
         } else if (diff.y < 0) {
+          Debug.Log("Left and Below");
           //Defender is below attacker
           //Move the defender down and to the left
-          diff.x-=1;
-          diff.y-=1;
+          posDef.x+=1;
+          posDef.y+=1;
         } else {
-          diff.x-=1;
+          Debug.Log("Left");
+          posDef.x+=1;
         }
       } else {
         //Defender is right below or above attacker
         if (diff.y > 0) {
+          Debug.Log("Above");
           //Defender is above attacker
           //Move defender up
-          diff.y+=1;
+          posDef.y-=1;
         } else if (diff.y < 0) {
+          Debug.Log("Below");
           //Defender is below attacker
           //Move defender down
-          diff.y-=1;
+          posDef.y+=1;
         }
       }
-      TileProxy nwDefTile = BoardProxy.instance.GetTileAtPosition(diff);
+      Debug.Log("posDef: " + posDef.ToString());
+      TileProxy nwDefTile = BoardProxy.instance.GetTileAtPosition(posDef);
       if (nwDefTile != null && !nwDefTile.HasObstruction()) {
-          TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(posDef);
+          TileProxy oldTile = BoardProxy.instance.GetTileAtPosition(defender.GetPosition());
       
           defender.ZapToTile(nwDefTile, oldTile, "ForceAtk");
 

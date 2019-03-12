@@ -81,6 +81,33 @@ MonoBehaviour:
     type: 3}
   Smoke: {fileID: 6565869410425460684, guid: 71815da0e26444fb1b531ea8e73196b6, type: 3}
   Laser: {fileID: 6180251007682999482, guid: 3457a68efe8454c1c83278ad3eee00be, type: 3}
+  fxBarrage: {fileID: 8198869387900938397, guid: 68a975b97863045048879f0f10c533ba,
+    type: 3}
+  fxBloodExplosion: {fileID: 8198869387900938397, guid: 3821e8f3b32fd44c696b01ca69db58c9,
+    type: 3}
+  fxBloodSplatter: {fileID: 8198869387900938397, guid: d4d435e00258e46cbb10d8f4f62f217d,
+    type: 3}
+  fxEGExplosion: {fileID: 8198869387900938397, guid: 0791e51ea70474a9497ccdc51f1a85f4,
+    type: 3}
+  fxFirePillar: {fileID: 8198869387900938397, guid: b15135812992d45369c57bb95a23dd91,
+    type: 3}
+  fxFireBaseLarge: {fileID: 8198869387900938397, guid: 6f61bd066db844370887ddb92c540208,
+    type: 3}
+  fxFireBaseSmall: {fileID: 8198869387900938397, guid: 24b1b11ae273b47a2a69029d39ee82f5,
+    type: 3}
+  fxFireShield: {fileID: 8198869387900938397, guid: 541d789cac69344bea540fc9841ea9bc,
+    type: 3}
+  fxHMExplosion: {fileID: 8198869387900938397, guid: 7b31fcf752b524011933ef2928837aea,
+    type: 3}
+  fxLaser: {fileID: 6180251007682999482, guid: 3457a68efe8454c1c83278ad3eee00be, type: 3}
+  fxLPExplosion: {fileID: 8198869387900938397, guid: b4c2a917e3e4240bc87bd6579e7180c9,
+    type: 3}
+  fxSmoke1: {fileID: 6565869410425460684, guid: 71815da0e26444fb1b531ea8e73196b6,
+    type: 3}
+  fxSmoke2: {fileID: 8198869387900938397, guid: e42ad9cd6d899402ba0dd2104d813043,
+    type: 3}
+  fxSmoke3: {fileID: 8198869387900938397, guid: 2ad11890c26954fadb2655213cb96ecb,
+    type: 3}
   playerTile: {fileID: 2356392196286390035, guid: 0e2ba23aebe8a41c69458a9ec91d6b11,
     type: 3}
   enemyTile: {fileID: 7668790842203671896, guid: 9bef4b8eacee54fd4b8cb75b249be6fa,

@@ -31,6 +31,21 @@ public class Glossary : MonoBehaviour
     public GameObject Smoke;
     public GameObject Laser;
 
+    public GameObject fxBarrage;
+    public GameObject fxBloodExplosion;
+    public GameObject fxBloodSplatter;
+    public GameObject fxEGExplosion;
+    public GameObject fxFirePillar;
+    public GameObject fxFireBaseLarge;
+    public GameObject fxFireBaseSmall;
+    public GameObject fxFireShield;
+    public GameObject fxHMExplosion;
+    public GameObject fxLaser;
+    public GameObject fxLPExplosion;
+    public GameObject fxSmoke1;
+    public GameObject fxSmoke2;
+    public GameObject fxSmoke3;
+
     public UnitProxyEditor playerTile;
     public UnitProxyEditor enemyTile;
     public ObstacleProxyEdit obstacleEditTile;

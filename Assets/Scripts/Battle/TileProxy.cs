@@ -468,11 +468,12 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     //    Destroy(healSmk);
     //}
 
-    public void CreateAnimation(Glossary.fx fx){
-        StartCoroutine(PlayAnim(fx));
+    public void CreateAnimation(Glossary.fx fx, float wait = 0){
+        StartCoroutine(PlayAnim(fx, wait));
     }
 
-    IEnumerator PlayAnim(Glossary.fx fx){
+    IEnumerator PlayAnim(Glossary.fx fx, float wait = 0){
+        yield return new WaitForSeconds(wait);
         Vector3 instPos = transform.position;
         instPos.y += .8f;
         GameObject fxAnim = null;

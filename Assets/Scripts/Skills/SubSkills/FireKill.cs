@@ -28,6 +28,7 @@ public class FireKill : Skill
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, value, true)){
           if (!tl.HasObstacle() && tl != BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
+              tl.CreateAnimation(Glossary.fx.fireBaseSmall, AnimationInteractionController.ATK_WAIT * 2);
               tl.SetTurnsOnFire(2, attacker);
           }
       }

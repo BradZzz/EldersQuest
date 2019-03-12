@@ -133,7 +133,8 @@ public class UnitProxy : GridObjectProxy
       }
 
       FloatUp(Skill.Actions.DidAttack, msg, Color.red, "Was attacked", true);
-      GetComponent<UnitProxy>().CreateLaserHit();
+      //GetComponent<UnitProxy>().CreateLaserHit();
+      BoardProxy.instance.GetTileAtPosition(GetPosition()).CreateAnimation(Glossary.GetAtkFx(GetData().GetFactionType(), GetData().GetUnitType()), AnimationInteractionController.ATK_WAIT);
       yield return null;
     }
 

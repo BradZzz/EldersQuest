@@ -24,7 +24,8 @@ public class HealAlliesAtk : Skill
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(attacker, value + 1, true)){
           bool isAttacker = tl == BoardProxy.instance.GetTileAtPosition(attacker.GetPosition());
           if (!isAttacker) {
-              tl.FloatUp(Skill.Actions.DidAttack, "heal", Color.green, "Allies healed from another unit's attack");
+              //tl.FloatUp(Skill.Actions.DidAttack, "heal", Color.green, "Allies healed from another unit's attack");
+              tl.CreateAnimation(Glossary.fx.healSmoke, AnimationInteractionController.ATK_WAIT);
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam()) {
                     Debug.Log("Attempting to heal unit");
                     tl.GetUnit().HealUnit(1, Skill.Actions.DidAttack);

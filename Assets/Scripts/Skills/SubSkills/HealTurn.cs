@@ -40,6 +40,7 @@ public class HealTurn : Skill
 
   public override void EndTurn(UnitProxy unit)
   {
+       BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).CreateAnimation(Glossary.fx.healSmoke);
        unit.HealUnit(value, Skill.Actions.None);
   }
 

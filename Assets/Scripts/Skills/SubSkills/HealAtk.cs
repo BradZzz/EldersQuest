@@ -21,6 +21,7 @@ public class HealAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
+      BoardProxy.instance.GetTileAtPosition(attacker.GetPosition()).CreateAnimation(Glossary.fx.healSmoke);
       attacker.HealUnit(value, Skill.Actions.DidAttack);
   }
 

@@ -23,7 +23,8 @@ public class AoeAtk : Skill
   {
       /* Injure everything else that isn't that defender */
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, value + 1, true)){
-          tl.FloatUp(Skill.Actions.DidAttack, "boom", Color.magenta, "AoeAtk");
+          //tl.FloatUp(Skill.Actions.DidAttack, "boom", Color.magenta, "AoeAtk");
+          tl.CreateAnimation(Glossary.fx.barrage, AnimationInteractionController.AFTER_KILL);
           if (tl.HasUnit() && tl.GetUnit() != defender) {
               if (tl.GetUnit().IsAttacked(attacker, false)){
                   tl.GetUnit().DelayedKill(tl.GetUnit(), attacker);

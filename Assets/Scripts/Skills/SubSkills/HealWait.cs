@@ -35,6 +35,7 @@ public class HealWait : Skill
 
   public override void DidWait(UnitProxy unit)
   {
+       BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).CreateAnimation(Glossary.fx.healSmoke);
        unit.HealUnit(value, Skill.Actions.None);
   }
 

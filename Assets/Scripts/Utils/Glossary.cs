@@ -63,6 +63,15 @@ public class Glossary : MonoBehaviour
 
     public Sprite[] ranks;
 
+    public static fx GetAtkFx(Unit.FactionType faction, Unit.UnitType unit){
+        switch(faction){
+            case Unit.FactionType.Cthulhu:return fx.bloodExplosions;
+            case Unit.FactionType.Egypt:return fx.fireBaseLarge;
+            case Unit.FactionType.Human:return fx.egExplosion;
+        }
+        return fx.barrage;
+    }
+
     public enum fx{
         barrage, bloodExplosions, bloodSplatter, egExplosion, firePillar, fireBaseLarge, fireBaseSmall, fireShield, healSmoke, hmExplosion, laser, lpExplosion, smoke1, smoke2, smoke3, none
     }

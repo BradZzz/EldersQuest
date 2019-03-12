@@ -36,6 +36,7 @@ public class FireMove : Skill
       }
       path.RemoveAt(0);
       foreach(TileProxy tile in path) {
+          tile.CreateAnimation(Glossary.fx.fireBaseSmall);
           tile.SetTurnsOnFire(value * 2, unit);
       }
   }

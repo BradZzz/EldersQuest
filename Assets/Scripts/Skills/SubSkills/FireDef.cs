@@ -23,7 +23,7 @@ public class FireDef : Skill
   {
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(defender, value, true)){
           if (!tl.HasObstacle() && tl != BoardProxy.instance.GetTileAtPosition(defender.GetPosition())) {
-              tl.CreateAnimation(Glossary.fx.fireBaseSmall);
+              tl.CreateAnimation(Glossary.fx.fireBaseSmall, AnimationInteractionController.ATK_WAIT);
               tl.SetTurnsOnFire(2, defender);
           }
       }

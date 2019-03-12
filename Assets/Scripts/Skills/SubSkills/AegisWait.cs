@@ -35,6 +35,7 @@ public class AegisWait : Skill
 
   public override void DidWait(UnitProxy unit)
   {
+      BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).CreateAnimation(Glossary.fx.fireShield);
       unit.GetData().SetAegis(true);
   }
 

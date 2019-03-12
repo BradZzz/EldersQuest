@@ -21,6 +21,7 @@ public class AegisAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
+      BoardProxy.instance.GetTileAtPosition(attacker.GetPosition()).CreateAnimation(Glossary.fx.fireShield, AnimationInteractionController.ATK_WAIT);
       attacker.GetData().SetAegis(true);
   }
 

@@ -39,6 +39,7 @@ public class RageAlliesWait : Skill
           bool isUnit = tl == BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
           if (!isUnit) {
               tl.FloatUp(Skill.Actions.DidWait, "+rage", Color.yellow, "+1 atk allies from waiting");
+              //tl.CreateAnimation(Glossary.fx.fireShield, AnimationInteractionController.NO_WAIT);
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == unit.GetData().GetTeam()) {
                   tl.GetUnit().ReceiveAtkBuff(1);
               }

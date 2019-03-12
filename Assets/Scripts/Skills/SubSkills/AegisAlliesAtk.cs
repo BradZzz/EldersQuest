@@ -24,7 +24,8 @@ public class AegisAlliesAtk : Skill
       foreach(TileProxy tl in BoardProxy.instance.GetAllVisitableNodes(attacker, value + 1, true)){
           bool isAttacker = tl == BoardProxy.instance.GetTileAtPosition(attacker.GetPosition());
           if (!isAttacker) {
-              tl.FloatUp(Skill.Actions.DidAttack, "+aegis", Color.blue, "Aegis Allies");
+              //tl.FloatUp(Skill.Actions.DidAttack, "+aegis", Color.blue, "Aegis Allies");
+              tl.CreateAnimation(Glossary.fx.fireShield, AnimationInteractionController.ATK_WAIT);
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam()) {
                   tl.GetUnit().GetData().SetAegis(true);
               }

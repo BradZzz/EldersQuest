@@ -40,6 +40,7 @@ public class AegisTurn : Skill
 
   public override void EndTurn(UnitProxy unit)
   {
+      BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).CreateAnimation(Glossary.fx.fireShield);
       unit.GetData().SetAegis(true);
   }
 

@@ -380,7 +380,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            if ( timeLeft <= 0 )
            {
               timeLeft = FIRE_DELAY_TIME;
-              FloatUp(Skill.Actions.None, "fire", Color.red, "Tile on fire");
+              //FloatUp(Skill.Actions.None, "fire", Color.red, "Tile on fire");
+              CreateAnimation(Glossary.fx.firePillar);
            }
        }
        if (Frozen()) {
@@ -388,7 +389,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            if ( timeLeft <= 0 )
            {
               timeLeft = FIRE_DELAY_TIME;
-              FloatUp(Skill.Actions.None, "snowy", Color.blue, "Tile is frozen");
+              //FloatUp(Skill.Actions.None, "snowy", Color.blue, "Tile is frozen");
+              CreateAnimation(Glossary.fx.smoke2);
            }
        }
        if (IsDivine()) {
@@ -396,7 +398,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            if ( timeLeft <= 0 )
            {
               timeLeft = FIRE_DELAY_TIME;
-              FloatUp(Skill.Actions.None, "holy", Color.yellow, "Tile is holy");
+              //FloatUp(Skill.Actions.None, "holy", Color.yellow, "Tile is holy");
+              //CreateHealSmoke();
+              CreateAnimation(Glossary.fx.healSmoke);
            }
        }
        if (IsWall()) {
@@ -416,16 +420,82 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
         AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc);
     }
 
-    public void CreateSmoke(){
-        StartCoroutine(CreateSmokeAnim());
+    //public void CreateSmoke(){
+    //    StartCoroutine(CreateSmokeAnim());
+    //}
+
+    //IEnumerator CreateSmokeAnim(){
+    //    Vector3 instPos = transform.position;
+    //    instPos.y += .8f;
+    //    GameObject smoke = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke1, instPos, Quaternion.identity);
+    //    yield return new WaitForSeconds(1f);
+    //    Destroy(smoke);
+    //}
+
+    //public void CreateSnow(){
+    //    StartCoroutine(CreateSnowAnim());
+    //}
+
+    //IEnumerator CreateSnowAnim(){
+    //    Vector3 instPos = transform.position;
+    //    instPos.y += .8f;
+    //    GameObject smoke2 = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke2, instPos, Quaternion.identity);
+    //    yield return new WaitForSeconds(1f);
+    //    Destroy(smoke2);
+    //}
+
+    //public void CreateFire(){
+    //    StartCoroutine(CreateFireAnim());
+    //}
+
+    //IEnumerator CreateFireAnim(){
+    //    Vector3 instPos = transform.position;
+    //    instPos.y += .8f;
+    //    GameObject fire = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().fxFirePillar, instPos, Quaternion.identity);
+    //    yield return new WaitForSeconds(1f);
+    //    Destroy(fire);
+    //}
+
+    //public void CreateHealSmoke(){
+    //    StartCoroutine(CreateHealSmokeAnim());
+    //}
+
+    //IEnumerator CreateHealSmokeAnim(){
+    //    Vector3 instPos = transform.position;
+    //    instPos.y += .8f;
+    //    GameObject healSmk = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().fxHealSmoke, instPos, Quaternion.identity);
+    //    yield return new WaitForSeconds(1f);
+    //    Destroy(healSmk);
+    //}
+
+    public void CreateAnimation(Glossary.fx fx){
+        StartCoroutine(PlayAnim(fx));
     }
 
-    IEnumerator CreateSmokeAnim(){
+    IEnumerator PlayAnim(Glossary.fx fx){
         Vector3 instPos = transform.position;
         instPos.y += .8f;
-        GameObject smoke = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().Smoke, instPos, Quaternion.identity);
+        GameObject fxAnim = null;
+        switch(fx){
+            case Glossary.fx.barrage:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxBarrage;break;
+            case Glossary.fx.bloodExplosions:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxBloodExplosion;break;
+            case Glossary.fx.bloodSplatter:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxBloodSplatter;break;
+            case Glossary.fx.egExplosion:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxEGExplosion;break;
+            case Glossary.fx.fireBaseLarge:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxFireBaseLarge;break;
+            case Glossary.fx.fireBaseSmall:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxFireBaseSmall;break;
+            case Glossary.fx.firePillar:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxFirePillar;break;
+            case Glossary.fx.fireShield:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxFireShield;break;
+            case Glossary.fx.healSmoke:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxHealSmoke;break;
+            case Glossary.fx.hmExplosion:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxHMExplosion;break;
+            case Glossary.fx.laser:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxLaser;break;
+            case Glossary.fx.lpExplosion:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxLPExplosion;break;
+            case Glossary.fx.smoke1:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke1;break;
+            case Glossary.fx.smoke2:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke2;break;
+            case Glossary.fx.smoke3:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke3;break;
+        }
+        GameObject healSmk = Instantiate(fxAnim, instPos, Quaternion.identity);
         yield return new WaitForSeconds(1f);
-        Destroy(smoke);
+        Destroy(healSmk);
     }
 
     #region events

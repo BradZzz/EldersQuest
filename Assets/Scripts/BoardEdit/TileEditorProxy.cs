@@ -415,7 +415,7 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
     IEnumerator CreateSmokeAnim(){
         Vector3 instPos = transform.position;
         instPos.y += .8f;
-        GameObject smoke = Instantiate(BoardEditProxy.instance.glossary.GetComponent<Glossary>().Smoke, instPos, Quaternion.identity);
+        GameObject smoke = Instantiate(BoardEditProxy.instance.glossary.GetComponent<Glossary>().fxSmoke1, instPos, Quaternion.identity);
         yield return new WaitForSeconds(1f);
         Destroy(smoke);
     }

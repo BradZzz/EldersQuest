@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/Glossary.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BoardEdit/UnitProxyEditor.cs">
     <Files>
       <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="103" Column="72" />
       <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="6" Column="17" />
@@ -7,11 +7,13 @@
       <File FileName="Assets/Scripts/Battle/Path.cs" Line="4" Column="14" />
       <File FileName="Assets/Scripts/Battle/Unit.cs" Line="68" Column="7" />
       <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="23" Column="6" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="325" Column="44" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="261" Column="22" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="412" Column="101" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="430" Column="1" />
       <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="86" Column="83" />
       <File FileName="Assets/Scripts/BoardEdit/BoardEditorUI.cs" Line="70" Column="1" />
-      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="32" Column="31" />
+      <File FileName="Assets/Scripts/BoardEdit/TileEditorProxy.cs" Line="437" Column="59" />
+      <File FileName="Assets/Scripts/BoardEdit/UnitProxyEditor.cs" Line="415" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

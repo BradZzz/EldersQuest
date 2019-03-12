@@ -28,8 +28,8 @@ public class Glossary : MonoBehaviour
 
     public UnitProxy summonedSkeleton;
 
-    public GameObject Smoke;
-    public GameObject Laser;
+    //public GameObject Smoke;
+    //public GameObject Laser;
 
     public GameObject fxBarrage;
     public GameObject fxBloodExplosion;
@@ -39,6 +39,7 @@ public class Glossary : MonoBehaviour
     public GameObject fxFireBaseLarge;
     public GameObject fxFireBaseSmall;
     public GameObject fxFireShield;
+    public GameObject fxHealSmoke;
     public GameObject fxHMExplosion;
     public GameObject fxLaser;
     public GameObject fxLPExplosion;
@@ -62,4 +63,7 @@ public class Glossary : MonoBehaviour
 
     public Sprite[] ranks;
 
+    public enum fx{
+        barrage, bloodExplosions, bloodSplatter, egExplosion, firePillar, fireBaseLarge, fireBaseSmall, fireShield, healSmoke, hmExplosion, laser, lpExplosion, smoke1, smoke2, smoke3, none
+    }
 }

@@ -79,8 +79,6 @@ MonoBehaviour:
     type: 3}
   summonedSkeleton: {fileID: 4488396556959502835, guid: 2a524645c86b747628c8716bcd5e3e3f,
     type: 3}
-  Smoke: {fileID: 6565869410425460684, guid: 71815da0e26444fb1b531ea8e73196b6, type: 3}
-  Laser: {fileID: 6180251007682999482, guid: 3457a68efe8454c1c83278ad3eee00be, type: 3}
   fxBarrage: {fileID: 8198869387900938397, guid: 68a975b97863045048879f0f10c533ba,
     type: 3}
   fxBloodExplosion: {fileID: 8198869387900938397, guid: 3821e8f3b32fd44c696b01ca69db58c9,
@@ -96,6 +94,8 @@ MonoBehaviour:
   fxFireBaseSmall: {fileID: 8198869387900938397, guid: 24b1b11ae273b47a2a69029d39ee82f5,
     type: 3}
   fxFireShield: {fileID: 8198869387900938397, guid: 541d789cac69344bea540fc9841ea9bc,
+    type: 3}
+  fxHealSmoke: {fileID: 8198869387900938397, guid: d8c40a746226d485dbbc1b32d6fc00c3,
     type: 3}
   fxHMExplosion: {fileID: 8198869387900938397, guid: 7b31fcf752b524011933ef2928837aea,
     type: 3}

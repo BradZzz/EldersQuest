@@ -50,7 +50,22 @@ public class BasicBrain : MonoBehaviour
                     && opposingUnits.Contains(tile.GetUnit())));
                 //Look at all the tiles in range
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());
-                if (opposingTeamTiles.Count == 0 && unit.GetData().GetTurnActions().CanMove())
+                if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
+                {
+                    //Unit in range. Attack!
+                    //Debug.Log("Trying to Attack");
+                    TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
+                    unit.OnSelected();
+                    yield return new WaitForSeconds(.1f);
+                    oppTile.ForceHighlight();
+                    yield return new WaitForSeconds(.3f);
+                    oppTile.UnHighlight();
+                    opposingTeamTiles[0].GetUnit().OnSelected();
+                    yield return new WaitForSeconds(.5f);
+                    opposingTeamTiles[0].GetUnit().OnSelected();
+                    didSomething = true;
+                } 
+                else if (opposingTeamTiles.Count == 0 && unit.GetData().GetTurnActions().CanMove())
                 {
                     //Debug.Log("Trying to Move");
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
@@ -61,6 +76,9 @@ public class BasicBrain : MonoBehaviour
                         TileProxy dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).First();
                         //Get the path for highlighting
                         path = BoardProxy.instance.GetPath(start, dest, unit);
+
+                        Debug.Log("Dest: " + dest.GetPosition().ToString() + " Start: " + start.GetPosition().ToString());
+
                         if (dest != start)
                         {
                             didSomething = true;
@@ -80,16 +98,19 @@ public class BasicBrain : MonoBehaviour
                         }
                         else
                         {
+                            Debug.Log("Dest not equal to start");
                             if (unitQueue.Count() > 0 && !unit.GetData().GetTurnActions().idle)
                             {
                                 //If there are more ai units left to move and this ai hasn't been put in the back of the queue yet
                                 //Put unit at the end of the queue, wait for other units to move
+                                Debug.Log("Rotating AI");
                                 unit.GetData().GetTurnActions().idle = true;
                                 unitQueue.Enqueue(unit);
                                 break;
                             }
                             else
                             {
+                                Debug.Log("Removing Action");
                                 //The unit has already failed to move twice. Stop trying. Move On.
                                 unit.GetData().GetTurnActions().Move();
                                 didSomething = true;
@@ -97,20 +118,6 @@ public class BasicBrain : MonoBehaviour
                             }
                         }
                     }
-                } else if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
-                {
-                    //Unit in range. Attack!
-                    //Debug.Log("Trying to Attack");
-                    TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
-                    unit.OnSelected();
-                    yield return new WaitForSeconds(.1f);
-                    oppTile.ForceHighlight();
-                    yield return new WaitForSeconds(.3f);
-                    oppTile.UnHighlight();
-                    opposingTeamTiles[0].GetUnit().OnSelected();
-                    yield return new WaitForSeconds(.5f);
-                    opposingTeamTiles[0].GetUnit().OnSelected();
-                    didSomething = true;
                 }
                 yield return new WaitForSeconds(.25f); 
             }

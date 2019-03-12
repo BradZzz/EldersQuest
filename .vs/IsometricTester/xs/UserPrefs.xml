@@ -1,12 +1,16 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skills/SubSkills/RageAlliesWait.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/TileProxy.cs">
     <Files>
       <File FileName="Assets/Scripts/Skills/SubSkills/AegisKill.cs" Line="29" Column="53" />
       <File FileName="Assets/Scripts/Skills/SubSkills/AegisBegin.cs" Line="20" Column="37" />
       <File FileName="Assets/Scripts/Skills/SubSkills/AegisAtk.cs" Line="24" Column="148" />
       <File FileName="Assets/Scripts/Skills/SubSkills/AegisAlliesAtk.cs" Line="28" Column="15" />
       <File FileName="Assets/Scripts/Skills/SubSkills/FireAtk.cs" Line="26" Column="100" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/RageAlliesWait.cs" Line="42" Column="15" />
+      <File FileName="Assets/Scripts/Skills/SubSkills/RageAlliesWait.cs" Line="41" Column="102" />
+      <File FileName="Assets/Scripts/ScrollingText/StorySceneHolder.cs" Line="35" Column="18" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="96" Column="69" />
+      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="75" Column="1" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="496" Column="113" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

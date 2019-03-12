@@ -21,6 +21,8 @@ public class StorySceneHolder : MonoBehaviour {
   private bool waiting;
 
   private IEnumerator waiter;
+  private IEnumerator lightNUM;
+  private IEnumerator candleNUM;
   private bool gameEnded;
   //private float percentsPerSecond = 0.2f;
   //private float sceneProgress = 0;
@@ -31,6 +33,8 @@ public class StorySceneHolder : MonoBehaviour {
     waiting = false;
     candleIdx = 0;
     lightIdx = 0;
+    //lightNUM = SwitchLights();
+    //candleNUM = SwitchCandles();
     StartCoroutine(SwitchLights());
     StartCoroutine(SwitchCandles());
     textHolder = new string[]{ };
@@ -63,6 +67,7 @@ public class StorySceneHolder : MonoBehaviour {
 
   IEnumerator SwitchCandles(){
       candles[candleIdx].SetActive(false);
+      //candles[candleIdx].
       candleIdx = candleIdx == 0 ? 1 : 0;
       candles[candleIdx].SetActive(true);
       yield return new WaitForSeconds(.3f);
@@ -123,6 +128,8 @@ public class StorySceneHolder : MonoBehaviour {
   public void SkipToNextText()
   {
     StopAllCoroutines();
+    StartCoroutine(SwitchLights());
+    StartCoroutine(SwitchCandles());
     idx++;
     StartCoroutine(AnimateText());
   }

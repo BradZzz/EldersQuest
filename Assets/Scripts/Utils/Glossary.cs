@@ -46,6 +46,7 @@ public class Glossary : MonoBehaviour
     public GameObject fxSmoke1;
     public GameObject fxSmoke2;
     public GameObject fxSmoke3;
+    public GameObject fxSnowSmoke;
 
     public UnitProxyEditor playerTile;
     public UnitProxyEditor enemyTile;
@@ -73,6 +74,7 @@ public class Glossary : MonoBehaviour
     }
 
     public enum fx{
-        barrage, bloodExplosions, bloodSplatter, egExplosion, firePillar, fireBaseLarge, fireBaseSmall, fireShield, healSmoke, hmExplosion, laser, lpExplosion, smoke1, smoke2, smoke3, none
+        barrage, bloodExplosions, bloodSplatter, egExplosion, firePillar, fireBaseLarge, fireBaseSmall, fireShield, healSmoke, 
+        hmExplosion, laser, lpExplosion, smoke1, smoke2, smoke3, snowSmoke, none
     }
 }

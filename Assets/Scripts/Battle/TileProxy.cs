@@ -390,7 +390,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            {
               timeLeft = FIRE_DELAY_TIME;
               //FloatUp(Skill.Actions.None, "snowy", Color.blue, "Tile is frozen");
-              CreateAnimation(Glossary.fx.smoke2);
+              CreateAnimation(Glossary.fx.snowSmoke);
            }
        }
        if (IsDivine()) {
@@ -475,7 +475,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     IEnumerator PlayAnim(Glossary.fx fx, float wait = 0){
         yield return new WaitForSeconds(wait);
         Vector3 instPos = transform.position;
-        instPos.y += .8f;
+        instPos.y += .7f;
         GameObject fxAnim = null;
         switch(fx){
             case Glossary.fx.barrage:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxBarrage;break;
@@ -493,6 +493,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             case Glossary.fx.smoke1:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke1;break;
             case Glossary.fx.smoke2:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke2;break;
             case Glossary.fx.smoke3:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke3;break;
+            case Glossary.fx.snowSmoke:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSnowSmoke;break;
         }
         GameObject healSmk = Instantiate(fxAnim, instPos, Quaternion.identity);
         yield return new WaitForSeconds(1f);

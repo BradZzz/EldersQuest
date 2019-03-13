@@ -138,7 +138,7 @@ public class UnitProxy : GridObjectProxy
       yield return null;
     }
 
-    public bool IsAttackedEnvironment(int atkPwr)
+    public bool IsAttackedEnvironment(int atkPwr, Skill.Actions act = Skill.Actions.None)
     {
       if (_data.GetAegis()) {
           _data.SetAegis(false);
@@ -150,7 +150,7 @@ public class UnitProxy : GridObjectProxy
       //Damage the unit
       GetData().IsAttacked(atkPwr);
       //FloatUp("-" + atkPwr.ToString(), Color.red, ATK_WAIT);
-      FloatUp(Skill.Actions.None, "-" + atkPwr.ToString(), Color.red, "Took env damage", true);
+      FloatUp(act, "-" + atkPwr.ToString(), Color.red, "Took env damage", true);
       if (GetData().IsDead())
       {
         BoardProxy.instance.GiveLowestCharLvl(this);

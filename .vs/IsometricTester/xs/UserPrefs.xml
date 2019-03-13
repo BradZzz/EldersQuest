@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skills/SubSkills/RageDef.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TechTree/TechTreeNav.cs">
     <Files>
-      <File FileName="Assets/Scripts/Skills/SubSkills/ThornDef.cs" Line="28" Column="57" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/FireDef.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/RageDef.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="89" Column="101" />
+      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

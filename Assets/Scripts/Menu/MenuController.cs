@@ -43,6 +43,25 @@ public class MenuController : MonoBehaviour
     }
   }
 
+  public void MoveToTutorial()
+  {
+    BaseSaver.PutSave("sv0");
+    /*
+     * Save the player demo objects
+     */
+    PlayerMeta player = BaseSaver.GetPlayer();
+    player = new PlayerMeta();
+    player.stats.dests = new string[] { "Dest1" };
+    player.faction = Unit.FactionType.Human;
+    player.characters = new Unit[]{ };
+    BaseSaver.PutPlayer(player);
+    player.characters = new List<Unit>(new Unit[]{ Unit.BuildInitial(player.faction,  Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM) }).ToArray();
+    player.world = GameMeta.World.tutorial;
+    BaseSaver.PutPlayer(player);
+    //Load the scene
+    SceneManager.LoadScene("MapScene");
+  }
+
   public void SaveMoveToScene(string save)
   {
     BaseSaver.PutSave(save);

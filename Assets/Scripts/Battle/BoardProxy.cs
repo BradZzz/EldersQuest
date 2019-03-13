@@ -96,7 +96,7 @@ public class BoardProxy : MonoBehaviour
 
     bool BuildBoardFromFile(){
         PlayerMeta player = BaseSaver.GetPlayer();
-        string world = "0" + (((int)player.world) + 1).ToString();
+        string world = "0" + (((int)player.world)).ToString();
         int lvl = int.Parse(player.lastDest.Replace("Dest",""));
         string currentMap = world + "_" + (lvl < 10 ? "0" : "") + lvl;
         if (player.world == GameMeta.World.candy) {

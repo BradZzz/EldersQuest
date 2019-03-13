@@ -436,9 +436,9 @@ public class TileEditorProxy : MonoBehaviour, IHasNeighbours<TileEditorProxy>, I
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (TurnController.instance.PlayersTurn()){
+        //if (TurnController.instance.PlayersTurn()){
             InteractivityManagerEditor.instance.OnTileHovered(this);
-        }
+        //}
     }
 
     Vector3 _startPosition;

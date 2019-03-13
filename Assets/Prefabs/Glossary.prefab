@@ -108,6 +108,8 @@ MonoBehaviour:
     type: 3}
   fxSmoke3: {fileID: 8198869387900938397, guid: 2ad11890c26954fadb2655213cb96ecb,
     type: 3}
+  fxSnowSmoke: {fileID: 4507451854718009799, guid: 89cab88f7023b43d8a65efd38488ff0c,
+    type: 3}
   playerTile: {fileID: 2356392196286390035, guid: 0e2ba23aebe8a41c69458a9ec91d6b11,
     type: 3}
   enemyTile: {fileID: 7668790842203671896, guid: 9bef4b8eacee54fd4b8cb75b249be6fa,

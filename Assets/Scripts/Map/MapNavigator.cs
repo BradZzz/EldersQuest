@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class MapNavigator : MonoBehaviour
 {
   public Sprite compDest;
+  public GameObject[] w0Dests;
   public GameObject[] w1Dests;
   public GameObject[] w2Dests;
   public GameObject[] w3Dests;
@@ -35,6 +36,7 @@ public class MapNavigator : MonoBehaviour
     if (GameMeta.RosterNeedsUpgrade()) {
         SceneManager.LoadScene("TechScene");
     }
+    ChangeDests(w0Dests,false);
     ChangeDests(w1Dests,false);
     ChangeDests(w2Dests,false);
     ChangeDests(w3Dests,false);
@@ -231,12 +233,12 @@ public class MapNavigator : MonoBehaviour
 
   public void PutSelect(string selected)
   {
+    PlayerMeta player = BaseSaver.GetPlayer();
     if (this.selected == selected && !CompDests().Contains(selected))
     {
-      PlayerMeta player = BaseSaver.GetPlayer();
       player.lastDest = selected;
       BaseSaver.PutPlayer(player);
-      BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests()[selected]);
+      BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests(player.world == GameMeta.World.tutorial)[selected]);
       MusicTransitionToBattle();
       SceneManager.LoadScene("BattleScene");
       //MusicTransitionToBattle();
@@ -250,7 +252,7 @@ public class MapNavigator : MonoBehaviour
       this.selected = selected;
       ByName(this.selected).transform.GetChild(0).gameObject.SetActive(true);
 
-      setDesc("Map: " + this.selected + "\n\n" + MapStatic.ReturnTestBoardDests()[selected].ReturnMapDesc());
+      setDesc("Map: " + this.selected + "\n\n" + MapStatic.ReturnTestBoardDests(player.world == GameMeta.World.tutorial)[selected].ReturnMapDesc());
     }
   }
 

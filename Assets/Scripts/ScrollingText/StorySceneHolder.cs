@@ -53,12 +53,16 @@ public class StorySceneHolder : MonoBehaviour {
       }
       textHolder = txts.ToArray();
     } else {
-      textHolder = new string[]{ game.EndGameDialog() };
-      if (player.world == GameMeta.World.candy) {
-        switch(player.faction) {
-          case Unit.FactionType.Cthulhu:textHolder = new string[]{ StoryStatic.CTHULHU_WIN };break;
-          case Unit.FactionType.Egypt:textHolder = new string[]{ StoryStatic.EGYPT_WIN };break;
-          case Unit.FactionType.Human:textHolder = new string[]{ StoryStatic.HUMAN_WIN };break;
+      if (player.world == GameMeta.World.tutorial) {
+        textHolder = new string[]{ "Congratulations! Tutorial completed. Good luck with the main story!" };
+      } else {
+        textHolder = new string[]{ game.EndGameDialog() };
+        if (player.world == GameMeta.World.candy) {
+          switch(player.faction) {
+            case Unit.FactionType.Cthulhu:textHolder = new string[]{ StoryStatic.CTHULHU_WIN };break;
+            case Unit.FactionType.Egypt:textHolder = new string[]{ StoryStatic.EGYPT_WIN };break;
+            case Unit.FactionType.Human:textHolder = new string[]{ StoryStatic.HUMAN_WIN };break;
+          }
         }
       }
     }

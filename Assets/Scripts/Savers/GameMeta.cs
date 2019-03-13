@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class GameMeta
 {
+  public static int AMOUNT_OF_LVLS_TUTORIAL = 6;
   public static int AMOUNT_OF_LVLS = 11;
   public static int MAX_ROSTER = 5;
 
@@ -33,7 +34,7 @@ public class GameMeta
     if (player == null){
         return false;
     }
-    return player.stats.dests.Length == AMOUNT_OF_LVLS;
+    return player.stats.dests.Length == AMOUNT_OF_LVLS || (player.world == World.tutorial && player.stats.dests.Length == AMOUNT_OF_LVLS_TUTORIAL);
   }
 
   public static bool RosterNeedsUpgrade(){
@@ -88,6 +89,6 @@ public class GameMeta
   }
 
   public enum World {
-    nile, mountain, pyramid, candy, none
+    tutorial, nile, mountain, pyramid, candy, none
   }
 }

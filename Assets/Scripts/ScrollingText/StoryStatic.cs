@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class StoryStatic : MonoBehaviour
 {
+    public static string TUTORIAL_WIN = "Congratulations! Tutorial completed. You now know all the basics for the main story!";
+
     public static string[] INTRO_STRING = new string[]{"The day before Christmas, sweet 6 year old Susie writes a letter to Santa, asking for a box with a ballerina inside. She assures him she’s been good and patient with her baby brother. While Susie is sweet, she is not a great speller and addressed her letter to Satan, postmarking her letter with a shiny unicorn sticker before throwing it into the roaring fireplace, thinking it would go up the chimney where Santa could find it.\n",
       "Satan sat sprawled across a recliner made of skulls, sipping on cheap Chardonnay when sweet Susie’s letter appeared in the flames of his fireplace. He plucked it out from between two logs and saw an opportunity for mischief. He snapped his clawed fingers and a weasel-like demon appeared under hoof, Pandora’s Box clasped between it’s paws.\n",
       "By the time Satan arrived at the chimney of Susie’s house, Santa had come and gone, leaving shiny wrapped gifts waited under the sparkling fir in the living room, and taking a bite of the cookies laid out for him. Satan, unphased by Santa’s sloppy seconds, gobbled down the rest of the cookies, commenting on their mediocrity before wiping his hands and the corners of his mouth with the velvet curtain in the window and belching. Satan kicked aside Santa’s gifts, placing his own front and center. Satan fluffed the bow, and straightened the box before making his way back to the fireplace. Satan paused before stepping through the flames, pilfering candy from each hanging stocking and giggling to himself.\n",
@@ -49,6 +51,15 @@ public class StoryStatic : MonoBehaviour
         Dests dest = (Dests)Enum.Parse(typeof(Dests), player.lastDest);
         Unit.FactionType faction = player.faction;
         switch(world){
+          case GameMeta.World.tutorial: 
+            switch(dest){
+              case Dests.Dest1: return "Welcome to the world of elder's quest this first tutorial is meant to guide you through the basics.";
+              case Dests.Dest2: return "Great! Let's move on to units with multiple attacks and movements!";
+              case Dests.Dest3: return "For the next mission, let's add some ranged units to the mix!";
+              case Dests.Dest4: return "Sometimes tiles can have different effects in battle. Pay attention to what each effect does.";
+              case Dests.Dest5: return "Let's combine everything we have just learned. Finish this battle to end the tutorial.";
+            }
+          break;
           case GameMeta.World.nile: 
             switch(dest){
               case Dests.Dest1: return "Attention, recruit! Enemy contact! It’s some sort of Egyptian monster! Use all your ingenuity to take them down!";

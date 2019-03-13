@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class MapStatic
 {
-    public static Dictionary<string, BoardMeta> ReturnTestBoardDests()
+    public static Dictionary<string, BoardMeta> ReturnTestBoardDests(bool tutorial)
     {
       Dictionary<string, BoardMeta> board = new Dictionary<string, BoardMeta>();
-      board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
-      board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(2), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
-      board.Add("Dest3",new BoardMeta(8, 8, CreateFromExp(4), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
-      board.Add("Dest4",new BoardMeta(8, 8, CreateFromExp(6), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest5" }));
-      board.Add("Dest5",new BoardMeta(9, 9, CreateFromExp(8), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest6" }));
-      board.Add("Dest6",new BoardMeta(9, 9, CreateFromExp(10), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest7" }));
-      board.Add("Dest7",new BoardMeta(10, 10, CreateFromExp(12), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest8" }));
-      board.Add("Dest8",new BoardMeta(11, 11, CreateFromExp(14), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest9" }));
-      board.Add("Dest9",new BoardMeta(12, 12, CreateFromExp(16), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest10" }));
-      board.Add("Dest10",new BoardMeta(14, 14, CreateFromExp(20), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest11" }));
+      board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
+      board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(2, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
+      board.Add("Dest3",new BoardMeta(8, 8, CreateFromExp(4, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
+      board.Add("Dest4",new BoardMeta(8, 8, CreateFromExp(6, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest5" }));
+      board.Add("Dest5",new BoardMeta(9, 9, CreateFromExp(8, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest6" }));
+      board.Add("Dest6",new BoardMeta(9, 9, CreateFromExp(10, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest7" }));
+      board.Add("Dest7",new BoardMeta(10, 10, CreateFromExp(12, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest8" }));
+      board.Add("Dest8",new BoardMeta(11, 11, CreateFromExp(14, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest9" }));
+      board.Add("Dest9",new BoardMeta(12, 12, CreateFromExp(16, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest10" }));
+      board.Add("Dest10",new BoardMeta(14, 14, CreateFromExp(20, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest11" }));
       return board;
     }
 
@@ -31,8 +31,12 @@ public class MapStatic
         return unitAtt;
     }
 
-    static Unit[] CreateFromExp(int lvl)
+    static Unit[] CreateFromExp(int lvl, bool tutorial)
     {
+        if (lvl > 3 && tutorial) {
+            lvl = 3;
+        } 
+
         PlayerMeta player = BaseSaver.GetPlayer();
         Unit.FactionType eFaction = Unit.FactionType.Egypt;
         switch(player.faction){
@@ -57,6 +61,10 @@ public class MapStatic
                 newUnit.SetLvl(exp);
             }
             lvlCnt -= exp;
+            if (tutorial) {
+                newUnit.SetMaxHP(1);
+                newUnit.SetSkills(new string[]{ });
+            }
             units.Add(newUnit);
         }
         Debug.Log("Units: " + units.Count.ToString());

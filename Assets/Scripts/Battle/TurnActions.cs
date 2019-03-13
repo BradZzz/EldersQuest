@@ -28,13 +28,13 @@ public abstract class TurnActions
     public void BeginTurn(){
 
         if (enfeebled > 0) {
-            cAtk = 0;
+            cAtk = atk - 1;
             enfeebled--;
         } else {
             cAtk = atk;
         }
         if (rooted > 0) {
-            cMv = 0;
+            cMv = mv - 1;
             rooted--;
         } else {
             cMv = mv;

@@ -1,17 +1,7 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/TileProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/UnitProxy.cs">
     <Files>
-      <File FileName="Assets/Scripts/Menu/MenuController.cs" Line="56" Column="39" />
-      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="63" Column="6" />
-      <File FileName="Assets/Scripts/CharSelect/CharSelectController.cs" Line="55" Column="94" />
-      <File FileName="Assets/Scripts/ScrollingText/StorySceneHolder.cs" Line="55" Column="13" />
-      <File FileName="Assets/Scripts/ScrollingText/StoryStatic.cs" Line="8" Column="87" />
-      <File FileName="Assets/Scripts/Savers/GameMeta.cs" Line="53" Column="32" />
-      <File FileName="Assets/Scripts/Map/MapNavigator.cs" Line="202" Column="4" />
-      <File FileName="Assets/Scripts/Map/MapStatic.cs" Line="66" Column="52" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="185" Column="1" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="378" Column="66" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="489" Column="42" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="402" Column="69" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

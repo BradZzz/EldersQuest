@@ -15,6 +15,8 @@ public class UnitProxy : GridObjectProxy
     public static float MV_TIME = .25f;
 
     private Unit _data;
+    private float defaultAnimSpeed;
+
     protected override GridObject data
     {
         get { return _data; }
@@ -28,6 +30,8 @@ public class UnitProxy : GridObjectProxy
     void Awake(){
         aegisObj.SetActive(false);
         rankObj.SetActive(false);
+        defaultAnimSpeed = transform.GetChild(0).GetComponent<Animator>().speed;
+        Debug.Log("defaultAnimSpeed: " + defaultAnimSpeed.ToString());
     }
 
     public void Init()
@@ -394,6 +398,11 @@ public class UnitProxy : GridObjectProxy
             if (aegisObj.activeInHierarchy) {
                 StartCoroutine(PopAegis());
             }
+        }
+        if (GetData().LowHP()) {
+            transform.GetChild(0).GetComponent<Animator>().speed = .5f;
+        } else {
+            transform.GetChild(0).GetComponent<Animator>().speed = defaultAnimSpeed;
         }
     }
 

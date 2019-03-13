@@ -391,6 +391,7 @@
     <Compile Include="Assets\Scripts\Utils\Glossary.cs" />
     <Compile Include="Assets\Scripts\Utils\HelperScripts.cs" />
     <Compile Include="Assets\Scripts\Utils\HighlightShift.cs" />
+    <Compile Include="Assets\Scripts\Utils\LocalizationData.cs" />
     <Compile Include="Assets\Scripts\Utils\OffsetScroller.cs" />
     <Compile Include="Assets\Scripts\Utils\PinchZoom.cs" />
     <Compile Include="Assets\Scripts\Utils\PlayerPrefs.cs" />

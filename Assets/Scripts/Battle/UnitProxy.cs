@@ -391,7 +391,11 @@ public class UnitProxy : GridObjectProxy
         SnapToCurrentPosition(); 
     }
 
+    float timeLeft = 3;
+
     void Update(){
+        timeLeft -= Time.deltaTime;
+
         if (GetData() != null && GetData().GetAegis()) {
             aegisObj.SetActive(true);
         } else {
@@ -399,12 +403,29 @@ public class UnitProxy : GridObjectProxy
                 StartCoroutine(PopAegis());
             }
         }
-        if (GetData().LowHP()) {
-            transform.GetChild(0).GetComponent<Animator>().speed = .5f;
+        SpriteRenderer rend = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (!GetData().GetTurnActions().CanMove() && !GetData().GetTurnActions().CanAttack()) {
+            rend.color = new Color(1,.66f,.66f);
         } else {
-            transform.GetChild(0).GetComponent<Animator>().speed = defaultAnimSpeed;
+            rend.color = new Color(1,1,1);
+        }
+        if (GetData().LowHP()) {
+             if (timeLeft > 2.3f) {
+                rend.color = new Color(1,.33f,.33f);
+             }
+        }
+        if ( timeLeft < 0 )
+        {
+            timeLeft = 3;
         }
     }
+
+    //IEnumerator LowHealthBlink(SpriteRenderer rend){
+    //    Debug.Log("LowHealth Blink");
+    //    rend.color = new Color(1,.33f,.33f);
+    //    yield return new WaitForSeconds(.5f);
+    //    //rend.color = new Color(1,1,1);
+    //}
 
     IEnumerator PopAegis(){
         yield return new WaitForSeconds(AnimationInteractionController.ANIMATION_WAIT_TIME_LIMIT);

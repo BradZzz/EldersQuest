@@ -63,18 +63,19 @@ public class BoardProxy : MonoBehaviour
     // Build the board here
     void Start()
     {
-        if (!BuildBoardFromFile()){
-            BuildTestBoard();
-            PopulatePlayer(GetSideTiles(PLAYER_TEAM));
-            PopulateEnemies(GetSideTiles(ENEMY_TEAM));
-            PlaceObstaclesAlt();
-        }
-        foreach(UnitProxy unit in GetUnits())
-        {
-            unit.AcceptAction(Skill.Actions.BeginGame,null);
-        }
-        PanelControllerNew.instance.LoadInitUnits(GetUnits());
-        TurnController.instance.StartTurn(true);
+        BuildBoardFromFile();
+        //if (!BuildBoardFromFile()){
+        //    //BuildTestBoard();
+        //    //PopulatePlayer(GetSideTiles(PLAYER_TEAM));
+        //    //PopulateEnemies(GetSideTiles(ENEMY_TEAM));
+        //    //PlaceObstaclesAlt();
+        //}
+        //foreach(UnitProxy unit in GetUnits())
+        //{
+        //    unit.AcceptAction(Skill.Actions.BeginGame,null);
+        //}
+        //PanelControllerNew.instance.LoadInitUnits(GetUnits());
+        //TurnController.instance.StartTurn(true);
     }
 
     public void SummonAtPosition(Vector3Int pos, int team, int val){
@@ -94,7 +95,7 @@ public class BoardProxy : MonoBehaviour
         //}
     }
 
-    bool BuildBoardFromFile(){
+    void BuildBoardFromFile(){
         PlayerMeta player = BaseSaver.GetPlayer();
         string world = "0" + (((int)player.world)).ToString();
         int lvl = int.Parse(player.lastDest.Replace("Dest",""));
@@ -102,25 +103,44 @@ public class BoardProxy : MonoBehaviour
         if (player.world == GameMeta.World.candy) {
             currentMap += "0" + (((int)player.faction) + 1).ToString();
         }
-        BoardEditMeta bMeta = BoardEditProxy.GetItemInfo(currentMap);
+        Debug.Log("BuildBoardFromFile: " + currentMap);
+        BoardEditProxy.GetItemInfo(currentMap, PopulateRetrievedInfo);
+        //if (bMeta != null) {
+        //    height = bMeta.height;
+        //    width = bMeta.width;
+        //    BuildTestBoard();
+
+        //    PopulatePlayer(bMeta.players.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
+        //    PopulateEnemies(bMeta.enemies.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
+
+        //    foreach(Vector3Int pt in bMeta.fireTiles){
+        //        tiles[pt.x, pt.y].SetLifeFire(true);
+        //    }
+        //    foreach(Vector3Int pt in bMeta.snowTiles){
+        //        tiles[pt.x, pt.y].SetLifeSnow(true);
+        //    }
+        //    foreach(Vector3Int pt in bMeta.wallTiles){
+        //        tiles[pt.x, pt.y].SetLifeWall(true);
+        //    }
+        //    foreach(Vector3Int pt in bMeta.divineTiles){
+        //        tiles[pt.x, pt.y].SetLifeDivine(true);
+        //    }
+        //    return true;
+        //} else {
+        //    return false;
+        //}
+    }
+
+    public void PopulateRetrievedInfo(BoardEditMeta bMeta){
+        Debug.Log("PopulateRetrievedInfo: " + bMeta);
         if (bMeta != null) {
+            Debug.Log("Building Stored Board");
             height = bMeta.height;
             width = bMeta.width;
             BuildTestBoard();
-            //HelperScripts.Shuffle(bMeta.players);
-            //HelperScripts.Shuffle(bMeta.enemies);
 
             PopulatePlayer(bMeta.players.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
             PopulateEnemies(bMeta.enemies.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
-
-            //foreach(Vector3Int unt in bMeta.players){
-            //    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-            //    tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().playerTile, 0);
-            //}
-            //foreach(Vector3Int unt in bMeta.enemies){
-            //    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-            //    tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().enemyTile, 1);
-            //}
 
             foreach(Vector3Int pt in bMeta.fireTiles){
                 tiles[pt.x, pt.y].SetLifeFire(true);
@@ -134,10 +154,19 @@ public class BoardProxy : MonoBehaviour
             foreach(Vector3Int pt in bMeta.divineTiles){
                 tiles[pt.x, pt.y].SetLifeDivine(true);
             }
-            return true;
         } else {
-            return false;
+            Debug.Log("Building sample board");
+            BuildTestBoard();
+            PopulatePlayer(GetSideTiles(PLAYER_TEAM));
+            PopulateEnemies(GetSideTiles(ENEMY_TEAM));
+            PlaceObstaclesAlt();
         }
+        foreach(UnitProxy unit in GetUnits())
+        {
+            unit.AcceptAction(Skill.Actions.BeginGame,null);
+        }
+        PanelControllerNew.instance.LoadInitUnits(GetUnits());
+        TurnController.instance.StartTurn(true);
     }
 
     void PopulatePlayer(TileProxy[] sideTiles)

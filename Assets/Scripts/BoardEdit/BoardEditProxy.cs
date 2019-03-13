@@ -22,7 +22,11 @@ public class BoardEditProxy : MonoBehaviour
 
     public static bool HUMAN_PLAYER = false;
 
-    private static string FILE_BASE = Application.streamingAssetsPath + "/Maps/";
+    private static string FILE_BASE = Application.streamingAssetsPath;
+
+    //private static string FILE_BASE_DESKTOP = Application.dataPath + "/StreamingAssets";
+    //private static string FILE_BASE_IPHONE = Application.dataPath + "/Raw";
+    //private static string FILE_BASE_ANDROID = Application.streamingAssetsPath;
 
     private TileEditorProxy[,] tiles;
     private BoardMeta boardMeta;
@@ -487,7 +491,7 @@ public class BoardEditProxy : MonoBehaviour
 
     public static void SaveItemInfo(string fileName, string saveStr){
        string path = null;
-       path = FILE_BASE + fileName + ".json";
+       path = FILE_BASE + "/Maps/" + fileName + ".json";
        Debug.Log("Saving: " + path);
        //string str = saveStr;
        using (FileStream fs = new FileStream(path, FileMode.Create)){
@@ -500,19 +504,49 @@ public class BoardEditProxy : MonoBehaviour
        #endif
     }
 
-    public static BoardEditMeta GetItemInfo(string fileName){
-        string path = FILE_BASE + fileName + ".json";
-        Debug.Log("Loading: " + path);
-        if (System.IO.File.Exists(path))
-        {
-            StreamReader reader = new StreamReader(path); 
-            string fInfo = reader.ReadToEnd();
-            Debug.Log("fInfo: " + fInfo);
-            reader.Close();
-            if (fInfo.Length > 0){
-                return JsonUtility.FromJson<BoardEditMeta>(fInfo);
-            }
+    public delegate void OnMapGetEvent(BoardEditMeta bMeta);
+
+    public static void GetItemInfo(string fileName, OnMapGetEvent callback){
+        BoardProxy.instance.StartCoroutine(LoadInfo(fileName, callback));
+    }
+
+    static IEnumerator LoadInfo(string fileName, OnMapGetEvent callback){
+        Debug.Log("Platform: " + Application.platform.ToString());
+        if (RuntimePlatform.Android == Application.platform) {
+          string cmbFile = "Maps/" + fileName + ".json";
+          Dictionary<string, string> localizedText = new Dictionary<string, string> ();
+          string filePath;
+          filePath = Path.Combine (Application.streamingAssetsPath + "/", cmbFile);
+          Debug.Log("filePath: " + filePath);
+          string dataAsJson;
+          if (filePath.Contains ("://") || filePath.Contains (":///")) 
+          {
+             Debug.Log("Network Shit");
+             UnityEngine.Networking.UnityWebRequest www =     UnityEngine.Networking.UnityWebRequest.Get (filePath);
+             yield return www.SendWebRequest();
+             dataAsJson = www.downloadHandler.text;
+          } else {
+             Debug.Log("Local");
+             dataAsJson = File.ReadAllText (filePath);
+          }
+          Debug.Log("File: " + cmbFile + " dataAsJson: " + dataAsJson);
+          callback(JsonUtility.FromJson<BoardEditMeta>(dataAsJson));
+        } else {
+          string path = FILE_BASE + "/Maps/" + fileName + ".json";
+          Debug.Log("Loading: " + path);
+          if (System.IO.File.Exists(path))
+          {
+              Debug.Log("File exists");
+              StreamReader reader = new StreamReader(path); 
+              string fInfo = reader.ReadToEnd();
+              Debug.Log("fInfo: " + fInfo);
+              reader.Close();
+              if (fInfo.Length > 0){
+                  callback(JsonUtility.FromJson<BoardEditMeta>(fInfo));
+              }
+          } else {
+              callback(null);
+          }
         }
-        return null;
     }
 }

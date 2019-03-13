@@ -67,39 +67,42 @@ public class BoardEditorUI : MonoBehaviour
 
     public void LoadMap(){
         if (mapName.Length > 0) {
-            BoardEditMeta bMeta = BoardEditProxy.GetItemInfo(mapName);
-            if (bMeta != null) {
-                height = bMeta.height;
-                width = bMeta.width;
-                BoardEditProxy.instance.Resize(width, height);
-                foreach(Vector3Int unt in bMeta.players){
-                    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-                    tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().playerTile, 0);
-                }
-                foreach(Vector3Int unt in bMeta.enemies){
-                    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-                    tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().enemyTile, 1);
-                }
-                foreach(Vector3Int unt in bMeta.fireTiles){
-                    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-                    tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.fire);
-                    tl.SetLifeFire(true);
-                }
-                foreach(Vector3Int unt in bMeta.snowTiles){
-                    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-                    tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.snow);
-                    tl.SetLifeSnow(true);
-                }
-                foreach(Vector3Int unt in bMeta.wallTiles){
-                    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-                    tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.wall);
-                    tl.SetLifeWall(true);
-                }
-                foreach(Vector3Int unt in bMeta.divineTiles){
-                    TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
-                    tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.divine);
-                    tl.SetLifeDivine(true);
-                }
+            BoardEditProxy.GetItemInfo(mapName,PopulateRetrievedInfo);
+        }
+    }
+
+    public void PopulateRetrievedInfo(BoardEditMeta bMeta){
+        if (bMeta != null) {
+            height = bMeta.height;
+            width = bMeta.width;
+            BoardEditProxy.instance.Resize(width, height);
+            foreach(Vector3Int unt in bMeta.players){
+                TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+                tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().playerTile, 0);
+            }
+            foreach(Vector3Int unt in bMeta.enemies){
+                TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+                tl.CreateUnitOnTile(glossary.GetComponent<Glossary>().enemyTile, 1);
+            }
+            foreach(Vector3Int unt in bMeta.fireTiles){
+                TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+                tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.fire);
+                tl.SetLifeFire(true);
+            }
+            foreach(Vector3Int unt in bMeta.snowTiles){
+                TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+                tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.snow);
+                tl.SetLifeSnow(true);
+            }
+            foreach(Vector3Int unt in bMeta.wallTiles){
+                TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+                tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.wall);
+                tl.SetLifeWall(true);
+            }
+            foreach(Vector3Int unt in bMeta.divineTiles){
+                TileEditorProxy tl = BoardEditProxy.instance.GetTileAtPosition(unt);
+                tl.gameObject.GetComponent<SpriteRenderer>().sprite = GetPaintTileSprite(TileEditTypes.divine);
+                tl.SetLifeDivine(true);
             }
         }
     }

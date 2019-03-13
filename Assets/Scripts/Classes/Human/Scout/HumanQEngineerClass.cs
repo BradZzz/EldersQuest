@@ -12,7 +12,7 @@ public class HumanQEngineerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "WallMove\nForceAtk";
+    return "+1 mv\n+1 mv trn\nWallMove";
   }
 
   public override string ClassName()
@@ -30,8 +30,9 @@ public class HumanQEngineerClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("ForceAtk");
       skills.Add("WallMove");
       unit.SetSkills(skills.ToArray());      
       return unit;

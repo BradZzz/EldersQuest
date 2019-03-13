@@ -12,7 +12,7 @@ public class HumanArcaneCommanderClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "DivineMove\nHealKill";
+    return "DivineMove\nAegisKill";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanArcaneCommanderClass : ClassNode
   {
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("DivineMove");
-      skills.Add("HealKill");
+      skills.Add("AegisKill");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

@@ -12,7 +12,7 @@ public class HumanIWarlockClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\n+1 atk rng";
+    return "+1 hp\n+1 mv trn";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanIWarlockClass : ClassNode
   {
       int hp = unit.GetMaxHP();
       unit.SetMaxHP(hp + 1);
-      unit.SetAtkRange(unit.GetAtkRange() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       return unit;
   }
 }

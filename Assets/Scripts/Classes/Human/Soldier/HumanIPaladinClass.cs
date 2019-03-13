@@ -12,12 +12,12 @@ public class HumanIPaladinClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+2 hp\nVoidAtk";
+      return "+2 atk rng\nVoidAtk";
   }
 
   public override string ClassName()
   {
-      return "Iron Paladin";
+      return "Chain Paladin";
   }
 
   public override ClassNode GetParent(){
@@ -30,7 +30,7 @@ public class HumanIPaladinClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 2);
+      unit.SetAtkRange(unit.GetAtkRange() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("VoidAtk");
       unit.SetSkills(skills.ToArray());

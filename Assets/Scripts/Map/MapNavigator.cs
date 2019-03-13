@@ -27,8 +27,8 @@ public class MapNavigator : MonoBehaviour
   void Awake()
   {
     selected = "";
-    PlayerMeta meta = BaseSaver.GetPlayer();
-    destSave = new List<string>(meta.stats.dests);
+    PlayerMeta player = BaseSaver.GetPlayer();
+    destSave = new List<string>(player.stats.dests);
     if (GameMeta.GameEnded()) {
         SceneManager.LoadScene("ScrollingTextScene");
     }
@@ -41,28 +41,28 @@ public class MapNavigator : MonoBehaviour
     ChangeDests(w4Dests,false);
     descPnl.SetActive(false);
 
-    PlayerMeta player = BaseSaver.GetPlayer();
+    float time = player.stats.dests.Length == 1 ? 2 : .8f;
     switch(player.world){
         case GameMeta.World.mountain: 
-          StartCoroutine(ZoomScale(new Vector3(850,-125,0),w2Dests));
+          StartCoroutine(ZoomScale(new Vector3(850,-175,0),w2Dests,time));
         break;
         case GameMeta.World.pyramid:
-          StartCoroutine(ZoomScale(new Vector3(-600,-125,0),w3Dests));
+          StartCoroutine(ZoomScale(new Vector3(-600,-175,0),w3Dests,time));
         break;
         case GameMeta.World.candy: 
-          StartCoroutine(ZoomScale(new Vector3(-600,225,0),w4Dests));
+          StartCoroutine(ZoomScale(new Vector3(-600,225,0),w4Dests,time));
         break;
         default:
-          StartCoroutine(ZoomScale(new Vector3(850,225,0),w1Dests));
+          StartCoroutine(ZoomScale(new Vector3(850,225,0),w1Dests,time));
           break;
     }
   }
 
-  IEnumerator ZoomScale(Vector3 newPos, GameObject[] wDests){
+  IEnumerator ZoomScale(Vector3 newPos, GameObject[] wDests, float time){
     iTween.ScaleTo(map, iTween.Hash(
        "x", 1.8,
        "y", 1.8,
-       "time", 2,
+       "time", time,
        "easetype", "easeInOutSine"
     ));
     mapStartPos = map.GetComponent<RectTransform>().localPosition;
@@ -71,9 +71,35 @@ public class MapNavigator : MonoBehaviour
     iTween.ValueTo(gameObject, iTween.Hash(
          "from", 0f,
          "to", 1f,
-         "time", 2,
+         "time", time,
          "onupdate", "MoveMap"));
-    yield return new WaitForSeconds(2.2f);
+    yield return new WaitForSeconds(time + .2f);
+    ChangeDests(wDests,true);
+    dests = wDests;
+    Init();
+  }
+
+  IEnumerator ZoomOffset(Vector3 newPos, GameObject[] wDests, float time){
+    /*
+        Offset the position given by the difference between the first dest and the current dest
+    */
+
+
+    //iTween.ScaleTo(map, iTween.Hash(
+    //   "x", 1.8,
+    //   "y", 1.8,
+    //   "time", time,
+    //   "easetype", "easeInOutSine"
+    //));
+    mapStartPos = map.GetComponent<RectTransform>().localPosition;
+    mapEndPos = newPos;
+
+    iTween.ValueTo(gameObject, iTween.Hash(
+         "from", 0f,
+         "to", 1f,
+         "time", time,
+         "onupdate", "MoveMap"));
+    yield return new WaitForSeconds(time + .2f);
     ChangeDests(wDests,true);
     dests = wDests;
     Init();
@@ -101,6 +127,7 @@ public class MapNavigator : MonoBehaviour
   void Init()
   {
     Debug.Log("Start");
+    PlayerMeta player = BaseSaver.GetPlayer();
 
     StopMusic();
     //AudioManager.instance.SetParameterInt(AudioManager.instance.music, FMODPaths.TransitionParameter, 0);
@@ -123,6 +150,15 @@ public class MapNavigator : MonoBehaviour
     }
     openDests[openDests.Count - 1].GetComponent<LineRenderer>().enabled = false;
     StartCoroutine(DrawLinesInOrder(openDests));
+    //if (player.stats.dests.Length > 1) {
+    //    Vector3 diff = dests[dests.Length - 1].transform.position - dests[0].transform.position;
+    //    Vector3 currentPos = map.GetComponent<RectTransform>().localPosition;
+
+    //    Debug.Log("currentPos: " + currentPos.ToString());
+    //    Debug.Log("diff: " + diff.ToString());
+
+    //    StartCoroutine(ZoomOffset(currentPos + diff,w1Dests,1));
+    //}
     //DrawBetweenDests(openDests);
   }
 

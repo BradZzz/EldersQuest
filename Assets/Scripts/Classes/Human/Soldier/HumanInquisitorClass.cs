@@ -12,7 +12,7 @@ public class HumanInquisitorClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+2 hp\nHealTurn";
+      return "+2 hp\n+1 atk\nHealTurn";
   }
 
   public override string ClassName()
@@ -31,6 +31,7 @@ public class HumanInquisitorClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetMaxHP(unit.GetMaxHP() + 2);
+      unit.SetAttack(unit.GetAttack() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("HealTurn");
       unit.SetSkills(skills.ToArray());

@@ -12,7 +12,7 @@ public class HumanGrandMageClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\n+1 atk trn";
+    return "+2 atk rng\n+1 atk trn";
   }
 
   public override string ClassName()
@@ -31,7 +31,7 @@ public class HumanGrandMageClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetAtkRange(unit.GetAtkRange() + 2);
       return unit;
   }
 }

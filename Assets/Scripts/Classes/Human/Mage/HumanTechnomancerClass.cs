@@ -12,7 +12,7 @@ public class HumanTechnomancerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn\nForceAtk";
+    return "+1 atk rng\nForceAtk";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class HumanTechnomancerClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
+      unit.SetAtkRange(unit.GetAtkRange() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("ForceAtk");
       unit.SetSkills(skills.ToArray());

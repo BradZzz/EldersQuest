@@ -64,6 +64,7 @@ public abstract class Skill
             case SkillClasses.RootEnemiesWait: return new RootEnemiesWait();
             case SkillClasses.SicklyAtk: return new SicklyAtk();
             case SkillClasses.SkeleKill: return new SkeleKill();
+            case SkillClasses.SnowAtk: return new SnowAtk();
             case SkillClasses.SnowMove: return new SnowMove();
             case SkillClasses.ThornDef: return new ThornDef();       
             case SkillClasses.VoidAtk: return new VoidAtk();  
@@ -125,7 +126,7 @@ public abstract class Skill
         AegisAlliesAtk, AegisAtk, AegisBegin, AegisKill, AegisTurn, AegisWait, AoeAtk, BideAlliesWait, BideKill, BideWait, DivineMove,
         EnfeebleAtk, EnfeebleEnemiesWait, FireAtk, FireDef, FireKill, FireMove, ForceAtk, 
         HealAtk, HealAlliesAtk, HealAlliesWait, HealKill, HealTurn, HealWait, HobbleAtk, NullifyAtk, NullifyEnemiesWait, QuickenAlliesAtk, QuickenAlliesWait,
-        RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, RootEnemiesWait, SicklyAtk, SkeleKill, SnowMove, ThornDef, VoidAtk, 
+        RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, RootEnemiesWait, SicklyAtk, SkeleKill, SnowAtk, SnowMove, ThornDef, VoidAtk, 
         WallMove, WarpAtk, None
     }
 

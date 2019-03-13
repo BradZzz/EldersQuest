@@ -374,6 +374,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\RootEnemiesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\SicklyAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\SkeleKill.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\SnowAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\SnowMove.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\ThornDef.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\VoidAtk.cs" />

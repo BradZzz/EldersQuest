@@ -12,7 +12,7 @@ public class HumanGPaladinClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+2 mv/nBideWait";
+      return "+1 mv\n+1 mv trn\nBideWait";
   }
 
   public override string ClassName()
@@ -30,7 +30,8 @@ public class HumanGPaladinClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 2);
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("BideWait");
       unit.SetSkills(skills.ToArray());

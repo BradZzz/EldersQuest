@@ -12,7 +12,7 @@ public class HumanTinkererClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\n+1 mv trn";
+    return "+1 atk trn\n+1 mv trn";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class HumanTinkererClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       return unit;
   }

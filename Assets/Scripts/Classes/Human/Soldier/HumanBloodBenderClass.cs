@@ -12,7 +12,7 @@ public class HumanBloodBenderClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "BideKill\nHealTurn";
+      return "BideKill\nAegisKill";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanBloodBenderClass : ClassNode
   {
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("BideKill");
-      skills.Add("HealTurn");
+      skills.Add("AegisKill");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

@@ -12,7 +12,7 @@ public class HumanIceWizardClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "BideWait\nHealWait";
+    return "BideWait\nSnowAtk";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanIceWizardClass : ClassNode
   {
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("BideWait");
-      skills.Add("HealWait");
+      skills.Add("SnowAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

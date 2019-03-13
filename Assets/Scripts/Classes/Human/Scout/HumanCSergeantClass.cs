@@ -12,7 +12,7 @@ public class HumanCSergeantClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nHealTurn";
+    return "+1 hp\nHealAlliesAtk";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanCSergeantClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("HealTurn");
+      skills.Add("HealAlliesAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

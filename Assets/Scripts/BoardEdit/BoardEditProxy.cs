@@ -22,7 +22,7 @@ public class BoardEditProxy : MonoBehaviour
 
     public static bool HUMAN_PLAYER = false;
 
-    private static string FILE_BASE = "Assets/Maps/";
+    private static string FILE_BASE = Application.streamingAssetsPath + "/Maps/";
 
     private TileEditorProxy[,] tiles;
     private BoardMeta boardMeta;
@@ -488,6 +488,7 @@ public class BoardEditProxy : MonoBehaviour
     public static void SaveItemInfo(string fileName, string saveStr){
        string path = null;
        path = FILE_BASE + fileName + ".json";
+       Debug.Log("Saving: " + path);
        //string str = saveStr;
        using (FileStream fs = new FileStream(path, FileMode.Create)){
            using (StreamWriter writer = new StreamWriter(fs)){
@@ -500,7 +501,8 @@ public class BoardEditProxy : MonoBehaviour
     }
 
     public static BoardEditMeta GetItemInfo(string fileName){
-       string path = FILE_BASE + fileName + ".json";
+        string path = FILE_BASE + fileName + ".json";
+        Debug.Log("Loading: " + path);
         if (System.IO.File.Exists(path))
         {
             StreamReader reader = new StreamReader(path); 

@@ -49,15 +49,30 @@ public class StatsNav : MonoBehaviour
 
     void PopulateClassesPanel(){
         classPnl.SetActive(true); 
-        classBtn.GetComponent<Outline>().effectColor = Color.red;
+        //classPnl.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
-        string pnlString = "\n";
+        string pnlString = "";
         if (game.classesSeen.Length > 0) {
+          game.classesSeen = game.classesSeen.OrderBy(nm=>nm).ToArray();
+
+          classPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 200 * game.classesSeen.Length);
+          
+          foreach (Transform child in classPnl.transform.GetChild(0).GetChild(0)) {
+               Destroy(child.gameObject);
+           }
+
           foreach(string clss in game.classesSeen){
-              pnlString += clss + ": " + StaticClassRef.GetFullClassDescription(clss) + "\n";
+              GameObject clssCpy = Instantiate(skillRw, classPnl.transform.GetChild(0).GetChild(0));
+              clssCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = clss;
+              clssCpy.GetComponent<Button>().onClick.AddListener(() => { instance.SetClassInfoText(StaticClassRef.GetClassByReference(clss).ClassName() + ": " + StaticClassRef.GetFullClassDescription(clss) + "\n"); });
           }
         }
-        classPnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+    }
+
+    public void SetClassInfoText(string msg){
+        Debug.Log("SetSkillInfoText: " + msg);
+        classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
     }
 
     void PopulateHScoresPanel(){
@@ -77,35 +92,25 @@ public class StatsNav : MonoBehaviour
 
     void PopulateSkillsPanel(){
         skillPnl.SetActive(true); 
-        skillBtn.GetComponent<Outline>().effectColor = Color.red;
+        //skillBtn.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
         string pnlString = "";
         if (game.skillsSeen.Length > 0) {
           game.skillsSeen = game.skillsSeen.OrderBy(nm=>nm).ToArray();
+          skillPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 200 * game.skillsSeen.Length);
+
+          foreach (Transform child in skillPnl.transform.GetChild(0).GetChild(0)) {
+               Destroy(child.gameObject);
+           }
+
           foreach(string skll in game.skillsSeen){
               GameObject skllCpy = Instantiate(skillRw, skillPnl.transform.GetChild(0).GetChild(0));
               skllCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = skll;
               Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skll));
-              //pnlString = skll + ": " + tSkill.PrintDetails() + "\n";
-              Debug.Log("pnlString: " + skll + ": " + tSkill.PrintDetails() + "\n");
-              //UnityEngine.Events.UnityAction action1 = () => { instance.SetSkillInfoText(pnlString); };
               skllCpy.GetComponent<Button>().onClick.AddListener(() => { instance.SetSkillInfoText(skll + ": " + tSkill.PrintDetails() + "\n"); });
-              
-
-              //Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skll));
-              //pnlString += skll + ": " + tSkill.PrintDetails() + "\n";
           }
         }
         skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
-
-
-        //GameObject nwRow = Instantiate(chrRW, chrSelect.transform);
-        //nwRow.GetComponent<TechTreeUnitWrap>().unit = unt;
-        //nwRow.GetComponent<TechTreeUnitWrap>().Refresh();
-        //RefreshMainPanel(nwRow, unt, idx);
-
-        //UnityEngine.Events.UnityAction action1 = () => { instance.CharClicked(unt); };
-        //nwRow.GetComponent<Button>().onClick.AddListener(action1);
     }
 
     public void SetSkillInfoText(string msg){

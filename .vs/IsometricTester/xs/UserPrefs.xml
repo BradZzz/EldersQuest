@@ -1,8 +1,11 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/PanelControllerNew.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Unit.cs">
     <Files>
       <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="354" Column="96" />
-      <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="148" Column="96" />
+      <File FileName="Assets/Scripts/Battle/PanelControllerNew.cs" Line="148" Column="112" />
+      <File FileName="Assets/Scripts/Utils/UnitNameGenerator.cs" Line="62" Column="60" />
+      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="28" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="339" Column="71" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

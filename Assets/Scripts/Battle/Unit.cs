@@ -336,7 +336,7 @@ public class Unit : GridObject
     }
 
     public bool LowHP(){
-        return (float) GetCurrHealth() / (float) GetMaxHP() <= .33;
+        return (float) GetCurrHealth() / (float) GetMaxHP() <= .33 || GetCurrHealth() <= 1;
     }
 
     public bool ModerateHP(){

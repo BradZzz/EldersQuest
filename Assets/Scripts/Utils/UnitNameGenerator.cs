@@ -45,8 +45,9 @@ public class UnitNameGenerator : MonoBehaviour
         string[] firsts = new string[]{ "Bhagoguboit", "Dathanep", "Delig", "Eph-bhac", "Hogyi-bhogu", "Ibbbommepho", "Ilot-egar", "Kig'thol", "Phathotha",
           "Phlasth", "Rna-ug", "Udagnekr", "Yaarlol-igha", "Yi'achol", "Zatlicho", "Cy'krndatsota", "Dhlla", "Egugugo", "Ep'sakiloth", "Hac-kegall", "Marura-dac",
           "Ph-og", "Ralacthat", "Sigugonihal", "Tho'rthacha", "Yit'krh", "Kekeha", "Oru'otho", "Otaclaste", "Sholaneh", "Th-ga" };
-        string[] lasts = new string[]{ "the Destroyer", "of the Void", "the Eternal", "the Divider", "of the Plague", "Doomstead", "of the Pit", "the Tempter",
-          "Child-Eater", "Nightbringer", "Shadowslice", "Sinpeddler", "Deviltickler", "Nightshade", "Twilight", "Souleater", "Virgineater", "Pit-tempter", "Poisonips" };
+        string[] lasts = new string[]{ "theDestroyer", "oftheVoid", "theEternal", "theDivider", "ofthePlague", "Doomstead", "ofthePit", "theTempter",
+          "Child-Eater", "Nightbringer", "Shadowslice", "Sinpeddler", "Deviltickler", "Nightshade", "Twilight", "Souleater", "Virgineater", "Pit-tempter", 
+          "Poisonips", "Virginpoisoner", "Puppytickler", "Kittenmolester" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
 
@@ -57,8 +58,8 @@ public class UnitNameGenerator : MonoBehaviour
           "Kheti", "Lagus", "Maatkare", "Magas", "Manetho", "Menwi", "Minmose", "Nastasen", "Nebtu", "Nefertari", "Nitocris", "Osorkon", "Pabasa", "Pentu",
           "Potasimto", "Puimre", "Qen", "Rahotep", "Ramsesses", "Sabef", "Scota", "Senusret", "Setut", "Sosibius", "Taharqa",
           "Tentkheta", "Thutmose", "Tutankhamun", "Wadjitefni", "Wenennefer", "Ya'ammu", "Yakareb", "Zannanza" };
-        string[] lasts = new string[]{ "of Nubia", "I", "II", "III", "IV", "of Tryphaena", "the Elder", "Pogonius", "Flopperfeet", "Catstein",
-          "of Cyrene", "of the Sands", "Pyramidstein", "Sandford", "Falafelburg", "son of Hapu", "of Naucratis", "Shemai", "Menkheperre", "Meritmut", "of Matia",
+        string[] lasts = new string[]{ "of Nubia", "I", "II", "III", "IV", "ofTryphaena", "theElder", "Pogonius", "Flopperfeet", "Catstein",
+          "ofCyrene", "oftheSands", "Pyramidstein", "Sandford", "Falafelburg", "sonofHapu", "ofNaucratis", "Shemai", "Menkheperre", "Meritmut", "ofMatia",
           "Kalu", "Ini", "Tenry" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
@@ -69,7 +70,7 @@ public class UnitNameGenerator : MonoBehaviour
           "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia", "Byron", "Audrey", "Brier" };
         string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Spinkick", "Everyman", "Walkshard", "Rocketshark", 
           "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks", "Doughnutface", "Cupcake",
-          "Sparklepants", "Firefart" };
+          "Sparklepants", "Firefart", "Lightningtoes" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
 

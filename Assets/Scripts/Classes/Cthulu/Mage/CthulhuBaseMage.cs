@@ -12,7 +12,7 @@ public class CthulhuBaseMage : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\n+1 atk rng";
+    return "+1 mv trn\n+1 atk rng";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class CthulhuBaseMage : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       unit.SetAtkRange(unit.GetAtkRange() + 1);
       return unit;
   }

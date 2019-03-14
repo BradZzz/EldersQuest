@@ -9,7 +9,7 @@ public class QuickenAlliesWait : Skill
   public override void RouteBehavior(Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
   {
       switch(action){
-          case Actions.DidAttack: DidAttack(u1, u2); break;
+          case Actions.DidWait: DidWait(u1); break;
           default: return;
       }
   }

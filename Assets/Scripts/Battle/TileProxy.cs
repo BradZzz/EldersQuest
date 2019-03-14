@@ -30,6 +30,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     private bool lifetimeSnow;
     private bool lifetimeFire;
 
+    private UnitProxy stuckUnit;
+
     private List<GridObjectProxy> objectProxies = new List<GridObjectProxy>();
     //private GameObject instanceDummy;
 
@@ -335,17 +337,22 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
 
         if (IsDivine() && HasUnit()) {
             //Divine tiles heal
-            FloatUp(Skill.Actions.None, "+1", Color.green, "Healed from tile");
-            GetUnit().GetData().SetCurrHealth(GetUnit().GetData().GetCurrHealth() + 1);
+            if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam){
+                FloatUp(Skill.Actions.None, "+1", Color.green, "Healed from tile");
+                GetUnit().GetData().SetCurrHealth(GetUnit().GetData().GetCurrHealth() + 1);
+            }
         }
 
         if (Frozen() && HasUnit()) {
             //Snow tiles apply enfeeble and rooted at the end of the turn
-            if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam){
+            if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && stuckUnit != GetUnit()){
+                stuckUnit = GetUnit();
                 FloatUp(Skill.Actions.None, "enfeebled", Color.red, "Enfeebled from tile");
                 FloatUp(Skill.Actions.None, "rooted", Color.red, "Rooted from tile");
                 GetUnit().GetData().GetTurnActions().EnfeebledForTurns(1);
                 GetUnit().GetData().GetTurnActions().RootForTurns(1);
+            } else if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && stuckUnit == GetUnit()){
+                stuckUnit = null;
             }
         }
 

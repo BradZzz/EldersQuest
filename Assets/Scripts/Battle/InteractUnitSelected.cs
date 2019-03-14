@@ -120,16 +120,23 @@ public class InteractUnitSelected : InteractMode
                 {
                     toAttack = null;
                     //obj.AcceptAction(Skill.Actions.WasAttacked,currentUnit);
+                    //if (currentUnit != null) {
+                    //    currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
+                    //}
+                    bool charDead = obj.IsAttacked(currentUnit);
+
                     if (currentUnit != null) {
                         currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
                     }
   
-                    if (obj.IsAttacked(currentUnit))
+                    if (charDead)
                     {
                         //StartCoroutine(DelayKill(obj, currentUnit));
                         obj.DelayedKill(obj,currentUnit);
                         StartCoroutine(ResetTiles());
                     }
+
+                    
     
                     OnDisable();
                     PanelControllerNew.SwitchChar(currentUnit);

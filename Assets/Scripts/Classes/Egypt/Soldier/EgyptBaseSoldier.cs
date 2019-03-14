@@ -12,7 +12,7 @@ public class EgyptBaseSoldier : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nAegisBegin";
+    return "+1 hp\nAegisBegin\n+1 mv";
   }
 
   public override string ClassName()
@@ -31,6 +31,7 @@ public class EgyptBaseSoldier : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("AegisBegin");
       unit.SetSkills(skills.ToArray());

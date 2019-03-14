@@ -45,11 +45,12 @@ public class FactionController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     public void Finale()
     {
         finalWorld = !finalWorld;
         SetFinaleColors();
+        PlayerMeta player = BaseSaver.GetPlayer();
+        Click(player.faction.ToString());
     }
 
     void SetFinaleColors(){

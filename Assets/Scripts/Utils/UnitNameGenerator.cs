@@ -29,6 +29,13 @@ public class UnitNameGenerator : MonoBehaviour
                 gotName = GetRandomNameCthulhu();
             }
           break;
+          case Unit.FactionType.None:
+            gotName = GetRandomNameFinal();
+            while (dontPick.Contains(gotName))
+            {
+                gotName = GetRandomNameFinal();
+            }
+          break;
         }
         return gotName;
     }
@@ -63,6 +70,13 @@ public class UnitNameGenerator : MonoBehaviour
         string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Spinkick", "Everyman", "Walkshard", "Rocketshark", 
           "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks", "Doughnutface", "Cupcake",
           "Sparklepants", "Firefart" };
+        return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
+    }
+
+    static string GetRandomNameFinal()
+    {
+        string[] firsts = new string[]{ "Susie" };
+        string[] lasts = new string[]{ "Primus", "Secundus", "Tribus" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
     }
 }

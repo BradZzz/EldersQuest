@@ -186,6 +186,20 @@ public class StaticClassRef
             case AvailableClasses.CthulhuWRiderClass: return new CthulhuWRiderClass();
             case AvailableClasses.CthulhuADeathClass: return new CthulhuADeathClass();
 
+            /* Final */
+            case AvailableClasses.FinalBaseAntichrist: return new FinalBaseAntichrist();
+            case AvailableClasses.FinalBaseApocalypse: return new FinalBaseApocalypse();
+            case AvailableClasses.FinalBaseChaos: return new FinalBaseChaos();
+            case AvailableClasses.FinalBaseCollapse: return new FinalBaseCollapse();
+            case AvailableClasses.FinalBaseDarkness: return new FinalBaseDarkness();
+            case AvailableClasses.FinalBaseDireOmen: return new FinalBaseDireOmen();
+            case AvailableClasses.FinalBaseDisorder: return new FinalBaseDisorder();
+            case AvailableClasses.FinalBaseEternalDarkness: return new FinalBaseEternalDarkness();
+            case AvailableClasses.FinalBaseEvening: return new FinalBaseEvening();
+            case AvailableClasses.FinalBaseIMessiah: return new FinalBaseIMessiah();
+            case AvailableClasses.FinalBaseOmen: return new FinalBaseOmen();
+            case AvailableClasses.FinalBaseTwilight: return new FinalBaseTwilight();
+
             default: return new HumanBaseSoldier();
         }
     }
@@ -253,6 +267,10 @@ public class StaticClassRef
         /* lvl 4 */
         CthulhuVampireClass, CthulhuEssilexClass, CthulhuLilithClass, CthulhuEveClass,
         CthulhuGodzillaClass, CthulhuThingClass, CthulhuWRiderClass, CthulhuADeathClass,
+
+        FinalBaseAntichrist, FinalBaseApocalypse, FinalBaseChaos, FinalBaseCollapse, FinalBaseDarkness,
+        FinalBaseDireOmen, FinalBaseDisorder, FinalBaseEternalDarkness, FinalBaseEvening, FinalBaseIMessiah,
+        FinalBaseOmen, FinalBaseTwilight,
 
         None
     }

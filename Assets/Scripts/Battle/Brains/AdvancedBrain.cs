@@ -82,9 +82,11 @@ public class AdvancedBrain : MonoBehaviour
                     if (coward) {
                         Debug.Log("Unit: " + unit.GetData().characterMoniker + " is trying to escape!");
                         TileProxy escapeTile = GetRetreatDest(unit, opposingUnits);
-                        Debug.Log("Escape tile: " + escapeTile.GetPosition().ToString());
-                        //Calculate a path from the unit to the closest opposing unit
-                        path = BoardProxy.instance.GetPath(start, escapeTile, unit);
+                        if (escapeTile != null) {
+                            Debug.Log("Escape tile: " + escapeTile.GetPosition().ToString());
+                            //Calculate a path from the unit to the closest opposing unit
+                            path = BoardProxy.instance.GetPath(start, escapeTile, unit);
+                        }
                     }
                     if (path.Count() > 0 && path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).Any()) {
                         //See how many of those tiles are in the tiles we are allowed to move
@@ -219,26 +221,54 @@ public class AdvancedBrain : MonoBehaviour
         TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
         Vector2Int dims = BoardProxy.instance.GetDimensions();
 
+        Debug.Log("Dims: " + dims);
+
+        List<TileProxy> divines = BoardProxy.instance.GetDivineTiles();
+
+        int maxPths = int.MaxValue;
+        TileProxy bestDivine = null;
+        foreach(TileProxy divine in divines){
+          if (divine != null && !divine.HasObstruction()) {
+            int pthScore = 0;
+            Path<TileProxy> path = BoardProxy.instance.GetPath(start, divine, unit);
+            pthScore += path.Count();
+
+            //rageatk doesnt work
+            //attack doesn't happen after a move
+            Debug.Log("Pos: " + divine.GetPosition() + " score: " + pthScore.ToString());
+            if (pthScore < maxPths) {
+                maxPths = pthScore;
+                bestDivine = divine;
+            }
+          }
+        }
+
+        if (bestDivine != null) {
+            return bestDivine;
+        }
+
         List<TileProxy> corners = new List<TileProxy>(new TileProxy[]{ 
             BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,0,0)),
-            BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0],0,0)),
-            BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,dims[1],0)),
-            BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0],dims[1],0))
+            BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0] - 1,0,0)),
+            BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,dims[1] - 1,0)),
+            BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0] - 1,dims[1] - 1,0))
         });
 
-        int maxPths = int.MinValue;
+        //int maxPths = -1;
         TileProxy bestCorner = null;
         foreach(TileProxy corner in corners){
-          int pthScore = 0;
-          foreach(UnitProxy enemy in enemies){
-              TileProxy end = BoardProxy.instance.GetTileAtPosition(enemy.GetPosition());
-              Path<TileProxy> path = BoardProxy.instance.GetPath(corner, end, unit);
-              pthScore += path.Count();
-          }
-          Debug.Log("Pos: " + corner.GetPosition() + " score: " + pthScore.ToString());
-          if (pthScore > maxPths) {
-              maxPths = pthScore;
-              bestCorner = corner;
+          if (corner != null && !corner.HasObstruction()) {
+            int pthScore = 0;
+            foreach(UnitProxy enemy in enemies){
+                TileProxy end = BoardProxy.instance.GetTileAtPosition(enemy.GetPosition());
+                Path<TileProxy> path = BoardProxy.instance.GetPath(corner, end, unit);
+                pthScore += path.Count();
+            }
+            Debug.Log("Pos: " + corner.GetPosition() + " score: " + pthScore.ToString());
+            if (pthScore > maxPths) {
+                maxPths = pthScore;
+                bestCorner = corner;
+            }
           }
         }
 

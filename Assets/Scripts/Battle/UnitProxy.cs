@@ -175,14 +175,14 @@ public class UnitProxy : GridObjectProxy
         }
     }
 
-    public void ReceiveAtkBuff(int buff){
+    public void ReceiveAtkBuff(int buff, Skill.Actions action = Skill.Actions.None){
         GetData().SetAttackBuff(GetData().GetAttackBuff() + buff);
         //int newAtk = GetData().GetAttack() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp(Skill.Actions.None, "+" + buff + " atk", Color.blue, "atk buff", false);
+              FloatUp(action, "+" + buff + " atk", Color.blue, "atk buff", false);
           } else {
-              FloatUp(Skill.Actions.None, "-" + buff + " atk", Color.cyan, "atk sickness", true);
+              FloatUp(action, "-" + buff + " atk", Color.cyan, "atk sickness", true);
           }
         }
     }

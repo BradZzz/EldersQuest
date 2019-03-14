@@ -507,7 +507,11 @@ public class BoardEditProxy : MonoBehaviour
     public delegate void OnMapGetEvent(BoardEditMeta bMeta);
 
     public static void GetItemInfo(string fileName, OnMapGetEvent callback){
-        BoardProxy.instance.StartCoroutine(LoadInfo(fileName, callback));
+        if (BoardProxy.instance != null) {
+          BoardProxy.instance.StartCoroutine(LoadInfo(fileName, callback));
+        } else {
+          instance.StartCoroutine(LoadInfo(fileName, callback));
+        }
     }
 
     static IEnumerator LoadInfo(string fileName, OnMapGetEvent callback){

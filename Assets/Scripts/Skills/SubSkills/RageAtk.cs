@@ -9,7 +9,7 @@ public class RageAtk : Skill
   public override void RouteBehavior(Actions action, UnitProxy u1, UnitProxy u2, List<TileProxy> path)
   {
       switch(action){
-          case Actions.DidKill: DidKill(u1, u2); break;
+          case Actions.DidAttack: DidAttack(u1, u2); break;
           default: return;
       }
   }
@@ -21,7 +21,7 @@ public class RageAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
-      attacker.ReceiveAtkBuff(value);
+      attacker.ReceiveAtkBuff(value, Actions.DidKill);
   }
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)

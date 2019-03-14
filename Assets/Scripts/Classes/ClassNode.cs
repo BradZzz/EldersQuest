@@ -37,8 +37,15 @@ public abstract class ClassNode
               case Unit.UnitType.Soldier: return new CthulhuBaseSoldier();
             }
             break;
+          case Unit.FactionType.None: 
+            switch(uType){
+              case Unit.UnitType.Mage: return new FinalBaseOmen();
+              case Unit.UnitType.Scout: return new FinalBaseDisorder();
+              case Unit.UnitType.Soldier: return new FinalBaseTwilight();
+            }
+            break;
         }
-        return new HumanBaseSoldier();
+        return new FinalBaseOmen();
     }
 
     public static UnitProxy ComputeClassBaseUnit(Unit.FactionType fType, Unit.UnitType uType, Glossary glossy){
@@ -63,6 +70,13 @@ public abstract class ClassNode
               case Unit.UnitType.Mage: return glossy.cthulhuMage;
               case Unit.UnitType.Scout: return glossy.cthulhuScout;
               case Unit.UnitType.Soldier: return glossy.cthulhuSoldier;
+            }
+            break;
+          case Unit.FactionType.None: 
+            switch(uType){
+              case Unit.UnitType.Mage: return glossy.finalRed;
+              case Unit.UnitType.Scout: return glossy.finalBlue;
+              case Unit.UnitType.Soldier: return glossy.finalBlack;
             }
             break;
         }

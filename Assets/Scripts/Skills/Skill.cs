@@ -79,7 +79,7 @@ public abstract class Skill
             case SkillGen.Aegis:return "An (aegis) shield blocks a unit's next incoming attack.";
             case SkillGen.Bide:return "(Bide) raises the max health of effected units.";
             case SkillGen.Divine:return "A tile with (divine) will heal a unit for +1 at the end of the turn.";
-            case SkillGen.Enfeeble:return "An (enfeebled) unit has no attacks it's next turn.";
+            case SkillGen.Enfeeble:return "An (enfeebled) unit has 1 less attack on it's next turn.";
             case SkillGen.Fire:return "A tile on (fire) burns any unit on it for 1 damage a turn.";
             case SkillGen.Force:return "An ability with (force) pushes an enemy away from the unit.";
             case SkillGen.Heal:return "An ability with (heal) restores a unit's lost hit points.";
@@ -87,7 +87,7 @@ public abstract class Skill
             case SkillGen.Nullify:return "(Nullify) prevents a unit's skills from activating for a turn.";
             case SkillGen.Quicken:return "(Quicken) gives a unit another movement this turn.";
             case SkillGen.Rage:return "(Rage) raises the attack of effected units.";
-            case SkillGen.Root:return "A (root)ed unit loses their next turn movement.";
+            case SkillGen.Root:return "A (root)ed unit loses 1 turn movement on their next turn.";
             case SkillGen.Sickly:return "(Sickly) lowers the max hp of effected units down to 1.";
             case SkillGen.SkeleKill:return "A (skele) ability summons a friendly skeleton unit when used.";
             case SkillGen.Snow:return "A tile with (snow) enfeebles and roots any unit stuck in it at the end of the turn.";

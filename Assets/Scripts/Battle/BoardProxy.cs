@@ -101,7 +101,7 @@ public class BoardProxy : MonoBehaviour
         int lvl = int.Parse(player.lastDest.Replace("Dest",""));
         string currentMap = world + "_" + (lvl < 10 ? "0" : "") + lvl;
         if (player.world == GameMeta.World.candy) {
-            currentMap += "0" + (((int)player.faction) + 1).ToString();
+            currentMap += "_0" + (((int)player.faction) + 1).ToString();
         }
         Debug.Log("BuildBoardFromFile: " + currentMap);
         BoardEditProxy.GetItemInfo(currentMap, PopulateRetrievedInfo);
@@ -359,6 +359,23 @@ public class BoardProxy : MonoBehaviour
             }
         }
         return open;
+    }
+
+    public List<TileProxy> GetDivineTiles()
+    {
+        List<TileProxy> divine = new List<TileProxy>();
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (tiles[x,y].IsDivine())
+                {
+                    divine.Add(tiles[x, y]);
+                }
+            }
+        }
+        return divine;
     }
   
     public Dictionary<int,int> CountTeams()

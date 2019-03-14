@@ -245,7 +245,7 @@ public class Unit : GridObject
   
     public string[] GetSkills(){
         List<string> skillz = new List<string>(skills);
-        //skillz.Add("ThornDef");
+        //skillz.Add("RageAtk");
         return nullified ? new string[]{ }  : skillz.ToArray();
     }
 

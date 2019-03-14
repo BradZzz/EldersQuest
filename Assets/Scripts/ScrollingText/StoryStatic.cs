@@ -55,7 +55,7 @@ public class StoryStatic : MonoBehaviour
             switch(dest){
               case Dests.Dest1: return "Welcome to the world of elder's quest this first tutorial is meant to guide you through the basics.";
               case Dests.Dest2: return "Great! Let's move on to units with multiple attacks and movements!";
-              case Dests.Dest3: return "For the next mission, let's add some ranged units to the mix!";
+              case Dests.Dest3: return "For the next mission, let's add some ranged units to the mix! In Elder's Quest, each team can have up to three units on the field at a time.";
               case Dests.Dest4: return "Sometimes tiles can have different effects in battle. Pay attention to the effect each type of special tile has.";
               case Dests.Dest5: return "Let's combine everything we have just learned. Finish this battle to end the tutorial.";
             }

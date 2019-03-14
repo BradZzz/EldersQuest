@@ -26,7 +26,7 @@ public class RageKill : Skill
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {
-      attacker.ReceiveAtkBuff(value);
+      attacker.ReceiveAtkBuff(value, Actions.DidKill);
   }
 
   public override void DidMove(UnitProxy unit, List<TileProxy> path){

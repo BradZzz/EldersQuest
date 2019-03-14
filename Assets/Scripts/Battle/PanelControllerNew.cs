@@ -145,7 +145,7 @@ public class PanelControllerNew : MonoBehaviour
                 child.GetComponent<Image>().sprite = unit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             }
             if (child.name.Equals("CharName")) {
-                child.GetComponent<TextMeshProUGUI>().text = unit.GetData().characterMoniker;
+                child.GetComponent<TextMeshProUGUI>().text = unit.GetData().characterMoniker.Replace(" ","\n");
             }
             if (child.name.Equals("CharType")) {
                 child.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrentClass() != null 

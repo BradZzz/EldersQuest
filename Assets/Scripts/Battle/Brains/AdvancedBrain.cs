@@ -46,7 +46,7 @@ public class AdvancedBrain : MonoBehaviour
                 //Look at all the attackable tiles
                 List<TileProxy> attackableTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetAttackRange(), true);
                 //Look at all the tiles the opposing team is on from the visitable tiles
-                List<TileProxy> opposingTeamTiles = new List<TileProxy>(attackableTiles.Where(tile => tile.HasUnit() 
+                List<TileProxy> opposingTeamTiles = new List<TileProxy>(attackableTiles.Where(tile => tile.HasUnit() && !tile.GetUnit().GetData().IsDead()
                     && opposingUnits.Contains(tile.GetUnit())));
                 //Look at all the tiles in range
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());

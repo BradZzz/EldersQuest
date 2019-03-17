@@ -62,6 +62,8 @@ public class Glossary : MonoBehaviour
     public Sprite egyptFaction;
     public Sprite chtulhuFaction;
 
+    public GameObject projectile;
+
     public Sprite[] ranks;
 
     public static fx GetAtkFx(Unit.FactionType faction, Unit.UnitType unit){

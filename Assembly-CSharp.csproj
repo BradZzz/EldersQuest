@@ -157,6 +157,7 @@
     <Compile Include="Assets\Scripts\Battle\Path.cs" />
     <Compile Include="Assets\Scripts\Battle\PathGenerator.cs" />
     <Compile Include="Assets\Scripts\Battle\PriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\Battle\SideBtnPnl.cs" />
     <Compile Include="Assets\Scripts\Battle\Tile.cs" />
     <Compile Include="Assets\Scripts\Battle\TileProxy.cs" />
     <Compile Include="Assets\Scripts\Battle\TurnActions.cs" />

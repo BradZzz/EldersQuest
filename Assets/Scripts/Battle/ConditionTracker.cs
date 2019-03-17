@@ -69,7 +69,7 @@ public class ConditionTracker : MonoBehaviour
         ConditionTracker.instance.EvaluateGame();
     }
 
-    void EndGame(bool won)
+    public void EndGame(bool won)
     {
         Debug.Log("EndGame: " + won.ToString());
         //while (!AnimationInteractionController.AllAnimationsFinished()) {}

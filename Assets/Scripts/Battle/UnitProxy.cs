@@ -79,14 +79,14 @@ public class UnitProxy : GridObjectProxy
       if (_data.GetAegis()) {
           Debug.Log("Aegis!");
           _data.SetAegis(false);
-          StartCoroutine(AttackAnim(oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
+          StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
             oppUnit.gameObject.transform, diff, ""));
           FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis", true);
           return false;
       }
       Debug.Log("No Aegis");
 
-      StartCoroutine(AttackAnim(oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
+      StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
         oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
 
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
@@ -102,7 +102,7 @@ public class UnitProxy : GridObjectProxy
       return false;
     }
 
-    IEnumerator AttackAnim(Animator anim, Transform opp, Vector3Int diff, string msg){
+    IEnumerator AttackAnim(UnitProxy oppUnit, Animator anim, Transform opp, Vector3Int diff, string msg){
       if (anim != null) {
           Vector3 theScale = opp.localScale;
           if (diff.x > 0) {
@@ -138,8 +138,73 @@ public class UnitProxy : GridObjectProxy
 
       FloatUp(Skill.Actions.DidAttack, msg, Color.red, "Was attacked", true);
       //GetComponent<UnitProxy>().CreateLaserHit();
-      BoardProxy.instance.GetTileAtPosition(GetPosition()).CreateAnimation(Glossary.GetAtkFx(GetData().GetFactionType(), GetData().GetUnitType()), AnimationInteractionController.ATK_WAIT);
+      //BoardProxy.instance.GetTileAtPosition(GetPosition()).CreateAnimation(Glossary.GetAtkFx(GetData().GetFactionType(), 
+        //GetData().GetUnitType()), AnimationInteractionController.ATK_WAIT);
+      StartCoroutine(CreateProjectiles(oppUnit, opp.position, 5));
       yield return null;
+    }
+
+    IEnumerator CreateProjectiles(UnitProxy oppUnit, Vector3 dest, int num){
+        Vector3 start = dest;
+        Vector3 finish = transform.position;
+
+        start.y += .6f;
+        finish.y += .6f;
+
+        GameObject baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
+
+        //IEnumerator projectile = GenerateProjectile(oppUnit, baseProj, start, finish);
+        //IEnumerator anim = GenerateAttackAnims(oppUnit, baseProj, start, finish);
+
+        yield return new WaitForSeconds(.4f);
+        for (int i = 0; i < num; i++) {
+            switch(oppUnit.GetData().GetFactionType()){
+                case Unit.FactionType.Cthulhu:
+                    switch(oppUnit.GetData().GetUnitType()){
+                      case Unit.UnitType.Mage:StartCoroutine(GenerateProjectile(oppUnit, baseProj, start, finish)); break;
+                      default:StartCoroutine(GenerateAttackAnims(oppUnit, baseProj, start, finish)); break;
+                    }
+                break;
+                default:StartCoroutine(GenerateProjectile(oppUnit, baseProj, start, finish)); break;
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+        yield return null;
+    }
+
+    IEnumerator GenerateAttackAnims(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish){
+        //Vector3 thisProjStart  = new Vector3(start.x + UnityEngine.Random.Range(-.1f,.1f),start.y + UnityEngine.Random.Range(-.1f,.1f),start.z);
+        //Color projColor = Color.magenta;
+        //switch(oppUnit.GetData().GetFactionType()){
+        //    case Unit.FactionType.Cthulhu:projColor=new Color(.93f,.57f,.93f);break;
+        //    case Unit.FactionType.Egypt:projColor=Color.yellow;break;
+        //    default: break;
+        //}
+        //GameObject newProj = Instantiate(baseProj, start, Quaternion.identity);
+        //newProj.GetComponent<SpriteRenderer>().color = projColor;
+        //iTween.MoveTo(newProj, finish, 1);
+        //yield return new WaitForSeconds(.9f);
+        TileProxy dTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
+        dTile.CreateAnimation(Glossary.GetAtkFx(oppUnit.GetData().GetFactionType(), oppUnit.GetData().GetUnitType()), AnimationInteractionController.NO_WAIT);
+        //Destroy(newProj);
+        yield return null;
+    }
+
+    IEnumerator GenerateProjectile(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish){
+        Vector3 thisProjStart  = new Vector3(start.x + UnityEngine.Random.Range(-.1f,.1f),start.y + UnityEngine.Random.Range(-.1f,.1f),start.z);
+        Color projColor = Color.magenta;
+        switch(oppUnit.GetData().GetFactionType()){
+            case Unit.FactionType.Cthulhu:projColor=new Color(.93f,.57f,.93f);break;
+            case Unit.FactionType.Egypt:projColor=Color.yellow;break;
+            default: break;
+        }
+        GameObject newProj = Instantiate(baseProj, start, Quaternion.identity);
+        newProj.GetComponent<SpriteRenderer>().color = projColor;
+        iTween.MoveTo(newProj, finish, 1);
+        yield return new WaitForSeconds(.9f);
+        TileProxy dTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
+        dTile.CreateAnimation(Glossary.GetAtkFx(oppUnit.GetData().GetFactionType(), oppUnit.GetData().GetUnitType()), AnimationInteractionController.NO_WAIT);
+        Destroy(newProj);
     }
 
     public bool IsAttackedEnvironment(int atkPwr, Skill.Actions act = Skill.Actions.None)

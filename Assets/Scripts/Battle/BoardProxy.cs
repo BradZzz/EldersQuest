@@ -324,6 +324,14 @@ public class BoardProxy : MonoBehaviour
             TurnController.instance.EndTurn();
         }
     }
+
+    public void RestartBattle(){
+        SceneManager.LoadScene("BattleScene");
+    }
+
+    public void Surrender(){
+        ConditionTracker.instance.EndGame(false);
+    }
   
     public List<UnitProxy> GetUnits()
     {

@@ -16,6 +16,19 @@
 
     public static readonly string ImpactDamageSound = "event:/char/attacks/impact_damage";
 
+    public static readonly string HumanSoldierSound = "event:/char/unit_h/Unit_H_Sol_Atk_Front";
+    public static readonly string HumanMageSound = "";
+    public static readonly string HumanScoutSound = "event:/char/unit_h/Unit_H_Scout_Atk_Front";
+
+    public static readonly string CthuluSoldierSound = "event:/char/unit_c/Unit_C_Sol_Atk_Front";
+    public static readonly string CthuluMageSound = "event:/char/unit_c/Unit_C_Mage_Atk_Front";
+    public static readonly string CthuluScoutSound = "event:/char/unit_c/Unit_C_Sco_Atk_Front";
+    public static readonly string CthuluSkeSound = "event:/char/unit_c/Unit_C_Ske_Atk_Front";
+
+    public static readonly string EgyptSoldierSound = "event:/char/unit_e/Unit_E_Sol_Atk";
+    public static readonly string EgyptMageSound = "";
+    public static readonly string EgyptScoutSound = "event:/char/unit_e/Unit_E_Sco__Atk_Front";
+
 
     #endregion
 

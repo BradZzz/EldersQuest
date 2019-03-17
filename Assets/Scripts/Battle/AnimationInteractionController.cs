@@ -44,6 +44,14 @@ public class AnimationInteractionController : MonoBehaviour
        //instance.timeLeft = ANIMATION_WAIT_TIME_LIMIT;
     }
 
+
+    public static void InteractionAnimationGameobject(GameObject objToFloat, GameObject parent, float wait, bool shakeChar = false){
+       //Debug.Log("Animation reason: " + animDesc);
+       instance.StartCoroutine(instance.FloatUpGameObj(objToFloat, parent, wait, shakeChar));
+       //instance.timeLeft = ANIMATION_WAIT_TIME_LIMIT;
+    }
+
+
     public static float GetClipLengthByName(Animator anim, string cName){
       return anim.runtimeAnimatorController.animationClips.First(x => x.name == cName).length;
     }
@@ -97,6 +105,22 @@ public class AnimationInteractionController : MonoBehaviour
             }
         }
     }
+
+    IEnumerator FloatUpGameObj(GameObject objToFloat, GameObject parent, float wait, bool shakeChar = false)
+    {
+        yield return new WaitForSeconds(wait);
+        Vector3 pos = parent.transform.position;
+        pos.y += .7f;
+        GameObject newObj = Instantiate(objToFloat, pos, Quaternion.identity);
+        if (shakeChar){
+            yield return new WaitForSeconds(.2f);
+            iTween.ShakePosition(newObj,new Vector3(.25f,0,0), .2f);
+        }
+        iTween.MoveTo(newObj,new Vector3(pos.x,pos.y + .6f,pos.z), .3f);
+        yield return new WaitForSeconds(.5f);
+        Destroy(newObj);
+        yield return null;
+    }   
 
     void Update()
     {

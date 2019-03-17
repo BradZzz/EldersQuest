@@ -47,7 +47,9 @@ public class UnitProxy : GridObjectProxy
     }
 
     public void AddLevel(){
-      FloatUp(Skill.Actions.DidKill, "+1xp", Color.green, "gained +1 xp", true);
+      //FloatUp(Skill.Actions.DidKill, "+1xp", Color.green, "gained +1 xp", true);
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().exp, gameObject, AnimationInteractionController.AFTER_KILL, true);
       _data.SetLvl(_data.GetLvl()+1);
     }
 
@@ -173,20 +175,8 @@ public class UnitProxy : GridObjectProxy
     }
 
     IEnumerator GenerateAttackAnims(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish){
-        //Vector3 thisProjStart  = new Vector3(start.x + UnityEngine.Random.Range(-.1f,.1f),start.y + UnityEngine.Random.Range(-.1f,.1f),start.z);
-        //Color projColor = Color.magenta;
-        //switch(oppUnit.GetData().GetFactionType()){
-        //    case Unit.FactionType.Cthulhu:projColor=new Color(.93f,.57f,.93f);break;
-        //    case Unit.FactionType.Egypt:projColor=Color.yellow;break;
-        //    default: break;
-        //}
-        //GameObject newProj = Instantiate(baseProj, start, Quaternion.identity);
-        //newProj.GetComponent<SpriteRenderer>().color = projColor;
-        //iTween.MoveTo(newProj, finish, 1);
-        //yield return new WaitForSeconds(.9f);
         TileProxy dTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
         dTile.CreateAnimation(Glossary.GetAtkFx(oppUnit.GetData().GetFactionType(), oppUnit.GetData().GetUnitType()), AnimationInteractionController.NO_WAIT);
-        //Destroy(newProj);
         yield return null;
     }
 

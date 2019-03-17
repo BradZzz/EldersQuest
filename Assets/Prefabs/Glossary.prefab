@@ -126,6 +126,7 @@ MonoBehaviour:
   chtulhuFaction: {fileID: 21300000, guid: a33e193c23cb543ed85e4f1b304bc281, type: 3}
   projectile: {fileID: 3160763873199545935, guid: 8e897f043a9ae4e4e8d8519577538842,
     type: 3}
+  exp: {fileID: 3160763873199545935, guid: a64f876d5ac9f491b834912b43a56c29, type: 3}
   ranks:
   - {fileID: 21300026, guid: 6087e5add26e140749f61925e17e4db3, type: 3}
   - {fileID: 21300034, guid: 6087e5add26e140749f61925e17e4db3, type: 3}

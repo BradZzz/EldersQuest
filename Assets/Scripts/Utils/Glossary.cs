@@ -63,6 +63,7 @@ public class Glossary : MonoBehaviour
     public Sprite chtulhuFaction;
 
     public GameObject projectile;
+    public GameObject exp;
 
     public Sprite[] ranks;
 

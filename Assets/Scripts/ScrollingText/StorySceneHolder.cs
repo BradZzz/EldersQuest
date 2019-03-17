@@ -24,6 +24,8 @@ public class StorySceneHolder : MonoBehaviour {
   private IEnumerator lightNUM;
   private IEnumerator candleNUM;
   private bool gameEnded;
+
+    private FMOD.Studio.EventInstance cutsceneSnapshot;
   //private float percentsPerSecond = 0.2f;
   //private float sceneProgress = 0;
 
@@ -33,8 +35,9 @@ public class StorySceneHolder : MonoBehaviour {
     waiting = false;
     candleIdx = 0;
     lightIdx = 0;
-    //lightNUM = SwitchLights();
-    //candleNUM = SwitchCandles();
+        //lightNUM = SwitchLights();
+        //candleNUM = SwitchCandles();
+        cutsceneSnapshot = FMODUnity.RuntimeManager.CreateInstance(FMODPaths.CutsceneSnapshot);
     StartCoroutine(SwitchLights());
     StartCoroutine(SwitchCandles());
     textHolder = new string[]{ };
@@ -90,6 +93,7 @@ public class StorySceneHolder : MonoBehaviour {
   {
     textBox.text = "";
     StartCoroutine(AnimateText());
+    cutsceneSnapshot.start();
   }
 
   void FixedUpdate()
@@ -159,5 +163,7 @@ public class StorySceneHolder : MonoBehaviour {
     } else {
       SceneManager.LoadScene("CharSelectScreen");
     }
+        cutsceneSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        cutsceneSnapshot.release();
   }
 }

@@ -9,6 +9,7 @@
     public static readonly string SelectCharCreatureSound = "event:/UI/char_select/select_creature";
     public static readonly string SelectCharMageSound = "event:/UI/char_select/select_mage";
     public static readonly string SelectCharAcceptSound = "event:/UI/char_select/select_accept";
+    public static readonly string TypeSound = "event:/UI/letter";
 
     //attacks
     public static readonly string Unit001AttackSound = "event:/char/unit001/attack_1";
@@ -48,6 +49,12 @@
 
     public static readonly string VCA_MUSIC = "vca:/Music";
     public static readonly string VCA_SFX = "vca:/SFX";
+
+    #endregion
+
+    #region Snapshots
+
+    public static readonly string CutsceneSnapshot = "snapshot:/cutscene";
 
     #endregion
 

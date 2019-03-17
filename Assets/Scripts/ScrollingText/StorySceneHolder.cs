@@ -136,7 +136,7 @@ public class StorySceneHolder : MonoBehaviour {
     StartCoroutine(SwitchCandles());
     idx++;
     StartCoroutine(AnimateText());
-  }
+    }
 
   IEnumerator AnimateText()
   {
@@ -147,7 +147,8 @@ public class StorySceneHolder : MonoBehaviour {
       if (txtIdx > 0 && Array.IndexOf(stops, textHolder[idx][txtIdx-1]) > -1){
         yield return new WaitForSeconds(1f);
       }
-      yield return new WaitForSeconds(.08f);
+            FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.TypeSound);
+            yield return new WaitForSeconds(.08f);
     }
     clickToContinue.SetActive(true);
   }

@@ -182,7 +182,7 @@ public class UnitProxy : GridObjectProxy
 
     IEnumerator GenerateProjectile(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish){
         Vector3 thisProjStart  = new Vector3(start.x + UnityEngine.Random.Range(-.1f,.1f),start.y + UnityEngine.Random.Range(-.1f,.1f),start.z);
-        Color projColor = Color.magenta;
+        Color projColor = Color.red;
         switch(oppUnit.GetData().GetFactionType()){
             case Unit.FactionType.Cthulhu:projColor=new Color(.93f,.57f,.93f);break;
             case Unit.FactionType.Egypt:projColor=Color.yellow;break;

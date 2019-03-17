@@ -10,8 +10,10 @@ public class StatsNav : MonoBehaviour
 {
     public static StatsNav instance;
 
+    public Glossary glossy;
+    public GameObject camp1, camp2, camp3, camp4;
     public GameObject hScorePnl, classPnl, skillPnl;
-    public GameObject skillRw;
+    public GameObject skillRw, clssRw;
     public GameObject hScoreBtn, classBtn, skillBtn;
 
     public enum Location{
@@ -62,8 +64,11 @@ public class StatsNav : MonoBehaviour
            }
 
           foreach(string clss in game.classesSeen){
-              GameObject clssCpy = Instantiate(skillRw, classPnl.transform.GetChild(0).GetChild(0));
-              clssCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = clss;
+              GameObject clssCpy = Instantiate(clssRw, classPnl.transform.GetChild(0).GetChild(0));
+              clssCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ClassNode.FormatClass(clss);
+              ClassNode nde = StaticClassRef.GetClass((StaticClassRef.AvailableClasses)Enum.Parse(typeof(StaticClassRef.AvailableClasses), clss));
+              clssCpy.transform.GetChild(1).GetComponent<Image>().sprite = ClassNode.ComputeClassBaseUnit(nde, glossy).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+              clssCpy.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = " " + ClassNode.GetFactionFromClass(clss);
               clssCpy.GetComponent<Button>().onClick.AddListener(() => { instance.SetClassInfoText(StaticClassRef.GetClassByReference(clss).ClassName() + ": " + StaticClassRef.GetFullClassDescription(clss) + "\n"); });
           }
         }
@@ -78,16 +83,60 @@ public class StatsNav : MonoBehaviour
     void PopulateHScoresPanel(){
         hScorePnl.SetActive(true); 
         hScoreBtn.GetComponent<Outline>().effectColor = Color.red;
+
+        camp1.transform.GetChild(1).gameObject.SetActive(false);
+        camp2.transform.GetChild(1).gameObject.SetActive(false);
+        camp3.transform.GetChild(1).gameObject.SetActive(false);
+        camp4.transform.GetChild(1).gameObject.SetActive(false);
+
         GameMeta game = BaseSaver.GetGame();
-        string pnlString = "\n";  
-        if (game.scores.Length > 0) {
-          List<HighScoreMeta> scores = new List<HighScoreMeta>(game.scores);
-          scores.OrderBy(scr => scr.score);
-          foreach(HighScoreMeta scr in scores.Take(10)){
-              pnlString += scr.ToString() + "\n";
-          }
+        foreach(GameMeta.World world in game.unlockedWorlds){
+            switch(world){
+                case GameMeta.World.nile:
+                  camp1.transform.GetChild(1).gameObject.SetActive(true);
+                  camp1.transform.GetChild(0).gameObject.SetActive(false);
+                  camp1.GetComponent<Image>().enabled = false;
+                  break;
+                case GameMeta.World.mountain:
+                  camp2.transform.GetChild(1).gameObject.SetActive(true);
+                  camp2.transform.GetChild(0).gameObject.SetActive(false);
+                  camp2.GetComponent<Image>().enabled = false;
+                  break;
+                case GameMeta.World.pyramid:
+                  camp3.transform.GetChild(1).gameObject.SetActive(true);
+                  camp3.transform.GetChild(0).gameObject.SetActive(false);
+                  camp3.GetComponent<Image>().enabled = false;
+                  break;
+                case GameMeta.World.candy:
+                  camp4.transform.GetChild(1).gameObject.SetActive(true);
+                  camp4.transform.GetChild(0).gameObject.SetActive(false);
+                  camp4.GetComponent<Image>().enabled = false;
+                  break;
+            }
         }
-        hScorePnl.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        string pnlString = "High Scores:\n\n";  
+        //if (game.scores.Length > 0) {
+        List<HighScoreMeta> scores = new List<HighScoreMeta>(game.scores);
+        List<HighScoreMeta> camp1scrs = scores.Where(scr=>scr.world == GameMeta.World.nile).ToList();
+        List<HighScoreMeta> camp2scrs = scores.Where(scr=>scr.world == GameMeta.World.mountain).ToList();
+        List<HighScoreMeta> camp3scrs = scores.Where(scr=>scr.world == GameMeta.World.pyramid).ToList();
+        List<HighScoreMeta> camp4scrs = scores.Where(scr=>scr.world == GameMeta.World.candy).ToList();
+
+        camp1scrs.OrderBy(scr => scr.score);
+        camp2scrs.OrderBy(scr => scr.score);
+        camp3scrs.OrderBy(scr => scr.score);
+        camp4scrs.OrderBy(scr => scr.score);
+
+        pnlString += " Campaign 1 => " + (camp1scrs.Count > 0 ? camp1scrs[0].ToString() : "0\n");
+        pnlString += " Campaign 2 => " + (camp2scrs.Count > 0 ? camp2scrs[0].ToString() : "0\n");
+        pnlString += " Campaign 3 => " + (camp3scrs.Count > 0 ? camp3scrs[0].ToString() : "0\n");
+        pnlString += " Campaign 4 => " + (camp4scrs.Count > 0 ? camp4scrs[0].ToString() : "0\n");
+
+        //foreach(HighScoreMeta scr in scores.Take(10)){
+        //    pnlString += scr.ToString() + "\n";
+        //}
+        //}
+        hScorePnl.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
     }
 
     void PopulateSkillsPanel(){

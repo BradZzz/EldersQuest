@@ -320,7 +320,7 @@ public class StaticClassRef
         foreach(string skll in u2.GetSkills()){
           reStr += " " + skll;
         }
-        reStr += " .";
+        reStr += ".";
       }
       return reStr;
     }

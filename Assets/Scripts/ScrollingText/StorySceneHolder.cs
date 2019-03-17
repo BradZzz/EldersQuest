@@ -25,6 +25,7 @@ public class StorySceneHolder : MonoBehaviour {
   private IEnumerator candleNUM;
   private bool gameEnded;
 
+    private FMOD.Studio.EventInstance musicIntro;
     private FMOD.Studio.EventInstance cutsceneSnapshot;
   //private float percentsPerSecond = 0.2f;
   //private float sceneProgress = 0;
@@ -37,7 +38,9 @@ public class StorySceneHolder : MonoBehaviour {
     lightIdx = 0;
         //lightNUM = SwitchLights();
         //candleNUM = SwitchCandles();
-        cutsceneSnapshot = FMODUnity.RuntimeManager.CreateInstance(FMODPaths.CutsceneSnapshot);
+    cutsceneSnapshot = FMODUnity.RuntimeManager.CreateInstance(FMODPaths.CutsceneSnapshot);
+    musicIntro = FMODUnity.RuntimeManager.CreateInstance(FMODPaths.MusicIntroEvent);
+
     StartCoroutine(SwitchLights());
     StartCoroutine(SwitchCandles());
     textHolder = new string[]{ };
@@ -93,6 +96,7 @@ public class StorySceneHolder : MonoBehaviour {
   {
     textBox.text = "";
     StartCoroutine(AnimateText());
+    musicIntro.start();
     cutsceneSnapshot.start();
   }
 
@@ -163,7 +167,9 @@ public class StorySceneHolder : MonoBehaviour {
     } else {
       SceneManager.LoadScene("CharSelectScreen");
     }
+        musicIntro.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         cutsceneSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         cutsceneSnapshot.release();
-  }
+        musicIntro.release();
+    }
 }

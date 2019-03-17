@@ -36,6 +36,7 @@
     #region Music
 
     public static readonly string MusicEvent = "event:/music_event";
+    public static readonly string MusicIntroEvent = "event:/music_intro";
 
     #endregion
 

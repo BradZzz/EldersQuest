@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*
   Static to keep track of win conditions
@@ -64,38 +65,17 @@ public class ConditionTracker : MonoBehaviour
     }
 
     public void EvalDeath(UnitProxy unit){
-        BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).RemoveGridObjectProxy(unit);
+        TileProxy tle = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
+        tle.CreateAnimation(Glossary.fx.bloodExplosions);
+        tle.FloatUp(Skill.Actions.None,"Death", Color.red,"Character died");
+        tle.RemoveGridObjectProxy(unit);
         Destroy(unit.gameObject);
-        ConditionTracker.instance.EvaluateGame();
+        EvaluateGame();
     }
 
     public void EndGame(bool won)
     {
         Debug.Log("EndGame: " + won.ToString());
-        //while (!AnimationInteractionController.AllAnimationsFinished()) {}
-        //BoardProxy.instance.gameOverPanel.SetActive(true);
-        //this.won = won;
-        //string txt = "Defeat";
-        //if (won){
-        //    List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
-        //      && unit.GetData().GetCurrHealth() > 0 && !unit.GetData().GetSummoned()).ToList();
-        //    PlayerMeta player = BaseSaver.GetPlayer();
-        //    List<Unit> pChars = units.Select(unit => new Unit(unit.GetData())).ToList();
-        //    List<string> dests = new List<string>(player.stats.dests);
-        //    foreach (string unlock in BaseSaver.GetBoard().unlocks)
-        //    {
-        //        if (!dests.Contains(unlock))
-        //        {
-        //            dests.Add(unlock);
-        //            unlkChar = true;
-        //        }
-        //    }
-        //    player.stats.dests = dests.ToArray();
-        //    player.characters = pChars.ToArray();
-        //    BaseSaver.PutPlayer(player);
-        //    txt = "Victory";
-        //}
-        //BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = txt;
         StartCoroutine(TimeEndGame(won));
     }
 
@@ -104,13 +84,64 @@ public class ConditionTracker : MonoBehaviour
             yield return new WaitForSeconds(AnimationInteractionController.AFTER_KILL);
         }
         BoardProxy.instance.gameOverPanel.SetActive(true);
+        BoardProxy.instance.gameOverPanel.transform.GetChild(2).gameObject.SetActive(false);
+
+        /*
+          Replace shit here
+        */
+
+        PlayerMeta player = BaseSaver.GetPlayer();
+        BoardMeta brd = BaseSaver.GetBoard();
+        Glossary glossy = BoardProxy.instance.glossary.GetComponent<Glossary>();
+
+        Unit.FactionType fact = won ? player.faction : brd.enemies[0].GetFactionType();
+        switch(fact){
+          case Unit.FactionType.Cthulhu:
+            BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<Image>().sprite = glossy.endBattleOverlayCthulhuLeft;
+            BoardProxy.instance.gameOverPanel.transform.GetChild(1).GetComponent<Image>().sprite = glossy.endBattleOverlayCthulhuRight;
+            break;
+          case Unit.FactionType.Egypt:
+            BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<Image>().sprite = glossy.endBattleOverlayEgyptLeft;
+            BoardProxy.instance.gameOverPanel.transform.GetChild(1).GetComponent<Image>().sprite = glossy.endBattleOverlayEgyptRight;
+            break;
+          case Unit.FactionType.Human:
+            BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<Image>().sprite = glossy.endBattleOverlayHumanLeft;
+            BoardProxy.instance.gameOverPanel.transform.GetChild(1).GetComponent<Image>().sprite = glossy.endBattleOverlayHumanRight;
+            break;
+          default:
+            BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<Image>().sprite = glossy.endBattleOverlaySusieLeft;
+            BoardProxy.instance.gameOverPanel.transform.GetChild(1).GetComponent<Image>().sprite = glossy.endBattleOverlaySusieRight;
+            break;
+        }
+
+        GameObject screenChild = BoardProxy.instance.gameOverPanel.transform.GetChild(0).gameObject;
+
+        Vector3 moveToPos = screenChild.transform.position;
+        float screenHeight = screenChild.GetComponent<RectTransform>().rect.height;
+
+        Vector3 startPosHigh = new Vector3(moveToPos.x,moveToPos.y + screenHeight,moveToPos.z);
+        Vector3 startPosLow = new Vector3(moveToPos.x,moveToPos.y - screenHeight,moveToPos.z);
+
+        BoardProxy.instance.gameOverPanel.transform.GetChild(0).localPosition = startPosHigh;
+        BoardProxy.instance.gameOverPanel.transform.GetChild(1).localPosition = startPosLow;
+
+        if (!won) {
+            BoardProxy.instance.gameOverPanel.transform.GetChild(2).gameObject.SetActive(true);
+            BoardProxy.instance.gameOverPanel.transform.GetChild(2).localPosition = startPosHigh;
+            iTween.MoveTo(BoardProxy.instance.gameOverPanel.transform.GetChild(2).gameObject, moveToPos, 3f);
+        }
+
+        iTween.MoveTo(BoardProxy.instance.gameOverPanel.transform.GetChild(0).gameObject, moveToPos, 1f);
+        iTween.MoveTo(BoardProxy.instance.gameOverPanel.transform.GetChild(1).gameObject, moveToPos, 1f);
+        
+
         MusicTransitionToMap();
         this.won = won;
         string txt = "Defeat";
         if (won){
             List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
               && unit.GetData().GetCurrHealth() > 0 && !unit.GetData().GetSummoned()).ToList();
-            PlayerMeta player = BaseSaver.GetPlayer();
+            //PlayerMeta player = BaseSaver.GetPlayer();
             List<Unit> pChars = new List<Unit>(player.characters);
             pChars.Reverse();
             //Remove the top three chars from the roster
@@ -151,7 +182,7 @@ public class ConditionTracker : MonoBehaviour
             BaseSaver.PutPlayer(player);
             txt = "Victory";
         }
-        BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = txt;
+        BoardProxy.instance.gameOverPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = txt;
     }
 
     public void GameOverNavController()

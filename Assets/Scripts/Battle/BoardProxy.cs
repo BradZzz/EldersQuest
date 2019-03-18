@@ -394,7 +394,7 @@ public class BoardProxy : MonoBehaviour
 
         foreach (UnitProxy unit in GetUnits().ToList())
         {
-            if (unit.GetData().GetCurrHealth() > 0) {
+            if (!unit.GetData().IsDead()) {
                 countDict[unit.GetData().GetTeam()] += 1;
             }
         }
@@ -446,7 +446,7 @@ public class BoardProxy : MonoBehaviour
         Vector3 position = grid.CellToLocal(new Vector3Int(tile.position.x, tile.position.y, 0));
         TileProxy nTile = Instantiate(prefab, position, Quaternion.identity, tileMap.transform);
         Glossary glossy = glossary.GetComponent<Glossary>();
-        nTile.Init(tile, glossy.fireTile, glossy.wallTile, glossy.divineTile, glossy.snowTile);
+        nTile.Init(tile, glossy.GetGrassTile(BaseSaver.GetPlayer().world), glossy.fireTile, glossy.wallTile, glossy.divineTile, glossy.snowTile);
         return nTile;
     }
 
@@ -489,6 +489,9 @@ public class BoardProxy : MonoBehaviour
           {
               if (t2.CanReceive(thingToMove))
               {
+                  if (t2.Frozen() && !allTiles) {
+                      return 2;
+                  }
                   return 1;
               }
               return allTiles ? 1 : int.MaxValue;

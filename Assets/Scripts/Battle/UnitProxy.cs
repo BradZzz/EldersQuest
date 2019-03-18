@@ -182,7 +182,7 @@ public class UnitProxy : GridObjectProxy
 
     IEnumerator GenerateProjectile(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish){
         Vector3 thisProjStart  = new Vector3(start.x + UnityEngine.Random.Range(-.1f,.1f),start.y + UnityEngine.Random.Range(-.1f,.1f),start.z);
-        Color projColor = Color.magenta;
+        Color projColor = Color.red;
         switch(oppUnit.GetData().GetFactionType()){
             case Unit.FactionType.Cthulhu:projColor=new Color(.93f,.57f,.93f);break;
             case Unit.FactionType.Egypt:projColor=Color.yellow;break;
@@ -337,8 +337,9 @@ public class UnitProxy : GridObjectProxy
         var currentTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
         var path = BoardProxy.instance.GetPath(currentTile, destination, this);
         yield return StartCoroutine(SetPathAndLerpToEnd(path));
-        if (callback != null)
+        if (callback != null){
             callback();
+        } 
     }
 
     protected virtual IEnumerator SetPathAndLerpToEnd(Path<TileProxy> path)
@@ -350,11 +351,6 @@ public class UnitProxy : GridObjectProxy
         }
         Animator anim = transform.GetChild(0).GetComponent<Animator>();
         if (anim != null) {
-            //if (anim.GetBool("MV_BACK_LEFT")) {
-            //    anim.SetBool("IDLE_FRONT_LEFT", false);
-            //} else {
-            //    anim.SetBool("IDLE_FRONT_LEFT", true);
-            //}
             anim.SetBool("MV_BACK_LEFT", false);
             anim.SetBool("MV_FRONT_LEFT", false);
         }
@@ -372,17 +368,9 @@ public class UnitProxy : GridObjectProxy
         Animator anim = transform.GetChild(0).GetComponent<Animator>();
         if (anim != null) {
           Vector3 theScale = transform.localScale;
-
           Vector3Int animStart = GetPosition();
           Vector3Int animEnd = tile.GetPosition();
-  
-          //Debug.Log("animStart: " + animStart.ToString());
-          //Debug.Log("animEnd: " + animEnd.ToString());
-
           Vector3 diff = animEnd - animStart;
-          //float turnWait = .1f;
-
-          //Debug.Log("Diff: " + diff.ToString());
 
           if (diff.x > 0) {
             Debug.Log("right");
@@ -428,7 +416,17 @@ public class UnitProxy : GridObjectProxy
         }
 
         data.SetPosition(tile.GetPosition());
-        tile.CreateAnimation(Glossary.fx.smoke1);;
+        if (!GetData().IsDead()) {
+            tile.CreateAnimation(Glossary.fx.smoke1);
+        }
+        if (tile.OnFire()) {
+            if (IsAttackedEnvironment(1)){
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+                transform.GetChild(0).GetComponent<Animator>().enabled = false;
+
+                //ConditionTracker.instance.EvalDeath(this);
+            }
+        }
     }
 
     public void ZapToTile(TileProxy newTl, TileProxy oldTl, string actStr){  

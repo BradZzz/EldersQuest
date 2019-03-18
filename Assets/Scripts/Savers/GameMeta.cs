@@ -22,7 +22,7 @@ public class GameMeta
   public GameMeta()
   {
     unlockedFactions = new Unit.FactionType[]{ Unit.FactionType.Human,Unit.FactionType.Cthulhu,Unit.FactionType.Egypt };
-    unlockedWorlds = new World[]{ World.nile,World.mountain,World.pyramid,World.candy };
+    unlockedWorlds = new World[]{ World.nile, World.mountain, World.pyramid, World.candy };
     scores = new HighScoreMeta[]{ };
     skillsSeen = new string[]{ };
     classesSeen = new string[]{ };

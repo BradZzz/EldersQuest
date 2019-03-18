@@ -53,6 +53,9 @@ public class Glossary : MonoBehaviour
     public ObstacleProxyEdit obstacleEditTile;
 
     public Sprite grassTile;
+    public Sprite grassTile2;
+    public Sprite grassTile3;
+    public Sprite grassTile4;
     public Sprite fireTile;
     public Sprite snowTile;
     public Sprite wallTile;
@@ -62,10 +65,31 @@ public class Glossary : MonoBehaviour
     public Sprite egyptFaction;
     public Sprite chtulhuFaction;
 
+    public Sprite endBattleOverlayHumanLeft;
+    public Sprite endBattleOverlayEgyptLeft;
+    public Sprite endBattleOverlayCthulhuLeft;
+    public Sprite endBattleOverlaySusieLeft;
+
+    public Sprite endBattleOverlayHumanRight;
+    public Sprite endBattleOverlayEgyptRight;
+    public Sprite endBattleOverlayCthulhuRight;
+    public Sprite endBattleOverlaySusieRight;
+
+    public Sprite endBattleBloodOverlay;
+
     public GameObject projectile;
     public GameObject exp;
 
     public Sprite[] ranks;
+
+    public Sprite GetGrassTile(GameMeta.World wrld){
+      switch(wrld){
+          case GameMeta.World.mountain:return grassTile2;
+          case GameMeta.World.pyramid:return grassTile3;
+          case GameMeta.World.candy:return grassTile4;
+          default: return grassTile;
+      }
+    }
 
     public static fx GetAtkFx(Unit.FactionType faction, Unit.UnitType unit){
         switch(faction){

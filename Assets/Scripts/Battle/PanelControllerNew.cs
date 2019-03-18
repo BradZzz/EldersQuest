@@ -107,26 +107,29 @@ public class PanelControllerNew : MonoBehaviour
         ClearPanels();
         if (player != null && enemy != null) {
             //Debug.Log("Attacking Chars: " + player.GetData().characterMoniker + "-" + enemy.GetData().characterMoniker);
-            LoadPlayerPanel(player);
-            LoadEnemyPanel(enemy);
+            int playerDmg = enemy.GetData().GetTurnActions().CanAttack() ? (TurnController.instance.currentTeam == BoardProxy.PLAYER_TEAM ? 0 : enemy.GetData().GetAttack()) : 0;
+            int enemyDmg = player.GetData().GetTurnActions().CanAttack() ? (TurnController.instance.currentTeam == BoardProxy.ENEMY_TEAM ? 0 : player.GetData().GetAttack()) : 0;
+
+            LoadPlayerPanel(player, playerDmg);
+            LoadEnemyPanel(enemy, enemyDmg);
         }
     }
 
-    static void LoadPlayerPanel(UnitProxy unit){
+    static void LoadPlayerPanel(UnitProxy unit, int hpMissing = 0){
         List<UnitProxy> remainingPlayers = new List<UnitProxy>(instance.players.Where(unt => unt.GetData().GetCurrHealth() > 0));
         remainingPlayers.Remove(unit);
-        LoadPanelSuite(instance.playerMain, instance.playerSub1, instance.playerSub2, instance.playerSub3, unit, remainingPlayers);
+        LoadPanelSuite(instance.playerMain, instance.playerSub1, instance.playerSub2, instance.playerSub3, unit, remainingPlayers, hpMissing);
     }
 
-    static void LoadEnemyPanel(UnitProxy unit){
+    static void LoadEnemyPanel(UnitProxy unit, int hpMissing = 0){
         List<UnitProxy> remainingEnemies = new List<UnitProxy>(instance.enemies.Where(unt => unt.GetData().GetCurrHealth() > 0));
         remainingEnemies.Remove(unit);
-        LoadPanelSuite(instance.enemyMain, instance.enemySub1, instance.enemySub2, instance.enemySub3, unit, remainingEnemies);
+        LoadPanelSuite(instance.enemyMain, instance.enemySub1, instance.enemySub2, instance.enemySub3, unit, remainingEnemies, hpMissing);
     }
 
-    static void LoadPanelSuite(GameObject main, GameObject sub1, GameObject sub2, GameObject sub3, UnitProxy unit, List<UnitProxy> remainingUnits){
+    static void LoadPanelSuite(GameObject main, GameObject sub1, GameObject sub2, GameObject sub3, UnitProxy unit, List<UnitProxy> remainingUnits, int hpMissing = 0){
         remainingUnits.Remove(unit);
-        RefreshMainPanel(main, unit);
+        RefreshMainPanel(main, unit, hpMissing);
         if (remainingUnits.Count > 0) {
             RefreshSubPanel(sub1, remainingUnits[0]);
         }
@@ -138,7 +141,8 @@ public class PanelControllerNew : MonoBehaviour
         }
     }
 
-    static void RefreshMainPanel(GameObject panel, UnitProxy unit){
+    static void RefreshMainPanel(GameObject panel, UnitProxy unit, int hpMissing = 0){
+        Debug.Log("RefreshMainPanel: " + hpMissing.ToString());
         panel.SetActive(true);
         foreach(Transform child in panel.transform.GetChild(0)){
             if (child.name.Equals("CharImg")) {
@@ -186,6 +190,11 @@ public class PanelControllerNew : MonoBehaviour
                     if (t.name.Equals("HealthFillBar"))
                     {
                       t.GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().GetMaxHP();
+                    } else if (t.name.Equals("HealthFillBarPredict"))
+                    {
+                      float predicted = (float) unit.GetData().GetCurrHealth() - hpMissing;
+                      predicted = predicted < 0 ? 0 : predicted;
+                      t.GetComponent<Image>().fillAmount = predicted / (float)unit.GetData().GetMaxHP();
                     } else if (t.name.Equals("HealthText"))
                     {
                       t.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetCurrHealth().ToString() + " / " + unit.GetData().GetMaxHP().ToString();

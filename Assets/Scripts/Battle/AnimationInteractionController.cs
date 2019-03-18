@@ -68,40 +68,56 @@ public class AnimationInteractionController : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         //Debug.Log("FloatUpAnim");
-        Vector3 pos = oTransform.position;
-        //Debug.Log("FloatUpAnim pos: " + pos.ToString());
-        //pos.x += .3f;
-        //pos.y += 1f;
-        if (oTransform.GetComponent<TileProxy>() != null) {
-            pos.x -= .3f;
-            pos.y += .5f;
-        } else {
-            //pos.x -= .3f;
-            pos.y += 1f;
-        }
-        if (shakeChar){
-            yield return new WaitForSeconds(.2f);
-            oTransform.GetComponent<UnitProxy>().Shake();
-            PlayImpactSound();
-        }
-        GameObject numObj = new GameObject();
-        numObj.transform.position = pos;
-        numObj.transform.rotation = Quaternion.identity;
-        numObj.transform.parent = oTransform;
-        numObj.AddComponent<TextMesh>();
-        numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
-        numObj.GetComponent<TextMesh>().characterSize = .2f;
-        numObj.GetComponent<TextMesh>().text = msg;
-        numObj.GetComponent<TextMesh>().color = color;
-        iTween.ShakePosition(numObj,new Vector3(0,.5f,0), .3f);
-        iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .3f,pos.z), .3f);
-        yield return new WaitForSeconds(.4f);
-        Destroy(numObj);
-        yield return null;
-        if (deathConsideration) {
-            UnitProxy unit = oTransform.GetComponent<UnitProxy>();
-            if (unit.GetData().IsDead()) {
-                ConditionTracker.instance.EvalDeath(unit);  
+        if (oTransform != null){
+            Vector3 pos = oTransform.position;
+            //Debug.Log("FloatUpAnim pos: " + pos.ToString());
+            //pos.x += .3f;
+            //pos.y += 1f;
+            if (oTransform.GetComponent<TileProxy>() != null) {
+                pos.x -= .3f;
+                pos.y += .5f;
+            } else {
+                //pos.x -= .3f;
+                pos.y += 1f;
+            }
+            if (shakeChar){
+                yield return new WaitForSeconds(.2f);
+                oTransform.GetComponent<UnitProxy>().Shake();
+                PlayImpactSound();
+            }
+            //GameObject numObj = new GameObject();
+            //numObj.transform.position = pos;
+            //numObj.transform.rotation = Quaternion.identity;
+            //numObj.transform.parent = oTransform;
+            //numObj.AddComponent<TextMesh>();
+            //numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
+            //numObj.GetComponent<TextMesh>().characterSize = .2f;
+            //numObj.GetComponent<TextMesh>().text = msg;
+            //numObj.GetComponent<TextMesh>().color = color;
+            //iTween.ShakePosition(numObj,new Vector3(0,.5f,0), .3f);
+            //iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .3f,pos.z), .3f);
+            //yield return new WaitForSeconds(.4f);
+            //Destroy(numObj);
+            //yield return null;
+            if (deathConsideration) {
+                UnitProxy unit = oTransform.GetComponent<UnitProxy>();
+                if (unit.GetData().IsDead()) {
+                    ConditionTracker.instance.EvalDeath(unit);  
+                }
+            } else {
+                GameObject numObj = new GameObject();
+                numObj.transform.position = pos;
+                numObj.transform.rotation = Quaternion.identity;
+                numObj.transform.parent = oTransform;
+                numObj.AddComponent<TextMesh>();
+                numObj.GetComponent<MeshRenderer>().sortingOrder = 20000;
+                numObj.GetComponent<TextMesh>().characterSize = .2f;
+                numObj.GetComponent<TextMesh>().text = msg;
+                numObj.GetComponent<TextMesh>().color = color;
+                iTween.ShakePosition(numObj,new Vector3(0,.5f,0), .3f);
+                iTween.MoveTo(numObj,new Vector3(pos.x,pos.y + .3f,pos.z), .3f);
+                yield return new WaitForSeconds(.4f);
+                Destroy(numObj);
             }
         }
     }

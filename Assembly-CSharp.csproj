@@ -396,6 +396,7 @@
     <Compile Include="Assets\Scripts\Stats\StatsNav.cs" />
     <Compile Include="Assets\Scripts\TechTree\TechTreeNav.cs" />
     <Compile Include="Assets\Scripts\TechTree\TechTreeUnitWrap.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\TutorialMsgController.cs" />
     <Compile Include="Assets\Scripts\Utils\Character.cs" />
     <Compile Include="Assets\Scripts\Utils\CharStatCalculator.cs" />
     <Compile Include="Assets\Scripts\Utils\Draggable.cs" />

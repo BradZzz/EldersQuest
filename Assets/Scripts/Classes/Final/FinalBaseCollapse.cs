@@ -12,7 +12,7 @@ public class FinalBaseCollapse : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\n+2 atk trn\n+1 mv trn";
+    return "+1 hp\n+1 atk trn\n+1 mv trn";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class FinalBaseCollapse : ClassNode
   {
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       unit.SetMaxHP(unit.GetMaxHP() + 1);
-      unit.SetTurnAttacks(unit.GetTurnAttacks() + 2);
+      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
 }

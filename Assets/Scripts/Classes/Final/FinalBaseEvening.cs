@@ -12,7 +12,7 @@ public class FinalBaseEvening : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\n+3 mv";
+    return "+1 hp\n+3 mv";
   }
 
   public override string ClassName()
@@ -31,7 +31,7 @@ public class FinalBaseEvening : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 3);
-      unit.SetMaxHP(unit.GetMaxHP() + 2);
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
       return unit;
   }
 }

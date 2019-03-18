@@ -12,7 +12,7 @@ public class FinalBaseTwilight : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2hp\nRageAtk";
+    return "+1 hp\nRageAtk";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class FinalBaseTwilight : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 2);
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("RageAtk");
       unit.SetSkills(skills.ToArray());

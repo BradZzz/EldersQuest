@@ -12,7 +12,7 @@ public class CthulhuBaseScout : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn\n+1 atk trn\nHealWait";
+    return "+1 mv trn\nHealWait";
   }
 
   public override string ClassName()
@@ -31,7 +31,6 @@ public class CthulhuBaseScout : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
-      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("HealWait");
       unit.SetSkills(skills.ToArray());

@@ -24,6 +24,9 @@ public class StorySceneHolder : MonoBehaviour {
   private IEnumerator lightNUM;
   private IEnumerator candleNUM;
   private bool gameEnded;
+
+    private FMOD.Studio.EventInstance musicIntro;
+    private FMOD.Studio.EventInstance cutsceneSnapshot;
   //private float percentsPerSecond = 0.2f;
   //private float sceneProgress = 0;
 
@@ -33,8 +36,11 @@ public class StorySceneHolder : MonoBehaviour {
     waiting = false;
     candleIdx = 0;
     lightIdx = 0;
-    //lightNUM = SwitchLights();
-    //candleNUM = SwitchCandles();
+        //lightNUM = SwitchLights();
+        //candleNUM = SwitchCandles();
+    cutsceneSnapshot = FMODUnity.RuntimeManager.CreateInstance(FMODPaths.CutsceneSnapshot);
+    musicIntro = FMODUnity.RuntimeManager.CreateInstance(FMODPaths.MusicIntroEvent);
+
     StartCoroutine(SwitchLights());
     StartCoroutine(SwitchCandles());
     textHolder = new string[]{ };
@@ -90,6 +96,8 @@ public class StorySceneHolder : MonoBehaviour {
   {
     textBox.text = "";
     StartCoroutine(AnimateText());
+    musicIntro.start();
+    cutsceneSnapshot.start();
   }
 
   void FixedUpdate()
@@ -136,7 +144,7 @@ public class StorySceneHolder : MonoBehaviour {
     StartCoroutine(SwitchCandles());
     idx++;
     StartCoroutine(AnimateText());
-  }
+    }
 
   IEnumerator AnimateText()
   {
@@ -147,7 +155,8 @@ public class StorySceneHolder : MonoBehaviour {
       if (txtIdx > 0 && Array.IndexOf(stops, textHolder[idx][txtIdx-1]) > -1){
         yield return new WaitForSeconds(1f);
       }
-      yield return new WaitForSeconds(.08f);
+            FMODUnity.RuntimeManager.PlayOneShot(FMODPaths.TypeSound);
+            yield return new WaitForSeconds(.08f);
     }
     clickToContinue.SetActive(true);
   }
@@ -158,5 +167,9 @@ public class StorySceneHolder : MonoBehaviour {
     } else {
       SceneManager.LoadScene("CharSelectScreen");
     }
-  }
+        musicIntro.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        cutsceneSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        cutsceneSnapshot.release();
+        musicIntro.release();
+    }
 }

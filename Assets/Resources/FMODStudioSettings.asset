@@ -18,7 +18,7 @@ MonoBehaviour:
   SourceProjectPathUnformatted: 
   SourceBankPathUnformatted: Assets\Audio\FMOD Banks
   AutomaticEventLoading: 1
-  AutomaticSampleLoading: 0
+  AutomaticSampleLoading: 1
   ImportType: 0
   TargetAssetPath: 
   LoggingLevel: 2

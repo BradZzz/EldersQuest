@@ -394,7 +394,7 @@ public class BoardProxy : MonoBehaviour
 
         foreach (UnitProxy unit in GetUnits().ToList())
         {
-            if (unit.GetData().GetCurrHealth() > 0) {
+            if (!unit.GetData().IsDead()) {
                 countDict[unit.GetData().GetTeam()] += 1;
             }
         }

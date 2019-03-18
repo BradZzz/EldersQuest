@@ -45,6 +45,52 @@ public class StoryStatic : MonoBehaviour
 
     public static string CTHULHU_WIN = "With the humans oppressed, and the Egyptian Gods defeated, Cthulhu moved into his mansion carved into the side of the mountains, overlooking Blood Lake. Demons ran rampant as darkness fell over the land. Let the fun begin...";
 
+    public static string[] GetMapTutorialString(){
+        PlayerMeta player = BaseSaver.GetPlayer();
+        Dests dest = (Dests)Enum.Parse(typeof(Dests), player.stats.dests[player.stats.dests.Length - 1]);
+        switch(dest){
+          case Dests.Dest1:return new string[]{"Welcome to the world of Elder's Quest. This tutorial will help guide you through the basics. To get started, tap twice on the red destination on the map." };
+          case Dests.Dest2:return new string[]{"As you play through the game, this world map will slowly expand. Click on the next red destination to continue." };
+          case Dests.Dest3:return new string[]{"You can upgrade your characters by clicking on the icon in the top right. Feel free to use it to get acquianted with what each character can do." };
+          case Dests.Dest4:return new string[]{"Look at the enemies in your next location to try and build a roster with the right units. A character that works well in one situation may not be as useful in another." };
+          case Dests.Dest5:return new string[]{"A general glossary and statistics page can be found on the main screen. This screen can be useful for remembering class composition and knowing what each skill does." };
+          default: return new string[]{  };
+        }
+    }
+
+    public static string[] GetClassSelectTutorialString(){
+        PlayerMeta player = BaseSaver.GetPlayer();
+        Dests dest = (Dests)Enum.Parse(typeof(Dests), player.stats.dests[player.stats.dests.Length - 1]);
+        switch(dest){
+          case Dests.Dest1:return new string[]{""};
+          case Dests.Dest2:return new string[]{"When a battle is won, you get a chance to recruit a new unit. Let's click on the Scout unit to add a Scout to our team."};
+          case Dests.Dest3:return new string[]{"You won another battle! Way to go! Let's add a Mage unit to our army this time." };
+          case Dests.Dest4:return new string[]{"As long as you have less than 5 units in your roster, you will be allowed to add another unit to your team after a battle. Feel free to add whichever unit you like here." };
+          case Dests.Dest5:return new string[]{ "Add your final unit in preparation for the last tutorial battle." };
+          default: return new string[]{  };
+        }
+    }
+
+    public static string[] GetTechTutorialString(){
+        PlayerMeta player = BaseSaver.GetPlayer();
+        Dests dest = (Dests)Enum.Parse(typeof(Dests), player.stats.dests[player.stats.dests.Length - 1]);
+        switch(dest){
+          case Dests.Dest1:return new string[]{};
+          case Dests.Dest2:return new string[]{};
+          case Dests.Dest3:return new string[]{ 
+            "When a unit gains enough experience they will be allowed to upgrade classes. To check if a unit can be upgraded, first click on the unit, then look at the number above it's current class.",
+            "When you come to this screen after battle, it is because one or more of your units is ready to be upgraded. Click on the unit with the moving star, then select one it's upgraded classes to continue.",
+            "Try to experiment with different classes with your units. Only by building carefully and figuring out what each class does can you defeat Susie and decide the fate of the world."
+           };
+          case Dests.Dest4:return new string[]{ 
+            "There are hundreds of classes in Elder's Tale. Not all of them upgrade evenly. Classes that are stronger early in the game might be lacking at the end.",
+            "Try to upgrade your units into classes that complement each other well."
+           };
+          case Dests.Dest5:return new string[]{ "This screen can be accessed from the adventure map as well by clicking on it's icon in the upper right corner of the screen." };
+          default: return new string[]{  };
+        }
+    }
+
     public static string GetLevelStory(){
         PlayerMeta player = BaseSaver.GetPlayer();
         GameMeta.World world = player.world;
@@ -53,11 +99,11 @@ public class StoryStatic : MonoBehaviour
         switch(world){
           case GameMeta.World.tutorial: 
             switch(dest){
-              case Dests.Dest1: return "Welcome to the world of elder's quest this first tutorial is meant to guide you through the basics.";
-              case Dests.Dest2: return "Great! Let's move on to units with multiple attacks and movements!";
-              case Dests.Dest3: return "For the next mission, let's add some ranged units to the mix! In Elder's Quest, each team can have up to three units on the field at a time.";
-              case Dests.Dest4: return "Sometimes tiles can have different effects in battle. Pay attention to the effect each type of special tile has.";
-              case Dests.Dest5: return "Let's combine everything we have just learned. Finish this battle to end the tutorial.";
+              case Dests.Dest1: return "Greetings Recruit! Click on your tank to bring up it's moveable tiles. Move it near that enemy unit and attack it!";
+              case Dests.Dest2: return "A human Scout unit is faster and has more moves per turn than a normal unit. Use it to your advantage to attack weak units and units with aegis.";
+              case Dests.Dest3: return "Let's add a Mage unit to the mix! These units are usually slower and weaker than normal units with high attack power and range. Try to hide these classes behind obstacles for cover.";
+              case Dests.Dest4: return "Sometimes tiles can have different effects in battle. Snow slows 1 move. Fire damages 1 hp. Divine heals 1 hp at the end of the turn.";
+              case Dests.Dest5: return "Each team can only bring three units at a time into battle. The order of the roster is decided on the tech screen where units are upgraded.";
             }
           break;
           case GameMeta.World.nile: 

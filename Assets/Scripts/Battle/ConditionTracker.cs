@@ -67,7 +67,7 @@ public class ConditionTracker : MonoBehaviour
     public void EvalDeath(UnitProxy unit){
         BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).RemoveGridObjectProxy(unit);
         Destroy(unit.gameObject);
-        ConditionTracker.instance.EvaluateGame();
+        EvaluateGame();
     }
 
     public void EndGame(bool won)

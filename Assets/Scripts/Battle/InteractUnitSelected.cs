@@ -21,11 +21,11 @@ public class InteractUnitSelected : InteractMode
                 toAttack = null;
                 TileProxy startTile = BoardProxy.instance.GetTileAtPosition(currentUnit.GetPosition());
                 if (startTile != tile) {
-                    UnitProxy unit = startTile.GetUnit();
-                    if (unit.GetData().GetTurnActions().CanMove())
+                    //UnitProxy unit = startTile.GetUnit();
+                    if (currentUnit.GetData().GetTurnActions().CanMove())
                     {
-                        unit.GetData().GetTurnActions().Move();
-                        PanelControllerNew.SwitchChar(unit);
+                        currentUnit.GetData().GetTurnActions().Move();
+                        PanelControllerNew.SwitchChar(currentUnit);
                         UnitMoving = true;
                         StartCoroutine(currentUnit.CreatePathToTileAndLerpToPosition(tile,
                         () =>
@@ -33,6 +33,9 @@ public class InteractUnitSelected : InteractMode
                             tile.ReceiveGridObjectProxy(currentUnit);
                             startTile.RemoveGridObjectProxy(currentUnit);
                             UnHighlightTiles();
+                            if (currentUnit != null && currentUnit.GetData().IsDead()) {
+                                ConditionTracker.instance.EvalDeath(currentUnit);
+                            }
                             InteractivityManager.instance.EnterDefaultMode();
                             UnitMoving = false;
                         }));

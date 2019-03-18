@@ -337,8 +337,9 @@ public class UnitProxy : GridObjectProxy
         var currentTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
         var path = BoardProxy.instance.GetPath(currentTile, destination, this);
         yield return StartCoroutine(SetPathAndLerpToEnd(path));
-        if (callback != null)
+        if (callback != null){
             callback();
+        } 
     }
 
     protected virtual IEnumerator SetPathAndLerpToEnd(Path<TileProxy> path)
@@ -415,9 +416,16 @@ public class UnitProxy : GridObjectProxy
         }
 
         data.SetPosition(tile.GetPosition());
-        tile.CreateAnimation(Glossary.fx.smoke1);
+        if (!GetData().IsDead()) {
+            tile.CreateAnimation(Glossary.fx.smoke1);
+        }
         if (tile.OnFire()) {
-            IsAttackedEnvironment(1);
+            if (IsAttackedEnvironment(1)){
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+                transform.GetChild(0).GetComponent<Animator>().enabled = false;
+
+                //ConditionTracker.instance.EvalDeath(this);
+            }
         }
     }
 

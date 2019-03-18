@@ -57,9 +57,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
         transform.position = BoardProxy.instance.grid.CellToLocal(tile.position);
     }
 
-    public void Init(Tile t, Sprite fireAlt, Sprite wallAlt, Sprite divineAlt, Sprite snowAlt)
+    public void Init(Tile t, Sprite grassDef, Sprite fireAlt, Sprite wallAlt, Sprite divineAlt, Sprite snowAlt)
     {
-        def = GetComponent<SpriteRenderer>().sprite;
+        def = GetComponent<SpriteRenderer>().sprite = grassDef;
         this.fireAlt = fireAlt;
         this.wallAlt = wallAlt;
         this.divineAlt = divineAlt;
@@ -244,7 +244,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     }
 
     public bool OnFire(){
-        return fireTrns > 0 || lifetimeFire;
+        return fireTrns > 0 || (lifetimeFire && !CheckTemps());
     }
 
     /*
@@ -263,19 +263,20 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     void CheckWall(){
         if (IsWall()) {
             GetComponent<SpriteRenderer>().sprite = wallAlt;
-            List<ObstacleProxy> obsList = new List<ObstacleProxy>(BoardProxy.instance.glossary.GetComponent<Glossary>().obstacles);
-            //obsList.RemoveAt(0);
-            ObstacleProxy[] obsArr = obsList.ToArray();
-            HelperScripts.Shuffle(obsArr);
-            ObstacleProxy obs = Instantiate(obsArr[0], transform);
-            obs.Init();
-            ReceiveGridObjectProxy(obs);
-            obs.SnapToCurrentPosition();
+            if (!HasObstacle()) {
+                List<ObstacleProxy> obsList = new List<ObstacleProxy>(BoardProxy.instance.glossary.GetComponent<Glossary>().obstacles);
+                ObstacleProxy[] obsArr = obsList.ToArray();
+                HelperScripts.Shuffle(obsArr);
+                ObstacleProxy obs = Instantiate(obsArr[0], transform);
+                obs.Init();
+                ReceiveGridObjectProxy(obs);
+                obs.SnapToCurrentPosition();
+            }
         }
     }
 
     public bool IsWall(){
-        return wallTrns > 0 || lifetimeWall;
+        return wallTrns > 0 || (lifetimeWall && !CheckTemps());
     }
 
     /*
@@ -298,7 +299,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     }
 
     public bool IsDivine(){
-        return divineTrns > 0 || lifetimeDivine;
+        return divineTrns > 0 || (lifetimeDivine && !CheckTemps());
     }
 
     /*
@@ -321,7 +322,18 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     }
 
     public bool Frozen(){
-        return snowTrns > 0 || lifetimeSnow;
+        return snowTrns > 0 || (lifetimeSnow && !CheckTemps());
+    }
+
+    bool CheckTemps(){
+        return snowTrns > 0 || divineTrns > 0 || wallTrns > 0 || fireTrns > 0;
+    }
+
+    void CheckAll(){
+        CheckWall();
+        CheckDivine();
+        CheckFrozen();
+        CheckFire();
     }
 
     public void DecrementTileEffects(){
@@ -368,6 +380,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
         if (!OnFire() && !IsWall() && !Frozen() && !IsDivine()) {
             GetComponent<SpriteRenderer>().sprite = def;
             unitThatSetTileOnFire = null;
+        } else {
+            CheckAll();
         }
     }
 

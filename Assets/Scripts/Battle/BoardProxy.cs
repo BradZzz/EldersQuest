@@ -446,7 +446,7 @@ public class BoardProxy : MonoBehaviour
         Vector3 position = grid.CellToLocal(new Vector3Int(tile.position.x, tile.position.y, 0));
         TileProxy nTile = Instantiate(prefab, position, Quaternion.identity, tileMap.transform);
         Glossary glossy = glossary.GetComponent<Glossary>();
-        nTile.Init(tile, glossy.fireTile, glossy.wallTile, glossy.divineTile, glossy.snowTile);
+        nTile.Init(tile, glossy.GetGrassTile(BaseSaver.GetPlayer().world), glossy.fireTile, glossy.wallTile, glossy.divineTile, glossy.snowTile);
         return nTile;
     }
 

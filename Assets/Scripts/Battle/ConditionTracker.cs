@@ -65,7 +65,10 @@ public class ConditionTracker : MonoBehaviour
     }
 
     public void EvalDeath(UnitProxy unit){
-        BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).RemoveGridObjectProxy(unit);
+        TileProxy tle = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
+        tle.CreateAnimation(Glossary.fx.bloodExplosions);
+        tle.FloatUp(Skill.Actions.None,"Death", Color.red,"Character died");
+        tle.RemoveGridObjectProxy(unit);
         Destroy(unit.gameObject);
         EvaluateGame();
     }
@@ -73,30 +76,6 @@ public class ConditionTracker : MonoBehaviour
     public void EndGame(bool won)
     {
         Debug.Log("EndGame: " + won.ToString());
-        //while (!AnimationInteractionController.AllAnimationsFinished()) {}
-        //BoardProxy.instance.gameOverPanel.SetActive(true);
-        //this.won = won;
-        //string txt = "Defeat";
-        //if (won){
-        //    List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
-        //      && unit.GetData().GetCurrHealth() > 0 && !unit.GetData().GetSummoned()).ToList();
-        //    PlayerMeta player = BaseSaver.GetPlayer();
-        //    List<Unit> pChars = units.Select(unit => new Unit(unit.GetData())).ToList();
-        //    List<string> dests = new List<string>(player.stats.dests);
-        //    foreach (string unlock in BaseSaver.GetBoard().unlocks)
-        //    {
-        //        if (!dests.Contains(unlock))
-        //        {
-        //            dests.Add(unlock);
-        //            unlkChar = true;
-        //        }
-        //    }
-        //    player.stats.dests = dests.ToArray();
-        //    player.characters = pChars.ToArray();
-        //    BaseSaver.PutPlayer(player);
-        //    txt = "Victory";
-        //}
-        //BoardProxy.instance.gameOverPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = txt;
         StartCoroutine(TimeEndGame(won));
     }
 

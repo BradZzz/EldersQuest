@@ -117,6 +117,9 @@ MonoBehaviour:
   obstacleEditTile: {fileID: 1553559020197025034, guid: 8b71c773e5bfc47c2bd6aa7e2850cbd1,
     type: 3}
   grassTile: {fileID: 21300000, guid: 5e5dd0295210649c38631481ac833d37, type: 3}
+  grassTile2: {fileID: 21300000, guid: 348d7f42b2d01435d85e350afba6bf2a, type: 3}
+  grassTile3: {fileID: 21300000, guid: 952bfe1590f3a41e5bcbceb38df54b0c, type: 3}
+  grassTile4: {fileID: 21300000, guid: d23eb5851857e4479a91cf1311120c93, type: 3}
   fireTile: {fileID: 21300000, guid: e91540f9e667f4d4bb3f4fdc0bc15a80, type: 3}
   snowTile: {fileID: 21300000, guid: 751d064212f3e49feaf85afda7fdd0ee, type: 3}
   wallTile: {fileID: 21300000, guid: 91474ce6b5dbe467cb9076207f47292a, type: 3}

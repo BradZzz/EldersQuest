@@ -489,6 +489,9 @@ public class BoardProxy : MonoBehaviour
           {
               if (t2.CanReceive(thingToMove))
               {
+                  if (t2.Frozen() && !allTiles) {
+                      return 2;
+                  }
                   return 1;
               }
               return allTiles ? 1 : int.MaxValue;

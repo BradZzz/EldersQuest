@@ -124,6 +124,24 @@ MonoBehaviour:
   humanFaction: {fileID: 21300000, guid: 8c7677b1b1feb4246a69c72abe184ab0, type: 3}
   egyptFaction: {fileID: 21300000, guid: 78b328d1600734797ace9dc573f365bc, type: 3}
   chtulhuFaction: {fileID: 21300000, guid: a33e193c23cb543ed85e4f1b304bc281, type: 3}
+  endBattleOverlayHumanLeft: {fileID: 21300000, guid: ad865c6731a1c42e88a1b5c198af1e54,
+    type: 3}
+  endBattleOverlayEgyptLeft: {fileID: 21300000, guid: ad865c6731a1c42e88a1b5c198af1e54,
+    type: 3}
+  endBattleOverlayCthulhuLeft: {fileID: 21300000, guid: 594d26e3346bf4eff887f864db52e803,
+    type: 3}
+  endBattleOverlaySusieLeft: {fileID: 21300000, guid: 594d26e3346bf4eff887f864db52e803,
+    type: 3}
+  endBattleOverlayHumanRight: {fileID: 21300000, guid: 21bf13ed42b694c04ab7e758f268d057,
+    type: 3}
+  endBattleOverlayEgyptRight: {fileID: 21300000, guid: c2a4bcb86211845569b42c8773489ad7,
+    type: 3}
+  endBattleOverlayCthulhuRight: {fileID: 21300000, guid: 21bf13ed42b694c04ab7e758f268d057,
+    type: 3}
+  endBattleOverlaySusieRight: {fileID: 21300000, guid: 288b65ac4ab664e7097d3529c3fa5e0c,
+    type: 3}
+  endBattleBloodOverlay: {fileID: 21300000, guid: 0a1997a911d0a4717b880ac3a8af429a,
+    type: 3}
   projectile: {fileID: 3160763873199545935, guid: 8e897f043a9ae4e4e8d8519577538842,
     type: 3}
   exp: {fileID: 3160763873199545935, guid: a64f876d5ac9f491b834912b43a56c29, type: 3}

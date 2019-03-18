@@ -350,11 +350,6 @@ public class UnitProxy : GridObjectProxy
         }
         Animator anim = transform.GetChild(0).GetComponent<Animator>();
         if (anim != null) {
-            //if (anim.GetBool("MV_BACK_LEFT")) {
-            //    anim.SetBool("IDLE_FRONT_LEFT", false);
-            //} else {
-            //    anim.SetBool("IDLE_FRONT_LEFT", true);
-            //}
             anim.SetBool("MV_BACK_LEFT", false);
             anim.SetBool("MV_FRONT_LEFT", false);
         }
@@ -372,17 +367,9 @@ public class UnitProxy : GridObjectProxy
         Animator anim = transform.GetChild(0).GetComponent<Animator>();
         if (anim != null) {
           Vector3 theScale = transform.localScale;
-
           Vector3Int animStart = GetPosition();
           Vector3Int animEnd = tile.GetPosition();
-  
-          //Debug.Log("animStart: " + animStart.ToString());
-          //Debug.Log("animEnd: " + animEnd.ToString());
-
           Vector3 diff = animEnd - animStart;
-          //float turnWait = .1f;
-
-          //Debug.Log("Diff: " + diff.ToString());
 
           if (diff.x > 0) {
             Debug.Log("right");
@@ -428,7 +415,10 @@ public class UnitProxy : GridObjectProxy
         }
 
         data.SetPosition(tile.GetPosition());
-        tile.CreateAnimation(Glossary.fx.smoke1);;
+        tile.CreateAnimation(Glossary.fx.smoke1);
+        if (tile.OnFire()) {
+            IsAttackedEnvironment(1);
+        }
     }
 
     public void ZapToTile(TileProxy newTl, TileProxy oldTl, string actStr){  

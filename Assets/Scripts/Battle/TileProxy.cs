@@ -325,15 +325,15 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     }
 
     public void DecrementTileEffects(){
-        if (OnFire() && HasUnit()) {
-            //Only injure unit from fire if it's that unit's team's turn
-            if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && GetUnit().IsAttackedEnvironment(1)){
-                if (unitThatSetTileOnFire != null) {
-                    unitThatSetTileOnFire.GetData().SetLvl(unitThatSetTileOnFire.GetData().GetLvl() + 1);
-                }
-                ConditionTracker.instance.EvalDeath(GetUnit());
-            }
-        }
+        //if (OnFire() && HasUnit()) {
+        //    //Only injure unit from fire if it's that unit's team's turn
+        //    if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && GetUnit().IsAttackedEnvironment(1)){
+        //        if (unitThatSetTileOnFire != null) {
+        //            unitThatSetTileOnFire.GetData().SetLvl(unitThatSetTileOnFire.GetData().GetLvl() + 1);
+        //        }
+        //        ConditionTracker.instance.EvalDeath(GetUnit());
+        //    }
+        //}
 
         if (IsDivine() && HasUnit()) {
             //Divine tiles heal
@@ -343,18 +343,18 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             }
         }
 
-        if (Frozen() && HasUnit()) {
-            //Snow tiles apply enfeeble and rooted at the end of the turn
-            if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && stuckUnit != GetUnit()){
-                stuckUnit = GetUnit();
-                FloatUp(Skill.Actions.None, "enfeebled", Color.red, "Enfeebled from tile");
-                FloatUp(Skill.Actions.None, "rooted", Color.red, "Rooted from tile");
-                GetUnit().GetData().GetTurnActions().EnfeebledForTurns(1);
-                GetUnit().GetData().GetTurnActions().RootForTurns(1);
-            } else if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && stuckUnit == GetUnit()){
-                stuckUnit = null;
-            }
-        }
+        //if (Frozen() && HasUnit()) {
+        //    //Snow tiles apply enfeeble and rooted at the end of the turn
+        //    if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && stuckUnit != GetUnit()){
+        //        stuckUnit = GetUnit();
+        //        FloatUp(Skill.Actions.None, "enfeebled", Color.red, "Enfeebled from tile");
+        //        FloatUp(Skill.Actions.None, "rooted", Color.red, "Rooted from tile");
+        //        GetUnit().GetData().GetTurnActions().EnfeebledForTurns(1);
+        //        GetUnit().GetData().GetTurnActions().RootForTurns(1);
+        //    } else if (GetUnit().GetData().GetTeam() == TurnController.instance.currentTeam && stuckUnit == GetUnit()){
+        //        stuckUnit = null;
+        //    }
+        //}
 
         if (!IsWall() && HasObstacle()) {
             RemoveGridObjectProxy(GetObstacle());

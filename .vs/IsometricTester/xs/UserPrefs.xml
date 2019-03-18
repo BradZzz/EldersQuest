@@ -1,14 +1,10 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Map/MapStatic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skills/Skill.cs">
     <Files>
-      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="124" Column="1" />
-      <File FileName="Assets/Scripts/Classes/ClassNode.cs" Line="51" Column="29" />
-      <File FileName="Assets/Scripts/Classes/StaticClassRef.cs" Line="282" Column="26" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="185" Column="36" />
-      <File FileName="Assets/Scripts/Menu/MenuController.cs" Line="88" Column="23" />
-      <File FileName="Assets/Scripts/Savers/GameMeta.cs" Line="24" Column="57" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="185" Column="66" />
-      <File FileName="Assets/Scripts/Map/MapStatic.cs" Line="8" Column="69" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="326" Column="1" />
+      <File FileName="Assets/Scripts/Battle/InteractUnitSelected.cs" Line="99" Column="66" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="416" Column="1" />
+      <File FileName="Assets/Scripts/Skills/Skill.cs" Line="90" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

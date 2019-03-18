@@ -54,6 +54,9 @@ public class MapNavigator : MonoBehaviour
         case GameMeta.World.candy: 
           StartCoroutine(ZoomScale(new Vector3(-600,225,0),w4Dests,time));
         break;
+        case GameMeta.World.tutorial: 
+          StartCoroutine(ZoomScale(new Vector3(850,225,0),w0Dests,time));
+        break;
         default:
           StartCoroutine(ZoomScale(new Vector3(850,225,0),w1Dests,time));
           break;

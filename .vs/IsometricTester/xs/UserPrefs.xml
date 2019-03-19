@@ -1,20 +1,24 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Classes/Final/FinalBaseCollapse.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Classes/Egypt/Soldier/EgyptOracleClass.cs">
     <Files>
-      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="78" Column="49" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="323" Column="1" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="423" Column="43" />
-      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Battle/Unit.cs" Line="305" Column="44" />
-      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="85" Column="31" />
-      <File FileName="Assets/Scripts/BoardEdit/BoardEditorUI.cs" Line="113" Column="62" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="513" Column="28" />
-      <File FileName="Assets/Scripts/Battle/Brains/AdvancedBrain.cs" Line="87" Column="90" />
-      <File FileName="Assets/Scripts/Classes/Cthulu/Scout/CthulhuBaseScout.cs" Line="33" Column="50" />
-      <File FileName="Assets/Scripts/Classes/Final/FinalBaseTwilight.cs" Line="33" Column="40" />
-      <File FileName="Assets/Scripts/Classes/Final/FinalBaseEvening.cs" Line="30" Column="1" />
-      <File FileName="Assets/Scripts/Classes/Egypt/Scout/EgyptBaseScout.cs" Line="33" Column="50" />
-      <File FileName="Assets/Scripts/Classes/Final/FinalBaseCollapse.cs" Line="35" Column="52" />
+      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="129" Column="1" />
+      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="80" Column="34" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="429" Column="10" />
+      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="66" Column="1" />
+      <File FileName="Assets/Scripts/Battle/AnimationInteractionController.cs" Line="48" Column="24" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptAnMessiahClass.cs" Line="15" Column="21" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptAnukeClass.cs" Line="15" Column="21" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptAConduitClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptAMessiahClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptAshClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptBaseSoldier.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptBesClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptBMessiahClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptHapyClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptHMessiahClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptMSandsClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptNomadClass.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Soldier/EgyptOracleClass.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

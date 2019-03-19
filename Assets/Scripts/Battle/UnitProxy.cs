@@ -347,7 +347,7 @@ public class UnitProxy : GridObjectProxy
         yield return 0f;
         foreach (var t in path.Reverse())
         {
-            yield return StartCoroutine(LerpToTile(t, MV_TIME));
+            yield return StartCoroutine(LerpToTile(t, MV_TIME, path.Reverse().First() == t));
         }
         Animator anim = transform.GetChild(0).GetComponent<Animator>();
         if (anim != null) {
@@ -358,7 +358,7 @@ public class UnitProxy : GridObjectProxy
         SnapToCurrentPosition();
     }
 
-    public virtual IEnumerator LerpToTile(TileProxy tile, float time)
+    public virtual IEnumerator LerpToTile(TileProxy tile, float time, bool firstTile = false)
     {
         Vector3 start = transform.position;
         Vector3 end = BoardProxy.GetWorldPosition(tile.GetPosition());
@@ -419,7 +419,7 @@ public class UnitProxy : GridObjectProxy
         if (!GetData().IsDead()) {
             tile.CreateAnimation(Glossary.fx.smoke1);
         }
-        if (tile.OnFire()) {
+        if (tile.OnFire() && !firstTile) {
             if (IsAttackedEnvironment(1)){
                 transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 transform.GetChild(0).GetComponent<Animator>().enabled = false;
@@ -427,6 +427,8 @@ public class UnitProxy : GridObjectProxy
                 //ConditionTracker.instance.EvalDeath(this);
             }
         }
+        //AnimationInteractionController.InteractionAnimationGameobject(
+          //BoardProxy.instance.glossary.GetComponent<Glossary>().skull, BoardProxy.instance.GetTileAtPosition(GetPosition()).gameObject, AnimationInteractionController.NO_WAIT, true);
     }
 
     public void ZapToTile(TileProxy newTl, TileProxy oldTl, string actStr){  

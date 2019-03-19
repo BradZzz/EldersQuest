@@ -148,6 +148,8 @@ MonoBehaviour:
   projectile: {fileID: 3160763873199545935, guid: 8e897f043a9ae4e4e8d8519577538842,
     type: 3}
   exp: {fileID: 3160763873199545935, guid: a64f876d5ac9f491b834912b43a56c29, type: 3}
+  scarab: {fileID: 3160763873199545935, guid: efb9f92fe2c8042599d7de5f398642e7, type: 3}
+  skull: {fileID: 3160763873199545935, guid: c385b8df350444964843c1f5e7143fbf, type: 3}
   ranks:
   - {fileID: 21300026, guid: 6087e5add26e140749f61925e17e4db3, type: 3}
   - {fileID: 21300034, guid: 6087e5add26e140749f61925e17e4db3, type: 3}

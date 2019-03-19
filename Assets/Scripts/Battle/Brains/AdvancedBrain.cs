@@ -78,7 +78,7 @@ public class AdvancedBrain : MonoBehaviour
                     //Find the closest opposing unit
                     UnitProxy nearestUnit = GetClosestUnit(unit, opposingUnits);
                     //Calculate a path from the unit to the closest opposing unit
-                    Path<TileProxy> path = BoardProxy.instance.GetPath(start, BoardProxy.instance.GetTileAtPosition(nearestUnit.GetPosition()), unit);
+                    Path<TileProxy> path = BoardProxy.instance.GetPathAIConsideration(start, BoardProxy.instance.GetTileAtPosition(nearestUnit.GetPosition()), unit);
                     if (coward) {
                         Debug.Log("Unit: " + unit.GetData().characterMoniker + " is trying to escape!");
                         TileProxy escapeTile = GetRetreatDest(unit, opposingUnits);
@@ -91,10 +91,10 @@ public class AdvancedBrain : MonoBehaviour
                     if (path.Count() > 0 && path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).Any()) {
                         //See how many of those tiles are in the tiles we are allowed to move
                         TileProxy dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).First();
-                        if (unit.GetData().ModerateHP() && path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit() && !tile.OnFire()).Any()) {
-                            //Avoid bad tiles if we don't have too much hp
-                            dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit() && !tile.OnFire()).First();
-                        }
+                        //if (unit.GetData().ModerateHP() && path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit() && !tile.OnFire()).Any()) {
+                        //    //Avoid bad tiles if we don't have too much hp
+                        //    dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit() && !tile.OnFire()).First();
+                        //}
 
                         //If the unit is not trying to run away from battle
                         if (!coward){

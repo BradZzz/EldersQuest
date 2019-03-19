@@ -67,7 +67,9 @@ public class ConditionTracker : MonoBehaviour
     public void EvalDeath(UnitProxy unit){
         TileProxy tle = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
         tle.CreateAnimation(Glossary.fx.bloodExplosions);
-        tle.FloatUp(Skill.Actions.None,"Death", Color.red,"Character died");
+        //tle.FloatUp(Skill.Actions.None,"Death", Color.red,"Character died");
+        AnimationInteractionController.InteractionAnimationGameobject(
+          BoardProxy.instance.glossary.GetComponent<Glossary>().skull, tle.gameObject, AnimationInteractionController.NO_WAIT, true);
         tle.RemoveGridObjectProxy(unit);
         Destroy(unit.gameObject);
         EvaluateGame();

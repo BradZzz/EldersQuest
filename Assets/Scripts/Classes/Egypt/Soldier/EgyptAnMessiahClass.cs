@@ -12,7 +12,7 @@ public class EgyptAnMessiahClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 hp/n+1 atk trn";
+      return "+1 hp\n+1 atk trn";
   }
 
   public override string ClassName()

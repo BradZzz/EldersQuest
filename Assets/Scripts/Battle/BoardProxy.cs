@@ -499,6 +499,25 @@ public class BoardProxy : MonoBehaviour
           };
     }
 
+    Func<TileProxy, TileProxy, double> GetDistanceFunctionAI(UnitProxy thingToMove, bool allTiles = false)
+    {
+        return (t1, t2) =>
+          {
+              if (t2.CanReceive(thingToMove))
+              {
+                  if (t2.Frozen() && !allTiles) {
+                      return 2;
+                  }
+                  if (t2.OnFire() && !allTiles) {
+                      return 3;
+                  }
+                  return 1;
+              }
+              return allTiles ? 1 : int.MaxValue;
+
+          };
+    }
+
     Func<TileProxy, double> GetEstimationFunction(TileProxy destination, UnitProxy thingToMove)
     {
         return (t) =>
@@ -510,11 +529,20 @@ public class BoardProxy : MonoBehaviour
                 return xdiff + ydiff;
             };
     }
+
     public Path<TileProxy> GetPath(TileProxy from, TileProxy to, UnitProxy thingToMove, bool allTiles = false)
     {
         return PathGenerator.FindPath(from,
             to,
             GetDistanceFunction(thingToMove, allTiles),
+            GetEstimationFunction(to, thingToMove));//might not want to use a list
+    }
+
+    public Path<TileProxy> GetPathAIConsideration(TileProxy from, TileProxy to, UnitProxy thingToMove, bool allTiles = false)
+    {
+        return PathGenerator.FindPath(from,
+            to,
+            GetDistanceFunctionAI(thingToMove, allTiles),
             GetEstimationFunction(to, thingToMove));//might not want to use a list
     }
 

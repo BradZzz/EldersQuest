@@ -127,10 +127,10 @@ public class StatsNav : MonoBehaviour
         camp3scrs.OrderBy(scr => scr.score);
         camp4scrs.OrderBy(scr => scr.score);
 
-        pnlString += " Campaign 1 => " + (camp1scrs.Count > 0 ? camp1scrs[0].ToString() : "0\n");
-        pnlString += " Campaign 2 => " + (camp2scrs.Count > 0 ? camp2scrs[0].ToString() : "0\n");
-        pnlString += " Campaign 3 => " + (camp3scrs.Count > 0 ? camp3scrs[0].ToString() : "0\n");
-        pnlString += " Campaign 4 => " + (camp4scrs.Count > 0 ? camp4scrs[0].ToString() : "0\n");
+        pnlString += " Campaign 1 => " + (camp1scrs.Count > 0 ? camp1scrs[0].score.ToString() : "0\n");
+        pnlString += " Campaign 2 => " + (camp2scrs.Count > 0 ? camp2scrs[0].score.ToString() : "0\n");
+        pnlString += " Campaign 3 => " + (camp3scrs.Count > 0 ? camp3scrs[0].score.ToString() : "0\n");
+        pnlString += " Campaign 4 => " + (camp4scrs.Count > 0 ? camp4scrs[0].score.ToString() : "0\n");
 
         //foreach(HighScoreMeta scr in scores.Take(10)){
         //    pnlString += scr.ToString() + "\n";

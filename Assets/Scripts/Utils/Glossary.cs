@@ -79,6 +79,8 @@ public class Glossary : MonoBehaviour
 
     public GameObject projectile;
     public GameObject exp;
+    public GameObject scarab;
+    public GameObject skull;
 
     public Sprite[] ranks;
 

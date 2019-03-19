@@ -46,10 +46,10 @@ public class StaticClassRef
             case AvailableClasses.HumanFlankCaptainClass: return new HumanFlankCaptainClass();
             case AvailableClasses.HumanArcaneCommanderClass: return new HumanArcaneCommanderClass();
             case AvailableClasses.HumanTankCommanderClass: return new HumanTankCommanderClass();
-            case AvailableClasses.HumanPrismKnightClass: return new HumanPKnightClass();
+            case AvailableClasses.HumanPKnightClass: return new HumanPKnightClass();
             case AvailableClasses.HumanMineSweeperClass: return new HumanMineSweeperClass();
-            case AvailableClasses.HumanPlasmaMarineClass: return new HumanPMarineClass();
-            case AvailableClasses.HumanQuakeEngineerClass: return new HumanQEngineerClass();
+            case AvailableClasses.HumanPMarineClass: return new HumanPMarineClass();
+            case AvailableClasses.HumanQEngineerClass: return new HumanQEngineerClass();
 
             case AvailableClasses.HumanBaseSoldier: return new HumanBaseSoldier();
             /* lvl 2 */
@@ -61,7 +61,7 @@ public class StaticClassRef
             case AvailableClasses.HumanGDancerClass: return new HumanGDancerClass();
             case AvailableClasses.HumanFMarineClass: return new HumanFMarineClass();
             /* lvl 4 */
-            case AvailableClasses.HumanBBenderClass: return new HumanBloodBenderClass();
+            case AvailableClasses.HumanBloodBenderClass: return new HumanBloodBenderClass();
             case AvailableClasses.HumanDMercenaryClass: return new HumanDMercenaryClass();
             case AvailableClasses.HumanGNinjaClass: return new HumanGNinjaClass();
             case AvailableClasses.HumanRSamuraiClass: return new HumanRSamuraiClass();
@@ -217,13 +217,13 @@ public class StaticClassRef
         HumanMSergeantClass, HumanCSergeantClass, HumanLieutenantClass, HumanCaptainClass,
         /* lvl 4 */
         HumanGeneralClass, HumanFlankCaptainClass, HumanArcaneCommanderClass, HumanTankCommanderClass,
-        HumanPrismKnightClass, HumanMineSweeperClass, HumanPlasmaMarineClass, HumanQuakeEngineerClass,
+        HumanPKnightClass, HumanMineSweeperClass, HumanPMarineClass, HumanQEngineerClass,
 
         /* Human Soldier */
         HumanBaseSoldier, HumanBerserkerClass, HumanPaladinClass,
         HumanGPaladinClass, HumanGDancerClass, HumanIPaladinClass, HumanFMarineClass,
         /* lvl 4 */
-        HumanBBenderClass, HumanDMercenaryClass, HumanGNinjaClass, HumanRSamuraiClass,
+        HumanBloodBenderClass, HumanDMercenaryClass, HumanGNinjaClass, HumanRSamuraiClass,
         HumanInquisitorClass, HumanTormentorClass, HumanCCrusaderClass, HumanDCrusaderClass,
 
         /* Egypt Mage */

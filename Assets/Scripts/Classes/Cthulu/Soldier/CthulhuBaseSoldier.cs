@@ -12,7 +12,7 @@ public class CthulhuBaseSoldier : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk trn\nHealKill";
+    return "+1 mv\n+1 atk trn\nHealKill";
   }
 
   public override string ClassName()
@@ -31,6 +31,7 @@ public class CthulhuBaseSoldier : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("HealKill");
       unit.SetSkills(skills.ToArray());

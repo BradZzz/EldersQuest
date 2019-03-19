@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -29,7 +30,17 @@ public class MapNavigator : MonoBehaviour
   {
     selected = "";
     PlayerMeta player = BaseSaver.GetPlayer();
+    BoardMeta[] boards = BaseSaver.GetBoards();
     destSave = new List<string>(player.stats.dests);
+    if (boards == null) {
+        //SceneManager.LoadScene("ScrollingTextScene");
+        Dictionary<string,BoardMeta> bMet = MapStatic.ReturnTestBoardDests(player.world == GameMeta.World.tutorial);
+        List<BoardMeta> bList = new List<BoardMeta>();
+        foreach(string key in bMet.Keys){
+            bList.Add(bMet[key]);
+        }
+        BaseSaver.PutBoards(bList.ToArray());
+    }
     if (GameMeta.GameEnded()) {
         SceneManager.LoadScene("ScrollingTextScene");
     }
@@ -237,17 +248,20 @@ public class MapNavigator : MonoBehaviour
   public void PutSelect(string selected)
   {
     PlayerMeta player = BaseSaver.GetPlayer();
+    BoardMeta selectedBoard = BaseSaver.GetBoards()[(int)(StoryStatic.Dests)Enum.Parse(typeof(StoryStatic.Dests), selected)];
+
     if (this.selected == selected && !CompDests().Contains(selected))
     {
       player.lastDest = selected;
       BaseSaver.PutPlayer(player);
-      BaseSaver.PutBoard(MapStatic.ReturnTestBoardDests(player.world == GameMeta.World.tutorial)[selected]);
+      BaseSaver.PutBoard(selectedBoard);
       MusicTransitionToBattle();
       SceneManager.LoadScene("BattleScene");
       //MusicTransitionToBattle();
     }
     else
     {
+      BoardMeta bMeta = BaseSaver.GetBoard();
       if (this.selected.Length > 0)
       {
         ByName(this.selected).transform.GetChild(0).gameObject.SetActive(false);
@@ -255,8 +269,44 @@ public class MapNavigator : MonoBehaviour
       this.selected = selected;
       ByName(this.selected).transform.GetChild(0).gameObject.SetActive(true);
 
-      setDesc("Map: " + this.selected + "\n\n" + MapStatic.ReturnTestBoardDests(player.world == GameMeta.World.tutorial)[selected].ReturnMapDesc());
+//<color=#9BC2C2>Map: Dest2</color>
+
+//<color=#CFE4E4>Pwr: 2</color>
+
+//<color=#669999>Mage: 0
+//Scout: 1
+//Soldier: 0</color>
+
+      setDesc("<color=#9BC2C2>Map: " + this.selected + "</color>\n\n<color=#CFE4E4>" + selectedBoard.ReturnMapDesc() + 
+        "</color>\n<color=#669999>" + CalcArmyString(selectedBoard.enemies) + "</color>");
     }
+  }
+
+  public string CalcArmyString(Unit[] chars){
+      PlayerMeta player = BaseSaver.GetPlayer();
+
+      List<string> mages = new List<string>(new string[]{ "HumanBaseMage", "EgyptBaseMage", "CthulhuBaseMage" });
+      List<string> scouts = new List<string>(new string[]{ "HumanBaseScout", "EgyptBaseScout", "CthulhuBaseScout" });
+
+      int rM = 0;
+      int rSc = 0;
+      int rSo = 0;
+
+      foreach(Unit unt in chars){
+        ClassNode clss = unt.GetCurrentClass();
+        while(clss.GetParent() != null){
+            clss = clss.GetParent();
+        }
+        if (mages.Contains(clss.GetType().ToString())) {
+          rM++;
+        } else if (scouts.Contains(clss.GetType().ToString())) {
+          rSc++;
+        } else {
+          rSo++;
+        }
+      }
+
+      return "\nMage: " + rM.ToString() + "\nScout: " + rSc.ToString() + "\nSoldier: " + rSo.ToString();
   }
 
   public GameObject ByName(string objName)

@@ -12,7 +12,7 @@ public class CthulhuPBearerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "NullifyEnemiesWait\nNullifyEnemiesWait";
+    return "+1 hp\nNullifyEnemiesWait\nNullifyEnemiesWait";
   }
 
   public override string ClassName()
@@ -30,6 +30,7 @@ public class CthulhuPBearerClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetMaxHP(unit.GetMaxHP());
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("NullifyEnemiesWait");
       skills.Add("NullifyEnemiesWait");

@@ -9,6 +9,7 @@ public class BaseSaver
 
   private static string PLAYER = "PLAYER";
   private static string BOARD = "BOARD";
+  private static string BOARDS = "BOARDS";
 
   public static void ResetAll()
   {
@@ -19,6 +20,7 @@ public class BaseSaver
   {
     PlayerPrefs.DeleteKey(AdjKy(PLAYER));
     PlayerPrefs.DeleteKey(AdjKy(BOARD));
+    PlayerPrefs.DeleteKey(AdjKy(BOARDS));
   }
 
   public static string AdjKy(string key)
@@ -131,5 +133,28 @@ public class BaseSaver
       return null;
     }
     return JsonUtility.FromJson<BoardMeta>(json);
+  }
+
+  /*
+   * Save Battles
+   */
+  public static void PutBoards(BoardMeta[] board)
+  {
+    string json = JsonHelper.ToJson(board);
+    PlayerPrefs.SetString(AdjKy(BOARDS), json);
+
+    Debug.Log("BOARDS set: " + AdjKy(BOARDS) + ":" + json);
+  }
+
+
+  public static BoardMeta[] GetBoards()
+  {
+    string json = PlayerPrefs.GetString(AdjKy(BOARDS));
+    Debug.Log("BOARDS got: " + AdjKy(BOARDS) + ":" + json);
+    if (json.Length == 0)
+    {
+      return null;
+    }
+    return JsonHelper.FromJson<BoardMeta>(json);
   }
 }

@@ -198,6 +198,100 @@ public class StoryStatic : MonoBehaviour
         return "";
     }
 
+    static string GetMapName(GameMeta.World wrld, Unit.FactionType faction, Dests dst){
+        switch(wrld){
+            case GameMeta.World.nile:
+                switch(dst){
+                    case Dests.Dest1:return "A First Step";
+                    case Dests.Dest2:return "The March Continues";
+                    case Dests.Dest3:return "";
+                    case Dests.Dest4:return "";
+                    case Dests.Dest5:return "";
+                    case Dests.Dest6:return "";
+                    case Dests.Dest7:return "";
+                    case Dests.Dest8:return "";
+                    case Dests.Dest9:return "";
+                    case Dests.Dest10:return "The Great Provening";
+                }
+                break;
+            case GameMeta.World.mountain:
+                switch(dst){
+                    case StoryStatic.Dests.Dest1:return "";
+                    case StoryStatic.Dests.Dest2:return "";
+                    case StoryStatic.Dests.Dest3:return "";
+                    case StoryStatic.Dests.Dest4:return "";
+                    case StoryStatic.Dests.Dest5:return "";
+                    case StoryStatic.Dests.Dest6:return "";
+                    case StoryStatic.Dests.Dest7:return "";
+                    case StoryStatic.Dests.Dest8:return "";
+                    case StoryStatic.Dests.Dest9:return "";
+                    case StoryStatic.Dests.Dest10:return "";
+                }
+                break;
+            case GameMeta.World.pyramid:
+                switch(dst){
+                    case StoryStatic.Dests.Dest1:return "";
+                    case StoryStatic.Dests.Dest2:return "";
+                    case StoryStatic.Dests.Dest3:return "";
+                    case StoryStatic.Dests.Dest4:return "";
+                    case StoryStatic.Dests.Dest5:return "";
+                    case StoryStatic.Dests.Dest6:return "";
+                    case StoryStatic.Dests.Dest7:return "";
+                    case StoryStatic.Dests.Dest8:return "";
+                    case StoryStatic.Dests.Dest9:return "";
+                    case StoryStatic.Dests.Dest10:return "";
+                }
+                break;
+            case GameMeta.World.candy:
+                switch(faction){
+                  case Unit.FactionType.Cthulhu:
+                    switch(dst){
+                        case StoryStatic.Dests.Dest1:return "";
+                        case StoryStatic.Dests.Dest2:return "";
+                        case StoryStatic.Dests.Dest3:return "";
+                        case StoryStatic.Dests.Dest4:return "";
+                        case StoryStatic.Dests.Dest5:return "";
+                        case StoryStatic.Dests.Dest6:return "";
+                        case StoryStatic.Dests.Dest7:return "";
+                        case StoryStatic.Dests.Dest8:return "";
+                        case StoryStatic.Dests.Dest9:return "";
+                        case StoryStatic.Dests.Dest10:return "";
+                    }
+                    break;
+                  case Unit.FactionType.Egypt:
+                    switch(dst){
+                        case StoryStatic.Dests.Dest1:return "";
+                        case StoryStatic.Dests.Dest2:return "";
+                        case StoryStatic.Dests.Dest3:return "";
+                        case StoryStatic.Dests.Dest4:return "";
+                        case StoryStatic.Dests.Dest5:return "";
+                        case StoryStatic.Dests.Dest6:return "";
+                        case StoryStatic.Dests.Dest7:return "";
+                        case StoryStatic.Dests.Dest8:return "";
+                        case StoryStatic.Dests.Dest9:return "";
+                        case StoryStatic.Dests.Dest10:return "";
+                    }
+                    break;
+                  case Unit.FactionType.Human:
+                    switch(dst){
+                        case StoryStatic.Dests.Dest1:return "";
+                        case StoryStatic.Dests.Dest2:return "";
+                        case StoryStatic.Dests.Dest3:return "";
+                        case StoryStatic.Dests.Dest4:return "";
+                        case StoryStatic.Dests.Dest5:return "";
+                        case StoryStatic.Dests.Dest6:return "";
+                        case StoryStatic.Dests.Dest7:return "";
+                        case StoryStatic.Dests.Dest8:return "";
+                        case StoryStatic.Dests.Dest9:return "";
+                        case StoryStatic.Dests.Dest10:return "";
+                    }
+                    break;
+                }
+            break;
+        }
+        return "";
+    }
+
     public enum Dests{
       Dest1, Dest2, Dest3, Dest4, Dest5, Dest6, Dest7, Dest8, Dest9, Dest10, None
     }

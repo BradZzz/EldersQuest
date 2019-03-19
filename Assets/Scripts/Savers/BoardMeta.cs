@@ -41,7 +41,7 @@ public class BoardMeta
     public string ReturnMapDesc(){
         string retString = "";
         int lvl = enemies.Sum(emy => emy.GetLvl());
-        retString += "pwr lvl: " + lvl.ToString();
+        retString += "Pwr: " + lvl.ToString();
         return retString;
     }
 }

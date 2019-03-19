@@ -153,7 +153,10 @@ public class UnitProxy : GridObjectProxy
         start.y += .6f;
         finish.y += .6f;
 
-        GameObject baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
+        GameObject baseProj = oppUnit.GetData().GetFactionType() == Unit.FactionType.None ? 
+            BoardProxy.instance.glossary.GetComponent<Glossary>().GetRandomGummi() : BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
+
+        num /= oppUnit.GetData().GetFactionType() == Unit.FactionType.None ? 2 : 1;
 
         //IEnumerator projectile = GenerateProjectile(oppUnit, baseProj, start, finish);
         //IEnumerator anim = GenerateAttackAnims(oppUnit, baseProj, start, finish);
@@ -182,10 +185,11 @@ public class UnitProxy : GridObjectProxy
 
     IEnumerator GenerateProjectile(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish){
         Vector3 thisProjStart  = new Vector3(start.x + UnityEngine.Random.Range(-.1f,.1f),start.y + UnityEngine.Random.Range(-.1f,.1f),start.z);
-        Color projColor = Color.red;
+        Color projColor = Color.white;
         switch(oppUnit.GetData().GetFactionType()){
             case Unit.FactionType.Cthulhu:projColor=new Color(.93f,.57f,.93f);break;
             case Unit.FactionType.Egypt:projColor=Color.yellow;break;
+            case Unit.FactionType.Human:projColor=Color.red;break;
             default: break;
         }
         GameObject newProj = Instantiate(baseProj, start, Quaternion.identity);

@@ -150,6 +150,19 @@ MonoBehaviour:
   exp: {fileID: 3160763873199545935, guid: a64f876d5ac9f491b834912b43a56c29, type: 3}
   scarab: {fileID: 3160763873199545935, guid: efb9f92fe2c8042599d7de5f398642e7, type: 3}
   skull: {fileID: 3160763873199545935, guid: c385b8df350444964843c1f5e7143fbf, type: 3}
+  bearBlack: {fileID: 3160763873199545935, guid: f98f343ee5bc04934a1a67a9e7cfb642,
+    type: 3}
+  bearBlue: {fileID: 3160763873199545935, guid: 8d3b58193e7914544bc58631fc324d0d,
+    type: 3}
+  bearGreen: {fileID: 3160763873199545935, guid: cbe3d171b3a5e40a480336cfa3db638f,
+    type: 3}
+  bearOrange: {fileID: 3160763873199545935, guid: 56973016c5f814be09e64a89c4f541d4,
+    type: 3}
+  bearPurple: {fileID: 3160763873199545935, guid: 62b792e561200486082821ccef4a3f69,
+    type: 3}
+  bearRed: {fileID: 3160763873199545935, guid: 016faaf1f0b794e95a818d53c82a9d70, type: 3}
+  bearYellow: {fileID: 3160763873199545935, guid: 878ccc4734f4046f7ad035c5a8dea557,
+    type: 3}
   ranks:
   - {fileID: 21300026, guid: 6087e5add26e140749f61925e17e4db3, type: 3}
   - {fileID: 21300034, guid: 6087e5add26e140749f61925e17e4db3, type: 3}

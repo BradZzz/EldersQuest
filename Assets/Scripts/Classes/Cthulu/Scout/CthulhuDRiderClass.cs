@@ -12,7 +12,7 @@ public class CthulhuDRiderClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "QuickenAlliesWait\nQuickenAlliesWait";
+    return "QuickenAlliesAtk\n+1 atk trn";
   }
 
   public override string ClassName()
@@ -30,9 +30,9 @@ public class CthulhuDRiderClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("QuickenAlliesWait");
-      skills.Add("QuickenAlliesWait");
+      skills.Add("QuickenAlliesAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

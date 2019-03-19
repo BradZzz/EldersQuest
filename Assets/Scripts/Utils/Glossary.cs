@@ -82,7 +82,21 @@ public class Glossary : MonoBehaviour
     public GameObject scarab;
     public GameObject skull;
 
+    public GameObject bearBlack;
+    public GameObject bearBlue;
+    public GameObject bearGreen;
+    public GameObject bearOrange;
+    public GameObject bearPurple;
+    public GameObject bearRed;
+    public GameObject bearYellow;
+
     public Sprite[] ranks;
+
+    public GameObject GetRandomGummi(){
+        GameObject[] gummis = new GameObject[]{ bearBlack, bearBlue, bearGreen, bearOrange, bearPurple, bearRed, bearYellow };
+        HelperScripts.Shuffle(gummis);
+        return gummis[0];
+    }
 
     public Sprite GetGrassTile(GameMeta.World wrld){
       switch(wrld){

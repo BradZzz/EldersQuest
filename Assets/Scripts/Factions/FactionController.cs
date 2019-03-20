@@ -43,11 +43,25 @@ public class FactionController : MonoBehaviour
             finale.SetActive(true);
             SetFinaleColors();
         }
+
+        finale.transform.GetChild(0).gameObject.SetActive(false);
+        ResetParticles();
+    }
+
+    public void ResetParticles(){
+      human.transform.GetChild(0).gameObject.SetActive(false);
+      egypt.transform.GetChild(0).gameObject.SetActive(false);
+      cthulhu.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void Finale()
     {
         finalWorld = !finalWorld;
+        if (finalWorld) {
+          finale.transform.GetChild(0).gameObject.SetActive(true);
+        } else {
+          finale.transform.GetChild(0).gameObject.SetActive(false);
+        }
         SetFinaleColors();
         PlayerMeta player = BaseSaver.GetPlayer();
         Click(player.faction.ToString());
@@ -71,16 +85,24 @@ public class FactionController : MonoBehaviour
         PlayerMeta player = BaseSaver.GetPlayer();
         player.faction = (Unit.FactionType)Enum.Parse(typeof(Unit.FactionType), faction);
 
+        ResetParticles();
+
         if (finalWorld) {
             player.world = GameMeta.World.candy;
             aiStr = "\nCampaign: Hard\n";
         } else {
             switch(player.faction){
-              case Unit.FactionType.Human: player.world = GameMeta.World.nile;break;
-              case Unit.FactionType.Egypt: player.world = GameMeta.World.mountain;break;
+              case Unit.FactionType.Human: player.world = GameMeta.World.nile; break;
+              case Unit.FactionType.Egypt: player.world = GameMeta.World.mountain; break;
               case Unit.FactionType.Cthulhu: player.world = GameMeta.World.pyramid; aiStr = "\nCampaign: Hard\n"; break;
               default: player.world = GameMeta.World.nile;break;
             }
+        }
+
+        switch(player.faction){
+          case Unit.FactionType.Human: human.transform.GetChild(0).gameObject.SetActive(true); break;
+          case Unit.FactionType.Egypt: egypt.transform.GetChild(0).gameObject.SetActive(true); break;
+          case Unit.FactionType.Cthulhu: cthulhu.transform.GetChild(0).gameObject.SetActive(true); break;
         }
 
         BaseSaver.PutPlayer(player);

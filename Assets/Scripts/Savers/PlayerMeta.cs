@@ -24,7 +24,8 @@ public class PlayerMeta
 
   public override string ToString()
   {
-      string buff = "Army: " + characters.Length + "\n";
+      string buff = "World: " + ((int)world).ToString() + "\n";
+      buff += "Army: " + characters.Length + "\n";
       buff += "Battles: " + stats.dests.Length + "\n";
       return buff;
   }

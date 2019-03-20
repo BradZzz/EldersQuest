@@ -90,6 +90,8 @@ public class Glossary : MonoBehaviour
     public GameObject bearRed;
     public GameObject bearYellow;
 
+    public GameObject particlesHighlight;
+
     public Sprite[] ranks;
 
     public GameObject GetRandomGummi(){

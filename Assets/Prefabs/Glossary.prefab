@@ -163,6 +163,8 @@ MonoBehaviour:
   bearRed: {fileID: 3160763873199545935, guid: 016faaf1f0b794e95a818d53c82a9d70, type: 3}
   bearYellow: {fileID: 3160763873199545935, guid: 878ccc4734f4046f7ad035c5a8dea557,
     type: 3}
+  particlesHighlight: {fileID: 3006416545442290833, guid: 51f33b6bef6d14bebada01fb9ff5ea30,
+    type: 3}
   ranks:
   - {fileID: 21300026, guid: 6087e5add26e140749f61925e17e4db3, type: 3}
   - {fileID: 21300034, guid: 6087e5add26e140749f61925e17e4db3, type: 3}

@@ -60,6 +60,7 @@ public class CharSelectController : MonoBehaviour
         }
         selected = null;
         contBtn.gameObject.SetActive(false);
+        ResetParticles();
     }
 
     void RefreshPanel(GameObject pnl, Unit unt)
@@ -81,9 +82,11 @@ public class CharSelectController : MonoBehaviour
     // Start is called before the first frame update
     public void Selected(int picked)
     {
+        ResetParticles();
         if (selected == null || selectableUnits[picked] != selected)
         {
             selected = selectableUnits[picked];
+            PopulateParticles(panels[picked].transform);
         }
         else
         {
@@ -91,6 +94,36 @@ public class CharSelectController : MonoBehaviour
         }
         UpdateSelectedUI();
         SelectCharSound(picked);       
+    }
+
+    public void ResetParticles(){
+      foreach(GameObject panel in panels){
+          foreach(Transform child in panel.transform){
+              if (child.name.Equals("PrtSys")) {
+                  SetParticles(child, false, Color.white);
+              }
+          }
+      }
+    }
+
+    public void PopulateParticles(Transform parent){
+        PlayerMeta player = BaseSaver.GetPlayer();
+        foreach(Transform child in parent){
+            if (child.name.Equals("PrtSys")) {
+                Color hColor = player.faction == Unit.FactionType.Human ? Color.blue : (player.faction == Unit.FactionType.Egypt ? Color.yellow : new Color(.4f,.2f,.6f));
+                SetParticles(child, true, hColor);
+            }
+        }
+    }
+
+    public void SetParticles(Transform parent, bool active, Color color){
+        foreach(Transform child in parent){
+            child.gameObject.SetActive(active);
+            if (active) {
+                var main = child.gameObject.GetComponent<ParticleSystem>().main;
+                main.startColor = color;
+            }
+        }
     }
 
     void UpdateSelectedUI()

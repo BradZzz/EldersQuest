@@ -49,9 +49,15 @@ public class FactionController : MonoBehaviour
     }
 
     public void ResetParticles(){
-      human.transform.GetChild(0).gameObject.SetActive(false);
-      egypt.transform.GetChild(0).gameObject.SetActive(false);
-      cthulhu.transform.GetChild(0).gameObject.SetActive(false);
+      SetParticles(cthulhu, false);
+      SetParticles(egypt, false);
+      SetParticles(human, false);
+    }
+
+    public void SetParticles(GameObject parent, bool active){
+        foreach(Transform child in parent.transform){
+            child.gameObject.SetActive(active);
+        }
     }
 
     public void Finale()
@@ -100,9 +106,9 @@ public class FactionController : MonoBehaviour
         }
 
         switch(player.faction){
-          case Unit.FactionType.Human: human.transform.GetChild(0).gameObject.SetActive(true); break;
-          case Unit.FactionType.Egypt: egypt.transform.GetChild(0).gameObject.SetActive(true); break;
-          case Unit.FactionType.Cthulhu: cthulhu.transform.GetChild(0).gameObject.SetActive(true); break;
+          case Unit.FactionType.Human: SetParticles(human, true); break;
+          case Unit.FactionType.Egypt: SetParticles(egypt, true); break;
+          case Unit.FactionType.Cthulhu: SetParticles(cthulhu, true); break;
         }
 
         BaseSaver.PutPlayer(player);

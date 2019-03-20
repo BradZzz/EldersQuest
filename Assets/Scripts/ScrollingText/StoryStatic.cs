@@ -198,92 +198,102 @@ public class StoryStatic : MonoBehaviour
         return "";
     }
 
-    static string GetMapName(GameMeta.World wrld, Unit.FactionType faction, Dests dst){
+    public static string GetMapName(GameMeta.World wrld, Unit.FactionType faction, string lastDest){
+        Dests dst = (Dests)Enum.Parse(typeof(Dests), lastDest);
         switch(wrld){
             case GameMeta.World.nile:
+                /*
+                  Human
+                */
                 switch(dst){
                     case Dests.Dest1:return "A First Step";
                     case Dests.Dest2:return "The March Continues";
-                    case Dests.Dest3:return "";
-                    case Dests.Dest4:return "";
-                    case Dests.Dest5:return "";
-                    case Dests.Dest6:return "";
-                    case Dests.Dest7:return "";
-                    case Dests.Dest8:return "";
-                    case Dests.Dest9:return "";
+                    case Dests.Dest3:return "Monster At The Bay";
+                    case Dests.Dest4:return "Through The Bog";
+                    case Dests.Dest5:return "Beaches Of Blood";
+                    case Dests.Dest6:return "Death's Ravine";
+                    case Dests.Dest7:return "The Sea Wall";
+                    case Dests.Dest8:return "By Force";
+                    case Dests.Dest9:return "Isle Of Doom";
                     case Dests.Dest10:return "The Great Provening";
                 }
                 break;
             case GameMeta.World.mountain:
+                /*
+                  Egypt
+                */
                 switch(dst){
-                    case StoryStatic.Dests.Dest1:return "";
-                    case StoryStatic.Dests.Dest2:return "";
-                    case StoryStatic.Dests.Dest3:return "";
-                    case StoryStatic.Dests.Dest4:return "";
-                    case StoryStatic.Dests.Dest5:return "";
-                    case StoryStatic.Dests.Dest6:return "";
-                    case StoryStatic.Dests.Dest7:return "";
-                    case StoryStatic.Dests.Dest8:return "";
-                    case StoryStatic.Dests.Dest9:return "";
-                    case StoryStatic.Dests.Dest10:return "";
+                    case Dests.Dest1:return "Ra's Request";
+                    case Dests.Dest2:return "Obelisk At Dawn";
+                    case Dests.Dest3:return "Setting Sun";
+                    case Dests.Dest4:return "Chorus Of Horus";
+                    case Dests.Dest5:return "Memories Of Cairo";
+                    case Dests.Dest6:return "Shadows Along The Pyramids";
+                    case Dests.Dest7:return "Friction Of The Sands";
+                    case Dests.Dest8:return "A Greater Understanding";
+                    case Dests.Dest9:return "Anubis Beckons";
+                    case Dests.Dest10:return "Seth's Plan";
                 }
                 break;
             case GameMeta.World.pyramid:
+                /*
+                  Cthulhu
+                */
                 switch(dst){
-                    case StoryStatic.Dests.Dest1:return "";
-                    case StoryStatic.Dests.Dest2:return "";
-                    case StoryStatic.Dests.Dest3:return "";
-                    case StoryStatic.Dests.Dest4:return "";
-                    case StoryStatic.Dests.Dest5:return "";
-                    case StoryStatic.Dests.Dest6:return "";
-                    case StoryStatic.Dests.Dest7:return "";
-                    case StoryStatic.Dests.Dest8:return "";
-                    case StoryStatic.Dests.Dest9:return "";
-                    case StoryStatic.Dests.Dest10:return "";
+                    case StoryStatic.Dests.Dest1:return "The Elder's Whisper";
+                    case StoryStatic.Dests.Dest2:return "On Fire";
+                    case StoryStatic.Dests.Dest3:return "Scorched Earth";
+                    case StoryStatic.Dests.Dest4:return "Famine";
+                    case StoryStatic.Dests.Dest5:return "Anticipated Disdain";
+                    case StoryStatic.Dests.Dest6:return "The Tentacle's Triumph";
+                    case StoryStatic.Dests.Dest7:return "The Void's Victory";
+                    case StoryStatic.Dests.Dest8:return "Encroaching Plague";
+                    case StoryStatic.Dests.Dest9:return "A New Tactic";
+                    case StoryStatic.Dests.Dest10:return "Towards The Darkness";
                 }
                 break;
             case GameMeta.World.candy:
                 switch(faction){
                   case Unit.FactionType.Cthulhu:
                     switch(dst){
-                        case StoryStatic.Dests.Dest1:return "";
-                        case StoryStatic.Dests.Dest2:return "";
-                        case StoryStatic.Dests.Dest3:return "";
-                        case StoryStatic.Dests.Dest4:return "";
-                        case StoryStatic.Dests.Dest5:return "";
-                        case StoryStatic.Dests.Dest6:return "";
-                        case StoryStatic.Dests.Dest7:return "";
-                        case StoryStatic.Dests.Dest8:return "";
-                        case StoryStatic.Dests.Dest9:return "";
-                        case StoryStatic.Dests.Dest10:return "";
+                        case StoryStatic.Dests.Dest1:return "Maw Of Whispers";
+                        case StoryStatic.Dests.Dest2:return "Under The Fresh Soil";
+                        case StoryStatic.Dests.Dest3:return "From The Swamp";
+                        case StoryStatic.Dests.Dest4:return "Absalom's Deceit";
+                        case StoryStatic.Dests.Dest5:return "Through Skulls";
+                        case StoryStatic.Dests.Dest6:return "Siege Of Sapiens";
+                        case StoryStatic.Dests.Dest7:return "Draped In Skulls";
+                        case StoryStatic.Dests.Dest8:return "Whispered Curse";
+                        case StoryStatic.Dests.Dest9:return "To The Crypt";
+                        case StoryStatic.Dests.Dest10:return "The Third Eye";
                     }
                     break;
                   case Unit.FactionType.Egypt:
                     switch(dst){
-                        case StoryStatic.Dests.Dest1:return "";
-                        case StoryStatic.Dests.Dest2:return "";
-                        case StoryStatic.Dests.Dest3:return "";
-                        case StoryStatic.Dests.Dest4:return "";
-                        case StoryStatic.Dests.Dest5:return "";
-                        case StoryStatic.Dests.Dest6:return "";
-                        case StoryStatic.Dests.Dest7:return "";
-                        case StoryStatic.Dests.Dest8:return "";
-                        case StoryStatic.Dests.Dest9:return "";
-                        case StoryStatic.Dests.Dest10:return "";
+                        case StoryStatic.Dests.Dest1:return "On Papyrus";
+                        case StoryStatic.Dests.Dest2:return "What Isis Saw";
+                        case StoryStatic.Dests.Dest3:return "Re Peat";
+                        case StoryStatic.Dests.Dest4:return "100 Lashes";
+                        case StoryStatic.Dests.Dest5:return "Memories Of The Home";
+                        case StoryStatic.Dests.Dest6:return "Heard From Phat";
+                        case StoryStatic.Dests.Dest7:return "Involving Mummies";
+                        case StoryStatic.Dests.Dest8:return "Osiris' Call";
+                        case StoryStatic.Dests.Dest9:return "Point Nexus";
+                        case StoryStatic.Dests.Dest10:return "The Third Eye";
                     }
                     break;
                   case Unit.FactionType.Human:
                     switch(dst){
-                        case StoryStatic.Dests.Dest1:return "";
-                        case StoryStatic.Dests.Dest2:return "";
-                        case StoryStatic.Dests.Dest3:return "";
-                        case StoryStatic.Dests.Dest4:return "";
-                        case StoryStatic.Dests.Dest5:return "";
-                        case StoryStatic.Dests.Dest6:return "";
-                        case StoryStatic.Dests.Dest7:return "";
-                        case StoryStatic.Dests.Dest8:return "";
-                        case StoryStatic.Dests.Dest9:return "";
-                        case StoryStatic.Dests.Dest10:return "";
+                        case StoryStatic.Dests.Dest1:return "Opening The Gates";
+                        case StoryStatic.Dests.Dest2:return "Assault And Battery";
+                        case StoryStatic.Dests.Dest3:return "Justified";
+                        case StoryStatic.Dests.Dest4:return "Serpentine";
+                        case StoryStatic.Dests.Dest5:return "The Second Provening";
+                        case StoryStatic.Dests.Dest6:return "Perfect Strategy";
+                        case StoryStatic.Dests.Dest7:return "Reinforments";
+                        case StoryStatic.Dests.Dest8:return "Manifest Destiny";
+                        case StoryStatic.Dests.Dest9:return "Fix Bayonets";
+                        case StoryStatic.Dests.Dest10:return "The Third Eye";
                     }
                     break;
                 }

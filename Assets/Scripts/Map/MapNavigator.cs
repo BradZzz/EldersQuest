@@ -269,15 +269,9 @@ public class MapNavigator : MonoBehaviour
       this.selected = selected;
       ByName(this.selected).transform.GetChild(0).gameObject.SetActive(true);
 
-//<color=#9BC2C2>Map: Dest2</color>
+      string mapName = StoryStatic.GetMapName(player.world, player.faction, this.selected);
 
-//<color=#CFE4E4>Pwr: 2</color>
-
-//<color=#669999>Mage: 0
-//Scout: 1
-//Soldier: 0</color>
-
-      setDesc("<color=#9BC2C2>Map: " + this.selected + "</color>\n\n<color=#CFE4E4>" + selectedBoard.ReturnMapDesc() + 
+      setDesc("<color=#9BC2C2>" + mapName + "</color>\n\n<color=#CFE4E4>" + selectedBoard.ReturnMapDesc() + 
         "</color>\n<color=#669999>" + CalcArmyString(selectedBoard.enemies) + "</color>");
     }
   }

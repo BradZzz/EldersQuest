@@ -16,6 +16,7 @@ public class UnitProxy : GridObjectProxy
 
     private Unit _data;
     private float defaultAnimSpeed;
+    private bool givenExp;
 
     protected override GridObject data
     {
@@ -31,6 +32,7 @@ public class UnitProxy : GridObjectProxy
         aegisObj.SetActive(false);
         rankObj.SetActive(false);
         defaultAnimSpeed = transform.GetChild(0).GetComponent<Animator>().speed;
+        givenExp = false;
         Debug.Log("defaultAnimSpeed: " + defaultAnimSpeed.ToString());
     }
 
@@ -139,42 +141,85 @@ public class UnitProxy : GridObjectProxy
           }
           opp.localScale = theScale;
       }
-
+      Debug.Log("AttackAnim");
       FloatUp(Skill.Actions.DidAttack, msg, Color.red, "Was attacked", true);
-      //GetComponent<UnitProxy>().CreateLaserHit();
-      //BoardProxy.instance.GetTileAtPosition(GetPosition()).CreateAnimation(Glossary.GetAtkFx(GetData().GetFactionType(), 
-        //GetData().GetUnitType()), AnimationInteractionController.ATK_WAIT);
-      StartCoroutine(CreateProjectiles(oppUnit, opp.position, 5));
+      StartCoroutine(CreateProjectiles(oppUnit, opp.position));
       yield return null;
     }
 
-    IEnumerator CreateProjectiles(UnitProxy oppUnit, Vector3 dest, int num){
+    IEnumerator CreateProjectiles(UnitProxy oppUnit, Vector3 dest){
         Vector3 start = dest;
         Vector3 finish = transform.position;
 
         start.y += .6f;
         finish.y += .6f;
 
-        GameObject baseProj = oppUnit.GetData().GetFactionType() == Unit.FactionType.None ? 
-            BoardProxy.instance.glossary.GetComponent<Glossary>().GetRandomGummi() : BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
+        //GameObject baseProj = oppUnit.GetData().GetFactionType() == Unit.FactionType.None ? 
+            //BoardProxy.instance.glossary.GetComponent<Glossary>().GetRandomGummi() : BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
 
-        num /= oppUnit.GetData().GetFactionType() == Unit.FactionType.None ? 2 : 1;
 
-        //IEnumerator projectile = GenerateProjectile(oppUnit, baseProj, start, finish);
-        //IEnumerator anim = GenerateAttackAnims(oppUnit, baseProj, start, finish);
+        int num = 5;
+        float delayBefore = .4f;
+        float delayAfter = .1f;
+        float projSpeed = 1;
+        float chargeWait = 0;
+        bool showProjectileAnimation = true;
+        bool rotate = false;
+        GameObject baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
+        Color projColor = Color.white;
 
-        yield return new WaitForSeconds(.4f);
-        for (int i = 0; i < num; i++) {
-            switch(oppUnit.GetData().GetFactionType()){
-                case Unit.FactionType.Cthulhu:
-                    switch(oppUnit.GetData().GetUnitType()){
-                      case Unit.UnitType.Mage:StartCoroutine(GenerateProjectile(oppUnit, baseProj, start, finish)); break;
-                      default:StartCoroutine(GenerateAttackAnims(oppUnit, baseProj, start, finish)); break;
-                    }
+        float delayMiddleWait = 0;
+        float xOffset = 0;
+        float yOffset = 0;
+
+        switch(oppUnit.GetData().GetFactionType()){
+            case Unit.FactionType.Cthulhu:
+              projColor= new Color(.4f,.2f,.6f);
+              switch(oppUnit.GetData().GetUnitType()){
+                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 30; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = 0; break;
+                case Unit.UnitType.Scout: showProjectileAnimation = false; break;
+                case Unit.UnitType.Soldier: showProjectileAnimation = false; break;
+              }
+              break;
+            case Unit.FactionType.Egypt:
+              projColor=Color.yellow;
+              switch(oppUnit.GetData().GetUnitType()){
+                case Unit.UnitType.Mage: num = 20; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = 0; break;
+                case Unit.UnitType.Scout: num = 5; delayBefore = .1f; delayAfter = .02f; break;
+                case Unit.UnitType.Soldier: projColor=Color.red; projSpeed = .9f; rotate = true; num = 1; delayBefore = .45f; delayAfter = .3f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().scarab; break;
+              }
+              break;
+            case Unit.FactionType.Human:
+              projColor=Color.red;
+              switch(oppUnit.GetData().GetUnitType()){
+                case Unit.UnitType.Mage: num = 30; delayAfter = .01f; break;
+                case Unit.UnitType.Scout: num = 2; delayBefore = .15f; delayAfter = .35f; projSpeed = .5f; break;
+                case Unit.UnitType.Soldier: num = 1; delayBefore = .28f; delayAfter = .6f; break;
+              }
+              break;
+            default:
+              switch(oppUnit.GetData().GetUnitType()){
+                case Unit.UnitType.Mage:
+                  rotate = true; num = 1; delayBefore = .6f; projSpeed = .9f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().GetRandomGummi(); 
                 break;
-                default:StartCoroutine(GenerateProjectile(oppUnit, baseProj, start, finish)); break;
+                //case Unit.UnitType.Scout:break;
+                //case Unit.UnitType.Soldier:break;
+                default: showProjectileAnimation = false; break;
+              }
+              break;
+        }
+
+        yield return new WaitForSeconds(delayBefore);
+        for (int i = 0; i < num; i++) {
+            if (showProjectileAnimation) {
+              StartCoroutine(GenerateProjectile(oppUnit, baseProj, start, finish, projColor, rotate, chargeWait, xOffset, yOffset, projSpeed));
+            } else {
+              StartCoroutine(GenerateAttackAnims(oppUnit, baseProj, start, finish));
             }
-            yield return new WaitForSeconds(.1f);
+            if (i == num / 2 && delayMiddleWait > 0) {
+                yield return new WaitForSeconds(delayMiddleWait);
+            }
+            yield return new WaitForSeconds(delayAfter);
         }
         yield return null;
     }
@@ -185,19 +230,20 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    IEnumerator GenerateProjectile(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish){
-        Vector3 thisProjStart  = new Vector3(start.x + UnityEngine.Random.Range(-.1f,.1f),start.y + UnityEngine.Random.Range(-.1f,.1f),start.z);
-        Color projColor = Color.white;
-        switch(oppUnit.GetData().GetFactionType()){
-            case Unit.FactionType.Cthulhu:projColor=new Color(.93f,.57f,.93f);break;
-            case Unit.FactionType.Egypt:projColor=Color.yellow;break;
-            case Unit.FactionType.Human:projColor=Color.red;break;
-            default: break;
-        }
+    IEnumerator GenerateProjectile(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish, Color projColor, bool rotate, float chargeWait, 
+        float xOffset, float yOffset, float projSpeed){
+        //Vector3 thisProjStart  = new Vector3(start.x + xOffset,start.y + yOffset,start.z);
         GameObject newProj = Instantiate(baseProj, start, Quaternion.identity);
         newProj.GetComponent<SpriteRenderer>().color = projColor;
-        iTween.MoveTo(newProj, finish, 1);
-        yield return new WaitForSeconds(.9f);
+        if (chargeWait > 0) {
+            yield return new WaitForSeconds(chargeWait);
+        }
+        //yield return new WaitForSeconds(chargeWait);
+        iTween.MoveTo(newProj, finish, projSpeed);
+        if (rotate) {
+            iTween.RotateBy(newProj, new Vector3(0,0,1), projSpeed);
+        }
+        yield return new WaitForSeconds(projSpeed - .1f);
         TileProxy dTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
         dTile.CreateAnimation(Glossary.GetAtkFx(oppUnit.GetData().GetFactionType(), oppUnit.GetData().GetUnitType()), AnimationInteractionController.NO_WAIT);
         Destroy(newProj);
@@ -216,8 +262,9 @@ public class UnitProxy : GridObjectProxy
       GetData().IsAttacked(atkPwr);
       //FloatUp("-" + atkPwr.ToString(), Color.red, ATK_WAIT);
       FloatUp(act, "-" + atkPwr.ToString(), Color.red, "Took env damage", true);
-      if (GetData().IsDead())
+      if (GetData().IsDead() && !givenExp)
       {
+        givenExp = true;
         BoardProxy.instance.GiveLowestCharLvl(this);
         return true;
       }

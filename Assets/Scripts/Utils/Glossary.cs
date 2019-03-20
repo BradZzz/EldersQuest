@@ -111,9 +111,9 @@ public class Glossary : MonoBehaviour
         switch(faction){
             case Unit.FactionType.Cthulhu:return fx.bloodExplosions;
             case Unit.FactionType.Egypt:return fx.fireBaseLarge;
-            case Unit.FactionType.Human:return fx.egExplosion;
+            case Unit.FactionType.Human:return fx.hmExplosion;
         }
-        return fx.barrage;
+        return fx.egExplosion;
     }
 
     public enum fx{

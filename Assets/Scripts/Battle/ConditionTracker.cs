@@ -70,6 +70,7 @@ public class ConditionTracker : MonoBehaviour
         //tle.FloatUp(Skill.Actions.None,"Death", Color.red,"Character died");
         AnimationInteractionController.InteractionAnimationGameobject(
           BoardProxy.instance.glossary.GetComponent<Glossary>().skull, tle.gameObject, AnimationInteractionController.NO_WAIT, true);
+
         tle.RemoveGridObjectProxy(unit);
         Destroy(unit.gameObject);
         EvaluateGame();

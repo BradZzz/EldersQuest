@@ -163,9 +163,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
 
     public void RemoveGridObjectProxy(GridObjectProxy proxy)
     {
-        Debug.Log("Grid Object Removed: " + proxy.name);
         if (objectProxies.Contains(proxy))
         {
+            Debug.Log("Grid Object Removed: " + proxy.name);
             objectProxies.Remove(proxy);
         }
     }

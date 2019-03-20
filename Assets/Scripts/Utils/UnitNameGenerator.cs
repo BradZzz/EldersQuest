@@ -58,7 +58,7 @@ public class UnitNameGenerator : MonoBehaviour
           "Kheti", "Lagus", "Maatkare", "Magas", "Manetho", "Menwi", "Minmose", "Nastasen", "Nebtu", "Nefertari", "Nitocris", "Osorkon", "Pabasa", "Pentu",
           "Potasimto", "Puimre", "Qen", "Rahotep", "Ramsesses", "Sabef", "Scota", "Senusret", "Setut", "Sosibius", "Taharqa",
           "Tentkheta", "Thutmose", "Tutankhamun", "Wadjitefni", "Wenennefer", "Ya'ammu", "Yakareb", "Zannanza" };
-        string[] lasts = new string[]{ "of Nubia", "I", "II", "III", "IV", "ofTryphaena", "theElder", "Pogonius", "Flopperfeet", "Catstein",
+        string[] lasts = new string[]{ "ofNubia", "I", "II", "III", "IV", "ofTryphaena", "theElder", "Pogonius", "Flopperfeet", "Catstein",
           "ofCyrene", "oftheSands", "Pyramidstein", "Sandford", "Falafelburg", "sonofHapu", "ofNaucratis", "Shemai", "Menkheperre", "Meritmut", "ofMatia",
           "Kalu", "Ini", "Tenry" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];

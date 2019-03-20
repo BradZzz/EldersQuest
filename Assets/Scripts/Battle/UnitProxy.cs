@@ -88,8 +88,10 @@ public class UnitProxy : GridObjectProxy
       }
       Debug.Log("No Aegis");
 
-      StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
-        oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
+      if (useAttack){
+        StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
+          oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
+      }
 
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       if (GetData().IsDead())

@@ -132,6 +132,28 @@ public class ConditionTracker : MonoBehaviour
             BoardProxy.instance.gameOverPanel.transform.GetChild(2).gameObject.SetActive(true);
             BoardProxy.instance.gameOverPanel.transform.GetChild(2).localPosition = startPosHigh;
             iTween.MoveTo(BoardProxy.instance.gameOverPanel.transform.GetChild(2).gameObject, moveToPos, 3f);
+        } else {
+            BoardProxy.instance.gameOverPanel.transform.GetChild(3).gameObject.SetActive(true);
+            switch(fact){
+              case Unit.FactionType.Cthulhu:
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(0).GetComponent<Image>().sprite = glossy.endBattleWinOverlayCthulhu1;
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(1).GetComponent<Image>().sprite = glossy.endBattleWinOverlayCthulhu2;
+                break;
+              case Unit.FactionType.Egypt:
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(0).GetComponent<Image>().sprite = glossy.endBattleWinOverlayEgypt1;
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(1).GetComponent<Image>().sprite = glossy.endBattleWinOverlayEgypt2;
+                break;
+              case Unit.FactionType.Human:
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(0).GetComponent<Image>().sprite = glossy.endBattleWinOverlayHuman1;
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(1).GetComponent<Image>().sprite = glossy.endBattleWinOverlayHuman2;
+                break;
+              default:
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(0).GetComponent<Image>().sprite = glossy.endBattleWinOverlayCthulhu1;
+                BoardProxy.instance.gameOverPanel.transform.GetChild(3).GetChild(1).GetComponent<Image>().sprite = glossy.endBattleWinOverlayCthulhu2;
+                break;
+            }
+            BoardProxy.instance.gameOverPanel.transform.GetChild(3).localPosition = startPosHigh;
+            iTween.MoveTo(BoardProxy.instance.gameOverPanel.transform.GetChild(3).gameObject, moveToPos, 3f);
         }
 
         iTween.MoveTo(BoardProxy.instance.gameOverPanel.transform.GetChild(0).gameObject, moveToPos, 1f);

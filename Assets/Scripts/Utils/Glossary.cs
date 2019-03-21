@@ -65,6 +65,13 @@ public class Glossary : MonoBehaviour
     public Sprite egyptFaction;
     public Sprite chtulhuFaction;
 
+    public Sprite endBattleWinOverlayHuman1;
+    public Sprite endBattleWinOverlayHuman2;
+    public Sprite endBattleWinOverlayEgypt1;
+    public Sprite endBattleWinOverlayEgypt2;
+    public Sprite endBattleWinOverlayCthulhu1;
+    public Sprite endBattleWinOverlayCthulhu2;
+
     public Sprite endBattleOverlayHumanLeft;
     public Sprite endBattleOverlayEgyptLeft;
     public Sprite endBattleOverlayCthulhuLeft;

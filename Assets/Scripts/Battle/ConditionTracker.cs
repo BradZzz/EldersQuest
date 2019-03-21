@@ -86,8 +86,10 @@ public class ConditionTracker : MonoBehaviour
         if (!AnimationInteractionController.AllAnimationsFinished()) { 
             yield return new WaitForSeconds(AnimationInteractionController.AFTER_KILL);
         }
+
         BoardProxy.instance.gameOverPanel.SetActive(true);
         BoardProxy.instance.gameOverPanel.transform.GetChild(2).gameObject.SetActive(false);
+        BoardProxy.instance.gameOverPanel.transform.GetChild(3).gameObject.SetActive(false);
 
         /*
           Replace shit here
@@ -122,8 +124,8 @@ public class ConditionTracker : MonoBehaviour
         Vector3 moveToPos = screenChild.transform.position;
         float screenHeight = screenChild.GetComponent<RectTransform>().rect.height;
 
-        Vector3 startPosHigh = new Vector3(moveToPos.x,moveToPos.y + screenHeight,moveToPos.z);
-        Vector3 startPosLow = new Vector3(moveToPos.x,moveToPos.y - screenHeight,moveToPos.z);
+        Vector3 startPosHigh = new Vector3(0,moveToPos.y + screenHeight,moveToPos.z);
+        Vector3 startPosLow = new Vector3(0,moveToPos.y - screenHeight,moveToPos.z);
 
         BoardProxy.instance.gameOverPanel.transform.GetChild(0).localPosition = startPosHigh;
         BoardProxy.instance.gameOverPanel.transform.GetChild(1).localPosition = startPosLow;
@@ -207,7 +209,7 @@ public class ConditionTracker : MonoBehaviour
             BaseSaver.PutPlayer(player);
             txt = "Victory";
         }
-        BoardProxy.instance.gameOverPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = txt;
+        BoardProxy.instance.gameOverPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = txt;
     }
 
     public void GameOverNavController()

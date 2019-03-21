@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/ConditionTracker.cs">
     <Files>
-      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="41" Column="10" />
-      <File FileName="Assets/Scripts/CharSelect/CharSelectController.cs" Line="100" Column="43" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="205" Column="50" />
-      <File FileName="Assets/Libraries/DynamicSorting.cs" Line="7" Column="19" />
-      <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="66" Column="34" />
-      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="18" Column="30" />
-      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="89" Column="29" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="85" Column="10" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Mage/EgyptDjinnClass.cs" Line="33" Column="48" />
+      <File FileName="Assets/Scripts/Classes/Egypt/Scout/EgyptBaseScout.cs" Line="32" Column="4" />
+      <File FileName="Assets/Scripts/Map/MapStatic.cs" Line="41" Column="81" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="110" Column="42" />
+      <File FileName="Assets/Scripts/Skills/SubSkills/AoeAtk.cs" Line="49" Column="1" />
+      <File FileName="Assets/Scripts/Battle/AnimationInteractionController.cs" Line="114" Column="69" />
+      <File FileName="Assets/Scripts/Battle/Brains/AdvancedBrain.cs" Line="81" Column="86" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="71" Column="84" />
+      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="157" Column="97" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

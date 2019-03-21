@@ -12,7 +12,7 @@ public class EgyptDjinnClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn\nAoeAtk";
+    return "+1 atk rng\nAoeAtk";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class EgyptDjinnClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
+      unit.SetAtkRange(unit.GetAtkRange() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("AoeAtk");
       unit.SetSkills(skills.ToArray());

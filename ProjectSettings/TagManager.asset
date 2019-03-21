@@ -47,6 +47,15 @@ TagManager:
   - name: Board
     uniqueID: 2000742619
     locked: 0
+  - name: Cursor
+    uniqueID: 2439462171
+    locked: 0
+  - name: Pieces
+    uniqueID: 2300898729
+    locked: 0
+  - name: FX
+    uniqueID: 2751565407
+    locked: 0
   - name: UI
     uniqueID: 4191083391
     locked: 0

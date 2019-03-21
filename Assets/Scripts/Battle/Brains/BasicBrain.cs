@@ -70,7 +70,7 @@ public class BasicBrain : MonoBehaviour
                     //Debug.Log("Trying to Move");
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
                     //Calculate a path from the unit to the first opposing unit (should be optimized)
-                    Path<TileProxy> path = BoardProxy.instance.GetPath(start, BoardProxy.instance.GetTileAtPosition(opposingUnits[0].GetPosition()), unit);
+                    Path<TileProxy> path = BoardProxy.instance.GetPathAIConsideration(start, BoardProxy.instance.GetTileAtPosition(opposingUnits[0].GetPosition()), unit);
                     if (path.Count() > 0 && path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).Any()) {
                         //See how many of those tiles are in the tiles we are allowed to move
                         TileProxy dest = path.Where(tile => validTiles.Contains(tile) && !tile.HasUnit()).First();

@@ -12,7 +12,7 @@ public class EgyptBaseScout : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 mv trn";
+    return "+2 mv trn\n+1 hp";
   }
 
   public override string ClassName()
@@ -30,6 +30,7 @@ public class EgyptBaseScout : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
       unit.SetTurnMoves(unit.GetTurnMoves() + 2);
       return unit;
   }

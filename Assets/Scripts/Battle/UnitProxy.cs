@@ -84,16 +84,14 @@ public class UnitProxy : GridObjectProxy
           Debug.Log("Aegis!");
           _data.SetAegis(false);
           StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
-            oppUnit.gameObject.transform, diff, ""));
+            oppUnit.gameObject.transform, diff, "", useAttack));
           FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis", true);
           return false;
       }
       Debug.Log("No Aegis");
 
-      if (useAttack){
-        StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
-          oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString()));
-      }
+      StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
+        oppUnit.gameObject.transform, diff, "-" + oppUnit.GetData().GetAttack().ToString(), useAttack));
 
       GetData().IsAttacked(oppUnit.GetData().GetAttack());
       if (GetData().IsDead())
@@ -108,8 +106,8 @@ public class UnitProxy : GridObjectProxy
       return false;
     }
 
-    IEnumerator AttackAnim(UnitProxy oppUnit, Animator anim, Transform opp, Vector3Int diff, string msg){
-      if (anim != null) {
+    IEnumerator AttackAnim(UnitProxy oppUnit, Animator anim, Transform opp, Vector3Int diff, string msg, bool showProjectiles = true){
+      if (anim != null && showProjectiles) {
           Vector3 theScale = opp.localScale;
           if (diff.x > 0) {
             //Debug.Log("right");
@@ -143,7 +141,9 @@ public class UnitProxy : GridObjectProxy
       }
       Debug.Log("AttackAnim");
       FloatUp(Skill.Actions.DidAttack, msg, Color.red, "Was attacked", true);
-      StartCoroutine(CreateProjectiles(oppUnit, opp.position));
+      if (showProjectiles) {
+          StartCoroutine(CreateProjectiles(oppUnit, opp.position));
+      }
       yield return null;
     }
 
@@ -184,9 +184,9 @@ public class UnitProxy : GridObjectProxy
             case Unit.FactionType.Egypt:
               projColor=Color.yellow;
               switch(oppUnit.GetData().GetUnitType()){
-                case Unit.UnitType.Mage: num = 20; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = 0; break;
+                case Unit.UnitType.Mage: num = 20; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = .2f; break;
                 case Unit.UnitType.Scout: num = 5; delayBefore = .1f; delayAfter = .02f; break;
-                case Unit.UnitType.Soldier: projColor=Color.red; projSpeed = .9f; rotate = true; num = 1; delayBefore = .45f; delayAfter = .3f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().scarab; break;
+                case Unit.UnitType.Soldier: projSpeed = .9f; rotate = true; num = 1; delayBefore = .45f; delayAfter = .3f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().scarab; break;
               }
               break;
             case Unit.FactionType.Human:

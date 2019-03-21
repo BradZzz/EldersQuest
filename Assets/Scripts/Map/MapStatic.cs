@@ -11,9 +11,9 @@ public class MapStatic
       Dictionary<string, BoardMeta> board = new Dictionary<string, BoardMeta>();
       switch(player.world){
         case GameMeta.World.nile:
-            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,1, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
-            board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(1,2, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
-            board.Add("Dest3",new BoardMeta(8, 8, CreateFromExp(2,3, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
+            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,1, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
+            board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(2,2, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
+            board.Add("Dest3",new BoardMeta(8, 8, CreateFromExp(2,3, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
             board.Add("Dest4",new BoardMeta(8, 8, CreateFromExp(2,4, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest5" }));
             board.Add("Dest5",new BoardMeta(9, 9, CreateFromExp(2,5, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest6" }));
             board.Add("Dest6",new BoardMeta(9, 9, CreateFromExp(2,6, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest7" }));
@@ -23,8 +23,8 @@ public class MapStatic
             board.Add("Dest10",new BoardMeta(14, 14, CreateFromExp(3,10, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest11" }));
             return board;
         case GameMeta.World.mountain:
-            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,1, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
-            board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(1,2, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
+            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,1, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
+            board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(2,2, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
             board.Add("Dest3",new BoardMeta(8, 8, CreateFromExp(2,3, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
             board.Add("Dest4",new BoardMeta(8, 8, CreateFromExp(2,5, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest5" }));
             board.Add("Dest5",new BoardMeta(9, 9, CreateFromExp(2,6, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest6" }));
@@ -35,8 +35,8 @@ public class MapStatic
             board.Add("Dest10",new BoardMeta(14, 14, CreateFromExp(3,15, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest11" }));
             return board;
         case GameMeta.World.pyramid:
-            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,1, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
-            board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(2,2, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
+            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,1, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
+            board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(1,2, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
             board.Add("Dest3",new BoardMeta(8, 8, CreateFromExp(2,3, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
             board.Add("Dest4",new BoardMeta(8, 8, CreateFromExp(2,6, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest5" }));
             board.Add("Dest5",new BoardMeta(9, 9, CreateFromExp(2,8, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest6" }));

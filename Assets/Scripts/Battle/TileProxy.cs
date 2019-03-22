@@ -9,6 +9,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     public static float NO_ATK_WAIT = .5f;
     public static float ATK_WAIT = 1.6f;
 
+    public static Color SHADING_UNDERLAY = Color.grey;
     public static Color MOVE = Color.yellow;
     public Color ATK_INACTIVE = new Color(.86f,.079f,.24f);
     public static Color ATK_ACTIVE = Color.magenta;
@@ -71,7 +72,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
 
     public void HighlightSelected()
     {
-        //GetComponent<Renderer>().material.color = MOVE;
+        //GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = MOVE;
     }
@@ -85,7 +86,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
         {
             if (!canAtk && !canMv)
             {
-                //GetComponent<Renderer>().material.color = MOVE;
+                GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
                 transform.GetChild(0).gameObject.SetActive(true);
                 transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = MOVE;
             }
@@ -99,11 +100,13 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
                 if (HasUnit() && inRangeUnit.GetData().GetTeam() != GetUnit().GetData().GetTeam())
                 {
                     //GetComponent<Renderer>().material.color = ATK_ACTIVE;
+                    GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
                     transform.GetChild(0).gameObject.SetActive(true);
                     transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = ATK_ACTIVE;
                 }
                 else if (!HasObstacle())
                 {
+                    GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
                     transform.GetChild(0).gameObject.SetActive(true);
                     transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = ATK_INACTIVE;
                     //GetComponent<Renderer>().material.color = ATK_INACTIVE;
@@ -116,6 +119,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             {
                 if (!(HasUnit() && canAtk))
                 {
+                    GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
                     transform.GetChild(0).gameObject.SetActive(true);
                     transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = MOVE;
                     //GetComponent<Renderer>().material.color = MOVE;
@@ -151,16 +155,17 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     public void ForceHighlight()
     {
         if(this != null){
+            GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-            //GetComponent<Renderer>().material.color = Color.green;
+            //GetComponent<Renderer>().material.color = MOVE;
         }
     }
 
     public void UnHighlight()
     {
         if(this != null){
-            //GetComponent<Renderer>().material.color = Color.white;
+            GetComponent<Renderer>().material.color = Color.white;
             transform.GetChild(0).gameObject.SetActive(false);
         }
     }

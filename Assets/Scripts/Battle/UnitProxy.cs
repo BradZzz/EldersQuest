@@ -388,7 +388,7 @@ public class UnitProxy : GridObjectProxy
     public virtual IEnumerator CreatePathToTileAndLerpToPosition(TileProxy destination, Action callback)
     {
         var currentTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
-        var path = BoardProxy.instance.GetPath(currentTile, destination, this);
+        var path = BoardProxy.instance.GetPathAIConsideration(currentTile, destination, this);
         yield return StartCoroutine(SetPathAndLerpToEnd(path));
         if (callback != null){
             callback();

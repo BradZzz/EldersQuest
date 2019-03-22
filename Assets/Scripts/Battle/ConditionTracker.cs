@@ -87,6 +87,8 @@ public class ConditionTracker : MonoBehaviour
             yield return new WaitForSeconds(AnimationInteractionController.AFTER_KILL);
         }
 
+        BoardProxy.instance.gameObject.GetComponent<Grid>().enabled = false;
+
         BoardProxy.instance.gameOverPanel.SetActive(true);
         BoardProxy.instance.gameOverPanel.transform.GetChild(2).gameObject.SetActive(false);
         BoardProxy.instance.gameOverPanel.transform.GetChild(3).gameObject.SetActive(false);

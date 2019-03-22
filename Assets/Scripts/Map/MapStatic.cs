@@ -106,7 +106,7 @@ public class MapStatic
             units.Add(newUnit);
         }
         Debug.Log("Units: " + units.Count.ToString());
-        if (units.Count < 3) {
+        if (tutorial) {
             return units.ToArray();
         }
         /*

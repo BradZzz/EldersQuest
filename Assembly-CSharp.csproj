@@ -225,6 +225,7 @@
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuVampireClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuVamprossClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Cthulu\Soldier\CthulhuWRiderClass.cs" />
+    <Compile Include="Assets\Scripts\Classes\Cthulu\Wisp\CthulhuBaseWisp.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Mage\EgyptBaseMage.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Mage\EgyptBKoboldClass.cs" />
     <Compile Include="Assets\Scripts\Classes\Egypt\Mage\EgyptConjurerClass.cs" />

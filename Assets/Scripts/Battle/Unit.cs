@@ -336,7 +336,7 @@ public class Unit : GridObject
     }
 
     public bool LowHP(){
-        return (float) GetCurrHealth() / (float) GetMaxHP() <= .33 || GetCurrHealth() <= 1;
+        return (float) GetCurrHealth() / (float) GetMaxHP() <= .33 || (GetCurrHealth() <= 1 && !summoned);
     }
 
     public bool ModerateHP(){
@@ -373,16 +373,18 @@ public class Unit : GridObject
       Utility Functions
     */
 
-    public static Unit BuildInitial(FactionType fType, UnitType uType, int team)
+    public static Unit BuildInitial(FactionType fType, UnitType uType, int team, ClassNode classObj = null, int val = 1)
     {
         List<string> avoidNames = team == BoardProxy.PLAYER_TEAM ? 
           new List<string>(BaseSaver.GetPlayer().characters.Select(chr => chr.characterMoniker)) : 
           new List<string>();
-
         string uName = UnitNameGenerator.GenerateRandomName(avoidNames, fType);
-
         Unit bUnit = new Unit(uName, uName, 0, team, 3, 1, 3, 2, 1, 1, new string[]{ }, "", uType, fType);
-        ClassNode classObj = ClassNode.ComputeClassObject(fType,uType);
+        if (classObj == null) {
+            classObj = ClassNode.ComputeClassObject(fType,uType);
+        } else {
+            bUnit = new Unit(uName, uName, 0, team, val, val, 3, 2, 1, 1, new string[]{ }, "", uType, fType);
+        }
         bUnit = classObj.UpgradeCharacter(bUnit);
         bUnit.SetCurrentClass(classObj.GetType().Name);
         return bUnit;

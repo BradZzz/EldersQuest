@@ -79,16 +79,18 @@ public class BoardProxy : MonoBehaviour
     }
 
     public void SummonAtPosition(Vector3Int pos, int team, int val){
-        UnitProxy unit = glossary.GetComponent<Glossary>().summonedSkeleton;
-        PopulateAtPos(pos, unit, team, val);
+        UnitProxy unit = glossary.GetComponent<Glossary>().cthulhuWisp;
+        StartCoroutine(PopulateSkeleton(pos, unit, team, val));
     }
 
-    public void PopulateAtPos(Vector3Int pos, UnitProxy unit, int team, int val){
+    IEnumerator PopulateSkeleton(Vector3Int pos, UnitProxy unit, int team, int val){
+        yield return new WaitForSeconds(2.2f);
         TileProxy tl = tiles[pos.x, pos.y];
         //if (!tl.HasUnit()) {
         UnitProxy newUnit = Instantiate(unit, transform);
+        //newUnit.Init();
+        newUnit.PutData(Unit.BuildInitial(Unit.FactionType.Cthulhu, Unit.UnitType.Soldier, team, new CthulhuBaseWisp(), val));
         newUnit.Init();
-        newUnit.PutData(newUnit.GetData().SummonedData(team, val));
         newUnit.GetData().SetSummoned(true);
         tl.ReceiveGridObjectProxy(newUnit);
         newUnit.SnapToCurrentPosition();
@@ -105,30 +107,6 @@ public class BoardProxy : MonoBehaviour
         }
         Debug.Log("BuildBoardFromFile: " + currentMap);
         BoardEditProxy.GetItemInfo(currentMap, PopulateRetrievedInfo);
-        //if (bMeta != null) {
-        //    height = bMeta.height;
-        //    width = bMeta.width;
-        //    BuildTestBoard();
-
-        //    PopulatePlayer(bMeta.players.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
-        //    PopulateEnemies(bMeta.enemies.Select(pos => instance.GetTileAtPosition(pos)).ToArray());
-
-        //    foreach(Vector3Int pt in bMeta.fireTiles){
-        //        tiles[pt.x, pt.y].SetLifeFire(true);
-        //    }
-        //    foreach(Vector3Int pt in bMeta.snowTiles){
-        //        tiles[pt.x, pt.y].SetLifeSnow(true);
-        //    }
-        //    foreach(Vector3Int pt in bMeta.wallTiles){
-        //        tiles[pt.x, pt.y].SetLifeWall(true);
-        //    }
-        //    foreach(Vector3Int pt in bMeta.divineTiles){
-        //        tiles[pt.x, pt.y].SetLifeDivine(true);
-        //    }
-        //    return true;
-        //} else {
-        //    return false;
-        //}
     }
 
     public void PopulateRetrievedInfo(BoardEditMeta bMeta){

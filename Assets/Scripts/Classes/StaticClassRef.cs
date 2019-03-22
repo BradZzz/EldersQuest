@@ -167,6 +167,7 @@ public class StaticClassRef
             case AvailableClasses.CthulhuAzathothClass: return new CthulhuAzathothClass();
             case AvailableClasses.CthulhuYogsothothClass: return new CthulhuYogsothothClass();
 
+            case AvailableClasses.CthulhuBaseWisp: return new CthulhuBaseWisp();
             case AvailableClasses.CthulhuBaseSoldier: return new CthulhuBaseSoldier();
             /* lvl 2 */
             case AvailableClasses.CthulhuVamprossClass: return new CthulhuVamprossClass();
@@ -248,7 +249,7 @@ public class StaticClassRef
         EgyptBMessiahClass, EgyptOracleClass, EgyptHMessiahClass, EgyptAConduitClass,
 
         /* Cthulhu Mage */
-        CthulhuBaseMage, CthulhuLesserDemonClass, CthulhuNecromancerClass,
+        CthulhuBaseWisp, CthulhuBaseMage, CthulhuLesserDemonClass, CthulhuNecromancerClass,
         CthulhuLichClass, CthulhuPitLordClass, CthulhuFurymancerClass, CthulhuGrandDemonClass,
         /* lvl 4 */
         CthulhuDevilClass, CthulhuFaustusClass, CthulhuJudasClass, CthulhuVirgilClass,

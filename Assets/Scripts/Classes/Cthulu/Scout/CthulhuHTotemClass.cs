@@ -12,7 +12,7 @@ public class CthulhuHTotemClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "FireMove\nThornDef";
+    return "ThornDef\nThornDef";
   }
 
   public override string ClassName()
@@ -31,7 +31,7 @@ public class CthulhuHTotemClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireMove");
+      skills.Add("ThornDef");
       skills.Add("ThornDef");
       unit.SetSkills(skills.ToArray());
       return unit;

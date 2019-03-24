@@ -12,7 +12,7 @@ public class HumanGigaWizardClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\nHealKill";
+    return "+1 atk\nHealTurn";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanGigaWizardClass : ClassNode
   {
       unit.SetAttack(unit.GetAttack() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("HealKill");
+      skills.Add("HealTurn");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

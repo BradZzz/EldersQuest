@@ -12,7 +12,7 @@ public class EgyptHMessiahClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 mv\n+1 hp\nThornDef";
+      return "+1 mv trn\n+1 hp\nThornDef";
   }
 
   public override string ClassName()
@@ -30,8 +30,7 @@ public class EgyptHMessiahClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 1);
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("ThornDef");
       unit.SetSkills(skills.ToArray());

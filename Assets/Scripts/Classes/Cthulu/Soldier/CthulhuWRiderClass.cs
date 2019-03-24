@@ -12,7 +12,7 @@ public class CthulhuWRiderClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn\nRageWait";
+    return "+1 mv trn\nHealWait";
   }
 
   public override string ClassName()
@@ -33,7 +33,7 @@ public class CthulhuWRiderClass : ClassNode
   {
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("RageWait");
+      skills.Add("HealWait");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

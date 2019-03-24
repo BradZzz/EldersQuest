@@ -12,7 +12,7 @@ public class HumanKootClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk rng trn\nFireKill";
+    return "+2 atk rng";
   }
 
   public override string ClassName()
@@ -30,10 +30,7 @@ public class HumanKootClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetAtkRange(unit.GetAtkRange() + 1);
-      List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireKill");
-      unit.SetSkills(skills.ToArray());
+      unit.SetAtkRange(unit.GetAtkRange() + 2);
       return unit;
   }
 }

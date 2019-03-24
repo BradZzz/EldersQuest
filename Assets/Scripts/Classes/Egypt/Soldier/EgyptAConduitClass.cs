@@ -12,7 +12,7 @@ public class EgyptAConduitClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+3 atk";
+      return "+2 atk";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class EgyptAConduitClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetAttack(unit.GetAttack() + 3);
+      unit.SetAttack(unit.GetAttack() + 2);
       return unit;
   }
 }

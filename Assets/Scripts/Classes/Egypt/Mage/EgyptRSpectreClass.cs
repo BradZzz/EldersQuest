@@ -12,7 +12,7 @@ public class EgyptRSpectreClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nRageAlliesWait";
+    return "RageAtk";
   }
 
   public override string ClassName()
@@ -30,9 +30,8 @@ public class EgyptRSpectreClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("RageAlliesWait");
+      skills.Add("RageAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

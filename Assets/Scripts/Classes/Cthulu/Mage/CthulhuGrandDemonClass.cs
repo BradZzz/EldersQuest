@@ -12,7 +12,7 @@ public class CthulhuGrandDemonClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nForceAtk";
+    return "+1 hp\n+1 atk rng\nForceAtk";
   }
 
   public override string ClassName()
@@ -30,7 +30,8 @@ public class CthulhuGrandDemonClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 2);
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
+      unit.SetAtkRange(unit.GetAtkRange() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("ForceAtk");
       unit.SetSkills(skills.ToArray());

@@ -25,7 +25,7 @@ public class EgyptManglerClass : ClassNode
   }
 
   public override ClassNode[] GetChildren(){
-      return new ClassNode[]{ new EgyptFBenderClass(), new EgyptSSenseiClass() };
+      return new ClassNode[]{ new EgyptRChosenClass(), new EgyptSSenseiClass() };
   }
 
   public override Unit UpgradeCharacter(Unit unit)

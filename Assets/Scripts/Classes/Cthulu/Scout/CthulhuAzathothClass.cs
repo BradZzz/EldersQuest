@@ -12,7 +12,7 @@ public class CthulhuAzathothClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\nBideWait";
+    return "+1 atk\nWarpAtk";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class CthulhuAzathothClass : ClassNode
   {
       unit.SetAttack(unit.GetAttack() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideWait");
+      skills.Add("WarpAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

@@ -12,7 +12,7 @@ public class EgyptNSpeakerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\nAegisKill";
+    return "HealAtk\nAegisKill";
   }
 
   public override string ClassName()
@@ -30,9 +30,9 @@ public class EgyptNSpeakerClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetAttack(unit.GetAttack() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("AegisKill");
+      skills.Add("HealAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

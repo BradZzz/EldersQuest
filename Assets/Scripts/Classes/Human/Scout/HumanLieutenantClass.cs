@@ -12,7 +12,7 @@ public class HumanLieutenantClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\n+1 mv trn";
+    return "+1 atk\n+1 mv trn\nDivineMove";
   }
 
   public override string ClassName()
@@ -32,6 +32,9 @@ public class HumanLieutenantClass : ClassNode
   {
       unit.SetAttack(unit.GetAttack() + 1);
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("DivineMove");
+      unit.SetSkills(skills.ToArray());
       return unit;
   }
 }

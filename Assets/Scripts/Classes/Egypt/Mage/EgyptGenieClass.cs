@@ -12,7 +12,7 @@ public class EgyptGenieClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nFireMove";
+    return "+2 mv\n+1 atk";
   }
 
   public override string ClassName()
@@ -30,10 +30,8 @@ public class EgyptGenieClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
-      List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireMove");
-      unit.SetSkills(skills.ToArray());
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 2);
+      unit.SetAttack(unit.GetAttack() + 1);
       return unit;
   }
 }

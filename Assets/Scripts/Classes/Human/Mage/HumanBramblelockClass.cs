@@ -12,7 +12,7 @@ public class HumanBramblelockClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nWallMove";
+    return "+1 hp\nWallMove\nWallMove";
   }
 
   public override string ClassName()
@@ -32,6 +32,7 @@ public class HumanBramblelockClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("WallMove");
       skills.Add("WallMove");
       unit.SetSkills(skills.ToArray());
       return unit;

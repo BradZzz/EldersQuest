@@ -12,7 +12,7 @@ public class EgyptScionClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "AegisAtk";
+      return "+1 atk trn\nAegisAtk";
   }
 
   public override string ClassName()
@@ -30,6 +30,7 @@ public class EgyptScionClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("AegisAtk");
       unit.SetSkills(skills.ToArray());

@@ -12,7 +12,7 @@ public class HumanPKnightClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\nAegisAlliesAtk";
+    return "+1 atk\nHealAlliesAtk";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanPKnightClass : ClassNode
   {
       unit.SetAttack(unit.GetAttack() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("AegisAlliesAtk");
+      skills.Add("HealAlliesAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

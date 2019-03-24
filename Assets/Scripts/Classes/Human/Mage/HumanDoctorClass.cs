@@ -33,6 +33,7 @@ public class HumanDoctorClass : ClassNode
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("HealAlliesAtk");
+      skills.Add("HealAlliesAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

@@ -12,7 +12,7 @@ public class CthulhuLesserDemonClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "FireKill\nFireMove";
+    return "FireKill\n+1 atk rng";
   }
 
   public override string ClassName()
@@ -30,8 +30,8 @@ public class CthulhuLesserDemonClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetAtkRange(unit.GetAtkRange() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireMove");
       skills.Add("FireKill");
       unit.SetSkills(skills.ToArray());
       return unit;

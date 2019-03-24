@@ -12,7 +12,7 @@ public class CthulhuJudasClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "FireMove\nRageMove";
+    return "+1 hp\nRageMove";
   }
 
   public override string ClassName()
@@ -30,8 +30,8 @@ public class CthulhuJudasClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetMaxHP(unit.GetMaxHP());
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireMove");
       skills.Add("RageMove");
       unit.SetSkills(skills.ToArray());
       return unit;

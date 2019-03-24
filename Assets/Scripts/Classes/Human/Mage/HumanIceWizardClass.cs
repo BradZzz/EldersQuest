@@ -12,7 +12,7 @@ public class HumanIceWizardClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "BideWait\nSnowAtk";
+    return "AegisAtk\nSnowAtk\nSnowAtk";
   }
 
   public override string ClassName()
@@ -31,7 +31,8 @@ public class HumanIceWizardClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideWait");
+      skills.Add("AegisAtk");
+      skills.Add("SnowAtk");
       skills.Add("SnowAtk");
       unit.SetSkills(skills.ToArray());
       return unit;

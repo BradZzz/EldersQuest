@@ -12,7 +12,7 @@ public class HumanGPaladinClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 mv\n+1 mv trn\nBideWait";
+      return "+1 mv\n+1 mv trn\nRageWait";
   }
 
   public override string ClassName()
@@ -33,7 +33,7 @@ public class HumanGPaladinClass : ClassNode
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideWait");
+      skills.Add("RageWait");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

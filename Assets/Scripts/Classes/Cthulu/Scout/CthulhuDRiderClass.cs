@@ -12,7 +12,7 @@ public class CthulhuDRiderClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "QuickenAlliesAtk\n+1 atk trn";
+    return "EnfeebleEnemiesWait\nEnfeebleEnemiesWait\n+1 atk trn";
   }
 
   public override string ClassName()
@@ -32,7 +32,8 @@ public class CthulhuDRiderClass : ClassNode
   {
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("QuickenAlliesAtk");
+      skills.Add("EnfeebleEnemiesWait");
+      skills.Add("EnfeebleEnemiesWait");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

@@ -12,7 +12,7 @@ public class EgyptWMasterClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "AegisAlliesAtk\nWallMove";
+    return "+1 hp\nHealTurn";
   }
 
   public override string ClassName()
@@ -30,9 +30,9 @@ public class EgyptWMasterClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("AegisAlliesAtk");
-      skills.Add("WallMove");
+      skills.Add("HealTurn");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

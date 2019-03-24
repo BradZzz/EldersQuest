@@ -356,6 +356,7 @@
     <Compile Include="Assets\Scripts\Skills\SubSkills\AegisTurn.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\AegisWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\AoeAtk.cs" />
+    <Compile Include="Assets\Scripts\Skills\SubSkills\BideAlliesAtk.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideAlliesWait.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideKill.cs" />
     <Compile Include="Assets\Scripts\Skills\SubSkills\BideWait.cs" />

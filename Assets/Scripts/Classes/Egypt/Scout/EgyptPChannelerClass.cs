@@ -12,7 +12,7 @@ public class EgyptPChannelerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nRageWait";
+    return "WarpAtk\nRageWait";
   }
 
   public override string ClassName()
@@ -30,8 +30,8 @@ public class EgyptPChannelerClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("WarpAtk");
       skills.Add("RageWait");
       unit.SetSkills(skills.ToArray());
       return unit;

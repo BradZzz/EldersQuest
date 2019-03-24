@@ -12,7 +12,7 @@ public class CthulhuEveClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nBideAlliesWait";
+    return "BideAlliesWait\nBideAlliesWait";
   }
 
   public override string ClassName()
@@ -31,8 +31,8 @@ public class CthulhuEveClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("BideAlliesWait");
       skills.Add("BideAlliesWait");
       unit.SetSkills(skills.ToArray());
       return unit;

@@ -12,7 +12,7 @@ public class CthulhuAVamprossClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\n+1 atk trn";
+    return "+1 hp\n+1 mv trn";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class CthulhuAVamprossClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
-      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       return unit;
   }
 }

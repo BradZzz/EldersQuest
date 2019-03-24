@@ -12,7 +12,7 @@ public class CthulhuSuccubusClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nBideKill";
+    return "BideKill";
   }
 
   public override string ClassName()
@@ -31,7 +31,6 @@ public class CthulhuSuccubusClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("BideKill");
       unit.SetSkills(skills.ToArray());

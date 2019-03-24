@@ -12,7 +12,7 @@ public class CthulhuGodzillaClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk rng\nAoeAtk";
+    return "+2 mv trn\nRageMove";
   }
 
   public override string ClassName()
@@ -30,9 +30,9 @@ public class CthulhuGodzillaClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetAtkRange(unit.GetAtkRange() + 1);
+      unit.SetTurnMoves(unit.GetTurnMoves() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("AoeAtk");
+      skills.Add("RageMove");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

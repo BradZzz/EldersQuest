@@ -12,7 +12,7 @@ public class EgyptTGoblinClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "BideKill\nBideWait";
+    return "HealAtk\nBideWait";
   }
 
   public override string ClassName()
@@ -31,7 +31,7 @@ public class EgyptTGoblinClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideKill");
+      skills.Add("HealAtk");
       skills.Add("BideWait");
       unit.SetSkills(skills.ToArray());
       return unit;

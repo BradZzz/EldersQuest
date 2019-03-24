@@ -12,7 +12,7 @@ public class HumanFlankCaptainClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "AegisTurn";
+      return "+1 mv\nAegisTurn";
   }
 
   public override string ClassName()
@@ -30,6 +30,7 @@ public class HumanFlankCaptainClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("AegisTurn");
       unit.SetSkills(skills.ToArray());

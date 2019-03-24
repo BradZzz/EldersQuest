@@ -12,7 +12,7 @@ public class EgyptPorcupineClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nFireDef";
+    return "HealAtk\nFireDef";
   }
 
   public override string ClassName()
@@ -30,9 +30,9 @@ public class EgyptPorcupineClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("FireDef");
+      skills.Add("HealAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

@@ -12,7 +12,7 @@ public class EgyptCWalkerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nSnowMove";
+    return "AegisTurn\nSnowMove";
   }
 
   public override string ClassName()
@@ -32,6 +32,7 @@ public class EgyptCWalkerClass : ClassNode
   {
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("AegisTurn");
       skills.Add("SnowMove");
       unit.SetSkills(skills.ToArray());
       return unit;

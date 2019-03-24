@@ -12,7 +12,7 @@ public class HumanCCrusaderClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "HealAlliesAtk/nBideKill";
+      return "+1 atk turn";
   }
 
   public override string ClassName()
@@ -30,10 +30,7 @@ public class HumanCCrusaderClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("HealAlliesAtk");
-      skills.Add("BideKill");
-      unit.SetSkills(skills.ToArray());
+      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
 }

@@ -12,7 +12,7 @@ public class HumanArchMageClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "FireAtk\nHealWait";
+    return "FireAtk\nFireAtk\n+1 atk rng";
   }
 
   public override string ClassName()
@@ -30,9 +30,10 @@ public class HumanArchMageClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
+      unit.SetAtkRange(unit.GetAtkRange() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("FireAtk");
-      skills.Add("HealWait");
+      skills.Add("FireAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

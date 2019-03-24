@@ -12,7 +12,7 @@ public class EgyptAnukeClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 hp\n+1 atk trn";
+      return "+2 hp\n+1 atk trn";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class EgyptAnukeClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 1);
+      unit.SetMaxHP(unit.GetMaxHP() + 2);
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }

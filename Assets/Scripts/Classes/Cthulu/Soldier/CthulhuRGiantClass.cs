@@ -12,7 +12,7 @@ public class CthulhuRGiantClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nRageDef";
+    return "BideWait\nRageDef";
   }
 
   public override string ClassName()
@@ -31,9 +31,9 @@ public class CthulhuRGiantClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("RageDef");
+      skills.Add("BideWait");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

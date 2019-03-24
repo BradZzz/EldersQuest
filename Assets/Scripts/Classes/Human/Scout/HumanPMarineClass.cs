@@ -12,7 +12,7 @@ public class HumanPMarineClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 atk rng\nAoeAtk";
+    return "HealTurn\nAoeAtk\nAoeAtk";
   }
 
   public override string ClassName()
@@ -30,8 +30,9 @@ public class HumanPMarineClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetAtkRange(unit.GetAtkRange() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("HealTurn");
+      skills.Add("AoeAtk");
       skills.Add("AoeAtk");
       unit.SetSkills(skills.ToArray());      
       return unit;

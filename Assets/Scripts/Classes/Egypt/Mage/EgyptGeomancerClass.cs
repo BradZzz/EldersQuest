@@ -12,7 +12,7 @@ public class EgyptGeomancerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nFireAtk";
+    return "+1 atk rng\nFireAtk";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class EgyptGeomancerClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
+      unit.SetAtkRange(unit.GetAtkRange() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("FireAtk");
       unit.SetSkills(skills.ToArray());

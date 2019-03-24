@@ -12,7 +12,7 @@ public class EgyptFEnforcerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\n+1 atk trn";
+    return "FireAtk\nFireAtk\n+1 atk trn";
   }
 
   public override string ClassName()
@@ -30,8 +30,11 @@ public class EgyptFEnforcerClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetAttack(unit.GetAttack() + 1);
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
+      List<string> skills = new List<string>(unit.GetSkills());
+      skills.Add("FireAtk");
+      skills.Add("FireAtk");
+      unit.SetSkills(skills.ToArray());
       return unit;
   }
 }

@@ -12,7 +12,7 @@ public class HumanMetalmancerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nAegisWait\nNullifyAtk";
+    return "+2 hp\nFireAtk";
   }
 
   public override string ClassName()
@@ -31,8 +31,7 @@ public class HumanMetalmancerClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("AegisWait");
-      skills.Add("NullifyAtk");
+      skills.Add("FireAtk");
       unit.SetSkills(skills.ToArray());
       unit.SetMaxHP(unit.GetMaxHP() + 2);
       return unit;

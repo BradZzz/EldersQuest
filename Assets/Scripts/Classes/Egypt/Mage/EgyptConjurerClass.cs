@@ -12,7 +12,7 @@ public class EgyptConjurerClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv\nWarpAtk";
+    return "+1 mv\nFireAtk";
   }
 
   public override string ClassName()
@@ -30,10 +30,9 @@ public class EgyptConjurerClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      int hp = unit.GetMaxHP();
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("WarpAtk");
+      skills.Add("FireAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

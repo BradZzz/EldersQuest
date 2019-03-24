@@ -12,7 +12,7 @@ public class HumanDCrusaderClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 hp\nAoeAtk\nDivineMove";
+      return "+1 hp\nDivineMove\nDivineMove";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class HumanDCrusaderClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("AoeAtk");
+      skills.Add("DivineMove");
       skills.Add("DivineMove");
       unit.SetSkills(skills.ToArray());
       return unit;

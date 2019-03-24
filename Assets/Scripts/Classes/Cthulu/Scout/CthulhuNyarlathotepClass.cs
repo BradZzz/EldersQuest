@@ -12,7 +12,7 @@ public class CthulhuNyarlathotepClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn\nNullifyAtk";
+    return "+1 mv\nNullifyAtk";
   }
 
   public override string ClassName()
@@ -30,7 +30,7 @@ public class CthulhuNyarlathotepClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetTurnMoves(unit.GetTurnMoves() + 1);
+      unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
       skills.Add("NullifyAtk");
       unit.SetSkills(skills.ToArray());

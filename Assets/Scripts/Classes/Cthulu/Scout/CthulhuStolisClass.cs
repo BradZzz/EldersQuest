@@ -12,7 +12,7 @@ public class CthulhuStolisClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nBideKill";
+    return "+1 hp\nBideWait";
   }
 
   public override string ClassName()
@@ -30,10 +30,9 @@ public class CthulhuStolisClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      int maxHp = unit.GetMaxHP();
-      unit.SetMaxHP(maxHp + 2);
+      unit.SetMaxHP(unit.GetMaxHP() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideKill");
+      skills.Add("BideWait");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

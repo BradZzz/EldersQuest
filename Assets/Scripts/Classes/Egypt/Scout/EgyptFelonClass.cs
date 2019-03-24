@@ -12,7 +12,7 @@ public class EgyptFelonClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+2 hp\nFireDef";
+    return "+2 hp\nFireMove";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class EgyptFelonClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireDef");
+      skills.Add("FireMove");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

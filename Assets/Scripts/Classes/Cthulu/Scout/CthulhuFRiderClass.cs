@@ -12,7 +12,7 @@ public class CthulhuFRiderClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nBideWait";
+    return "+1 hp\n+1 atk trn";
   }
 
   public override string ClassName()
@@ -31,9 +31,7 @@ public class CthulhuFRiderClass : ClassNode
   public override Unit UpgradeCharacter(Unit unit)
   {
       unit.SetMaxHP(unit.GetMaxHP() + 1);
-      List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideWait");
-      unit.SetSkills(skills.ToArray());
+      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
 }

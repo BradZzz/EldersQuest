@@ -12,7 +12,7 @@ public class CthulhuYigClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 atk\nRageAtk";
+    return "+1 atk\nRageAlliesWait";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class CthulhuYigClass : ClassNode
   {
       unit.SetAttack(unit.GetAttack() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("RageAtk");
+      skills.Add("RageAlliesWait");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

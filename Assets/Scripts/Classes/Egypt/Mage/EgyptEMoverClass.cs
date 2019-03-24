@@ -12,7 +12,7 @@ public class EgyptEMoverClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nFireDef";
+    return "+3 hp";
   }
 
   public override string ClassName()
@@ -30,10 +30,7 @@ public class EgyptEMoverClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 1);
-      List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("FireDef");
-      unit.SetSkills(skills.ToArray());
+      unit.SetMaxHP(unit.GetMaxHP() + 3);
       return unit;
   }
 }

@@ -12,7 +12,7 @@ public class CthulhuThingClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+3 hp\nBideWait";
+    return "+3 hp\nNullifyAtk";
   }
 
   public override string ClassName()
@@ -33,7 +33,7 @@ public class CthulhuThingClass : ClassNode
   {
       unit.SetMaxHP(unit.GetMaxHP() + 3);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("BideWait");
+      skills.Add("NullifyAtk");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

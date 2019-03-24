@@ -12,12 +12,12 @@ public class HumanGeneralClass : ClassNode
 
   public override string ClassDesc()
   {
-      return "+1 atk rng\nRageDef";
+      return "+1 atk trn\n+1 atk";
   }
 
   public override string ClassName()
   {
-      return "Captain";
+      return "General";
   }
 
   public override ClassNode GetParent(){
@@ -30,10 +30,8 @@ public class HumanGeneralClass : ClassNode
 
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetAtkRange(unit.GetAtkRange() + 1);
-      List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("RageDef");
-      unit.SetSkills(skills.ToArray());
+      unit.SetAttack(unit.GetAttack() + 1);
+      unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
 }

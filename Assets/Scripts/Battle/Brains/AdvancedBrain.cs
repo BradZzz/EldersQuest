@@ -51,12 +51,20 @@ public class AdvancedBrain : MonoBehaviour
                 //Look at all the tiles in range
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());
                 bool coward = unit.GetData().LowHP() && HasHealthyUnits();
+                //Logic for when to wait in battle: 
+                //If you have multiple moves at the start of the turn with only one move left with more than one attack and nobody around. 
+                bool wait = unit.GetData().GetSkills().Where(skll => skll.Contains("Wait")).Any();
+                wait = wait && unit.GetData().GetTurnActions().GetMoves() == 1 
+                    && unit.GetData().GetTurnActions().GetAttacks() >= 1 && opposingTeamTiles.Count == 0;
+                //bool waitB = wait && unit.GetData().GetTurnActions().GetMoves() == 1 && unit.GetData().GetTurnAttacks() > 1 
+                    //&& unit.GetData().GetTurnActions().GetAttacks() == 1;
+
                 if (!coward) {
                     //If the ai can still move, but has used their attacks, move them away from the enemy team.
                     //These are usually actions a scout would take, so we are trying to protect them here
                     coward = !unit.GetData().GetTurnActions().CanAttack() && unit.GetData().GetTurnActions().CanMove();
                 }
-                if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
+                if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack() && !wait)
                 {
                     //Unit in range. Attack!
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
@@ -71,7 +79,7 @@ public class AdvancedBrain : MonoBehaviour
                     didSomething = true;
                 }
                 //If you need to move towards the enemies or run away, logic through here
-                else if ((opposingTeamTiles.Count == 0 || coward) && unit.GetData().GetTurnActions().CanMove())
+                else if ((opposingTeamTiles.Count == 0 || coward) && unit.GetData().GetTurnActions().CanMove() && !wait)
                 {
                     Debug.Log("Unit: " + unit.GetData().characterMoniker + " - Coward: " + coward.ToString());
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());

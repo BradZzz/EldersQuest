@@ -404,6 +404,7 @@
     <Compile Include="Assets\Scripts\Utils\Draggable.cs" />
     <Compile Include="Assets\Scripts\Utils\DropZone.cs" />
     <Compile Include="Assets\Scripts\Utils\FadeMaterials.cs" />
+    <Compile Include="Assets\Scripts\Utils\FPSCamera.cs" />
     <Compile Include="Assets\Scripts\Utils\Glossary.cs" />
     <Compile Include="Assets\Scripts\Utils\HelperScripts.cs" />
     <Compile Include="Assets\Scripts\Utils\HighlightShift.cs" />

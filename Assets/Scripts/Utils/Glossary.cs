@@ -56,6 +56,12 @@ public class Glossary : MonoBehaviour
     public Sprite grassTile2;
     public Sprite grassTile3;
     public Sprite grassTile4;
+
+    public Sprite[] grassCamp1;
+    public Sprite[] grassCamp2;
+    public Sprite[] grassCamp3;
+    public Sprite[] grassCamp4;
+
     public Sprite fireTile;
     public Sprite snowTile;
     public Sprite wallTile;
@@ -108,12 +114,16 @@ public class Glossary : MonoBehaviour
     }
 
     public Sprite GetGrassTile(GameMeta.World wrld){
+      Sprite[] gTiles;
       switch(wrld){
-          case GameMeta.World.mountain:return grassTile2;
-          case GameMeta.World.pyramid:return grassTile3;
-          case GameMeta.World.candy:return grassTile4;
-          default: return grassTile;
+          case GameMeta.World.tutorial: return grassTile;
+          case GameMeta.World.mountain: gTiles = grassCamp2; break;
+          case GameMeta.World.pyramid: gTiles = grassCamp3; break;
+          case GameMeta.World.candy: gTiles = grassCamp4; break;
+          default: gTiles = grassCamp1; break;
       }
+      HelperScripts.Shuffle(gTiles);
+      return gTiles[0];
     }
 
     public static fx GetAtkFx(Unit.FactionType faction, Unit.UnitType unit){

@@ -41,7 +41,7 @@ public class EnfeebleEnemiesWait : Skill
           if (!isAttacker) {
               tl.FloatUp(Skill.Actions.DidAttack, "enfeeble", Color.grey, "Player enfeebled from atk");
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() != unit.GetData().GetTeam()) {
-                  tl.GetUnit().GetData().GetTurnActions().EnfeebledForTurns(value);
+                  tl.GetUnit().SetEnfeebled(value);
               }
           }
       }

@@ -61,6 +61,8 @@ public class CharSelectController : MonoBehaviour
         selected = null;
         contBtn.gameObject.SetActive(false);
         ResetParticles();
+
+        GetComponent<Image>().color = HelperScripts.GetColorByFaction(player.faction);
     }
 
     void RefreshPanel(GameObject pnl, Unit unt)

@@ -27,7 +27,7 @@ public class AegisKill : Skill
   public override void DidKill(UnitProxy attacker, UnitProxy defender)
   {
       BoardProxy.instance.GetTileAtPosition(attacker.GetPosition()).CreateAnimation(Glossary.fx.fireShield);
-      attacker.GetData().SetAegis(true);
+      attacker.SetAegis(true, AnimationInteractionController.AFTER_KILL);
   }
 
   public override void DidMove(UnitProxy unit, List<TileProxy> path){

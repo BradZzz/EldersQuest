@@ -26,8 +26,9 @@ public class QuickenAlliesAtk : Skill
           if (!isAttacker) {
               tl.FloatUp(Skill.Actions.DidAttack, "+move", Color.blue, "Quicken Allies");
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam()) {
-                  TurnActions ta = tl.GetUnit().GetData().GetTurnActions();
-                  ta.SetMoves(ta.GetMoves() + 1);
+                  //TurnActions ta = tl.GetUnit().GetData().GetTurnActions();
+                  //ta.SetMoves(ta.GetMoves() + 1);
+                  tl.GetUnit().SetQuickened(true);
               }
           }
       }

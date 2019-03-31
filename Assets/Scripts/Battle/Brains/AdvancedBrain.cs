@@ -53,11 +53,28 @@ public class AdvancedBrain : MonoBehaviour
                 bool coward = unit.GetData().LowHP() && HasHealthyUnits();
                 //Logic for when to wait in battle: 
                 //If you have multiple moves at the start of the turn with only one move left with more than one attack and nobody around. 
-                bool wait = unit.GetData().GetSkills().Where(skll => skll.Contains("Wait")).Any();
+                bool wait = false;
+
+                wait = unit.GetData().GetSkills().Where(skll => skll.Contains("Wait")).Any();
                 wait = wait && unit.GetData().GetTurnActions().GetMoves() == 1 
                     && unit.GetData().GetTurnActions().GetAttacks() >= 1 && opposingTeamTiles.Count == 0;
-                //bool waitB = wait && unit.GetData().GetTurnActions().GetMoves() == 1 && unit.GetData().GetTurnAttacks() > 1 
-                    //&& unit.GetData().GetTurnActions().GetAttacks() == 1;
+
+                //If you have multiple moves at the start of the turn with only one move left with more than one attack and nobody around. 
+                bool waitA = wait && unit.GetData().GetTurnMoves() > 1 && unit.GetData().GetTurnActions().GetMoves() == 1 
+                    && unit.GetData().GetTurnActions().GetAttacks() >= 1 && opposingTeamTiles.Count == 0;
+
+                //If you didn't wait last turn, have a wait bonus, and are not somewhat injured, then go for bonus
+                bool waitB = wait && unit.GetData().GetTurnActions().GetMoves() == 1 && unit.GetData().GetTurnActions().GetAttacks() == 1 
+                    && !unit.GetData().ModerateHP();
+
+                wait = waitA || waitB;
+
+                if (waitB && unit.WaitedLastTurn()) {
+                    wait = false;
+                    unit.SetWaitedLastTurn(false);
+                } else if (waitB) {
+                    unit.SetWaitedLastTurn(true);
+                }
 
                 if (!coward) {
                     //If the ai can still move, but has used their attacks, move them away from the enemy team.

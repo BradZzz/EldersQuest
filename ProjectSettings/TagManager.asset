@@ -56,6 +56,9 @@ TagManager:
   - name: FX
     uniqueID: 2751565407
     locked: 0
+  - name: Dialog
+    uniqueID: 2247327601
+    locked: 0
   - name: UI
     uniqueID: 4191083391
     locked: 0

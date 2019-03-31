@@ -28,6 +28,10 @@ public class TechTreeNav : MonoBehaviour
     {
         instance = this;
         RefreshSelect();
+
+        Color mainColor = HelperScripts.GetColorByFaction(BaseSaver.GetPlayer().faction);
+        mainColor.a = .8f;
+        GetComponent<Image>().color = mainColor;
     }
 
     public void RefreshSelect(){

@@ -21,7 +21,7 @@ public class HobbleAtk : Skill
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
-      defender.GetData().SetAttackBuff(-1 * value);
+      defender.ReceiveAtkBuff(-1 * value);
   }
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)

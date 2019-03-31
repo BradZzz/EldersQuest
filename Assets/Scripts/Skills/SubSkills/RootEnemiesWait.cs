@@ -41,7 +41,7 @@ public class RootEnemiesWait : Skill
           if (!isAttacker) {
               tl.FloatUp(Skill.Actions.DidAttack, "rooted", Color.grey, "Player rooted to position from atk");
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() != unit.GetData().GetTeam()) {
-                  tl.GetUnit().GetData().GetTurnActions().RootForTurns(value);
+                  tl.GetUnit().SetRooted(value);
               }
           }
       }

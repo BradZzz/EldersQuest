@@ -67,7 +67,8 @@ public class UnitNameGenerator : MonoBehaviour
     static string GetRandomNameHuman()
     {
         string[] firsts = new string[]{ "Phil", "Marla", "Steve", "Gary", "Phil", "Cindy", "Reginald", "Herbert", "Alphonse", "Gloria", "Bertram", "Silvia", 
-          "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia", "Byron", "Audrey", "Brier", "JoeBob", "Booster", "Tiger", "Champ", "Bullet", "Dale", "Fabio" };
+          "Natashia", "Bruce", "Silvio", "Paula", "Chris", "Olivia", "Byron", "Audrey", "Brier", "JoeBob", "Booster", "Tiger", "Champ", "Bullet", "Dale", "Fabio",
+           "Scooter" };
         string[] lasts = new string[]{ "Hitshard", "Sweetcakes", "Robobot", "Chipcheeks", "Nitro", "Flavortown", "Spinkick", "Everyman", "Walkshard", "Rocketshark", 
           "Looselips", "Karatease", "Danceswiftly", "Smoulderlust", "Vandersmoot", "Judosmith", "Eagletigerbear", "Fancypants", "Fancycheeks", "Doughnutface", "Cupcake",
           "Sparklepants", "Firefart", "Lightningtoes", "Tiddlewinks", "Turbomanian", "Earnhardt.jr", "ColaDrinker", "Hamburgler", "Diabetoes", "Bolton" };
@@ -79,5 +80,105 @@ public class UnitNameGenerator : MonoBehaviour
         string[] firsts = new string[]{ "Susie" };
         string[] lasts = new string[]{ "Primus", "Secundus", "Tribus" };
         return firsts[UnityEngine.Random.Range(0, firsts.Length)] + " " + lasts[UnityEngine.Random.Range(0, lasts.Length)];
+    }
+
+    /*
+      Catch phrases can contain as much as 20 characters
+    */
+    public static string GenerateRandomCatchphrase(Skill.Actions act, Unit.FactionType faction)
+    {
+        switch(faction){
+          case Unit.FactionType.Human:
+            return GetHumanCatchphrase(act);
+          case Unit.FactionType.Egypt:
+            return GetEgyptCatchphrase(act);
+          case Unit.FactionType.Cthulhu:
+            return GetCthulhuCatchphrase(act);
+          default:
+            return GetFinalCatchphrase(act);
+        }
+    }
+
+    /*
+
+    Humans say badass murica things
+
+    */
+    static string GetHumanCatchphrase(Skill.Actions act)
+    {
+        string[] phrases = new string[] { "yo" };
+        switch(act){
+            //OnSelected
+            case Skill.Actions.None: phrases = new string[] { "roger", "listening", "standing by", "yo", "copy that", "moving", "walking",
+              "hostiles sighted", "investigating", "engaging" }; break;
+            case Skill.Actions.DidAttack: phrases = new string[] { "die!", "firing", "eat this!", "burn!", "murica!", "apple pies!", "neutralizing", 
+              "aiming", "get down!", "boom", "dodge this", "suck on this", "it's freedom fries" }; break;
+            case Skill.Actions.DidDefend: phrases = new string[] { "ouch!", "medic!", "taking damage", "oof", "mommy!", "oops..", "shields down", 
+              "taking fire", "hamburgers...", "that'll scar", "don't let me die!", "i see the light" }; break;
+            case Skill.Actions.DidKill: phrases = new string[] { "hoo rah!", "take that!", "enemy down", "who's next?", "and stay down!", "via con dios" }; break;
+        }
+        HelperScripts.Shuffle(phrases);
+        return phrases[0];
+    }
+
+    /*
+
+    Egypt says badass culty things
+
+    */
+    static string GetEgyptCatchphrase(Skill.Actions act)
+    {
+        string[] phrases = new string[] { "phsaw" };
+        switch(act){
+            //OnSelected
+            case Skill.Actions.None: phrases = new string[] { "navigating", "moving", "master?", "yes", "i obey", "for egypt", "swiftly",
+              "understood", "flying", "i am commanded", "" }; break;
+            case Skill.Actions.DidAttack: phrases = new string[] { "sand attack", "scarab stab", "titan punch", "fire jab",
+              "whirlwind", "breath of horus", "the styx breathes", "release your soul", "give me your breath", "see your sins",
+              "breathe death" }; break;
+            case Skill.Actions.DidDefend: phrases = new string[] { "impossible!", "witchcraft!", "mummies...", "unravelled", "beat down",
+              "mortal wounds", "unholy beast", "i curse thee" }; break;
+            case Skill.Actions.DidKill: phrases = new string[] { "rest", "to eternity", "immense power", "sun's blessing", "back to the earth", 
+              "eternal peace", "sacrifice made" }; break;
+        }
+        HelperScripts.Shuffle(phrases);
+        return phrases[0];
+    }
+
+    /*
+
+    Cthulhu says evil things in latin
+
+    */
+    static string GetCthulhuCatchphrase(Skill.Actions act)
+    {
+        string[] phrases = new string[] { "gurgle" };
+        switch(act){
+            //OnSelected
+            case Skill.Actions.None: phrases = new string[] { "*gurgle*", "*squish*", "*belch*", "opus dei", "ora pro nobis", "nocte", 
+              "satanas graditur", "imperium", "quia sanguinem", "virgineo removete" }; break;
+            case Skill.Actions.DidAttack: phrases = new string[] { "sssss", "*squaaaak*", "omnibus idem", "fiat tenebris", "nova sanguinem", 
+              "lunam in potestatem", "marcescet" }; break;
+            case Skill.Actions.DidDefend: phrases = new string[] { "*plop*", "*oop*", "opere et veritate", "fortis et liber", "pax aeterna", 
+              "deus videt omnia" }; break;
+            case Skill.Actions.DidKill: phrases = new string[] { "obiit", "odi et amo", "oleum camino", "omnia cum deo", "omnia omnibus", 
+              "ordo ab chao", "orbis unum", "excelsior", "per festum", "inanis est", "pars requiescant in" }; break;
+        }
+        HelperScripts.Shuffle(phrases);
+        return phrases[0];
+    }
+
+    static string GetFinalCatchphrase(Skill.Actions act)
+    {
+        string[] phrases = new string[] { "death..." };
+        switch(act){
+            //OnSelected
+            case Skill.Actions.None: phrases = new string[] { "doom..." }; break;
+            case Skill.Actions.DidAttack: phrases = new string[] { ":)" };break;
+            case Skill.Actions.DidDefend: phrases = new string[] { ":|", "ouchie" };break;
+            case Skill.Actions.DidKill: phrases = new string[] { ";)" };break;
+        }
+        HelperScripts.Shuffle(phrases);
+        return phrases[0];
     }
 }

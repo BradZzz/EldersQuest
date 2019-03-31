@@ -27,7 +27,7 @@ public class AegisAlliesAtk : Skill
               //tl.FloatUp(Skill.Actions.DidAttack, "+aegis", Color.blue, "Aegis Allies");
               tl.CreateAnimation(Glossary.fx.fireShield, AnimationInteractionController.ATK_WAIT);
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() == attacker.GetData().GetTeam()) {
-                  tl.GetUnit().GetData().SetAegis(true);
+                  tl.GetUnit().SetAegis(true, AnimationInteractionController.ATK_WAIT);
               }
           }
       }

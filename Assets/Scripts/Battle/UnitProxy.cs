@@ -17,6 +17,7 @@ public class UnitProxy : GridObjectProxy
     private Unit _data;
     private float defaultAnimSpeed;
     private bool givenExp;
+    private bool waited;
 
     protected override GridObject data
     {
@@ -82,10 +83,11 @@ public class UnitProxy : GridObjectProxy
 
       if (_data.GetAegis()) {
           Debug.Log("Aegis!");
-          _data.SetAegis(false);
+          //_data.SetAegis(false);
           StartCoroutine(AttackAnim(oppUnit, oppUnit.gameObject.transform.GetChild(0).GetComponent<Animator>(), 
             oppUnit.gameObject.transform, diff, "", useAttack));
-          FloatUp(Skill.Actions.DidDefend, "-aegis", Color.blue, "Lost aegis", true);
+          //LostAegisAnim();
+          SetAegis(false, AnimationInteractionController.ATK_WAIT);
           return false;
       }
       Debug.Log("No Aegis");
@@ -106,6 +108,103 @@ public class UnitProxy : GridObjectProxy
       return false;
     }
 
+    void LostAegisAnim(float wait = 0){
+      GainedAegisAnim(wait);
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteAegisLost, gameObject, wait, true);
+    }
+
+    void GainedAegisAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteAegisGained, gameObject, wait, true);
+    }
+
+    void BideAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteBide, gameObject, wait, true);
+    }
+
+    void DmgAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteDmg, gameObject, wait, true);
+    }
+
+    void EnfeebleAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteEnfeeble, gameObject, wait, true);
+    }
+
+    void HealAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteHeal, gameObject, wait, true);
+    }
+
+    void HobbleAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteHobble, gameObject, wait, true);
+    }
+
+    void NullifyAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteNullify, gameObject, wait, true);
+    }
+
+    void QuickenAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteQuicken, gameObject, wait, true);
+    }
+
+    void RageAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteRage, gameObject, wait, true);
+    }
+
+    void RootedAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteRooted, gameObject, wait, true);
+    }
+
+    void SicklyAnim(float wait = 0){
+      AnimationInteractionController.InteractionAnimationGameobject(
+        BoardProxy.instance.glossary.GetComponent<Glossary>().emoteSickly, gameObject, wait, true);
+    }
+
+    public void SetNullified(bool nullified){
+        _data.SetNullified(nullified);
+        if (nullified) {
+          NullifyAnim();
+        }
+    }
+
+    public void SetQuickened(bool quickened){
+        _data.GetTurnActions().SetMoves(_data.GetTurnActions().GetMoves() + 1);
+        if (quickened) {
+          QuickenAnim();
+        }
+    }
+
+    public void SetRooted(int turns){
+        _data.GetTurnActions().RootForTurns(turns);
+        if (turns > 0) {
+          RootedAnim();
+        }
+    }
+
+    public void SetEnfeebled(int turns){
+        _data.GetTurnActions().EnfeebledForTurns(turns);
+        if (turns > 0) {
+          EnfeebleAnim();
+        }
+    }
+
+    public bool WaitedLastTurn(){
+        return waited;
+    }
+
+    public void SetWaitedLastTurn(bool waited){
+        this.waited = waited;
+    }
+    
     IEnumerator AttackAnim(UnitProxy oppUnit, Animator anim, Transform opp, Vector3Int diff, string msg, bool showProjectiles = true){
       if (anim != null && showProjectiles) {
           Vector3 theScale = opp.localScale;
@@ -157,6 +256,8 @@ public class UnitProxy : GridObjectProxy
         //GameObject baseProj = oppUnit.GetData().GetFactionType() == Unit.FactionType.None ? 
             //BoardProxy.instance.glossary.GetComponent<Glossary>().GetRandomGummi() : BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
 
+        Unit.FactionType factionType = oppUnit.GetData().GetFactionType();
+        Unit.UnitType unitType = oppUnit.GetData().GetUnitType();
 
         int num = 5;
         float delayBefore = .4f;
@@ -176,7 +277,7 @@ public class UnitProxy : GridObjectProxy
             case Unit.FactionType.Cthulhu:
               projColor= new Color(.4f,.2f,.6f);
               switch(oppUnit.GetData().GetUnitType()){
-                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 20; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = 0; break;
+                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 30; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = 0; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
                 case Unit.UnitType.Scout: showProjectileAnimation = false; break;
                 case Unit.UnitType.Soldier: showProjectileAnimation = false; break;
               }
@@ -192,7 +293,7 @@ public class UnitProxy : GridObjectProxy
             case Unit.FactionType.Human:
               projColor=Color.red;
               switch(oppUnit.GetData().GetUnitType()){
-                case Unit.UnitType.Mage: num = 20; delayAfter = .01f; break;
+                case Unit.UnitType.Mage: num = 30; delayAfter = .01f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
                 case Unit.UnitType.Scout: num = 2; delayBefore = .15f; delayAfter = .35f; projSpeed = .5f; break;
                 case Unit.UnitType.Soldier: num = 1; delayBefore = .28f; delayAfter = .6f; break;
               }
@@ -212,7 +313,7 @@ public class UnitProxy : GridObjectProxy
         yield return new WaitForSeconds(delayBefore);
         for (int i = 0; i < num; i++) {
             if (showProjectileAnimation) {
-              StartCoroutine(GenerateProjectile(oppUnit, baseProj, start, finish, projColor, rotate, chargeWait, xOffset, yOffset, projSpeed));
+              StartCoroutine(GenerateProjectile(factionType, unitType, baseProj, start, finish, projColor, rotate, chargeWait, xOffset, yOffset, projSpeed));
             } else {
               StartCoroutine(GenerateAttackAnims(oppUnit, baseProj, start, finish));
             }
@@ -230,9 +331,9 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    IEnumerator GenerateProjectile(UnitProxy oppUnit, GameObject baseProj, Vector3 start, Vector3 finish, Color projColor, bool rotate, float chargeWait, 
+    IEnumerator GenerateProjectile(Unit.FactionType factionType, Unit.UnitType unitType, GameObject baseProj, Vector3 start, Vector3 finish, Color projColor, bool rotate, float chargeWait, 
         float xOffset, float yOffset, float projSpeed){
-        //Vector3 thisProjStart  = new Vector3(start.x + xOffset,start.y + yOffset,start.z);
+
         GameObject newProj = Instantiate(baseProj, start, Quaternion.identity);
         newProj.GetComponent<SpriteRenderer>().color = projColor;
         if (chargeWait > 0) {
@@ -245,16 +346,24 @@ public class UnitProxy : GridObjectProxy
         }
         yield return new WaitForSeconds(projSpeed - .1f);
         TileProxy dTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
-        dTile.CreateAnimation(Glossary.GetAtkFx(oppUnit.GetData().GetFactionType(), oppUnit.GetData().GetUnitType()), AnimationInteractionController.NO_WAIT);
+        dTile.CreateAnimation(Glossary.GetAtkFx(factionType, unitType), AnimationInteractionController.NO_WAIT);
         Destroy(newProj);
     }
+
+    public void SetAegis(bool aegis, float wait = 0){
+        if (aegis) {
+          _data.SetAegis(true);
+          GainedAegisAnim(wait);
+        } else {
+          _data.SetAegis(false);
+          LostAegisAnim(wait);
+        }
+    } 
 
     public bool IsAttackedEnvironment(int atkPwr, Skill.Actions act = Skill.Actions.None)
     {
       if (_data.GetAegis()) {
-          _data.SetAegis(false);
-          //FloatUp("-aegis", Color.blue, ATK_WAIT);
-          FloatUp(Skill.Actions.None, "-aegis", Color.blue, "Lost aegis env", true);
+          SetAegis(false,AnimationInteractionController.ReturnWaitTime(act));
           return false;
       }
 
@@ -276,9 +385,11 @@ public class UnitProxy : GridObjectProxy
         //int newHp = GetData().GetMaxHP() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp(Skill.Actions.None, "+" + buff + " hp", Color.blue, "HP Buff", false);
+              BideAnim();
+              //FloatUp(Skill.Actions.None, "+" + buff + " hp", Color.blue, "HP Buff", false);
           } else {
-              FloatUp(Skill.Actions.None, "-" + buff + " hp", Color.cyan, "HP Sickness", true);
+              SicklyAnim();
+              //FloatUp(Skill.Actions.None, "-" + buff + " hp", Color.cyan, "HP Sickness", true);
           }
         }
     }
@@ -288,9 +399,11 @@ public class UnitProxy : GridObjectProxy
         //int newAtk = GetData().GetAttack() + buff;
         if (buff != 0) {
           if (buff > 0){
-              FloatUp(action, "+" + buff + " atk", Color.blue, "atk buff", false);
+              RageAnim(AnimationInteractionController.ReturnWaitTime(action));
+              //FloatUp(action, "+" + buff + " atk", Color.blue, "atk buff", false);
           } else {
-              FloatUp(action, "-" + buff + " atk", Color.cyan, "atk sickness", true);
+              HobbleAnim(AnimationInteractionController.ReturnWaitTime(action));
+              //FloatUp(action, "-" + buff + " atk", Color.cyan, "atk sickness", true);
           }
         }
     }
@@ -345,13 +458,31 @@ public class UnitProxy : GridObjectProxy
         AnimationInteractionController.InteractionAnimation(interaction, this, msg, color, desc, shakeChar, deathConsideration);
     }
 
+    public void SaySomething(Skill.Actions interaction){
+        bool isSaying = UnityEngine.Random.Range(0,10) > 7;
+        if (!isSaying) {
+          return;
+        }
+
+        string dialog = UnitNameGenerator.GenerateRandomCatchphrase(interaction, GetData().GetFactionType());
+
+        Color clr = Color.black;
+        switch(interaction){
+            case Skill.Actions.DidAttack: clr = Color.red;break;
+            case Skill.Actions.DidKill: clr = Color.magenta;break;
+        }
+
+        AnimationInteractionController.InteractionDialogGameobject(interaction, BoardProxy.instance.GetTileAtPosition(GetPosition()), dialog, clr);
+    }
+
     public void HealUnit(int value, Skill.Actions action){
        Debug.Log("Healing: " + GetData().characterMoniker + " for " + value.ToString());
        int nwHlth = GetData().GetCurrHealth() + value;
        nwHlth = nwHlth > GetData().GetMaxHP() ? GetData().GetMaxHP() : nwHlth;
        if (nwHlth != GetData().GetCurrHealth()) {
          GetData().SetCurrHealth(nwHlth);
-         FloatUp(action, "+" + value.ToString(), Color.green, "Unit Healed", false);
+         //FloatUp(action, "+" + value.ToString(), Color.green, "Unit Healed", false);
+         HealAnim(AnimationInteractionController.ReturnWaitTime(action));
        }
     }
 

@@ -22,7 +22,8 @@ public class NullifyAtk : Skill
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
       defender.FloatUp(Skill.Actions.DidAttack, "nullified", Color.grey, "Unit's skills are nullified", false);
-      defender.GetData().SetNullified(true);      
+      //defender.GetData().SetNullified(true);      
+      defender.SetNullified(true);
   }
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)

@@ -102,6 +102,9 @@ public class InteractUnitSelected : InteractMode
               visitableTiles = BoardProxy.instance.GetAllVisitableNodes(obj, obj.GetMoveSpeed());
               HighlightTiles(obj);
               PanelControllerNew.SwitchChar(obj);
+              if (currentUnit.GetData().GetTeam() == TurnController.instance.currentTeam) {
+                currentUnit.SaySomething(Skill.Actions.None);
+              }
           }
           else
           {
@@ -122,6 +125,7 @@ public class InteractUnitSelected : InteractMode
                   && !obj.GetData().IsDead())
                 {
                     toAttack = null;
+
                     bool charDead = obj.IsAttacked(currentUnit);
                     if (currentUnit != null) {
                         currentUnit.AcceptAction(Skill.Actions.DidAttack,obj);
@@ -129,8 +133,13 @@ public class InteractUnitSelected : InteractMode
   
                     if (charDead)
                     {
-                        obj.DelayedKill(obj,currentUnit);
+                        UnitProxy victor = BoardProxy.instance.GetTileAtPosition(currentUnit.GetPosition()).GetUnit();
+                        victor.SaySomething(Skill.Actions.DidKill);
+                        obj.DelayedKill(obj,victor);
                         StartCoroutine(ResetTiles());
+                    } else {
+                        currentUnit.SaySomething(Skill.Actions.DidAttack);
+                        obj.SaySomething(Skill.Actions.DidDefend);
                     }
                     OnDisable();
                     PanelControllerNew.SwitchChar(currentUnit);

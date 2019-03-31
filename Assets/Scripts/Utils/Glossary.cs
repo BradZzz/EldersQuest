@@ -71,6 +71,8 @@ public class Glossary : MonoBehaviour
     public Sprite egyptFaction;
     public Sprite chtulhuFaction;
 
+    public Sprite battleMsgBubble;
+
     public Sprite endBattleWinOverlayHuman1;
     public Sprite endBattleWinOverlayHuman2;
     public Sprite endBattleWinOverlayEgypt1;
@@ -90,7 +92,21 @@ public class Glossary : MonoBehaviour
 
     public Sprite endBattleBloodOverlay;
 
+    public GameObject emoteAegisGained;
+    public GameObject emoteAegisLost;
+    public GameObject emoteBide;
+    public GameObject emoteDmg;
+    public GameObject emoteEnfeeble;
+    public GameObject emoteHeal;
+    public GameObject emoteHobble;
+    public GameObject emoteNullify;
+    public GameObject emoteQuicken;
+    public GameObject emoteRage;
+    public GameObject emoteRooted;
+    public GameObject emoteSickly;
+    
     public GameObject projectile;
+    public GameObject projectileSquare;
     public GameObject exp;
     public GameObject scarab;
     public GameObject skull;

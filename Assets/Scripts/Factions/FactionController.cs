@@ -91,6 +91,11 @@ public class FactionController : MonoBehaviour
         PlayerMeta player = BaseSaver.GetPlayer();
         player.faction = (Unit.FactionType)Enum.Parse(typeof(Unit.FactionType), faction);
 
+        Color mainColor = HelperScripts.GetColorByFaction(player.faction);
+        mainColor.a = .5f;
+        GetComponent<Image>().color = mainColor;
+        transform.GetChild(2).GetComponent<Image>().color = HelperScripts.GetColorByFactionBold(player.faction);
+
         ResetParticles();
 
         if (finalWorld) {

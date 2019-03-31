@@ -41,7 +41,8 @@ public class NullifyEnemiesWait : Skill
           if (!isAttacker) {
               tl.FloatUp(Skill.Actions.DidAttack, "nullified", Color.grey, "Unit's skills are nullified");
               if (tl.HasUnit() && tl.GetUnit().GetData().GetTeam() != unit.GetData().GetTeam()) {
-                  tl.GetUnit().GetData().SetNullified(true);
+                  //tl.GetUnit().GetData().SetNullified(true);
+                  tl.GetUnit().SetNullified(true);
               }
           }
       }

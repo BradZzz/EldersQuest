@@ -22,7 +22,7 @@ public class RootAtk : Skill
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)
   {
       BoardProxy.instance.GetTileAtPosition(defender.GetPosition()).FloatUp(Skill.Actions.DidAttack, "rooted", Color.grey, "Player rooted to position from atk");
-      defender.GetData().GetTurnActions().RootForTurns(value);
+      defender.SetRooted(value);
   }
 
   public override void DidKill(UnitProxy attacker, UnitProxy defender)

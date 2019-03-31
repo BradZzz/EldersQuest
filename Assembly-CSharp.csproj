@@ -476,6 +476,7 @@
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Sprites\isometric-blocks (1)\Spritesheet\allTiles_sheet.xml" />
+    <None Include="Assets\Sprites\vector_style8.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_black1x.xml" />
     <None Include="Assets\Sprites\gameicons (1)\Spritesheet\sheet_white2x.xml" />

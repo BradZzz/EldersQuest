@@ -29,6 +29,7 @@ public class DeathScene : MonoBehaviour
             endings = StoryStatic.EGYPT_DEATHS;
             break;
         }
+        GetComponent<Image>().color = HelperScripts.GetColorByFaction(player.faction);
         HelperScripts.Shuffle(endings);
         headerTxtl.text = endings[0];
     }

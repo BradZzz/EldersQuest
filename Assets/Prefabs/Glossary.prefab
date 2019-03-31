@@ -147,9 +147,10 @@ MonoBehaviour:
   humanFaction: {fileID: 21300000, guid: 579873c00d0bb4a9b962bb57def40a9a, type: 3}
   egyptFaction: {fileID: 21300000, guid: 78b328d1600734797ace9dc573f365bc, type: 3}
   chtulhuFaction: {fileID: 21300000, guid: a33e193c23cb543ed85e4f1b304bc281, type: 3}
+  battleMsgBubble: {fileID: 21300000, guid: 5ad2f592a7491450b94aa104f4b2ad66, type: 3}
   endBattleWinOverlayHuman1: {fileID: 21300000, guid: b05bdee1d477c4f028a8f6e65406b983,
     type: 3}
-  endBattleWinOverlayHuman2: {fileID: 21300000, guid: e91ba936c6a2d40f19ba95af1974a523,
+  endBattleWinOverlayHuman2: {fileID: 21300000, guid: c32edb2945bfe480485d68c8a9bbb0bd,
     type: 3}
   endBattleWinOverlayEgypt1: {fileID: 21300000, guid: b05bdee1d477c4f028a8f6e65406b983,
     type: 3}
@@ -159,7 +160,7 @@ MonoBehaviour:
     type: 3}
   endBattleWinOverlayCthulhu2: {fileID: 21300000, guid: ec453d3ffe96746eda17f67b4a6a2f2a,
     type: 3}
-  endBattleOverlayHumanLeft: {fileID: 21300000, guid: ad865c6731a1c42e88a1b5c198af1e54,
+  endBattleOverlayHumanLeft: {fileID: 21300000, guid: 594d26e3346bf4eff887f864db52e803,
     type: 3}
   endBattleOverlayEgyptLeft: {fileID: 21300000, guid: ad865c6731a1c42e88a1b5c198af1e54,
     type: 3}
@@ -177,7 +178,33 @@ MonoBehaviour:
     type: 3}
   endBattleBloodOverlay: {fileID: 21300000, guid: 0a1997a911d0a4717b880ac3a8af429a,
     type: 3}
+  emoteAegisGained: {fileID: 3160763873199545935, guid: 93c3ffa0bfb954472a6e2f097df241f8,
+    type: 3}
+  emoteAegisLost: {fileID: 3160763873199545935, guid: c593b56f10f8e4d7d835c443cfba4735,
+    type: 3}
+  emoteBide: {fileID: 3160763873199545935, guid: b83e81c7844aa48b2bdc6cab4f2dbf76,
+    type: 3}
+  emoteDmg: {fileID: 3160763873199545935, guid: 4827c897f6ed74e588ca2f483845608b,
+    type: 3}
+  emoteEnfeeble: {fileID: 3160763873199545935, guid: 037de939153284136b9049c80ad85af5,
+    type: 3}
+  emoteHeal: {fileID: 3160763873199545935, guid: 4155a6b45699b4763bb618dd479faebc,
+    type: 3}
+  emoteHobble: {fileID: 3160763873199545935, guid: 81d43203e2ae94dddb5b90fe5f95c451,
+    type: 3}
+  emoteNullify: {fileID: 3160763873199545935, guid: fa38c38e57d10426b85689c81bac089c,
+    type: 3}
+  emoteQuicken: {fileID: 3160763873199545935, guid: da8eabcf7cf8e4ad082a88a8e610281e,
+    type: 3}
+  emoteRage: {fileID: 3160763873199545935, guid: f3a783c17adf44f09a66d4661742c07e,
+    type: 3}
+  emoteRooted: {fileID: 3160763873199545935, guid: 81d43203e2ae94dddb5b90fe5f95c451,
+    type: 3}
+  emoteSickly: {fileID: 3160763873199545935, guid: 037de939153284136b9049c80ad85af5,
+    type: 3}
   projectile: {fileID: 3160763873199545935, guid: 8e897f043a9ae4e4e8d8519577538842,
+    type: 3}
+  projectileSquare: {fileID: 3160763873199545935, guid: f99d31c9951aa4fce88cad6cf80dee1d,
     type: 3}
   exp: {fileID: 3160763873199545935, guid: a64f876d5ac9f491b834912b43a56c29, type: 3}
   scarab: {fileID: 3160763873199545935, guid: efb9f92fe2c8042599d7de5f398642e7, type: 3}

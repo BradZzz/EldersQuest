@@ -17,7 +17,7 @@ public class AegisBegin : Skill
   public override void BeginningGame(UnitProxy unit)
   {
       BoardProxy.instance.GetTileAtPosition(unit.GetPosition()).CreateAnimation(Glossary.fx.fireShield);
-      unit.GetData().SetAegis(true);
+      unit.SetAegis(true);
   }
 
   public override void DidAttack(UnitProxy attacker, UnitProxy defender)

@@ -73,6 +73,7 @@ public class StatsNav : MonoBehaviour
           }
         }
         classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        classPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
     }
 
     public void SetClassInfoText(string msg){
@@ -160,6 +161,7 @@ public class StatsNav : MonoBehaviour
           }
         }
         skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        skillPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
     }
 
     public void SetSkillInfoText(string msg){

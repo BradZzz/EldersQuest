@@ -63,7 +63,7 @@ public class StatsNav : MonoBehaviour
                Destroy(child.gameObject);
            }
 
-          foreach(string clss in game.classesSeen){
+          foreach(string clss in game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray()){
               GameObject clssCpy = Instantiate(clssRw, classPnl.transform.GetChild(0).GetChild(0));
               clssCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ClassNode.FormatClass(clss);
               ClassNode nde = StaticClassRef.GetClass((StaticClassRef.AvailableClasses)Enum.Parse(typeof(StaticClassRef.AvailableClasses), clss));

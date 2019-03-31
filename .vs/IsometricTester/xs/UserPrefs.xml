@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TechTree/TechTreeNav.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Stats/StatsNav.cs">
     <Files>
       <File FileName="Assets/Scripts/Utils/Glossary.cs" Line="126" Column="40" />
       <File FileName="Assets/Scripts/Utils/HelperScripts.cs" Line="21" Column="22" />
-      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="95" Column="27" />
+      <File FileName="Assets/Scripts/Factions/FactionController.cs" Line="94" Column="1" />
       <File FileName="Assets/Scripts/Death/DeathScene.cs" Line="33" Column="40" />
       <File FileName="Assets/Scripts/CharSelect/CharSelectController.cs" Line="65" Column="85" />
-      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="31" Column="22" />
+      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="21" Column="28" />
+      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="70" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

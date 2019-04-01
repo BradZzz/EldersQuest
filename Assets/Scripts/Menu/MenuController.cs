@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+  public static MenuController instance;
+
   public TextMeshProUGUI save1;
   public TextMeshProUGUI save2;
   public TextMeshProUGUI save3;
 
+  public GameObject dialogScreen;
+
   void Awake()
   {
+    instance = this;
     Refresh();
+        dialogScreen.SetActive(false);
   }
 
   void Refresh()
@@ -43,8 +49,9 @@ public class MenuController : MonoBehaviour
     }
   }
 
-  public void MoveToTutorial()
-  {
+  public void OpenTutorialMsg(){
+    dialogScreen.SetActive(true);
+
     BaseSaver.PutSave("sv0");
     /*
      * Save the player demo objects
@@ -58,6 +65,25 @@ public class MenuController : MonoBehaviour
     player.characters = new List<Unit>(new Unit[]{ Unit.BuildInitial(player.faction,  Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM) }).ToArray();
     player.world = GameMeta.World.tutorial;
     BaseSaver.PutPlayer(player);
+
+    dialogScreen.GetComponent<TutorialMsgController>().Populate();
+  }
+
+  public void MoveToTutorial()
+  {
+    //BaseSaver.PutSave("sv0");
+    ///*
+    // * Save the player demo objects
+    // */
+    //PlayerMeta player = BaseSaver.GetPlayer();
+    //player = new PlayerMeta();
+    //player.stats.dests = new string[] { "Dest1" };
+    //player.faction = Unit.FactionType.Human;
+    //player.characters = new Unit[]{ };
+    //BaseSaver.PutPlayer(player);
+    //player.characters = new List<Unit>(new Unit[]{ Unit.BuildInitial(player.faction,  Unit.UnitType.Soldier, BoardProxy.PLAYER_TEAM) }).ToArray();
+    //player.world = GameMeta.World.tutorial;
+    //BaseSaver.PutPlayer(player);
     //Load the scene
     SceneManager.LoadScene("MapScene");
   }

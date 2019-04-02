@@ -51,7 +51,7 @@ public class StatsNav : MonoBehaviour
 
     void PopulateClassesPanel(){
         classPnl.SetActive(true); 
-        //classPnl.GetComponent<Outline>().effectColor = Color.red;
+        classBtn.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
         string pnlString = "";
         if (game.classesSeen.Length > 0) {
@@ -67,18 +67,35 @@ public class StatsNav : MonoBehaviour
               GameObject clssCpy = Instantiate(clssRw, classPnl.transform.GetChild(0).GetChild(0));
               clssCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ClassNode.FormatClass(clss);
               ClassNode nde = StaticClassRef.GetClass((StaticClassRef.AvailableClasses)Enum.Parse(typeof(StaticClassRef.AvailableClasses), clss));
-              clssCpy.transform.GetChild(1).GetComponent<Image>().sprite = ClassNode.ComputeClassBaseUnit(nde, glossy).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+              UnitProxy baseUnit = ClassNode.ComputeClassBaseUnit(nde, glossy);
+              clssCpy.transform.GetChild(1).GetComponent<Image>().sprite = baseUnit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
               clssCpy.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = " " + ClassNode.GetFactionFromClass(clss);
-              clssCpy.GetComponent<Button>().onClick.AddListener(() => { instance.SetClassInfoText(StaticClassRef.GetClassByReference(clss).ClassName() + ": " + StaticClassRef.GetFullClassDescription(clss) + "\n"); });
+              clssCpy.GetComponent<Button>().onClick.AddListener(() => { 
+                instance.SetClassInfoText(StaticClassRef.GetFullClassDescription(clss) + "\n", StaticClassRef.GetClassByReference(clss).ClassName(), 
+                  ClassNode.GetClassHeirarchyString(nde)); 
+                instance.SetSpriteAnimator(baseUnit.transform.GetChild(0).GetComponent<Animator>()); 
+              });
           }
         }
         classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = null;
+        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
+        classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = pnlString;
+        classPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = pnlString;
         classPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
     }
 
-    public void SetClassInfoText(string msg){
+    public void SetClassInfoText(string msg, string header, string desc){
         Debug.Log("SetSkillInfoText: " + msg);
         classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+        classPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = header;
+        classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = desc;
+    }
+
+    public void SetSpriteAnimator(Animator anim){
+        Debug.Log("SetSpriteAnimator");
+        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = anim.runtimeAnimatorController;
+        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Reset();
     }
 
     void PopulateHScoresPanel(){
@@ -142,7 +159,7 @@ public class StatsNav : MonoBehaviour
 
     void PopulateSkillsPanel(){
         skillPnl.SetActive(true); 
-        //skillBtn.GetComponent<Outline>().effectColor = Color.red;
+        skillBtn.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
         string pnlString = "";
         if (game.skillsSeen.Length > 0) {
@@ -157,7 +174,7 @@ public class StatsNav : MonoBehaviour
               GameObject skllCpy = Instantiate(skillRw, skillPnl.transform.GetChild(0).GetChild(0));
               skllCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = skll;
               Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skll));
-              skllCpy.GetComponent<Button>().onClick.AddListener(() => { instance.SetSkillInfoText(skll + ": " + tSkill.PrintDetails() + "\n"); });
+              skllCpy.GetComponent<Button>().onClick.AddListener(() => { instance.SetSkillInfoText(skll + ": " + tSkill.PrintDetails() + " " + tSkill.PrintStackDetails() + "\n" ); });
           }
         }
         skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;

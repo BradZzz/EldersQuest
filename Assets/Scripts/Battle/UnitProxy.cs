@@ -267,6 +267,7 @@ public class UnitProxy : GridObjectProxy
         bool showProjectileAnimation = true;
         bool rotate = false;
         GameObject baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectile;
+        TileProxy dTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
         Color projColor = Color.white;
 
         float delayMiddleWait = 0;
@@ -313,7 +314,7 @@ public class UnitProxy : GridObjectProxy
         yield return new WaitForSeconds(delayBefore);
         for (int i = 0; i < num; i++) {
             if (showProjectileAnimation) {
-              StartCoroutine(GenerateProjectile(factionType, unitType, baseProj, start, finish, projColor, rotate, chargeWait, xOffset, yOffset, projSpeed));
+              StartCoroutine(GenerateProjectile(factionType, unitType, dTile, baseProj, start, finish, projColor, rotate, chargeWait, xOffset, yOffset, projSpeed));
             } else {
               StartCoroutine(GenerateAttackAnims(oppUnit, baseProj, start, finish));
             }
@@ -331,7 +332,7 @@ public class UnitProxy : GridObjectProxy
         yield return null;
     }
 
-    IEnumerator GenerateProjectile(Unit.FactionType factionType, Unit.UnitType unitType, GameObject baseProj, Vector3 start, Vector3 finish, Color projColor, bool rotate, float chargeWait, 
+    IEnumerator GenerateProjectile(Unit.FactionType factionType, Unit.UnitType unitType, TileProxy destTile, GameObject baseProj, Vector3 start, Vector3 finish, Color projColor, bool rotate, float chargeWait, 
         float xOffset, float yOffset, float projSpeed){
 
         GameObject newProj = Instantiate(baseProj, start, Quaternion.identity);
@@ -345,8 +346,7 @@ public class UnitProxy : GridObjectProxy
             iTween.RotateBy(newProj, new Vector3(0,0,1), projSpeed);
         }
         yield return new WaitForSeconds(projSpeed - .1f);
-        TileProxy dTile = BoardProxy.instance.GetTileAtPosition(GetPosition());
-        dTile.CreateAnimation(Glossary.GetAtkFx(factionType, unitType), AnimationInteractionController.NO_WAIT);
+        destTile.CreateAnimation(Glossary.GetAtkFx(factionType, unitType), AnimationInteractionController.NO_WAIT);
         Destroy(newProj);
     }
 

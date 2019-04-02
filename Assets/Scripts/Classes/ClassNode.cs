@@ -83,6 +83,28 @@ public abstract class ClassNode
         return glossy.finalBlack;
     }
 
+    public static string GetClassHeirarchyString(ClassNode nde){
+        string clssHier = "";
+        List<string> parents = new List<string>();
+
+        ClassNode thsNde = nde;
+        parents.Add(thsNde.ClassName());
+        while(thsNde.GetParent() != null){
+            thsNde = thsNde.GetParent();
+            parents.Add(thsNde.ClassName());
+        }
+        parents.Reverse();
+        for(int i = 0; i<parents.Count; i++){
+          if (i == parents.Count - 1) {
+            clssHier+= "<color=#ff0000ff>" + i.ToString() + ") " + parents[i] + " </color>\n";
+          } else {
+            clssHier+= i.ToString() + ") " + parents[i] + "\n";
+          }
+        }
+
+        return clssHier;
+    }
+
     public static UnitProxy ComputeClassBaseUnit(ClassNode nde, Glossary glossy){
         ClassNode thsNde = nde;
         while(thsNde.GetParent() != null){

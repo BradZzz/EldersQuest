@@ -132,7 +132,7 @@ public class UnitNameGenerator : MonoBehaviour
         switch(act){
             //OnSelected
             case Skill.Actions.None: phrases = new string[] { "navigating", "moving", "master?", "yes", "i obey", "for egypt", "swiftly",
-              "understood", "flying", "i am commanded", "" }; break;
+              "understood", "flying", "i am commanded" }; break;
             case Skill.Actions.DidAttack: phrases = new string[] { "sand attack", "scarab stab", "titan punch", "fire jab",
               "whirlwind", "breath of horus", "the styx breathes", "release your soul", "give me your breath", "see your sins",
               "breathe death" }; break;

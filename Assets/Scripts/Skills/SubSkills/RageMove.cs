@@ -55,6 +55,6 @@ public class RageMove : Skill
 
   public override string PrintStackDetails()
   {
-      return ReturnStackTypeByString(Skill.SkillStack.nostack);
+      return ReturnStackTypeByString(Skill.SkillStack.move);
   }
 }

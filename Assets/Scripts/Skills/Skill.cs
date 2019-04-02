@@ -64,7 +64,7 @@ public abstract class Skill
             case SkillClasses.RootAtk: return new RootAtk();
             case SkillClasses.RootEnemiesWait: return new RootEnemiesWait();
             case SkillClasses.SicklyAtk: return new SicklyAtk();
-            case SkillClasses.SkeleKill: return new SkeleKill();
+            case SkillClasses.WispKill: return new WispKill();
             case SkillClasses.SnowAtk: return new SnowAtk();
             case SkillClasses.SnowMove: return new SnowMove();
             case SkillClasses.ThornDef: return new ThornDef();       
@@ -90,7 +90,7 @@ public abstract class Skill
             case SkillGen.Rage:return "(Rage) raises the attack of effected units.";
             case SkillGen.Root:return "A (root)ed unit loses 1 turn movement on their next turn.";
             case SkillGen.Sickly:return "(Sickly) lowers the max hp of effected units down to 1.";
-            case SkillGen.SkeleKill:return "A (skele) ability summons a friendly skeleton unit when used.";
+            case SkillGen.WispKill:return "A (wisp) ability summons a friendly wisp unit when used.";
             case SkillGen.Snow:return "A tile with (snow) costs 2 movement points to walk through instead of 1.";
             case SkillGen.Thorn:return "(Thorn) damages enemy units in range by 1 when activated.";
             case SkillGen.Void:return "An ability with (void) pulls an enemy towards the unit.";
@@ -105,6 +105,8 @@ public abstract class Skill
         switch(sGen){
             case SkillStack.rng:return "Multiple stacks increase range of effect by 1.";
             case SkillStack.buff:return "Multiple stacks increase buff by 1.";
+            case SkillStack.move:return "Multiple stacks increase tile effect turns by 1.";
+            case SkillStack.skele:return "Multiple stacks increase wisp hp and atk by 1.";
             case SkillStack.turns:return "Multiple stacks increase turns of effect.";
             case SkillStack.nostack:return "Effect does not stack.";
             default: return "";
@@ -116,18 +118,18 @@ public abstract class Skill
     }
 
     public enum SkillGen{
-        Aegis, Bide, Divine, Enfeeble, Fire, Force, Heal, Hobble, Nullify, Quicken, Rage, Root, Sickly, SkeleKill, Snow, Thorn, Void, Wait, Wall, Warp, None
+        Aegis, Bide, Divine, Enfeeble, Fire, Force, Heal, Hobble, Nullify, Quicken, Rage, Root, Sickly, WispKill, Snow, Thorn, Void, Wait, Wall, Warp, None
     }
 
     public enum SkillStack{
-        rng, buff, turns, nostack, None
+        rng, buff, move, turns, nostack, skele, None
     }
 
     public enum SkillClasses{
         AegisAlliesAtk, AegisAtk, AegisBegin, AegisKill, AegisTurn, AegisWait, AoeAtk, BideAlliesAtk, BideAlliesWait, BideKill, BideWait, DivineMove,
         EnfeebleAtk, EnfeebleEnemiesWait, FireAtk, FireDef, FireKill, FireMove, ForceAtk, 
         HealAtk, HealAlliesAtk, HealAlliesWait, HealKill, HealTurn, HealWait, HobbleAtk, NullifyAtk, NullifyEnemiesWait, QuickenAlliesAtk, QuickenAlliesWait,
-        RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, RootEnemiesWait, SicklyAtk, SkeleKill, SnowAtk, SnowMove, ThornDef, VoidAtk, 
+        RageAlliesWait, RageAtk, RageDef, RageKill, RageMove, RageWait, RootAtk, RootEnemiesWait, SicklyAtk, WispKill, SnowAtk, SnowMove, ThornDef, VoidAtk, 
         WallMove, WarpAtk, None
     }
 

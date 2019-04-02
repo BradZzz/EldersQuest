@@ -12,7 +12,7 @@ public class CthulhuGDispatcherClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 mv trn\nSkeleKill";
+    return "+1 mv trn\nWispKill";
   }
 
   public override string ClassName()
@@ -32,7 +32,7 @@ public class CthulhuGDispatcherClass : ClassNode
   {
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("SkeleKill");
+      skills.Add("WispKill");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

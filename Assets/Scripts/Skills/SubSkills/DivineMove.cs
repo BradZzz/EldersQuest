@@ -60,6 +60,6 @@ public class DivineMove : Skill
 
   public override string PrintStackDetails()
   {
-      return ReturnStackTypeByString(Skill.SkillStack.buff);
+      return ReturnStackTypeByString(SkillStack.move);
   }
 }

@@ -60,6 +60,6 @@ public class SnowMove : Skill
 
   public override string PrintStackDetails()
   {
-      return ReturnStackTypeByString(Skill.SkillStack.buff);
+      return ReturnStackTypeByString(Skill.SkillStack.move);
   }
 }

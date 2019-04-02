@@ -1,10 +1,13 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Stats/StatsNav.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/AnimationInteractionController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="72" Column="77" />
-      <File FileName="Assets/Scripts/Classes/ClassNode.cs" Line="100" Column="19" />
-      <File FileName="Assets/Scripts/Utils/ImageAnimation.cs" Line="37" Column="1" />
-      <File FileName="Assets/Scripts/Classes/StaticClassRef.cs" Line="292" Column="42" />
+      <File FileName="Assets/Scripts/Skills/Skill.cs" Line="139" Column="102" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="149" Column="75" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="408" Column="18" />
+      <File FileName="Assets/Scripts/Battle/AnimationInteractionController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Skills/SubSkills/ThornDef.cs" Line="67" Column="27" />
+      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="198" Column="27" />
+      <File FileName="Assets/Scripts/Utils/ImageAnimation.cs" Line="29" Column="84" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -54,6 +54,13 @@ public class StatsNav : MonoBehaviour
         classBtn.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
         string pnlString = "";
+
+        classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = null;
+        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
+        classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = pnlString;
+        classPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = pnlString;
+
         if (game.classesSeen.Length > 0) {
           game.classesSeen = game.classesSeen.OrderBy(nm=>nm).ToArray();
 
@@ -63,7 +70,11 @@ public class StatsNav : MonoBehaviour
                Destroy(child.gameObject);
            }
 
-          foreach(string clss in game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray()){
+          string[] clssSeen = game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray();
+
+          for(int i =0; i < clssSeen.Length; i++){
+          //foreach(string clss in game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray()){
+              string clss = clssSeen[i];
               GameObject clssCpy = Instantiate(clssRw, classPnl.transform.GetChild(0).GetChild(0));
               clssCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ClassNode.FormatClass(clss);
               ClassNode nde = StaticClassRef.GetClass((StaticClassRef.AvailableClasses)Enum.Parse(typeof(StaticClassRef.AvailableClasses), clss));
@@ -73,16 +84,14 @@ public class StatsNav : MonoBehaviour
               clssCpy.GetComponent<Button>().onClick.AddListener(() => { 
                 instance.SetClassInfoText(StaticClassRef.GetFullClassDescription(clss) + "\n", StaticClassRef.GetClassByReference(clss).ClassName(), 
                   ClassNode.GetClassHeirarchyString(nde)); 
-                instance.SetSpriteAnimator(baseUnit.transform.GetChild(0).GetComponent<Animator>()); 
+                instance.SetClassSpriteAnimator(baseUnit.transform.GetChild(0).GetComponent<Animator>()); 
               });
+              if (i == 0) {
+                  clssCpy.GetComponent<Button>().onClick.Invoke();
+              }
           }
+          classPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
         }
-        classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
-        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = null;
-        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
-        classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = pnlString;
-        classPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = pnlString;
-        classPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
     }
 
     public void SetClassInfoText(string msg, string header, string desc){
@@ -92,7 +101,7 @@ public class StatsNav : MonoBehaviour
         classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
-    public void SetSpriteAnimator(Animator anim){
+    public void SetClassSpriteAnimator(Animator anim){
         Debug.Log("SetSpriteAnimator");
         classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = anim.runtimeAnimatorController;
         classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Reset();
@@ -162,6 +171,13 @@ public class StatsNav : MonoBehaviour
         skillBtn.GetComponent<Outline>().effectColor = Color.red;
         GameMeta game = BaseSaver.GetGame();
         string pnlString = "";
+
+        skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = null;
+        skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
+        skillPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = pnlString;
+        skillPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = pnlString;
+
         if (game.skillsSeen.Length > 0) {
           game.skillsSeen = game.skillsSeen.OrderBy(nm=>nm).ToArray();
           skillPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 200 * game.skillsSeen.Length);
@@ -170,19 +186,44 @@ public class StatsNav : MonoBehaviour
                Destroy(child.gameObject);
            }
 
-          foreach(string skll in game.skillsSeen){
+          for(int i = 0; i < game.skillsSeen.Length; i++){
+          //foreach(string skll in game.skillsSeen){
+              string skll = game.skillsSeen[i];
               GameObject skllCpy = Instantiate(skillRw, skillPnl.transform.GetChild(0).GetChild(0));
               skllCpy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = skll;
               Skill tSkill = Skill.ReturnSkillByString((Skill.SkillClasses)Enum.Parse(typeof(Skill.SkillClasses), skll));
-              skllCpy.GetComponent<Button>().onClick.AddListener(() => { instance.SetSkillInfoText(skll + ": " + tSkill.PrintDetails() + " " + tSkill.PrintStackDetails() + "\n" ); });
+              skllCpy.GetComponent<Button>().onClick.AddListener(() => { 
+                instance.SetSkillInfoText(tSkill.PrintDetails() + " " + tSkill.PrintStackDetails() + "\n", skll, "");
+                instance.SetSkillSpriteAnimator(tSkill.GetSkillGen());
+              });
+              if (i == 0) {
+                  skllCpy.GetComponent<Button>().onClick.Invoke();
+              }
           }
+          skillPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
         }
-        skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
-        skillPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
     }
 
-    public void SetSkillInfoText(string msg){
+    public void SetSkillInfoText(string msg, string header, string desc){
         Debug.Log("SetSkillInfoText: " + msg);
         skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+        skillPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = header;
+        skillPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = desc;
+    }
+
+    public void SetSkillSpriteAnimator(Skill.SkillGen skill){
+        Debug.Log("SetSpriteAnimator");
+        Animator anm = Skill.ReturnSkillAnimation(skill, glossy);
+        Sprite sprt = Skill.ReturnSkillSprite(skill, glossy);
+        if (anm != null) {
+          skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = anm.runtimeAnimatorController;
+          skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Reset();
+        }  else {
+          skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
+          Color wht = Color.white;
+          wht.a = 1;
+          skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>().color = wht;
+          skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>().sprite = sprt;
+        }
     }
 }

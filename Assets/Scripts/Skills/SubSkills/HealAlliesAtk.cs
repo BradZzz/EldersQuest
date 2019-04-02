@@ -59,11 +59,16 @@ public class HealAlliesAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Heal nearby allies on successful attack of enemy. " + ReturnBlurbByString(SkillGen.Heal);
+      return "Heal nearby allies on successful attack of enemy. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Heal;
   }
 }

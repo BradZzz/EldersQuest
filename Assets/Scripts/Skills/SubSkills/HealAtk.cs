@@ -50,11 +50,16 @@ public class HealAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Heal self on successful enemy attack. " + ReturnBlurbByString(SkillGen.Heal);
+      return "Heal self on successful enemy attack. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.buff);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Heal;
   }
 }

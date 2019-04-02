@@ -50,11 +50,16 @@ public class HealWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Heal self on wait. " + ReturnBlurbByString(SkillGen.Heal) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Heal self on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.buff);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Heal;
   }
 }

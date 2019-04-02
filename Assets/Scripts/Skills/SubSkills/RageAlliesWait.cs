@@ -58,11 +58,16 @@ public class RageAlliesWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Rage allies on wait. " + ReturnBlurbByString(SkillGen.Rage) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Rage allies on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Rage;
   }
 }

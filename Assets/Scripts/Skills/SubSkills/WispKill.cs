@@ -50,11 +50,16 @@ public class WispKill : Skill
   }
 
   public override string PrintDetails(){
-      return "Summon wisp on enemy unit kill. " + ReturnBlurbByString(SkillGen.WispKill);
+      return "Summon wisp on enemy unit kill. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.skele);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.WispKill;
   }
 }

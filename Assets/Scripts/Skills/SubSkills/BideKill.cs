@@ -49,11 +49,16 @@ public class BideKill : Skill
   }
 
   public override string PrintDetails(){
-      return "Bide unit on enemy kill. " + ReturnBlurbByString(SkillGen.Bide);
+      return "Bide unit on enemy kill. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.buff);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Bide;
   }
 }

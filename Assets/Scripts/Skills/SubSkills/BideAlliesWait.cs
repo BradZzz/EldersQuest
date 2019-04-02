@@ -57,11 +57,16 @@ public class BideAlliesWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Bide allies on wait. " + ReturnBlurbByString(SkillGen.Bide) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Bide allies on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Bide;
   }
 }

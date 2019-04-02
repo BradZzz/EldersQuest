@@ -58,11 +58,16 @@ public class RootEnemiesWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Root enemies on wait. " + ReturnBlurbByString(SkillGen.Root) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Root enemies on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Root;
   }
 }

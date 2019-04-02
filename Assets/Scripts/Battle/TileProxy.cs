@@ -72,9 +72,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
 
     public void HighlightSelected()
     {
-        //GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
-        transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = MOVE;
+        GetComponent<Renderer>().material.color = SHADING_UNDERLAY;
+        //transform.GetChild(0).gameObject.SetActive(true);
+        //transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = MOVE;
     }
 
     public void HighlightSelectedAdv(UnitProxy inRangeUnit, List<TileProxy> visitable, List<TileProxy> attackable)

@@ -58,11 +58,16 @@ public class EnfeebleEnemiesWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Enfeeble enemies on wait. " + ReturnBlurbByString(SkillGen.Enfeeble) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Enfeeble enemies on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Enfeeble;
   }
 }

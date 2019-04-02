@@ -54,11 +54,16 @@ public class FireKill : Skill
   }
 
   public override string PrintDetails(){
-      return "Fire tiles generated on tile where enemy was killed. " + ReturnBlurbByString(SkillGen.Fire);
+      return "Fire tiles generated on tile where enemy was killed. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Fire;
   }
 }

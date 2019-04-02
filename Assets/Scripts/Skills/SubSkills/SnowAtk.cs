@@ -54,11 +54,16 @@ public class SnowAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Snow tiles on attack. " + ReturnBlurbByString(SkillGen.Snow);
+      return "Snow tiles on attack. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Snow;
   }
 }

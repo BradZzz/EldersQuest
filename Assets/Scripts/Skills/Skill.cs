@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public abstract class Skill
@@ -21,6 +22,7 @@ public abstract class Skill
 
     public abstract string PrintDetails();
     public abstract string PrintStackDetails();
+    public abstract SkillGen GetSkillGen();
     public abstract SkillTypes[] GetSkillTypes();
 
     public static Skill ReturnSkillByString(SkillClasses sClass){
@@ -78,6 +80,7 @@ public abstract class Skill
     public static string ReturnBlurbByString(SkillGen sGen){
         switch(sGen){
             case SkillGen.Aegis:return "An (aegis) shield blocks a unit's next incoming attack.";
+            case SkillGen.Aoe:return "An (aoe) skill deals extra damage in a range. Other skills still only effect main unit targeted.";
             case SkillGen.Bide:return "(Bide) raises the max health of effected units.";
             case SkillGen.Divine:return "A tile with (divine) will heal a unit for +1 at the end of the turn.";
             case SkillGen.Enfeeble:return "An (enfeebled) unit has 1 less attack on it's next turn.";
@@ -113,12 +116,44 @@ public abstract class Skill
         }
     }
 
+    public static Animator ReturnSkillAnimation(SkillGen sGen, Glossary glossy){
+        switch(sGen){
+            case SkillGen.Aoe:return glossy.fxBarrage.GetComponent<Animator>();
+            case SkillGen.Divine:return glossy.fxHealSmoke.GetComponent<Animator>();
+            case SkillGen.Fire:return glossy.fxFirePillar.GetComponent<Animator>();
+            case SkillGen.Force:return glossy.fxLaser.GetComponent<Animator>();
+            case SkillGen.Heal:return glossy.fxHealSmoke.GetComponent<Animator>();
+            case SkillGen.WispKill:return glossy.cthulhuWisp.transform.GetChild(0).GetComponent<Animator>();
+            case SkillGen.Snow:return glossy.fxSnowSmoke.GetComponent<Animator>();
+            case SkillGen.Thorn:return glossy.fxBloodExplosion.GetComponent<Animator>();
+            case SkillGen.Void:return glossy.fxLaser.GetComponent<Animator>();
+            case SkillGen.Warp:return glossy.fxLaser.GetComponent<Animator>();
+            default: return null;
+        }
+    }
+
+    public static Sprite ReturnSkillSprite(SkillGen sGen, Glossary glossy){
+        switch(sGen){
+            case SkillGen.Aegis:return glossy.emoteAegisGained.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Bide:return glossy.emoteBide.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Enfeeble:return glossy.emoteEnfeeble.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Hobble:return glossy.emoteHobble.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Nullify:return glossy.emoteNullify.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Quicken:return glossy.emoteQuicken.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Rage:return glossy.emoteRage.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Root:return glossy.emoteRooted.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Sickly:return glossy.emoteSickly.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Wall:return glossy.obstacles[0].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            default: return null;
+        }
+    }
+
     public enum Actions{
         BeginGame, EndedTurn, DidAttack, DidMove, DidWait, DidKill, DidDefend, None
     }
 
     public enum SkillGen{
-        Aegis, Bide, Divine, Enfeeble, Fire, Force, Heal, Hobble, Nullify, Quicken, Rage, Root, Sickly, WispKill, Snow, Thorn, Void, Wait, Wall, Warp, None
+        Aegis, Aoe, Bide, Divine, Enfeeble, Fire, Force, Heal, Hobble, Nullify, Quicken, Rage, Root, Sickly, WispKill, Snow, Thorn, Void, Wait, Wall, Warp, None
     }
 
     public enum SkillStack{

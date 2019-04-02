@@ -59,11 +59,16 @@ public class NullifyEnemiesWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Nullify enemies on wait. " + ReturnBlurbByString(SkillGen.Nullify) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Nullify enemies on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Nullify;
   }
 }

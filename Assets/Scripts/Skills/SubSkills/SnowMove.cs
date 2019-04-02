@@ -55,11 +55,16 @@ public class SnowMove : Skill
   }
 
   public override string PrintDetails(){
-      return "Snow tiles generated on tiles where unit moved. " + ReturnBlurbByString(SkillGen.Snow);
+      return "Snow tiles generated on tiles where unit moved. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.move);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Snow;
   }
 }

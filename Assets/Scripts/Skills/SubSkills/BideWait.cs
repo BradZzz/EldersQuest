@@ -49,11 +49,16 @@ public class BideWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Bide on wait. " + ReturnBlurbByString(SkillGen.Bide) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Bide on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.buff);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Bide;
   }
 }

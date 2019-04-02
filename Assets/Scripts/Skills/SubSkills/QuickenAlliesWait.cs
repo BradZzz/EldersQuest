@@ -59,11 +59,16 @@ public class QuickenAlliesWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Quickens allies in range on wait. " + ReturnBlurbByString(SkillGen.Quicken) + "" + ReturnBlurbByString(SkillGen.Wait);
+      return "Quickens allies in range on wait. " + ReturnBlurbByString(GetSkillGen()) + "" + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Quicken;
   }
 }

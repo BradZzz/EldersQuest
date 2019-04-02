@@ -49,11 +49,16 @@ public class RageKill : Skill
   }
 
   public override string PrintDetails(){
-      return "Rage self on enemy kill. " + ReturnBlurbByString(SkillGen.Rage);
+      return "Rage self on enemy kill. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.buff);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Rage;
   }
 }

@@ -55,11 +55,16 @@ public class DivineMove : Skill
   }
 
   public override string PrintDetails(){
-      return "Divine tiles generated on tiles where unit moved. " + ReturnBlurbByString(SkillGen.Divine);
+      return "Divine tiles generated on tiles where unit moved. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(SkillStack.move);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Divine;
   }
 }

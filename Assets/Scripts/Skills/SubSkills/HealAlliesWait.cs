@@ -59,11 +59,16 @@ public class HealAlliesWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Heal nearby allies on wait. " + ReturnBlurbByString(SkillGen.Heal) + " " + ReturnBlurbByString(SkillGen.Wait);
+      return "Heal nearby allies on wait. " + ReturnBlurbByString(GetSkillGen()) + " " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Heal;
   }
 }

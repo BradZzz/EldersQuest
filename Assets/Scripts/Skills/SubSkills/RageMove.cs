@@ -50,11 +50,16 @@ public class RageMove : Skill
   }
 
   public override string PrintDetails(){
-      return "Rage self on move. Loses effect at end of turn. " + ReturnBlurbByString(SkillGen.Rage);
+      return "Rage self on move. Loses effect at end of turn. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.move);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Rage;
   }
 }

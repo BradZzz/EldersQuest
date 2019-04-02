@@ -50,11 +50,16 @@ public class AegisAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Provides an Aegis shield to self on successful attack. " + ReturnBlurbByString(SkillGen.Aegis);
+      return "Provides an Aegis shield to self on successful attack. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.nostack);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Aegis;
   }
 }

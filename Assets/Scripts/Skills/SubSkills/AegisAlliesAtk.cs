@@ -58,11 +58,16 @@ public class AegisAlliesAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Provides an Aegis shield to allies in range on successful attack. " + ReturnBlurbByString(SkillGen.Aegis);
+      return "Provides an Aegis shield to allies in range on successful attack. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Aegis;
   }
 }

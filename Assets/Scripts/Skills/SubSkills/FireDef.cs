@@ -54,11 +54,16 @@ public class FireDef : Skill
   }
 
   public override string PrintDetails(){
-      return "Fire tiles on hit from enemy. " + ReturnBlurbByString(SkillGen.Fire);
+      return "Fire tiles on hit from enemy. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Fire;
   }
 }

@@ -50,11 +50,16 @@ public class AegisBegin : Skill
   }
 
   public override string PrintDetails(){
-      return "Provides an Aegis shield at the beginning of battle. " + ReturnBlurbByString(SkillGen.Aegis);
+      return "Provides an Aegis shield at the beginning of battle. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.nostack);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Aegis;
   }
 }

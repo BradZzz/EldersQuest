@@ -50,11 +50,16 @@ public class AegisWait : Skill
   }
 
   public override string PrintDetails(){
-      return "Provides an Aegis shield when the unit 'waits'. " + ReturnBlurbByString(SkillGen.Aegis) + "  " + ReturnBlurbByString(SkillGen.Wait);
+      return "Provides an Aegis shield when the unit 'waits'. " + ReturnBlurbByString(GetSkillGen()) + "  " + ReturnBlurbByString(SkillGen.Wait);
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.nostack);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Aegis;
   }
 }

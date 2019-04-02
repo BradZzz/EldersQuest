@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEditor;
+using System.Linq;
 
 public class ImageAnimation : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class ImageAnimation : MonoBehaviour {
       valid = false;
     } else {
       sprites = GetSpritesFromAnimator(animator);
+      sprites = sprites.Where(spt => !spt.name.ToLower().Contains("rear")).ToList();
       curIdx = 0;
       curTime = speed;
       valid = true;

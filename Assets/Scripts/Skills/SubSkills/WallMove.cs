@@ -55,11 +55,16 @@ public class WallMove : Skill
   }
 
   public override string PrintDetails(){
-      return "Wall tiles generated on tiles where unit moved. " + ReturnBlurbByString(SkillGen.Wall);
+      return "Wall tiles generated on tiles where unit moved. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(SkillStack.move);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Wall;
   }
 }

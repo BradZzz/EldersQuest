@@ -50,11 +50,16 @@ public class AegisTurn : Skill
   }
 
   public override string PrintDetails(){
-      return "Provides an Aegis shield at the end of the unit's turn. " + ReturnBlurbByString(SkillGen.Aegis);
+      return "Provides an Aegis shield at the end of the unit's turn. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.nostack);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Aegis;
   }
 }

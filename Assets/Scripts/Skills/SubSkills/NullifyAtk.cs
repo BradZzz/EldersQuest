@@ -51,11 +51,16 @@ public class NullifyAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Nullify enemies on atk. " + ReturnBlurbByString(SkillGen.Nullify);
+      return "Nullify enemies on atk. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.nostack);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Nullify;
   }
 }

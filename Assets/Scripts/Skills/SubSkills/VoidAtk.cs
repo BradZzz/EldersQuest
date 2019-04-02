@@ -69,11 +69,16 @@ public class VoidAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Void enemy on attack. " + ReturnBlurbByString(SkillGen.Void);
+      return "Void enemy on attack. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.nostack);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Void;
   }
 }

@@ -54,11 +54,16 @@ public class FireAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Fire tiles on attack. " + ReturnBlurbByString(SkillGen.Fire);
+      return "Fire tiles on attack. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Fire;
   }
 }

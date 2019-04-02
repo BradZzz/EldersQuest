@@ -56,11 +56,16 @@ public class ThornDef : Skill
   }
 
   public override string PrintDetails(){
-      return "Summon thorns in range when hit by enemy. " + ReturnBlurbByString(SkillGen.Thorn);
+      return "Summon thorns in range when hit by enemy. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.rng);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Thorn;
   }
 }

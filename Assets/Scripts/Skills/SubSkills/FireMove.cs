@@ -57,11 +57,16 @@ public class FireMove : Skill
   }
 
   public override string PrintDetails(){
-      return "Fire tiles generated on tiles where unit moved. " + ReturnBlurbByString(SkillGen.Fire);
+      return "Fire tiles generated on tiles where unit moved. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(SkillStack.move);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Fire;
   }
 }

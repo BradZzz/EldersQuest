@@ -50,11 +50,16 @@ public class RootAtk : Skill
   }
 
   public override string PrintDetails(){
-      return "Enemy rooted on attack. " + ReturnBlurbByString(SkillGen.Root);
+      return "Enemy rooted on attack. " + ReturnBlurbByString(GetSkillGen());
   }
 
   public override string PrintStackDetails()
   {
       return ReturnStackTypeByString(Skill.SkillStack.turns);
+  }
+
+  public override SkillGen GetSkillGen()
+  {
+      return SkillGen.Root;
   }
 }

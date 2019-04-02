@@ -52,7 +52,7 @@ public class UnitProxy : GridObjectProxy
     public void AddLevel(){
       //FloatUp(Skill.Actions.DidKill, "+1xp", Color.green, "gained +1 xp", true);
       AnimationInteractionController.InteractionAnimationGameobject(
-        BoardProxy.instance.glossary.GetComponent<Glossary>().exp, gameObject, AnimationInteractionController.AFTER_KILL, true);
+        BoardProxy.instance.glossary.GetComponent<Glossary>().exp, gameObject, AnimationInteractionController.ANIMATION_WAIT_TIME_LIMIT, true);
       _data.SetLvl(_data.GetLvl()+1);
     }
 

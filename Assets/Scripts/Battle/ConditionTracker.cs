@@ -60,7 +60,7 @@ public class ConditionTracker : MonoBehaviour
     }
 
     IEnumerator WaitEndGame(int key){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(AnimationInteractionController.ANIMATION_WAIT_TIME_LIMIT);
         EndGame(key == BoardProxy.ENEMY_TEAM);
     }
 

@@ -112,9 +112,9 @@ public class UnitNameGenerator : MonoBehaviour
             case Skill.Actions.None: phrases = new string[] { "roger", "listening", "standing by", "yo", "copy that", "moving", "walking",
               "hostiles sighted", "investigating", "engaging" }; break;
             case Skill.Actions.DidAttack: phrases = new string[] { "die!", "firing", "eat this!", "burn!", "murica!", "apple pies!", "neutralizing", 
-              "aiming", "get down!", "boom", "dodge this", "suck on this", "for freedom!", "" }; break;
+              "aiming", "get down!", "boom", "dodge this", "suck on this", "for freedom!", "target acquired" }; break;
             case Skill.Actions.DidDefend: phrases = new string[] { "ouch!", "medic!", "taking damage", "oof", "mommy!", "oops..", "shields down", 
-              "taking fire", "hamburgers...", "that'll scar", "don't let me die!", "i see the light" }; break;
+              "taking fire", "hamburgers...", "that'll scar", "don't let me die!", "i see the light", "under attack" }; break;
             case Skill.Actions.DidKill: phrases = new string[] { "hoo rah!", "take that!", "enemy down", "who's next?", "and stay down!", "via con dios" }; break;
         }
         HelperScripts.Shuffle(phrases);
@@ -132,14 +132,14 @@ public class UnitNameGenerator : MonoBehaviour
         switch(act){
             //OnSelected
             case Skill.Actions.None: phrases = new string[] { "navigating", "moving", "master?", "yes", "i obey", "for egypt", "swiftly",
-              "understood", "flying", "i am commanded" }; break;
+              "understood", "flying", "i am commanded", "by the wings of Ra" }; break;
             case Skill.Actions.DidAttack: phrases = new string[] { "sand attack", "scarab stab", "titan punch", "fire jab",
               "whirlwind", "breath of horus", "the styx breathes", "release your soul", "give me your breath", "see your sins",
-              "breathe death" }; break;
+              "breathe death", "the earth taketh", "fire and sand" }; break;
             case Skill.Actions.DidDefend: phrases = new string[] { "impossible!", "witchcraft!", "mummies...", "unravelled", "beat down",
-              "mortal wounds", "unholy beast", "i curse thee" }; break;
+              "mortal wounds", "unholy beast", "i curse thee", "avenge me", "phsaw" }; break;
             case Skill.Actions.DidKill: phrases = new string[] { "rest", "to eternity", "immense power", "sun's blessing", "back to the earth", 
-              "eternal peace", "sacrifice made" }; break;
+              "eternal peace", "sacrifice made", "death to interlopers" }; break;
         }
         HelperScripts.Shuffle(phrases);
         return phrases[0];
@@ -158,11 +158,11 @@ public class UnitNameGenerator : MonoBehaviour
             case Skill.Actions.None: phrases = new string[] { "*gurgle*", "*squish*", "*belch*", "opus dei", "ora pro nobis", "nocte", 
               "satanas graditur", "imperium", "quia sanguinem", "virgineo removete" }; break;
             case Skill.Actions.DidAttack: phrases = new string[] { "sssss", "*squaaaak*", "omnibus idem", "fiat tenebris", "nova sanguinem", 
-              "lunam in potestatem", "marcescet" }; break;
+              "lunam in potestatem", "marcescet", "infirma ad vescendum" }; break;
             case Skill.Actions.DidDefend: phrases = new string[] { "*plop*", "*oop*", "opere et veritate", "fortis et liber", "pax aeterna", 
-              "deus videt omnia" }; break;
+              "deus videt omnia", "maledicentibus vobis", "omnes nos", "per vires sanguis" }; break;
             case Skill.Actions.DidKill: phrases = new string[] { "obiit", "odi et amo", "oleum camino", "omnia cum deo", "omnia omnibus", 
-              "ordo ab chao", "orbis unum", "excelsior", "per festum", "inanis est", "pars requiescant in" }; break;
+              "ordo ab chao", "orbis unum", "excelsior", "per festum", "inanis est", "pars requiescant in", "purgare per tenebras" }; break;
         }
         HelperScripts.Shuffle(phrases);
         return phrases[0];
@@ -173,10 +173,10 @@ public class UnitNameGenerator : MonoBehaviour
         string[] phrases = new string[] { "death..." };
         switch(act){
             //OnSelected
-            case Skill.Actions.None: phrases = new string[] { "doom..." }; break;
-            case Skill.Actions.DidAttack: phrases = new string[] { ":)", "are you mommy?", "you'll be my toy" };break;
-            case Skill.Actions.DidDefend: phrases = new string[] { ":|", "ouchie", "that hurts" };break;
-            case Skill.Actions.DidKill: phrases = new string[] { ";)", "death is my present", "let's play again" };break;
+            case Skill.Actions.None: phrases = new string[] { "doom...", "la la la", "shiny", "cute", "where are you guys?" }; break;
+            case Skill.Actions.DidAttack: phrases = new string[] { ":)", "are you mommy?", "you'll be my toy", "i see you", "peekaboo" };break;
+            case Skill.Actions.DidDefend: phrases = new string[] { ":|", "ouchie", "that hurts", "that's not fair", "i'll tell on you" };break;
+            case Skill.Actions.DidKill: phrases = new string[] { ";)", "death is my present", "let's play again", "that was fun", "i'm bored with you" };break;
         }
         HelperScripts.Shuffle(phrases);
         return phrases[0];

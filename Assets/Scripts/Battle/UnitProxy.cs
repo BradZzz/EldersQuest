@@ -278,7 +278,8 @@ public class UnitProxy : GridObjectProxy
             case Unit.FactionType.Cthulhu:
               projColor= new Color(.4f,.2f,.6f);
               switch(oppUnit.GetData().GetUnitType()){
-                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 30; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = 0; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
+                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 30; delayAfter = .005f; 
+                  projSpeed = .5f; chargeWait = .001f; delayBefore = 0; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
                 case Unit.UnitType.Scout: showProjectileAnimation = false; break;
                 case Unit.UnitType.Soldier: showProjectileAnimation = false; break;
               }
@@ -288,7 +289,8 @@ public class UnitProxy : GridObjectProxy
               switch(oppUnit.GetData().GetUnitType()){
                 case Unit.UnitType.Mage: num = 20; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = .2f; break;
                 case Unit.UnitType.Scout: num = 5; delayBefore = .1f; delayAfter = .02f; break;
-                case Unit.UnitType.Soldier: projSpeed = .9f; rotate = true; num = 1; delayBefore = .45f; delayAfter = .3f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().scarab; break;
+                case Unit.UnitType.Soldier: projSpeed = .9f; rotate = true; num = 1; delayBefore = .45f; delayAfter = .3f; 
+                  baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().scarab; break;
               }
               break;
             case Unit.FactionType.Human:

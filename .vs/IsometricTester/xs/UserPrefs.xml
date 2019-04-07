@@ -1,16 +1,12 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/UnitNameGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/BoardProxy.cs">
     <Files>
-      <File FileName="Assets/Scripts/Skills/Skill.cs" Line="139" Column="102" />
-      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="55" Column="144" />
-      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="73" Column="36" />
-      <File FileName="Assets/Scripts/Battle/AnimationInteractionController.cs" Line="15" Column="50" />
-      <File FileName="Assets/Scripts/Skills/SubSkills/ThornDef.cs" Line="67" Column="27" />
-      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="94" Column="10" />
-      <File FileName="Assets/Scripts/Utils/ImageAnimation.cs" Line="26" Column="21" />
-      <File FileName="Assets/Scripts/Battle/TurnController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="64" Column="47" />
-      <File FileName="Assets/Scripts/Utils/UnitNameGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Brains/AIBrain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Brains/BasicBrain.cs" Line="115" Column="65" />
+      <File FileName="Assets/Scripts/Battle/Brains/AdvancedBrain.cs" Line="30" Column="46" />
+      <File FileName="Assets/Scripts/Utils/PinchZoom.cs" Line="47" Column="17" />
+      <File FileName="Assets/Scripts/Battle/TileProxy.cs" Line="532" Column="47" />
+      <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="584" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

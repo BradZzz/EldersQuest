@@ -7,14 +7,23 @@ public class BasicBrain : MonoBehaviour
 {
     public static BasicBrain instance;
 
+    private Camera cam;
+
     void Awake()
     {
         instance = this;
+        cam = Camera.main;
     }
   
     public static void StartThinking()
     {
         instance.StartCoroutine(instance.BeginProcess());
+    }
+
+    public void FocusOnUnit(UnitProxy unt){
+        Vector3 pos = unt.transform.position;
+        BoardProxy.instance.grid.transform.position = new Vector3(-2.6f - pos.x, 1.5f - pos.y, 0);
+        cam.orthographicSize = 3;
     }
   
     public IEnumerator BeginProcess()
@@ -52,6 +61,7 @@ public class BasicBrain : MonoBehaviour
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());
                 if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
                 {
+                    FocusOnUnit(unit);
                     //Unit in range. Attack!
                     //Debug.Log("Trying to Attack");
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
@@ -64,9 +74,16 @@ public class BasicBrain : MonoBehaviour
                     yield return new WaitForSeconds(.5f);
                     opposingTeamTiles[0].GetUnit().OnSelected();
                     didSomething = true;
+                    bool zap = unit.GetData().GetSkills().Where(skll => skll.Contains("Force") || skll.Contains("Void") || skll.Contains("Warp")).Any();
+                    if (zap) {
+                        yield return new WaitForSeconds(AnimationInteractionController.AFTER_KILL); 
+                    } else {
+                        yield return new WaitForSeconds(AnimationInteractionController.ATK_WAIT); 
+                    }
                 } 
                 else if (opposingTeamTiles.Count == 0 && unit.GetData().GetTurnActions().CanMove())
                 {
+                    //FocusOnUnit(unit);
                     //Debug.Log("Trying to Move");
                     TileProxy start = BoardProxy.instance.GetTileAtPosition(unit.GetPosition());
                     //Calculate a path from the unit to the first opposing unit (should be optimized)
@@ -81,6 +98,7 @@ public class BasicBrain : MonoBehaviour
 
                         if (dest != start)
                         {
+                            FocusOnUnit(unit);
                             didSomething = true;
                             foreach (TileProxy tl in path)
                             {
@@ -95,6 +113,7 @@ public class BasicBrain : MonoBehaviour
                             yield return new WaitForSeconds(.25f);
                             InteractivityManager.instance.OnTileSelected(dest);
                             yield return new WaitForSeconds(1f);
+                            FocusOnUnit(unit);
                         }
                         else
                         {

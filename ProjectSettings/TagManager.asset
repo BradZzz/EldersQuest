@@ -56,6 +56,12 @@ TagManager:
   - name: FX
     uniqueID: 2751565407
     locked: 0
+  - name: Obstacles
+    uniqueID: 863089555
+    locked: 0
+  - name: Emotes
+    uniqueID: 272702511
+    locked: 0
   - name: Dialog
     uniqueID: 2247327601
     locked: 0

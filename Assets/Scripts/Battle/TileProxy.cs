@@ -289,6 +289,8 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
                 obs.Init();
                 ReceiveGridObjectProxy(obs);
                 obs.SnapToCurrentPosition();
+                Color ObsColor = new Color(1, .73f, .73f);
+                GetComponent<SpriteRenderer>().color = ObsColor;
             }
         }
     }
@@ -397,6 +399,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
 
         if (!OnFire() && !IsWall() && !Frozen() && !IsDivine()) {
             GetComponent<SpriteRenderer>().sprite = def;
+            GetComponent<SpriteRenderer>().color = Color.white;
             unitThatSetTileOnFire = null;
         } else {
             CheckAll();
@@ -505,7 +508,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     IEnumerator PlayAnim(Glossary.fx fx, float wait = 0){
         yield return new WaitForSeconds(wait);
         Vector3 instPos = transform.position;
-        instPos.y += .7f;
+        instPos.y += .6f;
         GameObject fxAnim = null;
         switch(fx){
             case Glossary.fx.barrage:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxBarrage;break;
@@ -525,9 +528,10 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
             case Glossary.fx.smoke3:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSmoke3;break;
             case Glossary.fx.snowSmoke:fxAnim=BoardProxy.instance.glossary.GetComponent<Glossary>().fxSnowSmoke;break;
         }
-        GameObject healSmk = Instantiate(fxAnim, instPos, Quaternion.identity);
+        GameObject fxEffect = Instantiate(fxAnim, instPos, Quaternion.identity);
+        fxEffect.transform.parent = transform;
         yield return new WaitForSeconds(1f);
-        Destroy(healSmk);
+        Destroy(fxEffect);
     }
 
     #region events
@@ -543,7 +547,9 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        InteractivityManager.instance.OnTileUnHovered(this);
+        if (TurnController.instance.PlayersTurn()){
+            InteractivityManager.instance.OnTileUnHovered(this); 
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -559,43 +565,49 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
 
     public void OnBeginDrag (PointerEventData eventData)
     {
-       InteractivityManager.instance.OnClear(this);
-       Debug.Log("OnBeginDrag");
-       _startPosition = BoardProxy.instance.grid.transform.position;
-       _zDistanceToCamera = Mathf.Abs (_startPosition.z - Camera.main.transform.position.z);
-    
-       _offsetToMouse = _startPosition - Camera.main.ScreenToWorldPoint (
-           new Vector3 (Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
-       );
+      if (TurnController.instance.PlayersTurn()){
+         InteractivityManager.instance.OnClear(this);
+         Debug.Log("OnBeginDrag");
+         _startPosition = BoardProxy.instance.grid.transform.position;
+         _zDistanceToCamera = Mathf.Abs (_startPosition.z - Camera.main.transform.position.z);
+      
+         _offsetToMouse = _startPosition - Camera.main.ScreenToWorldPoint (
+             new Vector3 (Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
+         );
+      }
     }
     
     public void OnDrag (PointerEventData eventData)
     {
-       Debug.Log("OnDrag");
-       if(Input.touchCount > 1)
-           return;
-    
-       //BoardProxy.instance.grid.
-       BoardProxy.instance.grid.transform.position = Camera.main.ScreenToWorldPoint (
-           new Vector3 (Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
-           ) + _offsetToMouse;
+      if (TurnController.instance.PlayersTurn()){
+         Debug.Log("OnDrag");
+         if(Input.touchCount > 1)
+             return;
+      
+         //BoardProxy.instance.grid.
+         BoardProxy.instance.grid.transform.position = Camera.main.ScreenToWorldPoint (
+             new Vector3 (Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
+             ) + _offsetToMouse;
+      }
     }
     
-    public void OnEndDrag (PointerEventData eventData)
-    {
-       Debug.Log("OnEndDrag");
-       _offsetToMouse = Vector3.zero;
-    }
+  public void OnEndDrag (PointerEventData eventData)
+  {
+      if (TurnController.instance.PlayersTurn()){
+         Debug.Log("OnEndDrag");
+         _offsetToMouse = Vector3.zero;
+      }
+  }
 
   public void OnPointerClick(PointerEventData eventData)
   {
-        if (TurnController.instance.PlayersTurn()){
-            InteractivityManager.instance.OnTileSelected(this);
-            foreach (var obj in objectProxies.ToList())
-            {
-                obj.OnSelected();
-            }
-        }
+      if (TurnController.instance.PlayersTurn()){
+          InteractivityManager.instance.OnTileSelected(this);
+          foreach (var obj in objectProxies.ToList())
+          {
+              obj.OnSelected();
+          }
+      }
   }
 
   #endregion

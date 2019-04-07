@@ -18,7 +18,7 @@ public class PinchZoom : MonoBehaviour
     void Update()
     {
         // If there are two touches on the device...
-        if (Input.touchCount == 2 && TurnController.instance.PlayersTurn())
+        if (TurnController.instance.PlayersTurn() && Input.touchCount == 2)
         {
             // Store both touches.
             Touch touchZero = Input.GetTouch(0);

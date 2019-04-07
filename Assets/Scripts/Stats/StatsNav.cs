@@ -11,6 +11,8 @@ public class StatsNav : MonoBehaviour
     public static StatsNav instance;
 
     public Glossary glossy;
+    public UIGlossary uiGlossy;
+
     public GameObject camp1, camp2, camp3, camp4;
     public GameObject hScorePnl, classPnl, skillPnl;
     public GameObject skillRw, clssRw;
@@ -55,7 +57,7 @@ public class StatsNav : MonoBehaviour
         GameMeta game = BaseSaver.GetGame();
         string pnlString = "";
 
-        classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        classPnl.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
         classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = null;
         classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
         classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = pnlString;
@@ -96,15 +98,17 @@ public class StatsNav : MonoBehaviour
 
     public void SetClassInfoText(string msg, string header, string desc){
         Debug.Log("SetSkillInfoText: " + msg);
-        classPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
-        classPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = header;
+        classPnl.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+        classPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = "<u>" + header + "</u>";
         classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
     public void SetClassSpriteAnimator(Animator anim){
         Debug.Log("SetSpriteAnimator");
         classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = anim.runtimeAnimatorController;
-        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Reset();
+        Debug.Log("Clicking: " + anim.transform.parent.gameObject.name);
+        List<Sprite> unitSprites = new List<Sprite>(uiGlossy.GetSprites((UIGlossary.uiFX)Enum.Parse(typeof(UIGlossary.uiFX), anim.transform.parent.gameObject.name)));
+        classPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Reset(unitSprites);
     }
 
     void PopulateHScoresPanel(){
@@ -172,7 +176,7 @@ public class StatsNav : MonoBehaviour
         GameMeta game = BaseSaver.GetGame();
         string pnlString = "";
 
-        skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
+        skillPnl.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = pnlString;
         skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = null;
         skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
         skillPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = pnlString;
@@ -206,8 +210,8 @@ public class StatsNav : MonoBehaviour
 
     public void SetSkillInfoText(string msg, string header, string desc){
         Debug.Log("SetSkillInfoText: " + msg);
-        skillPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
-        skillPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = header;
+        skillPnl.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = msg;
+        skillPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = "<u>" + header + "</u>";
         skillPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = desc;
     }
 
@@ -217,7 +221,8 @@ public class StatsNav : MonoBehaviour
         Sprite sprt = Skill.ReturnSkillSprite(skill, glossy);
         if (anm != null) {
           skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = anm.runtimeAnimatorController;
-          skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Reset();
+          List<Sprite> fxSprites = new List<Sprite>(uiGlossy.GetSprites((UIGlossary.uiFX)Enum.Parse(typeof(UIGlossary.uiFX), "fx" + skill.ToString())));
+          skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Reset(fxSprites);
         }  else {
           skillPnl.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<ImageAnimation>().Flush();
           Color wht = Color.white;

@@ -30,7 +30,7 @@ public class TurnController : MonoBehaviour
         }   
     }
 
-    int GetTeam()
+    public int GetTeam()
     {
         return currentTeam;
     }
@@ -73,6 +73,11 @@ public class TurnController : MonoBehaviour
                 unit.GetData().GetTurnActions().EndTurn();
             }
         }
+        if (PlayersTurn()) {
+          Camera.main.GetComponent<PinchZoom>().enabled = true;
+        } else {
+          Camera.main.GetComponent<PinchZoom>().enabled = false;
+        }
         //Set the turn panel to the current turn
         //PanelController.instance.SetTurnPanel(currentTeam.ToString());
     }
@@ -83,12 +88,14 @@ public class TurnController : MonoBehaviour
         //Turn on all the units with the current team.
         foreach(UnitProxy unit in BoardProxy.instance.GetUnits())
         {
-            if (unit.GetData().GetTeam() == currentTeam 
-              && unit.GetData().GetTurnActions().CanAttack() 
-              && unit.GetData().GetTurnActions().CanMove())
+            if (unit.GetData().GetTeam() == currentTeam)
             {
-                Debug.Log("DidWait Turn End Actions");
-                unit.AcceptAction(Skill.Actions.DidWait,null);
+                unit.AcceptAction(Skill.Actions.EndedTurn,null);
+                if (unit.GetData().GetTurnActions().CanAttack() 
+                  && unit.GetData().GetTurnActions().CanMove()) {
+                  Debug.Log("DidWait Turn End Actions");
+                  unit.AcceptAction(Skill.Actions.DidWait,null);
+                }
             }
         }
         //Set the turn panel to the current turn

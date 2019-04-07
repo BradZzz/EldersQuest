@@ -190,7 +190,7 @@ public class InteractUnitSelected : InteractMode
 
   public void Update()
   {
-      if (Input.GetMouseButton(1))//right click to exit
+      if (TurnController.instance.PlayersTurn() && Input.GetMouseButton(1))//right click to exit
       {
           InteractivityManager.instance.EnterDefaultMode();
       }

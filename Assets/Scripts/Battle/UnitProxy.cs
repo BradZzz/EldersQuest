@@ -623,11 +623,15 @@ public class UnitProxy : GridObjectProxy
         yield return new WaitForSeconds(AnimationInteractionController.ANIMATION_WAIT_TIME_LIMIT);
 
         newTl.ReceiveGridObjectProxy(this);
-        newTl.FloatUp(Skill.Actions.None, "whabam!", Color.blue, actStr);
+        //newTl.FloatUp(Skill.Actions.None, "whabam!", Color.blue, actStr);
+        newTl.CreateAnimation(Glossary.fx.laser, 0);
 
         oldTl.RemoveGridObjectProxy(this);
-        oldTl.FloatUp(Skill.Actions.None, "poof", Color.cyan, actStr);
-        SnapToCurrentPosition(); 
+        //oldTl.FloatUp(Skill.Actions.None, "poof", Color.cyan, actStr);
+        oldTl.CreateAnimation(Glossary.fx.laser, 0);
+
+        SetPosition(newTl.GetPosition());
+        SnapToCurrentPosition();
     }
 
     float timeLeft = 3;

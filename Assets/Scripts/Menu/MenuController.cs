@@ -12,13 +12,19 @@ public class MenuController : MonoBehaviour
   public TextMeshProUGUI save2;
   public TextMeshProUGUI save3;
 
+  public GameObject resetButton;
+
   public GameObject dialogScreen;
+
+  private int clickCount;
 
   void Awake()
   {
     instance = this;
     Refresh();
-        dialogScreen.SetActive(false);
+    clickCount = 0;
+    resetButton.SetActive(false);
+    dialogScreen.SetActive(false);
   }
 
   void Refresh()
@@ -34,6 +40,17 @@ public class MenuController : MonoBehaviour
     } else {
         Debug.Log("Game is not null");
     }
+  }
+
+  public void ResetButtonClick(){
+     if (clickCount >= 10) {
+       ShowResetButton();
+     }
+     clickCount++;
+  }
+
+  public void ShowResetButton(){
+     resetButton.SetActive(true);
   }
 
   void PrintSave(string save, TextMeshProUGUI txt)

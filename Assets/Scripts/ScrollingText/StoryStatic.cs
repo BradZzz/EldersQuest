@@ -109,7 +109,7 @@ public class StoryStatic : MonoBehaviour
             switch(dest){
               case Dests.Dest1: return "Let's get to the battle! Click on your tank to bring up it's moveable tiles. Move it near that enemy unit and attack it!";
               case Dests.Dest2: return "A human Scout unit is faster and has more moves per turn than a normal unit. Use it to your advantage to attack weak units and units with aegis.";
-              case Dests.Dest3: return "Let's add a Mage unit to the mix! These units are usually slower and weaker than normal units with high attack power and range. Try to hide these classes behind obstacles for cover.";
+              case Dests.Dest3: return "Let's see how a Mage unit works when added to the mix! These units are usually slower and weaker than normal units with high attack power and range. Try to hide these classes behind obstacles for cover.";
               case Dests.Dest4: return "Sometimes tiles can have different effects in battle. Snow slows 1 move. Fire damages 1 hp. Divine heals 1 hp at the end of the turn.";
               case Dests.Dest5: return "Each team can only bring three units at a time into battle. The order of the roster is decided on the tech screen where units are upgraded.";
             }
@@ -125,7 +125,7 @@ public class StoryStatic : MonoBehaviour
               case Dests.Dest7: return "Their strength and numbers are increasing exponentially! Strategize, soldier!";
               case Dests.Dest8: return "We must be getting close to their home base, there’s even more vermin than ever!";
               case Dests.Dest9: return "They’re rallying against us! We can’t afford to lose now, soldier!";
-              case Dests.Dest10: return "Here we are, recruit! The final battle! Just defeat the big guy and we’ll be able to pinpoint the exact location of the disturbance!";
+              case Dests.Dest10: return "Here we are, recruit! The final battle! Just defeat these last units, and we’ll be able to pinpoint the exact location of the disturbance!";
             }
             break;
           case GameMeta.World.mountain: 
@@ -163,8 +163,8 @@ public class StoryStatic : MonoBehaviour
                   case Dests.Dest1: return "Objective: Get our hands on Pandora’s Box.";
                   case Dests.Dest2: return "Do not get distracted by the chocolate falls and the cotton candy clouds! She’s bringing the dead back to life! Be careful, recruit!";
                   case Dests.Dest3: return "Enemies everywhere! You can’t be afraid now, soldier!";
-                  case Dests.Dest4: return "Egyptian AND demonic enemies are closing in around us, soldier! We’ll have to scrap our way out of this one!";
-                  case Dests.Dest5: return "We must be getting closer to Pandora, the enemies are getting stronger!";
+                  case Dests.Dest4: return "Susies are closing in from all around us, soldier! We’ll have to scrap our way out of this one!";
+                  case Dests.Dest5: return "We must be getting closer to the real Susie and Pandora's box, the enemies are getting stronger!";
                   case Dests.Dest6: return "We’re on the right track! The enemy is getting scared!";
                   case Dests.Dest7: return "No time for shell shock, soldier. You’ve made it this far, let’s see this to the end!";
                   case Dests.Dest8: return "The enemy is getting desperate to kill us, don’t give them the satisfaction!";
@@ -188,16 +188,16 @@ public class StoryStatic : MonoBehaviour
               break;
               case Unit.FactionType.Cthulhu: 
                 switch(dest){
-                  case Dests.Dest1: return "Protect the girl at all costs!";
-                  case Dests.Dest2: return "Human Beings, Egyptian Magic Beings, they’re coming from everywhere!";
-                  case Dests.Dest3: return "It hardly seems fair to have so much vermin ganging up on us.";
+                  case Dests.Dest1: return "Our forward plague scouts have informed us that the beast Susie has summoned dopplegangers to protect her.";
+                  case Dests.Dest2: return "These magical beings summoned from beyond, they’re coming at us from everywhere!";
+                  case Dests.Dest3: return "It hardly seems fair to have so much vermin to crush around us.";
                   case Dests.Dest4: return "If we could only get that box opened a little wider, the big demons could fit through the portal.";
                   case Dests.Dest5: return "Wouldn’t it be fun to see this world fall to chaos?";
                   case Dests.Dest6: return "What are we all fighting for anyway? Can’t we just all go back to Blood Lake and bond over a nice chalice of human misery?";
                   case Dests.Dest7: return "Oh what a delicious mess we’ve made here!";
                   case Dests.Dest8: return "It seems we’ve angered the enemy!";
                   case Dests.Dest9: return "Can you feel that in the air? The end is near…";
-                  case Dests.Dest10: return "It’s her. It’s Pandora. Protect her!";
+                  case Dests.Dest10: return "It’s her. It’s the real Susie and Pandora's box. Protect the box so that we can open a portal into Eden!";
                 }
               break;
             }

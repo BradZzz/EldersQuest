@@ -119,12 +119,10 @@ public abstract class Skill
     public static Animator ReturnSkillAnimation(SkillGen sGen, Glossary glossy){
         switch(sGen){
             case SkillGen.Aoe:return glossy.fxBarrage.GetComponent<Animator>();
-            case SkillGen.Divine:return glossy.fxHealSmoke.GetComponent<Animator>();
             case SkillGen.Fire:return glossy.fxFirePillar.GetComponent<Animator>();
             case SkillGen.Force:return glossy.fxLaser.GetComponent<Animator>();
             case SkillGen.Heal:return glossy.fxHealSmoke.GetComponent<Animator>();
             case SkillGen.WispKill:return glossy.cthulhuWisp.transform.GetChild(0).GetComponent<Animator>();
-            case SkillGen.Snow:return glossy.fxSnowSmoke.GetComponent<Animator>();
             case SkillGen.Thorn:return glossy.fxBloodExplosion.GetComponent<Animator>();
             case SkillGen.Void:return glossy.fxLaser.GetComponent<Animator>();
             case SkillGen.Warp:return glossy.fxLaser.GetComponent<Animator>();
@@ -132,10 +130,25 @@ public abstract class Skill
         }
     }
 
+    //public static UIGlossary.uiFX ReturnSkillUIGlossaryMapping(SkillGen sGen, Glossary glossy){
+    //    switch(sGen){
+    //        case SkillGen.Aoe:return UIGlossary.uiFX.fxAoe;
+    //        case SkillGen.Fire:return UIGlossary.uiFX.fxAoe;
+    //        case SkillGen.Force:return UIGlossary.uiFX.fxAoe;
+    //        case SkillGen.Heal:return UIGlossary.uiFX.fxAoe;
+    //        case SkillGen.WispKill:return UIGlossary.uiFX.fxAoe;
+    //        case SkillGen.Thorn:return glossy.fxBloodExplosion.GetComponent<Animator>();
+    //        case SkillGen.Void:return glossy.fxLaser.GetComponent<Animator>();
+    //        case SkillGen.Warp:return glossy.fxLaser.GetComponent<Animator>();
+    //        default: return null;
+    //    }
+    //}
+
     public static Sprite ReturnSkillSprite(SkillGen sGen, Glossary glossy){
         switch(sGen){
             case SkillGen.Aegis:return glossy.emoteAegisGained.GetComponent<SpriteRenderer>().sprite;
             case SkillGen.Bide:return glossy.emoteBide.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Divine:return glossy.divineTile;
             case SkillGen.Enfeeble:return glossy.emoteEnfeeble.GetComponent<SpriteRenderer>().sprite;
             case SkillGen.Hobble:return glossy.emoteHobble.GetComponent<SpriteRenderer>().sprite;
             case SkillGen.Nullify:return glossy.emoteNullify.GetComponent<SpriteRenderer>().sprite;
@@ -143,6 +156,7 @@ public abstract class Skill
             case SkillGen.Rage:return glossy.emoteRage.GetComponent<SpriteRenderer>().sprite;
             case SkillGen.Root:return glossy.emoteRooted.GetComponent<SpriteRenderer>().sprite;
             case SkillGen.Sickly:return glossy.emoteSickly.GetComponent<SpriteRenderer>().sprite;
+            case SkillGen.Snow:return glossy.snowTile;
             case SkillGen.Wall:return glossy.obstacles[0].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             default: return null;
         }

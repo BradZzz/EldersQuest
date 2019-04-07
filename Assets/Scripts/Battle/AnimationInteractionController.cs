@@ -111,7 +111,7 @@ public class AnimationInteractionController : MonoBehaviour
                 numObj.transform.rotation = Quaternion.identity;
                 numObj.transform.parent = oTransform;
                 numObj.AddComponent<TextMesh>();
-                numObj.GetComponent<MeshRenderer>().sortingLayerName = "FX";
+                numObj.GetComponent<MeshRenderer>().sortingLayerName = "Emotes";
                 numObj.GetComponent<TextMesh>().characterSize = .2f;
                 numObj.GetComponent<TextMesh>().text = msg;
                 numObj.GetComponent<TextMesh>().color = color;

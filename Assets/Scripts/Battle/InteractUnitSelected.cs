@@ -24,6 +24,7 @@ public class InteractUnitSelected : InteractMode
                     //UnitProxy unit = startTile.GetUnit();
                     if (currentUnit.GetData().GetTurnActions().CanMove())
                     {
+                        CheckFocusAI();
                         currentUnit.GetData().GetTurnActions().Move();
                         PanelControllerNew.SwitchChar(currentUnit);
                         UnitMoving = true;
@@ -38,6 +39,7 @@ public class InteractUnitSelected : InteractMode
                             }
                             InteractivityManager.instance.EnterDefaultMode();
                             UnitMoving = false;
+                            CheckFocusAI();
                         }));
                     }
                     else
@@ -124,6 +126,8 @@ public class InteractUnitSelected : InteractMode
                   && currentUnit.GetData().GetTurnActions().CanAttack()
                   && !obj.GetData().IsDead())
                 {
+                    CheckFocusAI();
+
                     toAttack = null;
 
                     bool charDead = obj.IsAttacked(currentUnit);
@@ -146,6 +150,12 @@ public class InteractUnitSelected : InteractMode
                 }
               }
           }
+      }
+  }
+
+  void CheckFocusAI(){
+      if (currentUnit && currentUnit.GetData().GetTeam() == BoardProxy.ENEMY_TEAM && currentUnit.IsAlive()) {
+          currentUnit.FocusOnUnit();
       }
   }
 

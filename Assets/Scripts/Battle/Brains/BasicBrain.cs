@@ -20,50 +20,50 @@ public class BasicBrain : MonoBehaviour
         instance.StartCoroutine(instance.BeginProcess());
     }
 
-    Vector2 ReturnIntersection(Vector3 left, Vector3 right, Vector3 up, Vector3 down){
-        float A1 = right.y - left.y;
-        float B1 = left.x - right.x;
-        float C1 = A1 + B1;
+    //Vector2 ReturnIntersection(Vector3 left, Vector3 right, Vector3 up, Vector3 down){
+    //    float A1 = right.y - left.y;
+    //    float B1 = left.x - right.x;
+    //    float C1 = A1 + B1;
 
-        float A2 = right.y - left.y;
-        float B2 = left.x - right.x;
-        float C2 = A2 + B2;
+    //    float A2 = right.y - left.y;
+    //    float B2 = left.x - right.x;
+    //    float C2 = A2 + B2;
 
-        float delta = A1 * B2 - A2 * B1;
+    //    float delta = A1 * B2 - A2 * B1;
         
-        if ((int) delta == 0) 
-            return Vector2.zero;
+    //    if ((int) delta == 0) 
+    //        return Vector2.zero;
         
-        float x = (B2 * C1 - B1 * C2) / delta;
-        float y = (A1 * C2 - A2 * C1) / delta;
+    //    float x = (B2 * C1 - B1 * C2) / delta;
+    //    float y = (A1 * C2 - A2 * C1) / delta;
 
-        return new Vector2(x,y);
-    }
+    //    return new Vector2(x,y);
+    //}
 
-    public void FocusOnUnit(UnitProxy unt){
-        cam.orthographicSize = 3;
-        //BoardProxy.instance.transform.position = new Vector3(-1.5f,-1.5f,0);
-        BoardProxy.instance.transform.position = new Vector3(0,-1.5f,0);
+    //public void FocusOnUnit(UnitProxy unt){
+    //    cam.orthographicSize = 3;
+    //    //BoardProxy.instance.transform.position = new Vector3(-1.5f,-1.5f,0);
+    //    BoardProxy.instance.transform.position = new Vector3(0,-1.5f,0);
 
-        Vector2Int dims = BoardProxy.instance.GetDimensions();
-        Vector3 bLeft = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,dims[1]-1,0)).transform.position;
-        Vector3 bRight = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0]-1,0,0)).transform.position;
-        Vector3 bUp = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0]-1,dims[1]-1,0)).transform.position;
-        Vector3 bDown = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,0,0)).transform.position;
-        Vector3 bCenter = ReturnIntersection(bLeft, bRight, bUp, bDown);
+    //    Vector2Int dims = BoardProxy.instance.GetDimensions();
+    //    Vector3 bLeft = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,dims[1]-1,0)).transform.position;
+    //    Vector3 bRight = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0]-1,0,0)).transform.position;
+    //    Vector3 bUp = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0]-1,dims[1]-1,0)).transform.position;
+    //    Vector3 bDown = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,0,0)).transform.position;
+    //    Vector3 bCenter = ReturnIntersection(bLeft, bRight, bUp, bDown);
 
-        Vector3 pos = unt.transform.position;
-        Vector3 diff = pos - bCenter;
+    //    Vector3 pos = unt.transform.position;
+    //    Vector3 diff = pos - bCenter;
 
-        Debug.Log("bCenter pos: " + bCenter.ToString());
-        Debug.Log("pos pos: " + pos.ToString());
-        Debug.Log("diff pos: " + diff.ToString());
+    //    Debug.Log("bCenter pos: " + bCenter.ToString());
+    //    Debug.Log("pos pos: " + pos.ToString());
+    //    Debug.Log("diff pos: " + diff.ToString());
 
-        bCenter.x -= diff.x;
-        bCenter.y -= diff.y;
+    //    bCenter.x -= diff.x;
+    //    bCenter.y -= diff.y;
 
-        BoardProxy.instance.transform.position = bCenter;
-    }
+    //    BoardProxy.instance.transform.position = bCenter;
+    //}
   
     public IEnumerator BeginProcess()
     {
@@ -100,7 +100,7 @@ public class BasicBrain : MonoBehaviour
                 List<TileProxy> validTiles = BoardProxy.instance.GetAllVisitableNodes(unit, unit.GetMoveSpeed());
                 if (opposingTeamTiles.Count > 0 && unit.GetData().GetTurnActions().CanAttack())
                 {
-                    FocusOnUnit(unit);
+                    //unit.FocusOnUnit();
                     //Unit in range. Attack!
                     //Debug.Log("Trying to Attack");
                     TileProxy oppTile = BoardProxy.instance.GetTileAtPosition(opposingTeamTiles[0].GetPosition());
@@ -137,7 +137,7 @@ public class BasicBrain : MonoBehaviour
 
                         if (dest != start)
                         {
-                            FocusOnUnit(unit);
+                            //unit.FocusOnUnit();
                             didSomething = true;
                             foreach (TileProxy tl in path)
                             {
@@ -152,7 +152,6 @@ public class BasicBrain : MonoBehaviour
                             yield return new WaitForSeconds(.25f);
                             InteractivityManager.instance.OnTileSelected(dest);
                             yield return new WaitForSeconds(1f);
-                            FocusOnUnit(unit);
                         }
                         else
                         {

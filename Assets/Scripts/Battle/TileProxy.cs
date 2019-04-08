@@ -24,7 +24,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
     private int fireTrns, wallTrns, divineTrns, snowTrns;
     private Sprite def, fireAlt, wallAlt, divineAlt, snowAlt;
     private float timeLeft = 0;
-    private float FIRE_DELAY_TIME = .5f;
+    private float FIRE_DELAY_TIME = 1.5f;
 
     private bool lifetimeWall;
     private bool lifetimeDivine;
@@ -412,7 +412,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            timeLeft -= Time.deltaTime;
            if ( timeLeft <= 0 )
            {
-              timeLeft = FIRE_DELAY_TIME;
+              timeLeft = FIRE_DELAY_TIME * (HasUnit() ? 3 : 1);
               //FloatUp(Skill.Actions.None, "fire", Color.red, "Tile on fire");
               CreateAnimation(Glossary.fx.firePillar);
            }
@@ -421,7 +421,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            timeLeft -= Time.deltaTime;
            if ( timeLeft <= 0 )
            {
-              timeLeft = FIRE_DELAY_TIME;
+              timeLeft = FIRE_DELAY_TIME * (HasUnit() ? 3 : 1);
               //FloatUp(Skill.Actions.None, "snowy", Color.blue, "Tile is frozen");
               CreateAnimation(Glossary.fx.snowSmoke);
            }
@@ -430,7 +430,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            timeLeft -= Time.deltaTime;
            if ( timeLeft <= 0 )
            {
-              timeLeft = FIRE_DELAY_TIME;
+              timeLeft = FIRE_DELAY_TIME * (HasUnit() ? 3 : 1);
               //FloatUp(Skill.Actions.None, "holy", Color.yellow, "Tile is holy");
               //CreateHealSmoke();
               CreateAnimation(Glossary.fx.healSmoke);
@@ -440,7 +440,7 @@ public class TileProxy : MonoBehaviour, IHasNeighbours<TileProxy>, IPointerClick
            timeLeft -= Time.deltaTime;
            if ( timeLeft <= 0 )
            {
-              timeLeft = FIRE_DELAY_TIME;
+              timeLeft = FIRE_DELAY_TIME * (HasUnit() ? 3 : 1);
               //FloatUp(Skill.Actions.None, "wall", Color.magenta, "Tile is wall");
            }
        }

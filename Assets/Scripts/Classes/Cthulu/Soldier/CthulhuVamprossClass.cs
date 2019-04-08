@@ -12,7 +12,7 @@ public class CthulhuVamprossClass : ClassNode
 
   public override string ClassDesc()
   {
-    return "+1 hp\nHealAtk";
+    return "+2 hp\nHealTurn";
   }
 
   public override string ClassName()
@@ -31,9 +31,9 @@ public class CthulhuVamprossClass : ClassNode
  
   public override Unit UpgradeCharacter(Unit unit)
   {
-      unit.SetMaxHP(unit.GetMaxHP() + 1);
+      unit.SetMaxHP(unit.GetMaxHP() + 2);
       List<string> skills = new List<string>(unit.GetSkills());
-      skills.Add("HealAtk");
+      skills.Add("HealTurn");
       unit.SetSkills(skills.ToArray());
       return unit;
   }

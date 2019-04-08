@@ -26,9 +26,12 @@ public class AoeAtk : Skill
           //tl.FloatUp(Skill.Actions.DidAttack, "boom", Color.magenta, "AoeAtk");
           tl.CreateAnimation(Glossary.fx.barrage, AnimationInteractionController.AFTER_KILL);
           if (tl.HasUnit() && tl.GetUnit() != defender) {
-              if (tl.GetUnit().IsAttacked(attacker, false)){
-                  tl.GetUnit().DelayedKill(tl.GetUnit(), attacker);
+              if (tl.GetUnit().IsAttackedEnvironment(1, Actions.DidDefend)){
+                  tl.GetUnit().DelayedKill(tl.GetUnit(), defender);
               }
+              //if (tl.GetUnit().IsAttacked(attacker, false)){
+              //    tl.GetUnit().DelayedKill(tl.GetUnit(), attacker);
+              //}
           }
       }
   }

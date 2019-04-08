@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurnController : MonoBehaviour
@@ -75,6 +76,10 @@ public class TurnController : MonoBehaviour
         }
         if (PlayersTurn()) {
           Camera.main.GetComponent<PinchZoom>().enabled = true;
+          UnitProxy[] uArr = BoardProxy.instance.GetUnits().Where(unt => unt.IsAlive() && unt.GetData().GetTeam() == BoardProxy.PLAYER_TEAM).ToArray();
+          if (uArr.Length > 0) {
+            uArr[0].FocusOnUnit();
+          }
         } else {
           Camera.main.GetComponent<PinchZoom>().enabled = false;
         }

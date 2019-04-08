@@ -274,11 +274,11 @@ public class UnitProxy : GridObjectProxy
         float xOffset = 0;
         float yOffset = 0;
 
-        switch(oppUnit.GetData().GetFactionType()){
+        switch(factionType){
             case Unit.FactionType.Cthulhu:
               projColor= new Color(.4f,.2f,.6f);
-              switch(oppUnit.GetData().GetUnitType()){
-                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 30; delayAfter = .005f; 
+              switch(unitType){
+                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 20; delayAfter = .005f; 
                   projSpeed = .5f; chargeWait = .001f; delayBefore = 0; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
                 case Unit.UnitType.Scout: showProjectileAnimation = false; break;
                 case Unit.UnitType.Soldier: showProjectileAnimation = false; break;
@@ -286,7 +286,7 @@ public class UnitProxy : GridObjectProxy
               break;
             case Unit.FactionType.Egypt:
               projColor=Color.yellow;
-              switch(oppUnit.GetData().GetUnitType()){
+              switch(unitType){
                 case Unit.UnitType.Mage: num = 20; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; delayBefore = .2f; break;
                 case Unit.UnitType.Scout: num = 5; delayBefore = .1f; delayAfter = .02f; break;
                 case Unit.UnitType.Soldier: projSpeed = .9f; rotate = true; num = 1; delayBefore = .45f; delayAfter = .3f; 
@@ -295,14 +295,14 @@ public class UnitProxy : GridObjectProxy
               break;
             case Unit.FactionType.Human:
               projColor=Color.red;
-              switch(oppUnit.GetData().GetUnitType()){
-                case Unit.UnitType.Mage: num = 30; delayAfter = .01f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
+              switch(unitType){
+                case Unit.UnitType.Mage: num = 20; delayAfter = .01f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
                 case Unit.UnitType.Scout: num = 2; delayBefore = .15f; delayAfter = .35f; projSpeed = .5f; break;
                 case Unit.UnitType.Soldier: num = 1; delayBefore = .28f; delayAfter = .6f; break;
               }
               break;
             default:
-              switch(oppUnit.GetData().GetUnitType()){
+              switch(unitType){
                 case Unit.UnitType.Mage:
                   rotate = true; num = 1; delayBefore = .6f; projSpeed = .9f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().GetRandomGummi(); 
                 break;
@@ -348,8 +348,9 @@ public class UnitProxy : GridObjectProxy
             iTween.RotateBy(newProj, new Vector3(0,0,1), projSpeed);
         }
         yield return new WaitForSeconds(projSpeed - .1f);
-        destTile.CreateAnimation(Glossary.GetAtkFx(factionType, unitType), AnimationInteractionController.NO_WAIT);
         Destroy(newProj);
+        destTile.CreateAnimation(Glossary.GetAtkFx(factionType, unitType), AnimationInteractionController.NO_WAIT);
+        //Destroy(newProj);
     }
 
     public void SetAegis(bool aegis, float wait = 0){
@@ -688,5 +689,49 @@ public class UnitProxy : GridObjectProxy
         GameObject smoke = Instantiate(BoardProxy.instance.glossary.GetComponent<Glossary>().fxLaser, instPos, Quaternion.identity);
         yield return new WaitForSeconds(1f);
         Destroy(smoke);
+    }
+
+    Vector2 ReturnIntersection(Vector3 left, Vector3 right, Vector3 up, Vector3 down){
+        float A1 = right.y - left.y;
+        float B1 = left.x - right.x;
+        float C1 = A1 + B1;
+
+        float A2 = right.y - left.y;
+        float B2 = left.x - right.x;
+        float C2 = A2 + B2;
+
+        float delta = A1 * B2 - A2 * B1;
+        
+        if ((int) delta == 0) 
+            return Vector2.zero;
+        
+        float x = (B2 * C1 - B1 * C2) / delta;
+        float y = (A1 * C2 - A2 * C1) / delta;
+
+        return new Vector2(x,y);
+    }
+
+    public void FocusOnUnit(){
+        Camera.main.orthographicSize = 3;
+        BoardProxy.instance.transform.position = new Vector3(0,-1.5f,0);
+
+        Vector2Int dims = BoardProxy.instance.GetDimensions();
+        Vector3 bLeft = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,dims[1]-1,0)).transform.position;
+        Vector3 bRight = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0]-1,0,0)).transform.position;
+        Vector3 bUp = BoardProxy.instance.GetTileAtPosition(new Vector3Int(dims[0]-1,dims[1]-1,0)).transform.position;
+        Vector3 bDown = BoardProxy.instance.GetTileAtPosition(new Vector3Int(0,0,0)).transform.position;
+        Vector3 bCenter = ReturnIntersection(bLeft, bRight, bUp, bDown);
+
+        Vector3 pos = transform.position;
+        Vector3 diff = pos - bCenter;
+
+        Debug.Log("bCenter pos: " + bCenter.ToString());
+        Debug.Log("pos pos: " + pos.ToString());
+        Debug.Log("diff pos: " + diff.ToString());
+
+        bCenter.x -= diff.x;
+        bCenter.y -= diff.y;
+
+        BoardProxy.instance.transform.position = bCenter;
     }
 }

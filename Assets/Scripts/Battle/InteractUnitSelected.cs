@@ -24,7 +24,7 @@ public class InteractUnitSelected : InteractMode
                     //UnitProxy unit = startTile.GetUnit();
                     if (currentUnit.GetData().GetTurnActions().CanMove())
                     {
-                        CheckFocusAI();
+                        //CheckFocusAI();
                         currentUnit.GetData().GetTurnActions().Move();
                         PanelControllerNew.SwitchChar(currentUnit);
                         UnitMoving = true;
@@ -107,6 +107,7 @@ public class InteractUnitSelected : InteractMode
               if (currentUnit.GetData().GetTeam() == TurnController.instance.currentTeam) {
                 currentUnit.SaySomething(Skill.Actions.None);
               }
+              CheckFocusAI();
           }
           else
           {

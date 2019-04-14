@@ -24,20 +24,33 @@ public class FactionController : MonoBehaviour
         finale.SetActive(false);
         desc.text = "";
 
-        human.SetActive(false);
-        egypt.SetActive(false);
-        cthulhu.SetActive(false);
+        human.SetActive(true);
+        egypt.SetActive(true);
+        cthulhu.SetActive(true);
 
         GameMeta game = BaseSaver.GetGame();
         List<Unit.FactionType> factions = new List<Unit.FactionType>(game.unlockedFactions);
-        if (factions.Contains(Unit.FactionType.Human)) {
-            human.SetActive(true);
-        }
+        //if (factions.Contains(Unit.FactionType.Human)) {
+        //    human.SetActive(true);
+        //}
         if (factions.Contains(Unit.FactionType.Egypt)) {
-            egypt.SetActive(true);
+            foreach(Transform child in egypt.transform){
+                if (child.name.Equals("lock")) {
+                    child.gameObject.SetActive(false);
+                }
+            }
+        } else {
+            egypt.GetComponent<Button>().enabled = false;
         }
         if (factions.Contains(Unit.FactionType.Cthulhu)) {
             cthulhu.SetActive(true);
+            foreach(Transform child in cthulhu.transform){
+                if (child.name.Equals("lock")) {
+                    child.gameObject.SetActive(false);
+                }
+            }
+        } else {
+            cthulhu.GetComponent<Button>().enabled = false;
         }
         if (factions.Contains(Unit.FactionType.Human) && factions.Contains(Unit.FactionType.Egypt) && factions.Contains(Unit.FactionType.Cthulhu)) {
             finale.SetActive(true);
@@ -56,7 +69,9 @@ public class FactionController : MonoBehaviour
 
     public void SetParticles(GameObject parent, bool active){
         foreach(Transform child in parent.transform){
-            child.gameObject.SetActive(active);
+            if (!child.name.Equals("lock")) {
+                child.gameObject.SetActive(active);
+            }
         }
     }
 
@@ -86,6 +101,7 @@ public class FactionController : MonoBehaviour
     // Update is called once per frame
     public void Click(string faction)
     {
+        Debug.Log("Click: " + faction);
         string aiStr = "\nCampaign: Easy\n";
         GameMeta game = BaseSaver.GetGame();
         PlayerMeta player = BaseSaver.GetPlayer();

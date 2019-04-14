@@ -9,6 +9,7 @@ public class CharSelectController : MonoBehaviour
 {
     public GameObject panelGroup;
     public GameObject glossary;
+    public GameObject armyPnl;
     public Button contBtn;
     public TextMeshProUGUI rosterTxt;
     
@@ -40,7 +41,29 @@ public class CharSelectController : MonoBehaviour
           }
         }
 
-        rosterTxt.text = "Current Army: \nMage: " + rM.ToString() + "\nScout: " + rSc.ToString() + "\nSoldier: " + rSo.ToString();
+        //rosterTxt.text = "Current Army: \nMage: " + rM.ToString() + "\nScout: " + rSc.ToString() + "\nSoldier: " + rSo.ToString();
+        armyPnl.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = rM.ToString();
+        armyPnl.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = rSc.ToString();
+        armyPnl.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = rSo.ToString();
+
+        switch(player.faction){
+          case Unit.FactionType.Cthulhu:
+            armyPnl.transform.GetChild(0).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().cthulhuMage.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            armyPnl.transform.GetChild(1).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().cthulhuScout.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            armyPnl.transform.GetChild(2).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().cthulhuSoldier.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            break;
+          case Unit.FactionType.Human:
+            armyPnl.transform.GetChild(0).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().humanMage.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            armyPnl.transform.GetChild(1).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().humanScout.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            armyPnl.transform.GetChild(2).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().humanSoldier.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            break;
+          case Unit.FactionType.Egypt:
+            armyPnl.transform.GetChild(0).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().egyptMage.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            armyPnl.transform.GetChild(1).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().egyptScout.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            armyPnl.transform.GetChild(2).GetChild(2).GetComponent<Image>().sprite = glossary.GetComponent<Glossary>().egyptSoldier.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            break;
+        }
+
 
         panels = new GameObject[panelGroup.transform.childCount];
         for (int i = 0; i < panelGroup.transform.childCount; i++)
@@ -88,7 +111,8 @@ public class CharSelectController : MonoBehaviour
         if (selected == null || selectableUnits[picked] != selected)
         {
             selected = selectableUnits[picked];
-            PopulateParticles(panels[picked].transform);
+            //PopulateParticles(panels[picked].transform);
+            panels[picked].GetComponent<Outline>().enabled = true;
         }
         else
         {
@@ -100,11 +124,7 @@ public class CharSelectController : MonoBehaviour
 
     public void ResetParticles(){
       foreach(GameObject panel in panels){
-          foreach(Transform child in panel.transform){
-              if (child.name.Equals("PrtSys")) {
-                  SetParticles(child, false, Color.white);
-              }
-          }
+          panel.GetComponent<Outline>().enabled = false;
       }
     }
 
@@ -133,24 +153,24 @@ public class CharSelectController : MonoBehaviour
         foreach (GameObject pnl in panels){
             if (selected == null)
             {
-                pnl.GetComponent<Outline>().effectColor = Color.black;
+                //pnl.GetComponent<Outline>().effectColor = Color.black;
                 contBtn.gameObject.SetActive(false);
             }
             else
             {
                 contBtn.gameObject.SetActive(true);
-                foreach (Transform trns in pnl.transform)
-                {
-                    if (trns.name.Equals("Header") && trns.GetComponent<TextMeshProUGUI>().text.Equals(selected.GetUnitType().ToString()))
-                    {
-                        pnl.GetComponent<Outline>().effectColor = Color.red;
-                        break;
-                    }
-                    else
-                    {
-                        pnl.GetComponent<Outline>().effectColor = Color.black;
-                    }
-                }
+                //foreach (Transform trns in pnl.transform)
+                //{
+                //    if (trns.name.Equals("Header") && trns.GetComponent<TextMeshProUGUI>().text.Equals(selected.GetUnitType().ToString()))
+                //    {
+                //        pnl.GetComponent<Outline>().effectColor = Color.red;
+                //        break;
+                //    }
+                //    else
+                //    {
+                //        pnl.GetComponent<Outline>().effectColor = Color.black;
+                //    }
+                //}
             }
         }
     }

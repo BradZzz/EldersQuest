@@ -48,7 +48,8 @@ public class StoryStatic : MonoBehaviour
     public static string[] GetMainSelectTutorialString(){
         return new string[]{ "Welcome to the world of Elder's Tale. This tutorial will help guide you through the basics. Click anywhere on the screen to continue.", 
           "The main screen of Elder's Tale contains the three save buttons. To start a game normally, just click on any one of them.",
-          "If you feel like you aren't doing well during a campaign, there are 'X' icons underneath each of the saves. Clicking the 'X' underneath a save will reset your data so you can go back and try again!",
+          "If you feel like you aren't doing well during a campaign, there are 'X' icons underneath each of the saves.",
+          "Clicking the 'X' underneath a save will reset your data so you can go back and try again!",
           "The top right corner of the screen contains the glossary and credits pages. Be sure to look through the glossary page as it will fill up with important information during your adventures.",
           "To start any game normally, you would have to click on one of the save buttons. Since this is a tutorial, we are going to skip straight to the adventure!" };
     }
@@ -60,8 +61,8 @@ public class StoryStatic : MonoBehaviour
           case Dests.Dest1:return new string[]{"You made it to the map screen! You have been given an army. To get started, tap twice on the red destination on the map." };
           case Dests.Dest2:return new string[]{"As you play through the game, this world map will slowly expand. Click on the next red destination to continue." };
           case Dests.Dest3:return new string[]{"You can upgrade your characters by clicking on the icon in the top right. Feel free to use it to get acquianted with what each character can do." };
-          case Dests.Dest4:return new string[]{"Look at the enemies in your next location to try and build a roster with the right units. A character that works well in one situation may not be as useful in another." };
-          case Dests.Dest5:return new string[]{"A general glossary and statistics page can be found on the main screen. This screen can be useful for remembering class composition and knowing what each skill does." };
+          case Dests.Dest4:return new string[]{"Look at the enemies in your next location to try and build a roster with the right units.", "A character that works well in one situation may not be as useful in another." };
+          case Dests.Dest5:return new string[]{"A general glossary and statistics page can be found on the main screen.", "This screen can be useful for remembering class composition and knowing what each skill does." };
           default: return new string[]{  };
         }
     }
@@ -73,7 +74,7 @@ public class StoryStatic : MonoBehaviour
           case Dests.Dest1:return new string[]{""};
           case Dests.Dest2:return new string[]{"When a battle is won, you get a chance to recruit a new unit. Let's click on the Scout unit to add a Scout to our team."};
           case Dests.Dest3:return new string[]{"You won another battle! Way to go! Let's add a Mage unit to our army this time." };
-          case Dests.Dest4:return new string[]{"As long as you have less than 5 units in your roster, you will be allowed to add another unit to your team after a battle. Feel free to add whichever unit you like here." };
+          case Dests.Dest4:return new string[]{"As long as you have less than 5 units in your roster, you will be allowed to add another unit to your team after a battle.", "Feel free to add whichever unit you like here." };
           case Dests.Dest5:return new string[]{ "Add your final unit in preparation for the last tutorial battle." };
           default: return new string[]{  };
         }
@@ -86,8 +87,10 @@ public class StoryStatic : MonoBehaviour
           case Dests.Dest1:return new string[]{ "This screen shows the stats of each of your units. Feel free to click around." };
           case Dests.Dest2:return new string[]{ "This screen shows the stats of each of your units. Feel free to click around." };
           case Dests.Dest3:return new string[]{ 
-            "When a unit gains enough experience they will be allowed to upgrade classes. To check if a unit can be upgraded, first click on the unit, then look at the number above it's current class.",
-            "When you come to this screen after battle, it is because one or more of your units is ready to be upgraded. Click on the unit with the moving star, then select one it's upgraded classes to continue.",
+            "When a unit gains enough experience they will be allowed to upgrade classes.", 
+            "To check if a unit can be upgraded, first click on the unit, then look at the number above it's current class.",
+            "When you come to this screen after battle, it is because one or more of your units is ready to be upgraded",
+            "Click on the unit with the moving star, then select one it's upgraded classes to continue.",
             "Try to experiment with different classes with your units. Only by building carefully and figuring out what each class does can you defeat Susie and decide the fate of the world."
            };
           case Dests.Dest4:return new string[]{ 

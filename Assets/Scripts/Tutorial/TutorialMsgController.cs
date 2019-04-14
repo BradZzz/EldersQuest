@@ -23,7 +23,7 @@ public class TutorialMsgController : MonoBehaviour
 
     public void Populate(){
         PlayerMeta player = BaseSaver.GetPlayer();
-        if (player.world == GameMeta.World.tutorial) {
+        if (player != null && player.world == GameMeta.World.tutorial) {
           buffer = new string[]{ };
           scene = (sceneType) sceneTyp;
           switch(scene){

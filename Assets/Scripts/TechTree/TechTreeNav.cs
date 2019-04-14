@@ -19,6 +19,8 @@ public class TechTreeNav : MonoBehaviour
     public GameObject techRW;
 
     public Image buttonImg;
+    public Sprite battleInactive;
+    public GameObject selectTag;
 
     private Unit clickedUnit;
     private PlayerMeta player;
@@ -32,6 +34,9 @@ public class TechTreeNav : MonoBehaviour
         Color mainColor = HelperScripts.GetColorByFaction(BaseSaver.GetPlayer().faction);
         mainColor.a = .8f;
         GetComponent<Image>().color = mainColor;
+
+        selectTag.SetActive(false);
+        techNext.SetActive(false);
     }
 
     public void RefreshSelect(){
@@ -55,12 +60,12 @@ public class TechTreeNav : MonoBehaviour
     }
 
     void RefreshTech(){
-         foreach (Transform child in techSelect.transform)
+         foreach (Transform child in techSelect.transform.GetChild(1))
          {
              Destroy(child.gameObject);
          }
 
-         foreach (Transform child in techNext.transform)
+         foreach (Transform child in techNext.transform.GetChild(2))
          {
              Destroy(child.gameObject);
          }
@@ -71,6 +76,11 @@ public class TechTreeNav : MonoBehaviour
         nwRow.GetComponent<TechTreeUnitWrap>().unit = unt;
         nwRow.GetComponent<TechTreeUnitWrap>().Refresh();
         RefreshMainPanel(nwRow, unt, idx);
+
+        if (idx > 2) {
+          //Reserves
+          nwRow.GetComponent<Image>().sprite = battleInactive;
+        }
 
         UnityEngine.Events.UnityAction action1 = () => { instance.CharClicked(unt); };
         nwRow.GetComponent<Button>().onClick.AddListener(action1);
@@ -97,7 +107,7 @@ public class TechTreeNav : MonoBehaviour
                 if (unitIdx > 2) {
                   //Reserves
                   child.GetComponent<Image>().color = Color.red;
-                  child.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Waiting...";
+                  child.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Inactive";
                 } else {
                   //Roster
                   child.GetComponent<Image>().color = Color.green;
@@ -204,11 +214,18 @@ public class TechTreeNav : MonoBehaviour
         PlayerMeta player = BaseSaver.GetPlayer();
         IterateThroughTreeUp(unt.GetCurrentClass());
         IterateThroughTreeDown(unt.GetLvl(), unt.GetCurrentClass());
+
+        //UnitProxy unt = ClassNode.ComputeClassBaseUnit(instance.player.faction, unt.GetUnitType(), instance.glossary.GetComponent<Glossary>());
+        selectTag.SetActive(true);
+        selectTag.transform.GetChild(0).GetComponent<Image>().sprite = ClassNode.ComputeClassBaseUnit(instance.player.faction, unt.GetUnitType(), instance.glossary.GetComponent<Glossary>())
+          .transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+        selectTag.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = unt.characterMoniker;
+        selectTag.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = unt.GetCurrentClass().ClassName();
     }
 
     void IterateThroughTreeUp(ClassNode parent){
         if (parent != null) {
-            GameObject nwRow = Instantiate(techRW, techSelect.transform);
+            GameObject nwRow = Instantiate(techRW, techSelect.transform.GetChild(1));
             RefreshTechPanel(nwRow, parent);
             IterateThroughTreeUp(parent.GetParent());
         }
@@ -216,13 +233,16 @@ public class TechTreeNav : MonoBehaviour
 
     void IterateThroughTreeDown(int lvl, ClassNode parent){
         if (parent != null && lvl >= parent.GetWhenToUpgrade()) {
-            foreach(ClassNode nd in parent.GetChildren()){
-                GameObject nwRow = Instantiate(techRW, techNext.transform);
-                RefreshTechPanel(nwRow, nd);
+          techNext.SetActive(true);
+          foreach(ClassNode nd in parent.GetChildren()){
+              GameObject nwRow = Instantiate(techRW, techNext.transform.GetChild(2));
+              RefreshTechPanel(nwRow, nd);
 
-                UnityEngine.Events.UnityAction action = () => { instance.UpgradeSelected(nd); };
-                nwRow.GetComponent<Button>().onClick.AddListener(action);
-            }
+              UnityEngine.Events.UnityAction action = () => { instance.UpgradeSelected(nd); };
+              nwRow.GetComponent<Button>().onClick.AddListener(action);
+          }
+        } else {
+          techNext.SetActive(false);
         }
     } 
 

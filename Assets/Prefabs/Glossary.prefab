@@ -225,9 +225,9 @@ MonoBehaviour:
   particlesHighlight: {fileID: 3006416545442290833, guid: 51f33b6bef6d14bebada01fb9ff5ea30,
     type: 3}
   ranks:
-  - {fileID: 21300026, guid: 6087e5add26e140749f61925e17e4db3, type: 3}
-  - {fileID: 21300034, guid: 6087e5add26e140749f61925e17e4db3, type: 3}
-  - {fileID: 21300038, guid: f0fb61c11c65b43c3ad6d7605a2fb289, type: 3}
-  - {fileID: 21300048, guid: f0fb61c11c65b43c3ad6d7605a2fb289, type: 3}
-  - {fileID: 21300090, guid: e4ec0c27b277a44e6b84159597796502, type: 3}
-  - {fileID: 21300096, guid: e4ec0c27b277a44e6b84159597796502, type: 3}
+  - {fileID: 21300026, guid: e4ec0c27b277a44e6b84159597796502, type: 3}
+  - {fileID: 21300040, guid: e4ec0c27b277a44e6b84159597796502, type: 3}
+  - {fileID: 21300042, guid: e4ec0c27b277a44e6b84159597796502, type: 3}
+  - {fileID: 21300048, guid: e4ec0c27b277a44e6b84159597796502, type: 3}
+  - {fileID: 21300120, guid: e4ec0c27b277a44e6b84159597796502, type: 3}
+  - {fileID: 21300146, guid: e4ec0c27b277a44e6b84159597796502, type: 3}

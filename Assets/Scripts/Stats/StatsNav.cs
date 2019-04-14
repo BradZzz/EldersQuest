@@ -93,6 +93,8 @@ public class StatsNav : MonoBehaviour
               }
           }
           classPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
+        } else {
+          SetClassInfoText("", "", "No classes found yet... Explore a little bit more and maybe something will be here!");
         }
     }
 
@@ -205,6 +207,8 @@ public class StatsNav : MonoBehaviour
               }
           }
           skillPnl.transform.GetChild(0).GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
+        } else {
+          SetSkillInfoText("", "", "No skills found yet... Explore a little bit more and maybe something will be here!");
         }
     }
 

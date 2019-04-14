@@ -223,11 +223,19 @@ public class PanelControllerNew : MonoBehaviour
                 {
                     if (t.name.Equals("MvTrn"))
                     {
-                        RefreshSkillPnl(t, unit.GetData().GetTurnActions().GetMoves().ToString());
+                        if (TurnController.instance.GetTeam() != unit.GetData().GetTeam()) {
+                          RefreshSkillPnl(t, "<color=red>" + unit.GetData().GetTurnMoves().ToString() + "</color>");
+                        } else {
+                          RefreshSkillPnl(t, unit.GetData().GetTurnActions().GetMoves().ToString());
+                        }
                     } 
                     if (t.name.Equals("AtkTrn"))
                     {
-                        RefreshSkillPnl(t, unit.GetData().GetTurnActions().GetAttacks().ToString());
+                        if (TurnController.instance.GetTeam() != unit.GetData().GetTeam()) {
+                          RefreshSkillPnl(t, "<color=red>" + unit.GetData().GetTurnAttacks().ToString() + "</color>");
+                        } else {
+                          RefreshSkillPnl(t, unit.GetData().GetTurnActions().GetAttacks().ToString());
+                        }
                     }
                 }
             }
@@ -251,13 +259,24 @@ public class PanelControllerNew : MonoBehaviour
                 child.GetComponent<TextMeshProUGUI>().text = unit.GetData().GetUnitType().ToString();
             }
             if (child.name.Equals("mv")) {
-                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTurnActions().GetMoves().ToString();
+                string txt = unit.GetData().GetTurnActions().GetMoves().ToString();
+                if (TurnController.instance.GetTeam() != unit.GetData().GetTeam()) {
+                    txt = "<color=red>" + unit.GetData().GetTurnMoves() + "</color>";
+                }
+                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = txt;
             }
             if (child.name.Equals("atk")) {
-                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = unit.GetData().GetTurnActions().GetAttacks().ToString();
+                string txt = unit.GetData().GetTurnActions().GetAttacks().ToString();
+                if (TurnController.instance.GetTeam() != unit.GetData().GetTeam()) {
+                    txt = "<color=red>" + unit.GetData().GetTurnAttacks() + "</color>";
+                }
+                child.GetChild(0).GetComponent<TextMeshProUGUI>().text = txt;
             }
             if (child.name.Equals("HealthOutline")) {
                 child.GetChild(0).GetComponent<Image>().fillAmount = (float) unit.GetData().GetCurrHealth() / (float)unit.GetData().GetMaxHP();
+            }
+            if (child.name.Equals("img")) {
+                child.GetComponent<Image>().sprite = unit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             }
         }
     }

@@ -34,21 +34,19 @@ public class FactionController : MonoBehaviour
         //    human.SetActive(true);
         //}
         if (factions.Contains(Unit.FactionType.Egypt)) {
-            foreach(Transform child in egypt.transform){
-                if (child.name.Equals("lock")) {
-                    child.gameObject.SetActive(false);
-                }
-            }
+            //foreach(Transform child in egypt.transform){
+            //    if (child.name.Equals("lock")) {
+            //        child.gameObject.SetActive(false);
+            //    }
+            //}
+            //egypt.SetActive(true);
+            egypt.transform.GetChild(1).gameObject.SetActive(false);
         } else {
             egypt.GetComponent<Button>().enabled = false;
         }
         if (factions.Contains(Unit.FactionType.Cthulhu)) {
-            cthulhu.SetActive(true);
-            foreach(Transform child in cthulhu.transform){
-                if (child.name.Equals("lock")) {
-                    child.gameObject.SetActive(false);
-                }
-            }
+            //cthulhu.SetActive(true);
+            cthulhu.transform.GetChild(1).gameObject.SetActive(false);
         } else {
             cthulhu.GetComponent<Button>().enabled = false;
         }
@@ -68,20 +66,23 @@ public class FactionController : MonoBehaviour
     }
 
     public void SetParticles(GameObject parent, bool active){
-        foreach(Transform child in parent.transform){
-            if (!child.name.Equals("lock")) {
-                child.gameObject.SetActive(active);
-            }
-        }
+        //foreach(Transform child in parent.transform){
+        //    if (!child.name.Equals("lock")) {
+        //        child.gameObject.SetActive(active);
+        //    }
+        //}
+        parent.GetComponent<Outline>().enabled = active;
     }
 
     public void Finale()
     {
         finalWorld = !finalWorld;
         if (finalWorld) {
-          finale.transform.GetChild(0).gameObject.SetActive(true);
+          finale.GetComponent<Outline>().enabled = true;
+          //finale.transform.GetChild(0).gameObject.SetActive(true);
         } else {
-          finale.transform.GetChild(0).gameObject.SetActive(false);
+          finale.GetComponent<Outline>().enabled = false;
+          //finale.transform.GetChild(0).gameObject.SetActive(false);
         }
         SetFinaleColors();
         PlayerMeta player = BaseSaver.GetPlayer();
@@ -110,7 +111,7 @@ public class FactionController : MonoBehaviour
         Color mainColor = HelperScripts.GetColorByFaction(player.faction);
         mainColor.a = .5f;
         GetComponent<Image>().color = mainColor;
-        transform.GetChild(2).GetComponent<Image>().color = HelperScripts.GetColorByFactionBold(player.faction);
+        //transform.GetChild(2).GetComponent<Image>().color = HelperScripts.GetColorByFactionBold(player.faction);
 
         ResetParticles();
 

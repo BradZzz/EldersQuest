@@ -10,6 +10,7 @@ public class StorySceneHolder : MonoBehaviour {
 
   public TextMeshProUGUI textBox;
   public GameObject clickToContinue;
+  public GameObject backgrounds;
   public GameObject[] candles;
   public GameObject[] lights;
 
@@ -25,8 +26,8 @@ public class StorySceneHolder : MonoBehaviour {
   private IEnumerator candleNUM;
   private bool gameEnded;
 
-    private FMOD.Studio.EventInstance musicIntro;
-    private FMOD.Studio.EventInstance cutsceneSnapshot;
+  private FMOD.Studio.EventInstance musicIntro;
+  private FMOD.Studio.EventInstance cutsceneSnapshot;
   //private float percentsPerSecond = 0.2f;
   //private float sceneProgress = 0;
 
@@ -59,6 +60,7 @@ public class StorySceneHolder : MonoBehaviour {
       }
       textHolder = txts.ToArray();
     } else {
+      backgrounds.SetActive(false);
       if (player.world == GameMeta.World.tutorial) {
         textHolder = new string[]{ "Congratulations! Tutorial completed. Good luck with the main story!" };
       } else {

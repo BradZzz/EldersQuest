@@ -125,22 +125,22 @@ public class StatsNav : MonoBehaviour
         GameMeta game = BaseSaver.GetGame();
         foreach(GameMeta.World world in game.unlockedWorlds){
             switch(world){
-                case GameMeta.World.nile:
+                case GameMeta.World.mountain:
                   camp1.transform.GetChild(1).gameObject.SetActive(true);
                   camp1.transform.GetChild(0).gameObject.SetActive(false);
                   camp1.GetComponent<Image>().enabled = false;
                   break;
-                case GameMeta.World.mountain:
+                case GameMeta.World.pyramid:
                   camp2.transform.GetChild(1).gameObject.SetActive(true);
                   camp2.transform.GetChild(0).gameObject.SetActive(false);
                   camp2.GetComponent<Image>().enabled = false;
                   break;
-                case GameMeta.World.pyramid:
+                case GameMeta.World.candy:
                   camp3.transform.GetChild(1).gameObject.SetActive(true);
                   camp3.transform.GetChild(0).gameObject.SetActive(false);
                   camp3.GetComponent<Image>().enabled = false;
                   break;
-                case GameMeta.World.candy:
+                case GameMeta.World.final:
                   camp4.transform.GetChild(1).gameObject.SetActive(true);
                   camp4.transform.GetChild(0).gameObject.SetActive(false);
                   camp4.GetComponent<Image>().enabled = false;

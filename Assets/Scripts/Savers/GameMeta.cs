@@ -49,9 +49,9 @@ public class GameMeta
     World world = player.world;
 
     string returnStr = "Congratulations! You have completed the campaign for faction: " + faction.ToString() + "!";
+    List<World> unlockedWorldsLst = new List<World>(game.unlockedWorlds);
 
     if (world != World.candy) {
-        List<World> unlockedWorldsLst = new List<World>(game.unlockedWorlds);
         List<Unit.FactionType> unlockedFactionLst = new List<Unit.FactionType>(game.unlockedFactions);
         switch(faction){
             case Unit.FactionType.Human:
@@ -78,6 +78,9 @@ public class GameMeta
         game.unlockedFactions = unlockedFactionLst.ToArray();
         game.unlockedWorlds = unlockedWorldsLst.ToArray();
     } else {
+        if (!unlockedWorldsLst.Contains(World.final)) {
+            unlockedWorldsLst.Add(World.final);
+        }
         returnStr += "\n\n The world has been saved! Your accomplishments have been logged in the annals history.";
     }
     BaseSaver.PutGame(game);
@@ -89,6 +92,6 @@ public class GameMeta
   }
 
   public enum World {
-    tutorial, nile, mountain, pyramid, candy, none
+    tutorial, nile, mountain, pyramid, candy, final, none
   }
 }

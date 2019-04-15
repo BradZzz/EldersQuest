@@ -63,16 +63,18 @@ public class StatsNav : MonoBehaviour
         classPnl.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = pnlString;
         classPnl.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>().text = pnlString;
 
-        if (game.classesSeen.Length > 0) {
+        string[] clssSeen = game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray();
+
+        if (clssSeen.Length > 0) {
           game.classesSeen = game.classesSeen.OrderBy(nm=>nm).ToArray();
 
-          classPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 200 * game.classesSeen.Length);
+          classPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 120 * game.classesSeen.Length);
           
           foreach (Transform child in classPnl.transform.GetChild(0).GetChild(0)) {
                Destroy(child.gameObject);
            }
 
-          string[] clssSeen = game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray();
+          //string[] clssSeen = game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray();
 
           for(int i =0; i < clssSeen.Length; i++){
           //foreach(string clss in game.classesSeen.Where(clss => !(clss.Contains("BaseMage") || clss.Contains("BaseScout") || clss.Contains("BaseSoldier"))).ToArray()){

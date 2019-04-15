@@ -2,7 +2,9 @@
 Iso quest game
 
 ## Status?
-Work in progress
+Finished:
+https://play.google.com/store/apps/details?id=com.DarkSheep.MysticalQ
+https://blacksheepstudios.itch.io/elders-tale
 
 ## Screens (Alpha v.48)
 <img src="./screens/screen14.png" width="400"/>

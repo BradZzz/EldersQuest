@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Stats/StatsNav.cs">
     <Files>
       <File FileName="Assets/Scripts/ScrollingText/StorySceneHolder.cs" Line="67" Column="50" />
-      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="77" Column="36" />
+      <File FileName="Assets/Scripts/Stats/StatsNav.cs" Line="70" Column="1" />
       <File FileName="Assets/Scripts/Savers/GameMeta.cs" Line="82" Column="48" />
       <File FileName="Assets/Scripts/Map/MapNavigator.cs" Line="44" Column="22" />
       <File FileName="Assets/Scripts/Tutorial/TutorialMsgController.cs" Line="40" Column="1" />

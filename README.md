@@ -1,8 +1,7 @@
 ## Elder's Quest
 Iso quest game
 
-## Status?
-Finished:
+## App Links
 https://play.google.com/store/apps/details?id=com.DarkSheep.MysticalQ
 https://blacksheepstudios.itch.io/elders-tale
 

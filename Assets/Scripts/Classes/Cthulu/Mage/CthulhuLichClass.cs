@@ -37,4 +37,14 @@ public class CthulhuLichClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "WispKill";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "WispKill" });
+      return unit;
+  }
 }

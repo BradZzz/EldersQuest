@@ -34,4 +34,14 @@ public class HumanTinkererClass : ClassNode
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 2);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 atk turn battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetTurnAttackBuff(unit.GetTurnAttackBuff() + 1);
+      return unit;
+  }
 }

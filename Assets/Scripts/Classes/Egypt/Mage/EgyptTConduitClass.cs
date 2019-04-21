@@ -33,4 +33,14 @@ public class EgyptTConduitClass : ClassNode
       unit.SetAtkRange(unit.GetAtkRange() + 3);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 atk range battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetAttackRngBuff(unit.GetAttackBuff() + 2);
+      return unit;
+  }
 }

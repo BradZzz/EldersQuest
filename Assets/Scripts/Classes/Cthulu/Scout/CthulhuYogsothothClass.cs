@@ -34,4 +34,14 @@ public class CthulhuYogsothothClass : ClassNode
       unit.SetMaxHP(unit.GetMaxHP());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 mv battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetMoveBuff(unit.GetMoveBuff() + 2);
+      return unit;
+  }
 }

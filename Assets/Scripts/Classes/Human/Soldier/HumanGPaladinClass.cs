@@ -37,4 +37,14 @@ public class HumanGPaladinClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 hp battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetHpBuffInactive(unit.GetHpBuff() + 2);
+      return unit;
+  }
 }

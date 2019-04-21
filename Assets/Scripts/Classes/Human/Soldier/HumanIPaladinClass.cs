@@ -36,4 +36,14 @@ public class HumanIPaladinClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 atk range battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetAttackRngBuff(unit.GetAttackRngBuff() + 1);
+      return unit;
+  }
 }

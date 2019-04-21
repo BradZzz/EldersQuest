@@ -34,4 +34,14 @@ public class EgyptBaseScout : ClassNode
       unit.SetTurnMoves(unit.GetTurnMoves() + 2);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 mv battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetMoveBuff(unit.GetMoveBuff() + 1);
+      return unit;
+  }
 }

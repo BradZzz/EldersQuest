@@ -34,4 +34,14 @@ public class EgyptAnMessiahClass : ClassNode
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 atk turn battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetTurnAttackBuff(unit.GetTurnAttackBuff() + 2);
+      return unit;
+  }
 }

@@ -36,4 +36,14 @@ public class EgyptArsonistClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "FireMove";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "FireMove" });
+      return unit;
+  }
 }

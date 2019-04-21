@@ -36,4 +36,14 @@ public class CthulhuSuccubusClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "HealKill";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "HealKill" });
+      return unit;
+  }
 }

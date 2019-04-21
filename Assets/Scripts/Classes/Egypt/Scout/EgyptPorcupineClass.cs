@@ -36,4 +36,15 @@ public class EgyptPorcupineClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "FireDef. FireDef";
+  }
+
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "FireDef", "FireDef" });
+      return unit;
+  }
 }

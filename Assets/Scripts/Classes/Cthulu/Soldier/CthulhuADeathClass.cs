@@ -34,4 +34,14 @@ public class CthulhuADeathClass : ClassNode
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 5);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+3 mv battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetMoveBuff(unit.GetMoveBuff() + 3);
+      return unit;
+  }
 }

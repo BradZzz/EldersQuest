@@ -37,4 +37,14 @@ public class CthulhuUReaperClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "WispKill. WispKill";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "WispKill", "WispKill" });
+      return unit;
+  }
 }

@@ -36,4 +36,14 @@ public class HumanTormentorClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "AegisWait Battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "AegisWait" });
+      return unit;
+  }
 }

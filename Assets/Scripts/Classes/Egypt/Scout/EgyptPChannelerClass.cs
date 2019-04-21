@@ -36,4 +36,14 @@ public class EgyptPChannelerClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "RageAtk";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "RageAtk" });
+      return unit;
+  }
 }

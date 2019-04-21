@@ -34,4 +34,14 @@ public class HumanMSergeantClass : ClassNode
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 mv battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetMoveBuff(unit.GetMoveBuff() + 2);
+      return unit;
+  }
 }

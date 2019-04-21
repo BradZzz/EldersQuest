@@ -35,4 +35,14 @@ public class HumanIWarlockClass : ClassNode
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 exp inactive";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetInactiveExpBuff(unit.GetInactiveExpBuff() + 1);
+      return unit;
+  }
 }

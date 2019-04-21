@@ -168,6 +168,19 @@ public class ConditionTracker : MonoBehaviour
         this.won = won;
         string txt = "Defeat";
         if (won){
+            //Apply inactive unit class bonuses
+            if (player.characters.Length > 3) {
+                List<Unit> inactiveUnits = new List<Unit>(new Unit[]{player.characters[0]});
+                if (player.characters.Length > 4) {
+                    inactiveUnits.Add(player.characters[1]);
+                }
+                for (int i = 0; i < inactiveUnits.Count; i++)
+                {
+                    Debug.Log("Applying bonus to: " + inactiveUnits[i].characterMoniker + " - " + inactiveUnits[i].characterName);
+                    inactiveUnits[i] = ClassNode.ApplyClassBonusesInactive(inactiveUnits[i], inactiveUnits.ToArray());
+                }
+            }
+
             List<UnitProxy> units = BoardProxy.instance.GetUnits().Where(unit => unit.GetData().GetTeam() == BoardProxy.PLAYER_TEAM 
               && unit.GetData().GetCurrHealth() > 0 && !unit.GetData().GetSummoned()).ToList();
             //PlayerMeta player = BaseSaver.GetPlayer();
@@ -194,8 +207,9 @@ public class ConditionTracker : MonoBehaviour
                 }
             }
             Debug.Log("pChars After");
-            foreach(Unit unt in pChars) {
-                Debug.Log(unt.ToString());
+            for(int i = 0; i < pChars.Count(); i++) {
+                Debug.Log(pChars[i].ToString());
+                //pChars[i] = ClassNode.ApplyClassBonusesBattle(pChars[i], inactiveUnits.ToArray());
             }
             List<string> dests = new List<string>(player.stats.dests);
             foreach (string unlock in BaseSaver.GetBoard().unlocks)

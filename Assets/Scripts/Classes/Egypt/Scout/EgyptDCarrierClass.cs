@@ -36,4 +36,14 @@ public class EgyptDCarrierClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "EnfeebleAtk";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "EnfeebleAtk" });
+      return unit;
+  }
 }

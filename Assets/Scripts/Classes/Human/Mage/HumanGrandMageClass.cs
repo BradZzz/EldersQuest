@@ -34,4 +34,14 @@ public class HumanGrandMageClass : ClassNode
       unit.SetMoveSpeed(unit.GetMoveSpeed() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 atk range battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetAttackRngBuff(unit.GetAttackRngBuff() + 1);
+      return unit;
+  }
 }

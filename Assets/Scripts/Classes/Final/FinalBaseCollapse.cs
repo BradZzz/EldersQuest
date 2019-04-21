@@ -35,4 +35,13 @@ public class FinalBaseCollapse : ClassNode
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      return unit;
+  }
 }

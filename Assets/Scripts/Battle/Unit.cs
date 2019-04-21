@@ -52,7 +52,17 @@ public class Unit : GridObject
     [SerializeField]
     private int trnAtkBuff;
     [SerializeField]
+    private int atkRngBuff;
+    [SerializeField]
     private int hpBuff;
+    [SerializeField]
+    private int moveBuff;
+    [SerializeField]
+    private int moveTrnBuff;
+    [SerializeField]
+    private int inactiveExpBuff;
+    [SerializeField]
+    private string[] skillBuffs;
     [SerializeField]
     private string currentClass;
 
@@ -120,7 +130,7 @@ public class Unit : GridObject
     }
 
     public int GetTurnAttacks(){
-        return trnAtks;
+        return trnAtks + trnAtkBuff;
     }
 
     public void SetTurnAttacks(int trnAtks){
@@ -128,7 +138,7 @@ public class Unit : GridObject
     }
 
     public int GetTurnMoves(){
-        return trnMvs;
+        return trnMvs + GetMoveTrnBuff();
     }
 
     public void SetTurnMoves(int trnMvs){
@@ -195,6 +205,15 @@ public class Unit : GridObject
 
     public void SetTurnAttackBuff(int buff){
         this.trnAtkBuff = buff;
+        this.turnActions = new TurnActionsBasicUnit(GetTurnMoves(), GetTurnAttacks());
+    }
+
+    public int GetAttackRngBuff(){
+        return this.atkRngBuff;
+    }
+
+    public void SetAttackRngBuff(int buff){
+        this.atkRngBuff = buff;
     }
 
     public int GetAttackBuff(){
@@ -209,6 +228,32 @@ public class Unit : GridObject
         this.atk = atk;
     }
 
+    public int GetInactiveExpBuff(){
+        return inactiveExpBuff;
+    }
+
+    public void SetInactiveExpBuff(int buff){
+        this.inactiveExpBuff = buff;
+    }
+
+    public void SetMoveBuff(int buff){
+        this.moveBuff = buff;
+    }
+
+    public int GetMoveBuff(){
+        return moveBuff;
+    }
+
+    public void SetMoveTrnBuff(int buff){
+        this.moveTrnBuff = buff;
+        this.turnActions = new TurnActionsBasicUnit(GetTurnMoves(), GetTurnAttacks());
+    }
+
+    public int GetMoveTrnBuff(){
+        return moveTrnBuff;
+    }
+
+
     public void SetMoveSpeed(int moveSpeed){
         this.moveSpeed = moveSpeed;
     }
@@ -222,6 +267,11 @@ public class Unit : GridObject
         if (GetMaxHP() < GetCurrHealth()) {
             SetCurrHealth(GetMaxHP());
         }
+    }
+
+    public void SetHpBuffInactive(int buff){
+        hpBuff = buff;
+        SetCurrHealth(GetMaxHP());
     }
 
     public bool GetSummoned(){
@@ -245,6 +295,7 @@ public class Unit : GridObject
   
     public string[] GetSkills(){
         List<string> skillz = new List<string>(skills);
+        skillz.AddRange(skillBuffs);
         //skillz.Add("FireAtk");
         //skillz.Add("FireAtk");
         return nullified ? new string[]{ }  : skillz.ToArray();
@@ -252,6 +303,16 @@ public class Unit : GridObject
 
     public void SetSkills(string[] skills){
         this.skills = skills;
+    }
+
+    public string[] GetSkillBuffs(){
+        return this.skillBuffs;
+    }
+
+    public void SetSkillsBuffs(string[] skills){
+        List<string> currBuffs = new List<string>(skillBuffs);
+        currBuffs.AddRange(skills);
+        skillBuffs = currBuffs.ToArray();
     }
 
     public TurnActions GetTurnActions()
@@ -289,7 +350,7 @@ public class Unit : GridObject
 
     public int GetMoveSpeed()
     {
-        return moveSpeed;
+        return moveSpeed + GetMoveBuff();
     }
 
     public int GetCurrHealth()
@@ -323,7 +384,7 @@ public class Unit : GridObject
 
     public int GetAtkRange()
     {
-        return atkRange;
+        return atkRange + GetAttackRngBuff();
     }
 
     public void SetAtkRange(int atkRange)

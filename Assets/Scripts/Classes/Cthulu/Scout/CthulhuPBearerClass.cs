@@ -37,4 +37,14 @@ public class CthulhuPBearerClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "ThornDef";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "ThornDef" });
+      return unit;
+  }
 }

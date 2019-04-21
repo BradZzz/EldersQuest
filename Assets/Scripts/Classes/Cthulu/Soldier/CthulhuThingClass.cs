@@ -37,4 +37,14 @@ public class CthulhuThingClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "NullifyAtk";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "NullifyAtk" });
+      return unit;
+  }
 }

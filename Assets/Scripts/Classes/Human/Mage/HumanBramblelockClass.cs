@@ -37,4 +37,14 @@ public class HumanBramblelockClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "WallMove. WallMove";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "WallMove", "WallMove" });
+      return unit;
+  }
 }

@@ -37,4 +37,14 @@ public class EgyptFirefighterClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "SnowAtk. SnowAtk";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "SnowAtk", "SnowAtk" });
+      return unit;
+  }
 }

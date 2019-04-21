@@ -34,4 +34,14 @@ public class HumanGNinjaClass : ClassNode
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 atk battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetAttackBuff(unit.GetAttackBuff() + 2);
+      return unit;
+  }
 }

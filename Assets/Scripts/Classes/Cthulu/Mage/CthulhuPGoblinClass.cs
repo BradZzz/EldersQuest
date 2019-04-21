@@ -34,4 +34,14 @@ public class CthulhuPGoblinClass : ClassNode
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+3 exp inactive";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetInactiveExpBuff(unit.GetInactiveExpBuff() + 3);
+      return unit;
+  }
 }

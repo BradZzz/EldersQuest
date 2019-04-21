@@ -36,4 +36,14 @@ public class HumanPKnightClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+3 hp battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetHpBuffInactive(unit.GetHpBuff() + 3);
+      return unit;
+  }
 }

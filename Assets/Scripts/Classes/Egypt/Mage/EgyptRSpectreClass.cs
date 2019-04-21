@@ -35,4 +35,14 @@ public class EgyptRSpectreClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 exp inactive";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetInactiveExpBuff(unit.GetInactiveExpBuff() + 2);
+      return unit;
+  }
 }

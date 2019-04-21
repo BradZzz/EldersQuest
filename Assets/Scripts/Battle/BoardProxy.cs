@@ -64,18 +64,6 @@ public class BoardProxy : MonoBehaviour
     void Start()
     {
         BuildBoardFromFile();
-        //if (!BuildBoardFromFile()){
-        //    //BuildTestBoard();
-        //    //PopulatePlayer(GetSideTiles(PLAYER_TEAM));
-        //    //PopulateEnemies(GetSideTiles(ENEMY_TEAM));
-        //    //PlaceObstaclesAlt();
-        //}
-        //foreach(UnitProxy unit in GetUnits())
-        //{
-        //    unit.AcceptAction(Skill.Actions.BeginGame,null);
-        //}
-        //PanelControllerNew.instance.LoadInitUnits(GetUnits());
-        //TurnController.instance.StartTurn(true);
     }
 
     public void SummonAtPosition(Vector3Int pos, int team, int val){
@@ -156,13 +144,20 @@ public class BoardProxy : MonoBehaviour
         List<Unit> roster = new List<Unit>(player.characters);
         roster.Reverse();
         //Debug.Log("PopulatePlayer: " + validTls.Count.ToString());
-        for (int i = 0; i < roster.Count && i < height && i < 3; i++)
+        List<Unit> inactiveUnits = new List<Unit>();
+        for (int i = 3; i < roster.Count; i++)
+        {
+            inactiveUnits.Add(roster[i]);
+        }
+
+        for (int i = 0; i < roster.Count && i < 3; i++)
         {
             Unit cMeta = new Unit(roster[i]);
             //UnitProxy goodGuy = Instantiate(glossary.GetComponent<Glossary>().units[PLAYER_TEAM], transform);
             UnitProxy goodGuy = Instantiate(ClassNode.ComputeClassBaseUnit(cMeta.GetFactionType(), 
               cMeta.GetUnitType(), glossary.GetComponent<Glossary>()), transform);
             units.Add(goodGuy);
+            cMeta = ClassNode.ApplyClassBonusesBattle(cMeta, inactiveUnits.ToArray());
             goodGuy.PutData(cMeta);
             goodGuy.Init();
             TileProxy popTile = validTls.Dequeue();

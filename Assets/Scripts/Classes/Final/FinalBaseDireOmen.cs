@@ -34,4 +34,13 @@ public class FinalBaseDireOmen : ClassNode
       unit.SetAtkRange(unit.GetAtkRange() + 2);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      return unit;
+  }
 }

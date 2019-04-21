@@ -34,4 +34,14 @@ public class FinalBaseDisorder : ClassNode
       unit.SetMaxHP(unit.GetMaxHP() + 2);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "";
+  }
+
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      return unit;
+  }
 }

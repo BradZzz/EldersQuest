@@ -34,4 +34,14 @@ public class EgyptAshClass : ClassNode
       unit.SetTurnMoves(unit.GetTurnMoves() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 atk turn battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetTurnAttackBuff(unit.GetTurnAttackBuff() + 1);
+      return unit;
+  }
 }

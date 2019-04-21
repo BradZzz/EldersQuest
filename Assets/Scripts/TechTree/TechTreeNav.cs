@@ -21,6 +21,7 @@ public class TechTreeNav : MonoBehaviour
     public Image buttonImg;
     public Sprite battleInactive;
     public GameObject selectTag;
+    public GameObject inactive;
 
     private Unit clickedUnit;
     private PlayerMeta player;
@@ -54,9 +55,16 @@ public class TechTreeNav : MonoBehaviour
         for(int i = 0; i < units.Count; i++){
             PopulateRw(units[i], i);
         }
-        //foreach(Unit unt in player.characters.Reverse()){
-        //    PopulateRw(unt);
-        //}
+        if (units.Count > 3) {
+            inactive.SetActive(true);
+            List<Unit> inact = new List<Unit>();
+            for(int i = 3; i < units.Count; i++){
+                inact.Add(units[i]);
+            }
+            inactive.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ClassNode.GetClassBonusString(inact.ToArray());
+        } else {
+            inactive.SetActive(false);
+        }
     }
 
     void RefreshTech(){

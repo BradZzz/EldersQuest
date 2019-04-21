@@ -37,4 +37,14 @@ public class CthulhuDevilClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 atk battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetAttackBuff(unit.GetAttackBuff() + 2);
+      return unit;
+  }
 }

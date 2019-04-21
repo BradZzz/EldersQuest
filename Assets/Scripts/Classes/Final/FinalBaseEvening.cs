@@ -34,4 +34,13 @@ public class FinalBaseEvening : ClassNode
       unit.SetMaxHP(unit.GetMaxHP() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      return unit;
+  }
 }

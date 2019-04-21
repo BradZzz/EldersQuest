@@ -137,14 +137,55 @@ public abstract class ClassNode
         return "Cthulhu";
     }
 
+    //Active units who get bonuses before battle
+    public static Unit ApplyClassBonusesBattle(Unit battleUnit, Unit[] inactiveUnits){
+        foreach(Unit aUnit in inactiveUnits){
+            switch (aUnit.GetUnitType()) {
+                case Unit.UnitType.Mage:break;
+                case Unit.UnitType.Scout:battleUnit.SetMoveBuff(battleUnit.GetMoveBuff() + 1);break;
+                case Unit.UnitType.Soldier:battleUnit.SetHpBuff(battleUnit.GetHpBuff() + 1);battleUnit.SetCurrHealth(battleUnit.GetMaxHP());break;
+            }
+        }
+        return battleUnit;
+    }
+
+    //Inactive units who get bonuses after battle
+    public static Unit ApplyClassBonusesInactive(Unit inactiveUnit, Unit[] inactiveUnits){
+        foreach(Unit aUnit in inactiveUnits){
+            switch (aUnit.GetUnitType()) {
+                case Unit.UnitType.Mage:inactiveUnit.SetLvl(inactiveUnit.GetLvl() + 1);break;
+                case Unit.UnitType.Scout:break;
+                case Unit.UnitType.Soldier:break;
+            }
+        }
+        return inactiveUnit;
+    }
+
+    public static string GetClassBonusString(Unit[] inactiveUnits){
+        string unitStr = "";
+        foreach(Unit aUnit in inactiveUnits){
+            switch(aUnit.GetUnitType()){
+                case Unit.UnitType.Mage:unitStr += "+1 EXP INACTIVE\n";break;
+                case Unit.UnitType.Scout:unitStr += "+1 MV BATTLE\n";break;
+                case Unit.UnitType.Soldier:unitStr += "+1 HP BATTLE\n";break;
+            }
+        }
+        return unitStr;
+    }
+
     public static string FormatClass(string clss){
         return clss.Replace("Base","").Replace("Class","").Replace("Egypt","").Replace("Cthulhu","").Replace("Human","");
     }
 
+    //What to do with the unit object when the unit is upgraded
     public abstract Unit UpgradeCharacter(Unit unit);
+    //What to do with the unit object when the unit is inactive
+    public abstract Unit InactiveUpgradeCharacter(Unit unit);
+
     public string ClassDescFull(){
       return ClassName() + ": " + ClassDesc();
     }
+    public abstract string ClassInactiveDesc();
     public abstract string ClassDesc();
     public abstract string ClassName();
     public int GetWhenToUpgrade(){

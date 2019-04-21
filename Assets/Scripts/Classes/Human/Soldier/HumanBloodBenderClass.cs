@@ -36,4 +36,14 @@ public class HumanBloodBenderClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "HealTurn";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "HealTurn" });
+      return unit;
+  }
 }

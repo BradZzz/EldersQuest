@@ -19,8 +19,8 @@ public class MapStatic
             board.Add("Dest6",new BoardMeta(9, 9, CreateFromExp(2,3, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest7" }));
             board.Add("Dest7",new BoardMeta(10, 10, CreateFromExp(3,3, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest8" }));
             board.Add("Dest8",new BoardMeta(11, 11, CreateFromExp(3,4, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest9" }));
-            board.Add("Dest9",new BoardMeta(12, 12, CreateFromExp(3,4, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest10" }));
-            board.Add("Dest10",new BoardMeta(14, 14, CreateFromExp(3,6, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest11" }));
+            board.Add("Dest9",new BoardMeta(12, 12, CreateFromExp(3,6, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest10" }));
+            board.Add("Dest10",new BoardMeta(14, 14, CreateFromExp(3,8, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest11" }));
             return board;
         case GameMeta.World.mountain:
             board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,1, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
@@ -47,7 +47,7 @@ public class MapStatic
             board.Add("Dest10",new BoardMeta(14, 14, CreateFromExp(3,18, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest11" }));
             return board;
         default:
-            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,0, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
+            board.Add("Dest1",new BoardMeta(6, 6, CreateFromExp(1,0, true), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest2" }));
             board.Add("Dest2",new BoardMeta(6, 6, CreateFromExp(2,2, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest3" }));
             board.Add("Dest3",new BoardMeta(8, 8, CreateFromExp(2,4, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest4" }));
             board.Add("Dest4",new BoardMeta(8, 8, CreateFromExp(3,6, tutorial), new CondMeta[]{ new CondMeta() }, new string[]{ "Dest5" }));

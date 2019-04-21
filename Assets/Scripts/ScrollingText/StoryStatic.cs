@@ -97,7 +97,9 @@ public class StoryStatic : MonoBehaviour
             "There are hundreds of classes in Elder's Tale. Not all of them upgrade evenly. Classes that are stronger early in the game might be lacking at the end.",
             "Try to upgrade your units into classes that complement each other well."
            };
-          case Dests.Dest5:return new string[]{ "This screen can be accessed from the adventure map as well by clicking on it's icon in the upper right corner of the screen." };
+          case Dests.Dest5:return new string[]{ "Inactive units in your roster trigger passive effects during the game.", 
+            "Try mixing them up to see what each class does!",
+            "There is a rumor that some classes give special bonuses when they are placed in the inactive slot." };
           default: return new string[]{  };
         }
     }

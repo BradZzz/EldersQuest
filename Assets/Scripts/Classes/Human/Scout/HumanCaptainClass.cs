@@ -33,4 +33,14 @@ public class HumanCaptainClass : ClassNode
       unit.SetMaxHP(unit.GetMaxHP() + 3);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 atk turn battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetTurnAttackBuff(unit.GetTurnAttackBuff() + 1);
+      return unit;
+  }
 }

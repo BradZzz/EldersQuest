@@ -37,4 +37,13 @@ public class FinalBaseAntichrist : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      return unit;
+  }
 }

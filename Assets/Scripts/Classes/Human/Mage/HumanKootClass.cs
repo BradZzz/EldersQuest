@@ -33,4 +33,14 @@ public class HumanKootClass : ClassNode
       unit.SetAtkRange(unit.GetAtkRange() + 2);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+2 atk range battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetAttackRngBuff(unit.GetAttackRngBuff() + 2);
+      return unit;
+  }
 }

@@ -34,4 +34,14 @@ public class EgyptAnukeClass : ClassNode
       unit.SetTurnAttacks(unit.GetTurnAttacks() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 atk turn battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetTurnAttacks(unit.GetTurnAttackBuff() + 1);
+      return unit;
+  }
 }

@@ -37,4 +37,14 @@ public class HumanAstronautClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "AegisAtk";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetSkillsBuffs(new string[]{ "AegisAtk" });
+      return unit;
+  }
 }

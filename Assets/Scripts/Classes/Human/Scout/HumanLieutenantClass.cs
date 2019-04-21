@@ -37,4 +37,14 @@ public class HumanLieutenantClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 mv turn battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetMoveTrnBuff(unit.GetMoveTrnBuff() + 1);
+      return unit;
+  }
 }

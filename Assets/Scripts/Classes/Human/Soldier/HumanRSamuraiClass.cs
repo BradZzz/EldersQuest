@@ -34,4 +34,14 @@ public class HumanRSamuraiClass : ClassNode
       unit.SetMaxHP(unit.GetMaxHP() + 1);
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 atk battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetAttackBuff(unit.GetAttackBuff() + 1);
+      return unit;
+  }
 }

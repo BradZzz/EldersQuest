@@ -36,4 +36,14 @@ public class CthulhuStolisClass : ClassNode
       unit.SetSkills(skills.ToArray());
       return unit;
   }
+
+  public override string ClassInactiveDesc(){
+      return "+1 mv battle";
+  }
+
+  public override Unit InactiveUpgradeCharacter(Unit unit)
+  {
+      unit.SetMoveBuff(unit.GetMoveBuff() + 1);
+      return unit;
+  }
 }

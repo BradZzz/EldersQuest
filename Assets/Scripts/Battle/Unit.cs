@@ -47,22 +47,24 @@ public class Unit : GridObject
     [SerializeField]
     private bool nullified;
 
-    [SerializeField]
+    //Take off the SerializeField so that the buffs do not save
+    //[SerializeField]
     private int atkBuff;
-    [SerializeField]
+    //[SerializeField]
     private int trnAtkBuff;
-    [SerializeField]
+    //[SerializeField]
     private int atkRngBuff;
-    [SerializeField]
+    //[SerializeField]
     private int hpBuff;
-    [SerializeField]
+    //[SerializeField]
     private int moveBuff;
-    [SerializeField]
+    //[SerializeField]
     private int moveTrnBuff;
-    [SerializeField]
+    //[SerializeField]
     private int inactiveExpBuff;
-    [SerializeField]
+    //[SerializeField]
     private string[] skillBuffs;
+
     [SerializeField]
     private string currentClass;
 

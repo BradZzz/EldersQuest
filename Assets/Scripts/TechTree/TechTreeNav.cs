@@ -35,6 +35,7 @@ public class TechTreeNav : MonoBehaviour
         Color mainColor = HelperScripts.GetColorByFaction(BaseSaver.GetPlayer().faction);
         mainColor.a = .8f;
         GetComponent<Image>().color = mainColor;
+        techSelect.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
 
         selectTag.SetActive(false);
         techNext.SetActive(false);
@@ -224,6 +225,8 @@ public class TechTreeNav : MonoBehaviour
         IterateThroughTreeDown(unt.GetLvl(), unt.GetCurrentClass());
 
         //UnitProxy unt = ClassNode.ComputeClassBaseUnit(instance.player.faction, unt.GetUnitType(), instance.glossary.GetComponent<Glossary>());
+        string lvlupstr = unt.GetCurrentClass().GetWhenToUpgrade() == StaticClassRef.LEVEL4 ? "Fully Upgraded" : "Next lvl at: " + unt.GetCurrentClass().GetWhenToUpgrade().ToString();
+        techSelect.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = lvlupstr;
         selectTag.SetActive(true);
         selectTag.transform.GetChild(0).GetComponent<Image>().sprite = ClassNode.ComputeClassBaseUnit(instance.player.faction, unt.GetUnitType(), instance.glossary.GetComponent<Glossary>())
           .transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;

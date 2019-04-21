@@ -86,7 +86,7 @@ public class StatsNav : MonoBehaviour
               clssCpy.transform.GetChild(1).GetComponent<Image>().sprite = baseUnit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
               clssCpy.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = " " + ClassNode.GetFactionFromClass(clss);
               clssCpy.GetComponent<Button>().onClick.AddListener(() => { 
-                instance.SetClassInfoText(StaticClassRef.GetFullClassDescription(clss) + "\n\nInactive Bonus: " + nde.ClassInactiveDesc(), StaticClassRef.GetClassByReference(clss).ClassName(), 
+                instance.SetClassInfoText("Battle Bonus: " + StaticClassRef.GetFullClassDescription(clss) + "\n\nInactive Bonus: " + nde.ClassInactiveDesc(), StaticClassRef.GetClassByReference(clss).ClassName(), 
                   ClassNode.GetClassHeirarchyString(nde)); 
                 instance.SetClassSpriteAnimator(baseUnit.transform.GetChild(0).GetComponent<Animator>()); 
               });

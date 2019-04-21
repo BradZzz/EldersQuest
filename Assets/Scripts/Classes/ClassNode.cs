@@ -140,35 +140,38 @@ public abstract class ClassNode
     //Active units who get bonuses before battle
     public static Unit ApplyClassBonusesBattle(Unit battleUnit, Unit[] inactiveUnits){
         foreach(Unit aUnit in inactiveUnits){
-            switch (aUnit.GetUnitType()) {
-                case Unit.UnitType.Mage:break;
-                case Unit.UnitType.Scout:battleUnit.SetMoveBuff(battleUnit.GetMoveBuff() + 1);break;
-                case Unit.UnitType.Soldier:battleUnit.SetHpBuff(battleUnit.GetHpBuff() + 1);battleUnit.SetCurrHealth(battleUnit.GetMaxHP());break;
-            }
+            battleUnit = aUnit.GetCurrentClass().InactiveUpgradeCharacter(battleUnit);
+            //switch (aUnit.GetUnitType()) {
+            //    case Unit.UnitType.Mage:break;
+            //    case Unit.UnitType.Scout:battleUnit.SetMoveBuff(battleUnit.GetMoveBuff() + 1);break;
+            //    case Unit.UnitType.Soldier:battleUnit.SetHpBuff(battleUnit.GetHpBuff() + 1);battleUnit.SetCurrHealth(battleUnit.GetMaxHP());break;
+            //}
         }
         return battleUnit;
     }
 
     //Inactive units who get bonuses after battle
-    public static Unit ApplyClassBonusesInactive(Unit inactiveUnit, Unit[] inactiveUnits){
-        foreach(Unit aUnit in inactiveUnits){
-            switch (aUnit.GetUnitType()) {
-                case Unit.UnitType.Mage:inactiveUnit.SetLvl(inactiveUnit.GetLvl() + 1);break;
-                case Unit.UnitType.Scout:break;
-                case Unit.UnitType.Soldier:break;
-            }
-        }
-        return inactiveUnit;
-    }
+    //public static Unit ApplyClassBonusesInactive(Unit inactiveUnit, Unit[] inactiveUnits){
+    //    foreach(Unit aUnit in inactiveUnits){
+    //        unitStr += aUnit.GetCurrentClass().ClassInactiveDesc();
+    //        switch (aUnit.GetUnitType()) {
+    //            case Unit.UnitType.Mage:inactiveUnit.SetLvl(inactiveUnit.GetLvl() + 1);break;
+    //            case Unit.UnitType.Scout:break;
+    //            case Unit.UnitType.Soldier:break;
+    //        }
+    //    }
+    //    return inactiveUnit;
+    //}
 
     public static string GetClassBonusString(Unit[] inactiveUnits){
         string unitStr = "";
         foreach(Unit aUnit in inactiveUnits){
-            switch(aUnit.GetUnitType()){
-                case Unit.UnitType.Mage:unitStr += "+1 EXP INACTIVE\n";break;
-                case Unit.UnitType.Scout:unitStr += "+1 MV BATTLE\n";break;
-                case Unit.UnitType.Soldier:unitStr += "+1 HP BATTLE\n";break;
-            }
+            unitStr += aUnit.GetCurrentClass().ClassInactiveDesc() + "\n";
+            //switch(aUnit.GetUnitType()){
+            //    case Unit.UnitType.Mage:unitStr += "+1 EXP INACTIVE\n";break;
+            //    case Unit.UnitType.Scout:unitStr += "+1 MV BATTLE\n";break;
+            //    case Unit.UnitType.Soldier:unitStr += "+1 HP BATTLE\n";break;
+            //}
         }
         return unitStr;
     }

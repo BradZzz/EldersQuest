@@ -40,7 +40,7 @@ public class EgyptTConduitClass : ClassNode
 
   public override Unit InactiveUpgradeCharacter(Unit unit)
   {
-      unit.SetAttackRngBuff(unit.GetAttackBuff() + 2);
+      unit.SetAttackRngBuff(unit.GetAttackRngBuff() + 2);
       return unit;
   }
 }

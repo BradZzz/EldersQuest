@@ -92,6 +92,7 @@ public class Unit : GridObject
         this.characterMoniker = "Null"; 
         this.uType = UnitType.Soldier;
         this.skills = new string[0];
+        skillBuffs = new string[]{ };
         turnActions = new TurnActionsBasicUnit();
     }
 
@@ -126,6 +127,7 @@ public class Unit : GridObject
         this.trnAtks = trnAtks;
         this.trnMvs = trnMvs;
         this.skills = skills;
+        skillBuffs = new string[]{ };
         this.turnActions = new TurnActionsBasicUnit(trnMvs, trnAtks);
     }
 
@@ -228,12 +230,17 @@ public class Unit : GridObject
         this.atk = atk;
     }
 
+    public void ApplyInactiveExpBuff(){
+        SetLvl(GetLvl() + inactiveExpBuff);
+        inactiveExpBuff = 0;
+    }
+
     public int GetInactiveExpBuff(){
         return inactiveExpBuff;
     }
 
     public void SetInactiveExpBuff(int buff){
-        this.inactiveExpBuff = buff;
+        inactiveExpBuff = buff;
     }
 
     public void SetMoveBuff(int buff){

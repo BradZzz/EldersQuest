@@ -177,7 +177,10 @@ public class ConditionTracker : MonoBehaviour
                 for (int i = 0; i < inactiveUnits.Count; i++)
                 {
                     Debug.Log("Applying bonus to: " + inactiveUnits[i].characterMoniker + " - " + inactiveUnits[i].characterName);
-                    inactiveUnits[i] = ClassNode.ApplyClassBonusesInactive(inactiveUnits[i], inactiveUnits.ToArray());
+                    inactiveUnits[i] = ClassNode.ApplyClassBonusesBattle(inactiveUnits[i], inactiveUnits.ToArray());
+                    if (inactiveUnits[i].GetInactiveExpBuff() > 0) {
+                        inactiveUnits[i].ApplyInactiveExpBuff();
+                    }
                 }
             }
 

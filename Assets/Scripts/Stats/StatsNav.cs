@@ -68,7 +68,7 @@ public class StatsNav : MonoBehaviour
         if (clssSeen.Length > 0) {
           game.classesSeen = game.classesSeen.OrderBy(nm=>nm).ToArray();
 
-          classPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 120 * game.classesSeen.Length);
+          classPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 150 * game.classesSeen.Length);
           
           foreach (Transform child in classPnl.transform.GetChild(0).GetChild(0)) {
                Destroy(child.gameObject);
@@ -86,7 +86,7 @@ public class StatsNav : MonoBehaviour
               clssCpy.transform.GetChild(1).GetComponent<Image>().sprite = baseUnit.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
               clssCpy.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = " " + ClassNode.GetFactionFromClass(clss);
               clssCpy.GetComponent<Button>().onClick.AddListener(() => { 
-                instance.SetClassInfoText(StaticClassRef.GetFullClassDescription(clss) + "\n", StaticClassRef.GetClassByReference(clss).ClassName(), 
+                instance.SetClassInfoText(StaticClassRef.GetFullClassDescription(clss) + "\n\nInactive Bonus: " + nde.ClassInactiveDesc(), StaticClassRef.GetClassByReference(clss).ClassName(), 
                   ClassNode.GetClassHeirarchyString(nde)); 
                 instance.SetClassSpriteAnimator(baseUnit.transform.GetChild(0).GetComponent<Animator>()); 
               });
@@ -188,7 +188,7 @@ public class StatsNav : MonoBehaviour
 
         if (game.skillsSeen.Length > 0) {
           game.skillsSeen = game.skillsSeen.OrderBy(nm=>nm).ToArray();
-          skillPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 200 * game.skillsSeen.Length);
+          skillPnl.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2 (800, 220 * game.skillsSeen.Length);
 
           foreach (Transform child in skillPnl.transform.GetChild(0).GetChild(0)) {
                Destroy(child.gameObject);

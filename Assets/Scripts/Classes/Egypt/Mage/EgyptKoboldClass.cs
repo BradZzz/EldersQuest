@@ -43,7 +43,7 @@ public class EgyptKoboldClass : ClassNode
 
   public override Unit InactiveUpgradeCharacter(Unit unit)
   {
-      unit.SetAttackRngBuff(unit.GetAttackBuff() + 1);
+      unit.SetAttackRngBuff(unit.GetAttackRngBuff() + 1);
       return unit;
   }
 }

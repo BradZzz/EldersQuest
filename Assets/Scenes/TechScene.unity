@@ -335,7 +335,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.30980393, g: 0.85490197, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.5882353, g: 0.8, b: 0.85882354, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -2963,7 +2963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336630299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0062, y: -0.34, z: 0}
+  m_LocalPosition: {x: 0.0062, y: -0.32, z: 0.1}
   m_LocalScale: {x: 1.0943923, y: 0.65029794, z: 1}
   m_Children: []
   m_Father: {fileID: 2132571015}

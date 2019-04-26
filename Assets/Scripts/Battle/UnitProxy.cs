@@ -278,7 +278,7 @@ public class UnitProxy : GridObjectProxy
             case Unit.FactionType.Cthulhu:
               projColor= new Color(.4f,.2f,.6f);
               switch(unitType){
-                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 30; delayAfter = .005f; 
+                case Unit.UnitType.Mage: xOffset += 0; yOffset += 0; num = 20; delayAfter = .005f; 
                   projSpeed = .5f; chargeWait = .001f; delayBefore = 0; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
                 case Unit.UnitType.Scout: showProjectileAnimation = false; break;
                 case Unit.UnitType.Soldier: showProjectileAnimation = false; break;
@@ -296,7 +296,7 @@ public class UnitProxy : GridObjectProxy
             case Unit.FactionType.Human:
               projColor=Color.red;
               switch(unitType){
-                case Unit.UnitType.Mage: num = 30; delayAfter = .01f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
+                case Unit.UnitType.Mage: num = 20; delayAfter = .005f; projSpeed = .5f; chargeWait = .001f; baseProj = BoardProxy.instance.glossary.GetComponent<Glossary>().projectileSquare; break;
                 case Unit.UnitType.Scout: num = 2; delayBefore = .15f; delayAfter = .35f; projSpeed = .5f; break;
                 case Unit.UnitType.Soldier: num = 1; delayBefore = .28f; delayAfter = .6f; break;
               }

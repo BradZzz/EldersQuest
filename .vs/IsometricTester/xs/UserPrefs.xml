@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{A2E2420B-3519-4F1F-84E3-A32ACA8547F1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Map/MapNavigator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/UnitProxy.cs">
     <Files>
       <File FileName="Assets/Scripts/Classes/Human/Soldier/HumanTormentorClass.cs" Line="40" Column="1" />
-      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="64" Column="102" />
+      <File FileName="Assets/Scripts/TechTree/TechTreeNav.cs" Line="64" Column="14" />
       <File FileName="Assets/Scripts/Classes/ClassNode.cs" Line="153" Column="50" />
       <File FileName="Assets/Scripts/Battle/BoardProxy.cs" Line="160" Column="54" />
       <File FileName="Assets/Scripts/Battle/ConditionTracker.cs" Line="182" Column="65" />
@@ -11,6 +11,7 @@
       <File FileName="Assets/Scripts/Classes/StaticClassRef.cs" Line="319" Column="17" />
       <File FileName="Assets/Scripts/Classes/Human/Scout/HumanBaseScout.cs" Line="45" Column="31" />
       <File FileName="Assets/Scripts/Map/MapNavigator.cs" Line="34" Column="1" />
+      <File FileName="Assets/Scripts/Battle/UnitProxy.cs" Line="297" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

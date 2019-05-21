@@ -52,6 +52,8 @@ public class Unit : GridObject
     private int atkBuff;
     //[SerializeField]
     private int trnAtkBuff;
+
+    private int trnAtkBuffTemp;
     //[SerializeField]
     private int atkRngBuff;
     //[SerializeField]
@@ -131,10 +133,11 @@ public class Unit : GridObject
         this.skills = skills;
         skillBuffs = new string[]{ };
         this.turnActions = new TurnActionsBasicUnit(trnMvs, trnAtks);
+        Debug.Log("init");
     }
 
     public int GetTurnAttacks(){
-        return trnAtks + trnAtkBuff;
+        return trnAtks + GetTurnAttackBuff();
     }
 
     public void SetTurnAttacks(int trnAtks){
@@ -160,7 +163,7 @@ public class Unit : GridObject
     }
 
     public void BeginTurn(){
-        SetTurnAttackBuff(0);
+        SetTurnAttackBuffTemp(0);
         GetTurnActions().BeginTurn();
     }
 
@@ -210,6 +213,15 @@ public class Unit : GridObject
     public void SetTurnAttackBuff(int buff){
         this.trnAtkBuff = buff;
         this.turnActions = new TurnActionsBasicUnit(GetTurnMoves(), GetTurnAttacks());
+        Debug.Log("set turn attack buff");
+    }
+
+    public int GetTurnAttackBuffTemp(){
+        return this.trnAtkBuffTemp;
+    }
+
+    public void SetTurnAttackBuffTemp(int buff){
+        this.trnAtkBuffTemp = buff;
     }
 
     public int GetAttackRngBuff(){
@@ -256,6 +268,7 @@ public class Unit : GridObject
     public void SetMoveTrnBuff(int buff){
         this.moveTrnBuff = buff;
         this.turnActions = new TurnActionsBasicUnit(GetTurnMoves(), GetTurnAttacks());
+        Debug.Log("SetMoveTrnBuff");
     }
 
     public int GetMoveTrnBuff(){
@@ -387,7 +400,8 @@ public class Unit : GridObject
 
     public int GetAttack()
     {
-        int nwAtk = atk + GetAttackBuff() + GetTurnAttackBuff();
+        // Current attack + lvlatkbuff + turnattackuff
+        int nwAtk = atk + GetAttackBuff() +  GetTurnAttackBuffTemp();
         return nwAtk > 0 ? nwAtk : 1;
     }
 

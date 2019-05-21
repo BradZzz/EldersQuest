@@ -43,10 +43,10 @@ public class MapNavigator : MonoBehaviour
     }
     if (GameMeta.GameEnded()) {
         SceneManager.LoadScene("ScrollingTextScene");
-    }
-    if (GameMeta.RosterNeedsUpgrade()) {
+    } else if (GameMeta.RosterNeedsUpgrade()) {
         SceneManager.LoadScene("TechScene");
     }
+
     ChangeDests(w0Dests,false);
     ChangeDests(w1Dests,false);
     ChangeDests(w2Dests,false);

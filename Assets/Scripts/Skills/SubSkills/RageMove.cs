@@ -31,7 +31,7 @@ public class RageMove : Skill
 
   public override void DidMove(UnitProxy unit, List<TileProxy> path){
       int atkBuff = path.Count - 1;
-      unit.GetData().SetTurnAttackBuff(unit.GetData().GetTurnAttackBuff() + atkBuff);
+      unit.GetData().SetTurnAttackBuffTemp(unit.GetData().GetTurnAttackBuffTemp() + atkBuff);
   }
 
   public override void DidWait(UnitProxy unit)

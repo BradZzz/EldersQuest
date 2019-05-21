@@ -19,5 +19,7 @@ public class TurnActionsBasicUnit : TurnActions
       {
           this.mv = mv;
           this.atk = atk;
+
+          Debug.Log("Implementing turn actions: " + mv.ToString() + ":" + atk.ToString());
       }
 }

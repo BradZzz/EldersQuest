@@ -141,11 +141,6 @@ public abstract class ClassNode
     public static Unit ApplyClassBonusesBattle(Unit battleUnit, Unit[] inactiveUnits){
         foreach(Unit aUnit in inactiveUnits){
             battleUnit = aUnit.GetCurrentClass().InactiveUpgradeCharacter(battleUnit);
-            //switch (aUnit.GetUnitType()) {
-            //    case Unit.UnitType.Mage:break;
-            //    case Unit.UnitType.Scout:battleUnit.SetMoveBuff(battleUnit.GetMoveBuff() + 1);break;
-            //    case Unit.UnitType.Soldier:battleUnit.SetHpBuff(battleUnit.GetHpBuff() + 1);battleUnit.SetCurrHealth(battleUnit.GetMaxHP());break;
-            //}
         }
         return battleUnit;
     }
